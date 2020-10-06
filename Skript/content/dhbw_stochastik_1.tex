@@ -1,0 +1,172 @@
+\documentclass{beamer}
+\usetheme{Warsaw}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fancybox}
+\usepackage{multimedia} 
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[all]{xy}
+\begin{document}
+
+
+\title[Angewandte Mathematik] % (optional, only for long titles)
+\\
+\includegraphics[scale=0.5]{img/craps}
+}
+\subtitle{}
+\author[Dr. Johannes Riesterer] % (optional, for multiple authors)
+{Dr.  rer. nat. Johannes Riesterer}
+
+\date[KPT 2004] % (optional)
+{}
+
+\subject{Stochastik}
+
+\frame{\titlepage}
+
+\begin{frame}
+    \frametitle{Einleitung}
+\framesubtitle{}
+    \begin{block}{Was ist Stochastik?}
+Die Stochastik beschäftigt sich mit der Beschreibung und der Untersuchung von zufälligen Vorgängen.
+\end{block}
+ \end{frame}
+
+\begin{frame}
+    \frametitle{Einleitung}
+\framesubtitle{}
+
+    \begin{block}{Was ist Zufall}
+Keine kausale Erklärung für den Ausgang eines Vorganges möglich (Nicht-Deterministisch)
+\end{block}
+    \begin{block}{}
+Gibt es überhaupt Zufall? 
+\end{block}
+    \begin{block}{}
+Zufall hängt von der betrachteten Skala ab. \\
+Physik $\Rightarrow$ Skalen können nicht beliebig klein werden.
+\end{block}
+    \begin{block}{}
+\href{https://de.wikipedia.org/wiki/Brownsche_Bewegung
+}{Wikipedia://Brownsche Molekularbewegung.
+}
+\end{block}
+
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Einleitung}
+\framesubtitle{}
+
+\begin{block}{Motivation}
+Maschinelles Lernen. Maschinelle Vorhersage. Informationstheorie. Prozesstheorie. Optimierungstheorie. Mustererkennung. Komplexitätstheorie.....
+\end{block}
+
+
+ \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Einleitung}
+\framesubtitle{}
+
+\begin{block}{Bessere Entscheidungen durch Mathematik?!?}
+Gegeben sind 3 geschlossene Türen.  Hinter einer ist der Hauptgewinn, hinter zwei eine Ziege.
+Der Spieler darf  sich zuerst für eine Tür entscheiden. 
+Danach öffnet der Moderator eine der  nicht gewählten Türen, hinter der nicht der Hauptgewinn ist und fragt den Spieler, oben er seine vorige Entscheidung revidieren und die andere geschlossene Tür öffnen möchte.
+\end{block}
+
+\begin{figure}[htp]
+      \centering
+    \includegraphics[width=0.45\textwidth]{img/Monty_open}
+
+      \caption{Quelle: Wikipedia}
+\end{figure}
+
+ \end{frame}
+
+\begin{frame}
+    \frametitle{Einleitung}
+\framesubtitle{}
+
+\begin{block}{Bessere Entscheidungen durch Mathematik?!?}
+Hat der Spieler eine höhere Gewinnchance, wenn er die Tür wechselt?
+\end{block}
+
+ \end{frame}
+
+\begin{frame}
+    \frametitle{Einleitung}
+\framesubtitle{}
+
+\begin{block}{Bessere Entscheidungen durch Mathematik?!?}
+Wechseln hat eine höhere Gewinnchance!
+\end{block}
+
+\begin{figure}[htp]
+      \centering
+    \includegraphics[width=0.45\textwidth]{img/Monty_closed_1}
+    \includegraphics[width=0.45\textwidth]{img/Monty_open_1}
+      \caption{Quelle: Wikipedia}
+\end{figure}
+
+ \end{frame}
+
+
+\begin{frame}
+    \frametitle{Diskrete Modelle}
+\framesubtitle{ Laplace Wahrscheinlichkeit}
+
+\begin{block}{Laplace Wahrscheinlichkeit}
+Gegeben endliche Menge $\Omega$ (Grundmenge). \\
+Potenzmenge  $\mathcal{P}(\Omega)$   (Menge aller Teilmengen).  \\
+$A \in \mathcal{P}(\Omega)$ bezeichnet man auch als Ereignis. 
+\begin{align*}
+& P(A) := \frac{ \#A}{ \# \Omega} \\
+ & (\#M := \text{Anzahl der Elemente})
+\end{align*}
+heißt Laplace Wahrscheinlichkeit.
+\end{block}
+ \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Diskrete Modelle}
+\framesubtitle{Kombinatorik}
+
+\begin{block}{Kombinationen und Permutationen}
+\begin{itemize}
+\item $Perm_k^n(\Omega, m.W.) : = \{ \omega_1, \ldots, \omega_k \in \Omega^k \}$  Menge aller Permutationen mit Wiederholung.
+\item $Perm_k^n(\Omega, o.W.) : = \{ \omega_1, \ldots, \omega_k \in \Omega^k  | \omega_i \neq \omega_j\}$  Menge aller Permutationen ohne Wiederholung.
+\item $Kom_k^n(\Omega, m.W.) : = \{ \omega_{i_1}, \ldots, \omega_{i_k} \in \Omega^k  | 1  \leq i_1 \leq  \ldots  \leq i_k \}$  Menge aller Kombinationen  mit Wiederholung.
+\item $Kom_k^n(\Omega, o.W.) : = \{ \omega_{i_1}, \ldots, \omega_{i_k} \in \Omega^k  | 1 \leq i_1  \leq \ldots \leq i_k ;  \omega_{i_i} \neq \omega_{i_j} \}$  Menge aller Kombinationen  ohne  Wiederholung.
+\end{itemize}
+\end{block}
+ \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Diskrete Modelle}
+\framesubtitle{Kombinatorik}
+
+\begin{block}{Kombinationen und Permutationen}
+\begin{itemize}
+\item $\# Perm_k^n(\Omega, m.W.)  = n^k = \underbrace{n \cdot n \cdots n}_{\text{k-mal}}$
+\item $\# Perm_k^n(\Omega, o.W.)  = n_k = n \cdot (n-1) \cdots  (n-k+1) = \frac{n!}{(n-k)!}$  
+\item $\#Kom_k^n(\Omega, o.W.) = \binom{n}{k} = \frac{n!}{k! (n-k)!}$  
+\item $\#Kom_k^n(\Omega, m.W.)  = \binom{n + k -1}{k}$  
+\end{itemize}
+\end{block}
+ \end{frame}
+
+
+
+
+\end{document}

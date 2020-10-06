@@ -1,0 +1,32 @@
+%%% Packages for LaTeX - programming
+%
+% Define commands that don't eat spaces.
+\usepackage{xspace}
+% IfThenElse
+\usepackage{ifthen}
+%%% Doc: ftp://tug.ctan.org/pub/tex-archive/macros/latex/contrib/oberdiek/ifpdf.sty
+% command for testing for pdf-creation
+\usepackage{ifpdf} %\ifpdf \else \fi
+
+%%% Internal Commands: ----------------------------------------------
+\makeatletter
+%
+\providecommand{\IfPackageLoaded}[2]{\@ifpackageloaded{#1}{#2}{}}
+\providecommand{\IfPackageNotLoaded}[2]{\@ifpackageloaded{#1}{}{#2}}
+\providecommand{\IfElsePackageLoaded}[3]{\@ifpackageloaded{#1}{#2}{#3}}
+
+\providecommand{\IfDefined}[2]{%
+    \ifcsname #1\endcsname
+    #2 %
+    \else
+    % do nothing
+    \fi
+}
+
+\providecommand{\IfElseDefined}[3]{%
+    \ifcsname #1\endcsname
+    #2 %
+    \else
+    #3 %
+    \fi
+}
