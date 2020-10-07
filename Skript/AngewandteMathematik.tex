@@ -1,4 +1,4 @@
-\documentclass[]{article}
+\documentclass[12px, a4paper]{article}
 \usepackage[utf8]{inputenc}
 \input{preamble/preamble.tex}
 \usepackage{amsmath}
@@ -9,7 +9,10 @@
 
 %front
 \input{content/00_title}
-\thispagestyle{empty}{\tableofcontents}
+%Einfügen des Inhaltsverzeichnisses
+\tableofcontents
+\newpage
+\thispagestyle{empty}
 \mbox{}\thispagestyle{empty}
 \newpage
 %main
