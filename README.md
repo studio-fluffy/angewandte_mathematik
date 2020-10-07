@@ -3,7 +3,7 @@
 Vorlesungsunterlagen angewandte Mathematik an der DHBW
 
 ## Videos zu Grundlagen reeller Funktion
-### Taylor
+### Taylor Reihe
 https://www.youtube.com/watch?v=amLjNyuxLSs
 
 https://www.youtube.com/watch?v=ELPvMyhNrz8
