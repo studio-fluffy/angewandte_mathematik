@@ -14,3 +14,6 @@ https://www.youtube.com/watch?v=JtPoHGBStYk
 https://www.youtube.com/watch?v=UCc9q_cAhho
 
 https://www.youtube.com/watch?v=xsP-S7yKaRA
+
+### Automatisches Differenzieren (Kettenregel)
+https://www.youtube.com/watch?v=wG_nF1awSSY
