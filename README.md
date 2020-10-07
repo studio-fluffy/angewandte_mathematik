@@ -9,3 +9,6 @@ https://www.youtube.com/watch?v=amLjNyuxLSs
 https://www.youtube.com/watch?v=ELPvMyhNrz8
 
 https://www.youtube.com/watch?v=JtPoHGBStYk
+
+### Symmetrische, positiv definite Matrizen
+https://www.youtube.com/watch?v=UCc9q_cAhho
