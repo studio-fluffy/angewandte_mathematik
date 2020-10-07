@@ -110,7 +110,7 @@ Diese  ist aus einzelnen, einfachen Teilen zusammengesetzt.
     \begin{block}{Neuronales Netz trainieren}
 Gegeben Datensatz $D$. Finde Gewichte Omega, so dass Lossfunktion
 \begin{align*}
-L_D (\omega ) : \Omega \subset \mathbb{R}^n \to \mathbb{R} 
+L_D  : \Omega \subset \mathbb{R}^n \to \mathbb{R} 
 \end{align*}
 minimal wird. Zum Beispiel $L_D(\omega) := \sum_{(x,y) \in D} (f(\omega, x) - y)^2$.
 \end{block}
@@ -193,7 +193,7 @@ wobei $\varphi$ der Innenwinkel zwischen $v$ und $w$ ist.
     \frametitle{Mehrdimensionale Differentialrechnung}
 \framesubtitle{Vorwissen über eindimensionale  Funktionen}
     \begin{block}{Äquivalenz von Normen}
- Die Normen $||v||: = \sqrt{\sum_{i = 1}^n v_i^2}$ und $||v||_{\infty}:= \max \{ v_1, \cdots, v_n \} $ sind Äquivalent. Sie lassen sich  mit Konstanten $k_1 ||v|| < ||v||_{\infty} k_2  ||v|| $ gegeneinander abschätzen.
+ Die Normen $||v||: = \sqrt{\sum_{i = 1}^n v_i^2}$ und $||v||_{\infty}:= \max \{ v_1, \cdots, v_n \} $ sind Äquivalent. Sie lassen sich  mit Konstanten $k_1 ||v|| < ||v||_{\infty}  < k_2  ||v|| $ gegeneinander abschätzen.
 \end{block}
 
  \end{frame}
@@ -205,7 +205,7 @@ wobei $\varphi$ der Innenwinkel zwischen $v$ und $w$ ist.
  Für eine symmetrische Matrix $A \in \mathbb{R}^{n \times n}$ ist Äquivalent:
 \begin{itemize}
 \item $A$ hat positive Eigenwerte.
-\item $v^TA v > 0$ für alle $v \neq 0$.
+\item Für alle $v \in \mathbb{R}^n \neq 0$ gilt  $v^TA v > 0 $.
 \item alle Unterdeterminanten sind positiv. Speziell für $n=2$ und $A = \begin{pmatrix} a & b \\ b & d\end{pmatrix}$ bedeutet dies
 $a >0$ und $ad -b^2 >0$. 
 \end{itemize}
@@ -287,7 +287,7 @@ Sei $f: U \to \mathbb{R}$ eine Funktion. Für einen Vektor $h \in  \mathbb{R}^n$
 \end{align*}
 Richtungsableitung von $f$ am Punkt $a$ in Richtung $h$. Sie misst die Änderung der Funktion in Richtung $h$.
 
-Speziell nennen wir für die standard Basisvektoren $e_i$ 
+Speziell nennen wir für die Standard Basisvektoren $e_i$ 
 \begin{align*}
 \frac{\partial f(a)}{\partial x_n}  := \partial_{e_i} f(a) := \lim_{t \to 0} \frac{f(a + t e_i) - f(a)}{t}
 \end{align*}
@@ -347,9 +347,10 @@ wird als Gradient bezeichnet. Es ist $df(a) \cdot h = \langle \nabla f (a) , h \
 \framesubtitle{Differenzierbarkeit}
     \begin{block}{Gradient}
 
-Für eine differenzierbare Funktion  $f: U \to \mathbb{R}$ gilt für $a \in U$:
+Sei   $f: U \to \mathbb{R}$ differenzierbare Funktion,  $a \in U$ und $v := \text{argmax}_{ ||h|| = 1 } \{ \partial_h f(a) \}$.
+Dann gilt 
 \begin{align*}
-|| \nabla f(a) || = \max \{ \partial_h f(a) \; | \; ||h|| = 1 \} \; .
+|| \nabla f(a) || v =  \nabla f(a) \; .
 \end{align*} 
 \end{block}
 
