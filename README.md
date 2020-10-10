@@ -2,7 +2,10 @@
 <img src="https://raw.githubusercontent.com/studio-fluffy/angewandte_mathematik/main/Skript/images/cover.png" width=50% >
 Vorlesungsunterlagen angewandte Mathematik an der DHBW
 
-## Gradient
+## Begleitende Videos
+https://www.khanacademy.org/math/multivariable-calculus
+
+### Gradient
 https://www.youtube.com/watch?v=QQPz3eXXgQI
 
 ## Automatisches Differenzieren (Kettenregel)
