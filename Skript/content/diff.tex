@@ -122,6 +122,7 @@ existieren.
 \end{Definition}
 
 \begin{Definition}[Differenzierbarkeit]
+\label{diffbarkeit}
 Eine Funktion $f: U \to \mathbb{R}$ heißt  differenzierbar im Punkt $a \in U$, falls alle partiellen Ableitungen 
 $$\frac{\partial f(a)}{\partial x_1}, \cdots, \frac{\partial f(a)}{\partial x_n}$$
  existieren und stetig sind.  Mann nennt  in diesem Fall die $1 \times n$-Matrix 
@@ -142,10 +143,26 @@ $\star \star \bigstar $  Der Unterschied zwischen  Differenzierbarkeit und parti
 \end{figure}
 
 
+\begin{Bemerkung}
+\label{partial1}
+Für das Differential einer differenzierbaren Funktion  $f: U \to \mathbb{R}$ gilt für alle $a \in U$:
+\begin{itemize}
+\item  $df(a) (h) :=  df(a) \cdot h$ ist eine lineare Abbildung von $\mathbb{R}^n$ nach $\mathbb{R}$.
+\item $df(a)  \cdot h = \partial_h f(a)$. 
+\item $d (f \cdot g) = g(a) d(f) + f(a) dg$
+\item $d(f + g) = df + dg$
+\end{itemize}
+\end{Bemerkung}
+\begin{proof}
+Übung!
+\end{proof}
+
+
 \begin{Satz}[Steilste Anstiegsrichtung]
-Für eine differenzierbare Funktion  $f: U \to \mathbb{R}$ gilt für $a \in U$:
+Sei   $f: U \to \mathbb{R}$ differenzierbare Funktion,  $a \in U$ und $v := \text{argmax}_{ ||h|| = 1 } \{ \partial_h f(a) \}$.
+Dann gilt 
 \begin{align*}
-|| \nabla f(a) || = \max \{ \partial_h f(a) \; | \; ||h|| = 1 \} \; .
+|| \nabla f(a) || v =  \nabla f(a) \; .
 \end{align*} 
 \end{Satz}
 \begin{proof}
@@ -160,26 +177,13 @@ wobei $\varphi$ den Innenwinkel zwischen $\nabla f(a)$ und $h$ bezeichnet. Für 
 
 
 
-\begin{Bemerkung}
-\label{partial1}
-Für das Differential einer differenzierbaren Funktion  $f: U \to \mathbb{R}$ gilt für alle $a \in U$:
-\begin{itemize}
-\item  $df(a) (h) :=  df(a) \cdot h$ ist eine lineare Abbildung von $\mathbb{R}^n$ nach $\mathbb{R}$.
-\item $df(a)  \cdot h = \partial_h f(a)$. 
-\item $f (f \cdot g) = g(a) d(f) + f(a) dg$
-\item $d(f + g) = df + dg$
-\end{itemize}
-\end{Bemerkung}
-\begin{proof}
-Übung!
-\end{proof}
-
-
-% Erste VL
-
+%-----------------------------------------------------
+% Ende VL 1
+%-----------------------------------------------------
 
 
 \begin{Satz}[Lokale Linearisierung]
+\label{lokaleLinearisierung}
 Ist  $f: U \to \mathbb{R}$ differenzierbar, so gibt es ein Restglied $R(h)$ mit  $\lim_{h \to 0} \frac{R(h)}{ ||h||} = 0$  so dass für alle $a \in U$ und $h \in \mathbb{R}$ 
 \begin{align*}
 f(a + h)  =  f(a)  +  df(a) \cdot h + R(h) 
@@ -205,7 +209,14 @@ Jeder Punkt Punkt $a + h \in Q$  lässt sich damit durch einen achsenparallelen 
 & a_0 := a \\
 & a_i  := a_{i-1} + h_i e_i;  \;  \;  i = 1, \cdots , n
 \end{align*} 
-mit $a$ verbinden. Damit ist $f(a + h) - f(a) = \sum_{i=1}^{n} \bigl( f (a_i)   - f(a_{i-1})   \bigr)$ und  mit $\varphi_i(t) : = f(a_i + t e_i)$ gilt 
+mit $a$ verbinden. 
+\begin{figure}[H]
+      \centering
+    \includegraphics[width=0.4\textwidth]{images/kantenzug}
+      \caption{Kantenzug mit achesenparallelen Kanten}
+\end{figure}
+
+Damit ist $f(a + h) - f(a) = \sum_{i=1}^{n} \bigl( f (a_i)   - f(a_{i-1})   \bigr)$ und  mit $\varphi_i(t) : = f(a_i + t e_i)$ gilt 
 $f(a_i) - f(a_{i-1}) = \varphi_i(h_i)  - \varphi_i(0)$. Wegen dem Mittelwertsatz einer Veränderlichen gibt  es  $\tau_i$  mit
 \begin{align*}
 \varphi_i(h_i)  - \varphi_i(0)  = h_i \varphi'(\tau_i) \;.
@@ -250,7 +261,7 @@ mit reellen, stetigen Funktionen $y_i : [a,b] \to \mathbb{R}$ (Damit ist auch $\
 \begin{Satz}[(Baby) Kettenregel]
 Sei $\gamma: I \to U$ ein differenzierterer Weg und $f: U \to \mathbb{R}$ eine differenziertere Funktion. Dann ist $f \circ \gamma : I \to \mathbb{R}$ differenzierbar und hat die Ableitung
 \begin{align*}
-\frac{d(f \circ \gamma)}{dt} = df(\gamma(t))\gamma'(t) = \sum_{i=1}^n  \frac{\partial f (\gamma(t))}{\partial x_i} \gamma'_i(t)
+\frac{d(f \circ \gamma)}{dt}(t) = df(\gamma(t))\gamma'(t) = \sum_{i=1}^n  \frac{\partial f (\gamma(t))}{\partial x_i} \gamma'_i(t)
 \end{align*} 
 \end{Satz}
 
@@ -402,7 +413,7 @@ Mit der Taylorapproximation für Funktionen einer Veränderlichen folgt
  F(1) = F(0) + F'(0) + \frac{1}{2!} F''(0) + \cdots + \frac{1}{p!} F^p(0) + R_{p+1} 
 \end{align*}
 mit dem Restglied $ R_{p+1}  :=  \frac{1}{(p+1)!}  F^p(\tau)$ mit $\tau \in [0,1]$.
-Da nach Konstruktion $F(0) = a$ und $F(1)= f(x)$ folgt insgesamt die Behauptung.
+Da nach Konstruktion $F(0) = f(a)$ und $F(1)= f(x)$ folgt insgesamt die Behauptung.
 \end{proof}
 
 
@@ -424,7 +435,7 @@ f(x) = T_{p-1}(x, a) +  \frac{1}{p!} d^{p}f(\xi) (x-a)^{p} = T_p(x,a) +  \frac{1
 Mit obiger Abschätzung folgt die Behauptung.
 \end{proof}
 
-\subsection{Lokale Maxima und Minima}
+\subsection{Extrema}
 
 \begin{Definition}[Extremum]
 Sei $f : X \subset \mathbb{R}^n \to \mathbb{R}$ eine relle Funktion.  Ein Punkt $a \in  X$ heißt lokales Maximum bzw. Minimum, falls eine Umgebung $U$ von $a$ existiert, so dass $f(x) \leq f(a)$ bzw.  $f(x) \geq f(a)$ für alle $x \in U$ gilt. Liegt einer der beiden Fälle vor, so spricht man von einem lokalen Extremum. Gilt strikt $f(x) <  f(a)$ bzw.  $f(x) > f(a)$ , so nennt man das Extremum isoliert. Ist $U = X$ so nennt man es auch globales Maximum bzw. Minimum.
@@ -449,7 +460,7 @@ Dies ist gleichbedeutend mit $df(a) = 0$.
 \end{Satz}
 \begin{proof}
 Setze $F_k(t) := f(a + t e_k)$. Da $f$ ein Extremum in $a$ hat, hat $F_k$ in einer hinreichend kleinen Umgebung um $0$ ein Extremum. 
-Da $F_k$ eine Funktion einer Veränderlichen ist, git $F'(0) = 0$. Da $\frac{\partial}{\partial x_k} f(a) = F_k'(0)$ folgt die Behauptung.
+Da $F_k$ eine Funktion einer Veränderlichen ist, gilt $F'(0) = 0$. Da $\frac{\partial}{\partial x_k} f(a) = F_k'(0)$ folgt die Behauptung.
 \end{proof}
 
 \begin{Satz}[Hinreichendes Kriterium]
@@ -501,8 +512,28 @@ und somit hat $F_v$ ein isoliertes lokales Maximum und $F_w$ ein isoliertes loka
 
 
 
-\subsubsection*{Anwendung: Gradientenverfahren} 
+\subsubsection*{Anwendung: Gradientenverfahren und Backpropagation} 
+Wie kann man Minima einer  differenzierteren Abbildung $f: \mathbb{R}^n \to \mathbb{R}$ finden? 
+Wir wissen, dass an jedem Punkt $x_k \in : \mathbb{R}^n$ der negative Gradient  $d_k := -\nabla f (x_k)$ in die steilste Abstiegsrichtung zeigt.
+Die Idee des Gradientenabstieg ist, ein bestimmtes  Stück in diese Richtung abzusteigen, damit der Funktionswert kleiner wird, also $x_{k+1} = x_k + \alpha_k d_k$ zu setzen. Für hinreichend kleines $\alpha_k$ folgt mit Satz \ref{lokaleLinearisierung} über die lokale Liberalisierung  
+$f(x_{k+1}) = f (x_k + \alpha_k d_k) =  f(x_k) + \alpha_k df(x_k)d_k + R( \alpha_k dk)$.  Somit gilt $f(x_{k+1}) \leq f(x_k)$, falls $\nabla f(x_k) \neq 0$ und falls die folge $f(x_k)$ beschränkt ist, so ist  dieser Fixpunkt $x^*$ ein minimum, da $\nabla f(x^*) = 0$ gelten muss.  
 
+\begin{algorithm}
+\caption{Gradientabstieg}
+\begin{algorithmic}[1]
+
+
+    \State Initialisiere $k:=0$ und zufälligen Startwert $x_0$.
+\State Initialisiere Genauigkeit $\epsilon > 0$.
+    \While{$|| \nabla f(x_k) || > \epsilon$}  \Comment{So lange kein Extrema vorliegt}
+        \State Bestimme $\alpha_k$  mit $f (x_k + \alpha d_k) =  f(x_k) + \alpha_k df(x_k)d_k + R( \alpha_k dk)$ \Comment{Schrittweite bestimmen}
+        \State Setze $x_{k+1} := x_k  + \alpha_k d_k$. \Comment{Absteigen}
+ 	\State  $k \leftarrow k+1$ \Comment{Wiederholen}
+    \EndWhile  \label{roy's loop}
+
+
+\end{algorithmic}
+\end{algorithm}
 
 \begin{figure}[H]
       \centering
@@ -513,7 +544,73 @@ und somit hat $F_v$ ein isoliertes lokales Maximum und $F_w$ ein isoliertes loka
 
 
 \subsection{Gradient einer  mehrdimensionalen Funktion}
+\begin{Definition}
+\label{diffbarkeitmd}
+Eine Funktion $F: U \to \mathbb{R}^m$ heißt differenzierbar, wenn es eine lineare Abbildung $dF$ gibt, so dass 
+\begin{align*}
+F(a + h) = F(a) + dF(a)h + R(h)
+\end{align*}
+mit $\lim_{h \to 0} \frac{R(h)}{||h||} = 0$ gilt für alle $a \in U$ und $h \in \mathbb{R}^n$.
+\end{Definition}
 
+\begin{Bemerkung}
+Im Fall $n = 1$ stimmt diese Definition mit der Alten Definition \ref{diffbarkeit} überein.
+\end{Bemerkung}
+\begin{proof}
+Nach Satz \label{lokaleLinearisierung} gilt für eine differenzierbare Funktion $f(a + th) = f(a) + df th + R(th)$ mit  $\lim{t \to 0} \frac{R(th)}{||h||} = 0$. Umstellen ergibt
+\begin{align*}
+df(a) h = \lim_{t \to 0} \frac{f(a + th) - f(a)}{t}
+\end{align*} 
+und somit existieren alle linearen Abbildungen und wegen der Linearität von $df$ sind diese auch stetig.
+\end{proof}
+
+\begin{Beispiel}[Affine Abbildung]
+Für $A \in \mathbb{R}^{n \times n}$, $b \in \mathbb{R}^n$  ist die Abbildung $F(x) := Ax +b$ differenzierbar, da
+$F(a +h) = A(a+h) + b = A a+ Ah +b = Aa +b + Ah = F(a) + Ah$ und damit für $dF(a) := A$ und $R(h) = 0$ die Definition \ref{diffbarkeitmd}
+ erfüllt ist.
+\end{Beispiel}
+
+\begin{Satz}[Differenzierbarkeit von Produktfunktionen]
+Eine Funktion $F:= (F_1, F_2) : U  \to \mathbb{R}^m \times \mathbb{R}^k$ ist genau dann differenzierbar, 
+wenn $F_1 : U  \to \mathbb{R}^m$ und   $F_2 : U  \to \mathbb{R}^k$ differenzierbar sind. In diesem Fall ist
+$$dF(a) = (dF_1(a), df_2 (a)) \;.$$ 
+\end{Satz}
+\begin{proof}
+Ist $F_1$ und $F_2$ differenzierbar, so gilt für $i = 1,2$
+\begin{align*}
+F_i (a + h) = F_i(a) + dF_ih + R_i(h)
+\end{align*}
+Dann gilt mit $dF(a) = (dF_1(a), df_2 (a))$ und $R(h):= (R_1(h), R_2(h))$
+\begin{align*}
+F (a + h) = F (a) + dF h + R(h)
+\end{align*}
+mit $\frac{R(h):}{||h||} = 0$ und damit ist $F$ differenzierbar. Die Umkehrung folgt analog.
+\end{proof}
+
+\begin{Bemerkung}[Differenzial von  Produkfunktionen]
+Eine Abbildung $F : U \to \mathbb{R}^m$ ist genau dann  differenzierbar, wenn ihre Koordinaten-Funktionen 
+$F_1 : U \to \mathbb{R},  \cdots, F_m : U \to \mathbb{R}$ mit $F(a) = \begin{pmatrix} F_1(a) \\ \vdots \\ F_m(a) \end{pmatrix}$ differenzierbar sind. In diesem Fall gilt
+\begin{align*}
+dF(a) :=   \begin{pmatrix}  \frac{\partial}{\partial x_1}  F_1(a) & \cdots & \frac{\partial}{\partial x_n} F_1(a) \\ 
+\vdots & & \vdots \\
+\frac{\partial}{\partial x_1}  F_m(a) & \cdots & \frac{\partial}{\partial x_n} F_m(a) 
+\end{pmatrix}
+\end{align*}
+\end{Bemerkung}
+
+\begin{Bemerkung}[Differenzierbarkeit von Wegen]
+Ein Weg $\gamma =  \begin{pmatrix} \gamma_1  \\ \vdots \\ \gamma_m \end{pmatrix} : I \to U$ ist genau dann differenzierbar, wenn $\gamma_i$ differenzierbar ist für $i= 1, \cdots, m$ und dann gilt $\gamma'(t) =   \begin{pmatrix} \gamma'_1(t)  \\ \vdots \\ \gamma'_m(t) \end{pmatrix} \; .$
+\end{Bemerkung}
+
+
+
+\begin{Satz}[Kettenregel]
+Seien $G:  U \subset \mathbb{R}^n \to V \subset \mathbb{R}^m$ und $F: V \to Z \subset \mathbb{R}^k$ differenzierbar. Dann ist $F \circ G$ differenzierbar und mit $b := G(a)$ es gilt
+$$ d(F \circ G)(a) = dF(b) \cdot dG(a) $$
+\end{Satz}
+\begin{proof}
+Analog zu Baby Kettenregel.
+\end{proof}
 \subsubsection*{Anwendung: Automatisches Ableiten} 
 
 \begin{figure}[H]
@@ -529,7 +626,6 @@ und somit hat $F_v$ ein isoliertes lokales Maximum und $F_w$ ein isoliertes loka
 
 
 
-\subsubsection*{Anwendung: Backpropagation} 
 
 
 
