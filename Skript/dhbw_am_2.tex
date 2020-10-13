@@ -145,7 +145,7 @@ Für $h \to 0$ gilt $\xi_i \to a$ und da die partiellen Ableitung stetig sind na
 Ein Weg ist eine Abbildung  
 \begin{align*}
 & \gamma:  [a,b] \to \mathbb{R}^n \\
-& \gamma (t) :=  \begin{pmatrix} \gamma_1(t) \\ \vdots \\ \gamma_1(t) \end{pmatrix}
+& \gamma (t) :=  \begin{pmatrix} \gamma_1(t) \\ \vdots \\ \gamma_n(t) \end{pmatrix}
 \end{align*}
 mit reellen, stetigen Funktionen $y_i : [a,b] \to \mathbb{R}$ (Damit ist auch $\gamma$ stetig).
 \end{block}
@@ -171,7 +171,7 @@ mit reellen, stetigen Funktionen $y_i : [a,b] \to \mathbb{R}$ (Damit ist auch $\
 Ein Weg ist eine Abbildung  
 \begin{align*}
 & \gamma:  [a,b] \to \mathbb{R}^n \\
-& \gamma (t) :=  \begin{pmatrix} \gamma_1(t) \\ \vdots \\ \gamma_1(t) \end{pmatrix}
+& \gamma (t) :=  \begin{pmatrix} \gamma_1(t) \\ \vdots \\ \gamma_n(t) \end{pmatrix}
 \end{align*}
 mit reellen, stetigen Funktionen $y_i : [a,b] \to \mathbb{R}$ (Damit ist auch $\gamma$ stetig).
 \end{block}
@@ -185,7 +185,7 @@ mit reellen, stetigen Funktionen $y_i : [a,b] \to \mathbb{R}$ (Damit ist auch $\
     \begin{block}{Differenzierterer Weg}
 Der Weg $\gamma$ heißt differenzierbar, falls alle Ableitungen $\gamma_i'(t)$ existieren. In diesem Fall bezeichnen wir
 \begin{align*}
- \gamma' (t) :=  \begin{pmatrix} \gamma'_1(t) \\ \vdots \\ \gamma'_1(t) \end{pmatrix}
+ \gamma' (t) :=  \begin{pmatrix} \gamma'_1(t) \\ \vdots \\ \gamma'_n(t) \end{pmatrix}
 \end{align*}
 \end{block}
 
@@ -420,17 +420,6 @@ Sei $f : X \subset \mathbb{R}^n \to \mathbb{R}$ eine relle Funktion.  Ein Punkt 
  \end{frame}
 
 
-\begin{frame}
-    \frametitle{Angewandte Mathematik}
-\framesubtitle{Extrema}
-    \begin{block}{Extrema}
- Ist $f: U  \to \mathbb{R}$ differenzierbar und hat  $f$ in $a \in U$ ein lokales Extremum, so gilt 
-\begin{align*}
-\frac{\partial}{\partial x_{1}}  = \cdots  = \frac{\partial}{\partial x_{n}}  = 0 \;.
-\end{align*}
-Dies ist gleichbedeutend mit $df(a) = 0$.
-\end{block}
- \end{frame}
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
@@ -438,7 +427,7 @@ Dies ist gleichbedeutend mit $df(a) = 0$.
     \begin{block}{Extrema}
  Ist $f: U  \to \mathbb{R}$ differenzierbar und hat  $f$ in $a \in U$ ein lokales Extremum, so gilt 
 \begin{align*}
-\frac{\partial}{\partial x_{1}}  = \cdots  = \frac{\partial}{\partial x_{n}}  = 0 \;.
+\frac{\partial}{\partial x_{1}} f(a) = \cdots  = \frac{\partial}{\partial x_{n}} f(a) = 0 \;.
 \end{align*}
 Dies ist gleichbedeutend mit $df(a) = 0$.
 \end{block}

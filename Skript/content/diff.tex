@@ -108,7 +108,7 @@ Sei $f: U \to \mathbb{R}$ eine Funktion. Für einen Vektor $h \in  \mathbb{R}^n$
 \end{align*}
 Richtungsableitung von $f$ am Punkt $a$ in Richtung $h$. Sie misst die Änderung der Funktion in Richtung $h$.
 
-Speziell nennen wir für die standard Basisvektoren $e_i$ 
+Speziell nennen wir für die Standard Basisvektoren $e_i$ 
 \begin{align*}
 \frac{\partial f(a)}{\partial x_n}  := \partial_{e_i} f(a) := \lim_{t \to 0} \frac{f(a + t e_i) - f(a)}{t}
 \end{align*}
@@ -164,7 +164,7 @@ Für das Differential einer differenzierbaren Funktion  $f: U \to \mathbb{R}$ gi
 
 
 \begin{Satz}[Steilste Anstiegsrichtung]
-Sei   $f: U \to \mathbb{R}$ differenzierbare Funktion,  $a \in U$ und $v := \text{argmax}_{ ||h|| = 1 } \{ \partial_h f(a) \}$.
+Sei   $f: U \to \mathbb{R}$ differenzierbare Funktion,  $a \in U$ und $v := \text{argmax}_{ h \in S^n} \partial_h f(a) $.
 Dann gilt 
 \begin{align*}
 || \nabla f(a) || v =  \nabla f(a) \; .
@@ -243,7 +243,20 @@ Für $h \to 0$ gilt $\xi_i \to a$ und da die partiellen Ableitung stetig sind na
 und damit die Behauptung.
 \end{proof}
 
-
+\begin{Bemerkung}
+\label{differentialeindeutig}
+Umformuliert bedeutet Satz \ref{lokaleLinearisierung}, dass für das Differential einer differenzierbare Funktion
+\begin{align}
+\lim{h \to 0} \frac{f(a + h) -f(a) - df(a) h }{||h||} = 0
+\end{align}
+Ist $L$ eine weiter lineare Abbildung mit $\lim{h \to 0} \frac{f(a + h) -f(a) - L(a) h }{||h||}$, so ist $L = df$. Das Differential ist somit eindeutig durch dir Eigenschaft der lokalen Linearisierung bestimmt.
+\end{Bemerkung}
+\begin{proof}
+Für $v \in \mathbb{R}^n$ mit $||v|| = 1$ gilt 
+\begin {align*}
+\bigl( L(a) - df(a) \bigr)(v) =  \lim_{t \to 0}  \bigl( L(a) - df(a) \bigr) \bigl( \frac{tv}{||tv||} \bigr) = \lim_{t \to 0} \frac{\bigl( L(a) - df(a) \bigr)(tv) }{||tv||} = 0
+\end{align*}
+\end{proof}
 
 \begin{Definition}[Differenzierbarer Weg]
 Ein Weg ist eine Abbildung  
@@ -376,6 +389,8 @@ Mit Bemerkung \ref{partial1} ist
 \begin{align*}
 d^pf(a) \bigl(v^1, \cdots , v^p  ) = \sum_{i_1 = 1}^n \cdots \sum_{i_p = 1}^n  \frac{\partial}{\partial x_{i_1}} \hdots \frac{\partial}{\partial x_{i_p}} f(a) \cdot v^1_{i_1} \cdots v^p_{i_p} \; .
 \end{align*}
+Für einen Vektor $z \in \mathbb{R}^n$ definieren wir $$d^pf(a) z^p := d^pf(a) \underbrace{(z, \cdots , z)}_{p-mal} \;.$$
+
 \end{Definition}
 
 
@@ -459,7 +474,7 @@ Sei $f : X \subset \mathbb{R}^n \to \mathbb{R}$ eine relle Funktion.  Ein Punkt 
 \begin{Satz}[Notwendiges Kriterium]
  Ist $f: U  \to \mathbb{R}$ differenzierbar und hat  $f$ in $a \in U$ ein lokales Extremum, so gilt 
 \begin{align*}
-\frac{\partial}{\partial x_{1}}  = \cdots  = \frac{\partial}{\partial x_{n}}  = 0 \;.
+\frac{\partial}{\partial x_{1}}f(a)  = \cdots  = \frac{\partial}{\partial x_{n}} f(a) = 0 \;.
 \end{align*}
 Dies ist gleichbedeutend mit $df(a) = 0$.
 \end{Satz}
