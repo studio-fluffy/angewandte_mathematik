@@ -175,7 +175,7 @@ Mit der CSU Ungleichung folgt für beliebiges $h$
 \begin{align*}
 \partial_h f(a) = df(a) h = \langle \nabla f(a) , h \rangle = || \nabla f(a)||  \cdot ||h|| \cdot \cos(\varphi) 
 \end{align*} 
-wobei $\varphi$ den Innenwinkel zwischen $\nabla f(a)$ und $h$ bezeichnet. Für $||h|| = 1$ wird somit $\partial_h f(a) $ maximal, wenn $\varphi = 0$ und somit $h =  \nabla f(a)$ ist.
+wobei $\varphi$ den Innenwinkel zwischen $\nabla f(a)$ und $h$ bezeichnet. Für $||h|| = 1$ wird somit $\partial_h f(a) $ maximal, wenn $\varphi = 0$ und somit $h =  \frac{\nabla f(a)}{||\nabla f(a)||}$ ist.
 \end{proof}
 
 
@@ -262,11 +262,11 @@ Für $v \in \mathbb{R}^n$ mit $||v|| = 1$ gilt
 Ein Weg ist eine Abbildung  
 \begin{align*}
 & \gamma:  [a,b] \to \mathbb{R}^n \\
-& \gamma (t) :=  \begin{pmatrix} \gamma_1(t) \\ \vdots \\ \gamma_1(t) \end{pmatrix}
+& \gamma (t) :=  \begin{pmatrix} \gamma_1(t) \\ \vdots \\ \gamma_n(t) \end{pmatrix}
 \end{align*}
 mit reellen, stetigen Funktionen $y_i : [a,b] \to \mathbb{R}$ (Damit ist auch $\gamma$ stetig). Der Weg heißt differenzierbar, falls alle Ableitungen $\gamma_i'(t)$ existieren. In diesem Fall bezeichnen wir
 \begin{align*}
- \gamma' (t) :=  \begin{pmatrix} \gamma'_1(t) \\ \vdots \\ \gamma'_1(t) \end{pmatrix}
+ \gamma' (t) :=  \begin{pmatrix} \gamma'_1(t) \\ \vdots \\ \gamma'_n(t) \end{pmatrix}
 \end{align*}
 \end{Definition}
 
