@@ -199,7 +199,6 @@ gilt.
 \fbox{\parbox{\linewidth}{
 $\star \star \bigstar $ Eine differenzierbare Funktion kann  auf hinreichend kleinen Umgebungen  \\
 beliebig genau durch eine lineare Funktion approximiert werden. 
-
 }}
 
 \fbox{\parbox{\linewidth}{
@@ -483,12 +482,16 @@ Setze $F_k(t) := f(a + t e_k)$. Da $f$ ein Extremum in $a$ hat, hat $F_k$ in ein
 Da $F_k$ eine Funktion einer Veränderlichen ist, gilt $F'(0) = 0$. Da $\frac{\partial}{\partial x_k} f(a) = F_k'(0)$ folgt die Behauptung.
 \end{proof}
 
+\begin{Definition}[Kritischer Punkt]
+Ein Punkt $a$ mit $df(a) = 0$ wird als kritischer Punkt Bezeichnet. 
+\end{Definition}
+
 \begin{Satz}[Hinreichendes Kriterium]
- Ist $f: U  \to \mathbb{R}$ eine $\mathcal{C}^2$-Funktion und ist $f'(a) = 0$ für ein $a \in U$. Dann gilt:
+ Ist $f: U  \to \mathbb{R}$ eine $\mathcal{C}^2$-Funktion und ist $f'(a) = 0$  ein kritischer Punkt für ein $a \in U$. Dann gilt:
 \begin{itemize}
 \item $f''(a) > 0 \Rightarrow $ $f$ hat in $a$ ein isoliertes lokales Minimum.
 \item $f''(a) > 0 \Rightarrow $ $f$ hat in $a$ ein isoliertes lokales Maximum.
-\item $f''(a) \gtrless 0 \Rightarrow $ $f$ hat in $a$ kein lokales Extremum.
+\item $f''(a) \gtrless 0 \Rightarrow $ $f$ hat in $a$ einen Sattelpunkt.
 \end{itemize} 
 \end{Satz}
 \begin{proof}
@@ -532,7 +535,7 @@ und somit hat $F_v$ ein isoliertes lokales Maximum und $F_w$ ein isoliertes loka
 
 
 
-\subsubsection*{Anwendung: Gradientenverfahren und Backpropagation} 
+\subsubsection*{Anwendung: Gradientenverfahren} 
 Wie kann man Minima einer  differenzierteren Abbildung $f: \mathbb{R}^n \to \mathbb{R}$ finden? 
 Wir wissen, dass an jedem Punkt $x_k \in : \mathbb{R}^n$ der negative Gradient  $d_k := -\nabla f (x_k)$ in die steilste Abstiegsrichtung zeigt.
 Die Idee des Gradientenabstieg ist, ein bestimmtes  Stück in diese Richtung abzusteigen, damit der Funktionswert kleiner wird, also $x_{k+1} = x_k + \alpha_k d_k$ zu setzen. Für hinreichend kleines $\alpha_k$ folgt mit Satz \ref{lokaleLinearisierung} über die lokale Liberalisierung  
@@ -549,7 +552,7 @@ $f(x_{k+1}) = f (x_k + \alpha_k d_k) =  f(x_k) + \alpha_k df(x_k)d_k + R( \alpha
         \State Bestimme $\alpha_k$  mit $f (x_k + \alpha d_k) =  f(x_k) + \alpha_k df(x_k)d_k + R( \alpha_k dk)$ \Comment{Schrittweite bestimmen}
         \State Setze $x_{k+1} := x_k  + \alpha_k d_k$. \Comment{Absteigen}
  	\State  $k \leftarrow k+1$ \Comment{Wiederholen}
-    \EndWhile  \label{roy's loop}
+    \EndWhile  \label{Gradientenverfahren}
 
 
 \end{algorithmic}
@@ -557,10 +560,89 @@ $f(x_{k+1}) = f (x_k + \alpha_k d_k) =  f(x_k) + \alpha_k df(x_k)d_k + R( \alpha
 
 \begin{figure}[H]
       \centering
-    \includegraphics[width=0.8\textwidth]{images/Gradient_descent}
-      \caption{Quelle: Wikipedia: https://commons.wikimedia.org/wiki/File:Gradient\_descent.svg}
+    \includegraphics[width=0.7\textwidth]{images/Gradient_descent}
+      \caption{Quelle: Wikipedia}
 \end{figure}
 
+
+
+\begin{Definition}
+Sei  $f: \mathbb{R}^n \to \mathbb{R}$  eine differenzierbare Funktion. Eine Kurve $\gamma : I \to \mathbb{R}^n$, auf der $f$ konstant ist, also 
+$f(\gamma(t)) = c$ für eine festes $c \in \mathbb{R}$ gilt, heißt Höhenlinie.
+\end{Definition}
+
+\begin{Bemerkung}
+Der Gradient steht senkrecht auf  Höhenlinien. Dies bedeutet, dass $$ \bigl \langle \nabla f(\gamma(t)), \gamma'(t) \bigr \rangle = 0$$ gilt. 
+\end{Bemerkung}
+\begin{proof}
+Aus $f(\gamma(t)) = c$ folgt $\frac{d}{dt} f(\gamma(t)) = 0$. Mit der Kettenregel folgt $\frac{d}{dt} f(\gamma(t)) =  f(\gamma(t)) \cdot \gamma'(t) = 0$ und damit
+$ \bigl \langle \nabla f(\gamma(t)), \gamma'(t) \bigr \rangle = 0$.
+\end{proof}
+
+\subsubsection*{Anwendung: Backpropagation}
+Ein Neuronales Netz ist eine Funktion $f : \Omega \times \mathbb{R}^n \to \mathbb{R}^m$, die einem Input (auch Feature genannt) in Abhängigkeit der Gewichte $\Omega$
+einen Ausgabewert zuordnet. Die Funktion ist dabei aus einfachen Bausteinen zusammengesetzt.
+
+\begin{figure}[H]
+      \centering
+    \includegraphics[width=0.4\textwidth]{images/499px-Colored_neural_network}
+      \caption{Quelle: Wikipedia}
+    \includegraphics[width=0.6\textwidth]{images/500px-NeuronModel_deutsch}
+      \caption{Quelle: Wikipedia}
+\end{figure}
+
+
+Gegeben ist ein  Datensatz $D : = \{ (x_i, y_i) \}$. Finde Gewichte Omega, so dass Lossfunktion
+\begin{align*}
+L_D  : \Omega \subset \mathbb{R}^n \to \mathbb{R} 
+\end{align*}
+minimal wird. Zum Beispiel $L_D(\omega) := \sum_{(x_i,y_i) \in D} (f(\omega, x_i) - y_i)^2$.
+
+Wende Gradientenverfamren an:
+
+\begin{algorithm}
+\caption{Gradientabstieg}
+\begin{algorithmic}[1]
+    \State Initialisiere $k:=0$ und zufällige Gewichte $w_0$.
+\State Initialisiere Genauigkeit $\epsilon > 0$.
+    \While{$|| \nabla L_D(\omega) || > \epsilon$}  \Comment{So lange kein Extrema vorliegt}
+        \State Bestimme $\alpha_k$  mit $ L_D(\omega_k + \alpha d_k) =  L_D(\omega_k) + \alpha_k d L_D(\omega_k)d_k + R( \alpha_k dk)$ \Comment{Schrittweite bestimmen}
+        \State Setze $\omega_{k+1} := \omega_k  + \alpha_k d_k$. \Comment{Absteigen}
+ 	\State  $k \leftarrow k+1$ \Comment{Wiederholen}
+    \EndWhile  \label{roy's loop}
+
+
+\end{algorithmic}
+\end{algorithm}
+
+Wenn der Datensatz $D$ sehr groß ist (Big Data), ist die Berechnung des Gradient der Lossfunktion entsprechend aufwendig. Um diesen Aufwand zu reduzieren,
+kann man das Gradientenverfamren modifizieren, so dass man Gradienten nur auf Teilräumen berechnet. Man erhält somit das sogenannte Mini-Batch Gradientenverfamren und das stochastische Gradientenverfamren.
+
+\begin{algorithm}
+\caption{Gradientabstieg}
+\begin{algorithmic}[1]
+    \State Initialisiere $k:=0$ und zufällige Gewichte $w_0$.
+\State Initialisiere Genauigkeit $\epsilon > 0$.
+\State Wähle Teilmenge $D_0' \subset D$
+    \While{$|| \nabla L_{D'_0}(\omega) || > \epsilon$}  \Comment{So lange kein Extrema vorliegt}
+        \State Bestimme $\alpha_k$  mit $ L_{D'_0}(\omega_k + \alpha d_k) =  L_{D'_0}(\omega_k) + \alpha_k d L_{D'_0}(\omega_k)d_k + R( \alpha_k dk)$ \Comment{Schrittweite bestimmen}
+        \State Setze $\omega_{k+1} := \omega_k  + \alpha_k d_k$. \Comment{Absteigen}
+	\State Wähle neue Teilmenge $D'_{k +} \subset D$.
+ 	\State  $k \leftarrow k+1$ \Comment{Wiederholen}
+    \EndWhile  \label{roy's loop}
+
+
+\end{algorithmic}
+\end{algorithm}
+
+Wenn man als Teilmenge immer nur eine einelementige Menge wählt, so spricht man vom stochastischen Gradientenverfahren.
+
+\begin{figure}[H]
+      \centering
+    \includegraphics[width=1.0\textwidth]{images/batchgradient}
+      \caption{Quelle: https://towardsdatascience.com/batch-mini-batch-stochastic-gradient-descent-7a62ecba642a}
+
+\end{figure}
 
 
 \subsection{Gradient einer  mehrdimensionalen Funktion}
@@ -596,7 +678,7 @@ wenn $F_1 : U  \to \mathbb{R}^m$ und   $F_2 : U  \to \mathbb{R}^k$ differenzierb
 $$dF(a) = (dF_1(a), df_2 (a)) \;.$$ 
 \end{Satz}
 \begin{proof}
-Ist $F_1$ und $F_2$ differenzierbar, so gilt für $i = 1,2$
+Sind $F_1$ und $F_2$ differenzierbar, so gilt für $i = 1,2$
 \begin{align*}
 F_i (a + h) = F_i(a) + dF_ih + R_i(h)
 \end{align*}
@@ -604,7 +686,7 @@ Dann gilt mit $dF(a) = (dF_1(a), df_2 (a))$ und $R(h):= (R_1(h), R_2(h))$
 \begin{align*}
 F (a + h) = F (a) + dF h + R(h)
 \end{align*}
-mit $\frac{R(h):}{||h||} = 0$ und damit ist $F$ differenzierbar. Die Umkehrung folgt analog.
+mit $\lim_{h \to 0} \frac{R(h):}{||h||} = 0$ und damit ist $F$ differenzierbar. Die Umkehrung folgt analog.
 \end{proof}
 
 \begin{Bemerkung}[Differenzial von  Produkfunktionen]
@@ -631,7 +713,10 @@ $$ d(F \circ G)(a) = dF(b) \cdot dG(a) $$
 \begin{proof}
 Analog zu Baby Kettenregel.
 \end{proof}
+
+
 \subsubsection*{Anwendung: Automatisches Ableiten} 
+
 
 \begin{figure}[H]
       \centering
@@ -639,11 +724,10 @@ Analog zu Baby Kettenregel.
       \caption{Quelle: Wikipedia}
 \end{figure}
 
-
-
 \href{https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html}{Automatisches Ableiten  in Pytorch}
 
 
+Mit Hilfe des Automatischen Ableiten kann man den Gradienten der Lossfunktion zu einem Neuroyalen Netzt einfach berechnen, da dieser sich aus einfachen Funktionen zusammensetzt.
 
 
 

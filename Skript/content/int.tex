@@ -2,14 +2,55 @@
 \section{Mehrdimensionale Integralrechnung}
 
 \subsection{Lebesgue Maß}
-Für Intervalle $I_i : = (a_i,b_i) \subset \mathbb{R}$ nennen wir $I := I_1 \times \cdots \times I_n$ einen Quader und definieren sein Volumen
+
+Für offene Intervalle $(a_i,b_i) \subset \mathbb{R}$ mit $a_i \leq b_i$ nennen wir $I := (a_1,b_1) \times \cdots \times (a_n,b_n)$ einen $n$-dimensionalen Quader 
+und $\bar{I}:= [a_1, b_1] \times \cdots \times [a_n,b_n]$ seinen Abschluss. Wir definieren das Volumen 
 \begin{align*}
-\text{vol}_n (I):=   \prod_{i = 1}^n (b_i -a_i)  
+\text{vol} (I):=   \prod_{i = 1}^n (b_i -a_i)  \; .
 \end{align*}
-Mit $I(n): = \{   I_1 \times \cdots \times I_n  \; | \;  I_i := (a_i, b_i) \subset \mathbb{R} \}$ bezeichnen wir die Menge aller $n$-dimensionalen Quader. 
-\begin{Definition}
-Für eine Menge $A \subset \mathbb{R}^n$ definieren wir das Lebuesgsche äußere Maß
+
+Mit $\mathbb{I}(n): = \{   (a_1,b_1) \times \cdots \times (a_n,b_n) \; | \;  (a_i, b_i) \subset \mathbb{R} \}$ bezeichnen wir die Menge aller $n$-dimensionalen Quader. 
+Für eine Menge $A \subset \mathbb{R}^n$ bezeichnen wir eine Menge von Quadern $\{ I_j \; | \;  I_j \in \mathbf{I}(n)  \}$ mit $A \subset \bigcup_j I_j$ als Hüllquader für $A$.
+\begin{Definition}[Lebesguesche äußere Maß]
+Für eine Menge $A \subset \mathbb{R}^n$ definieren wir das Lebesguesche äußere Maß durch 
+\begin{align*}
+\mu (A):=   \inf \biggl \{ \sum_{j=1}^{\infty}   \text{vol} (I_j)\; ; \; I_j \in \mathbb{I}(n); A \subset \bigcup_{j= 1}^{\infty} I_j \biggr \} 
+\end{align*}
 \end{Definition}
+
+\begin{Definition}[Erinnerung Infimum]
+\end{Definition}
+
+\begin{Bemerkung}
+\label{massmonton}
+Für $A \subset B \subset \mathbb{R}^n$ ist $\mu(A) \leq B$
+\end{Bemerkung}
+\begin{proof}
+Da $A \subset B$ sind Hüllquader von $B$ sind auch Hüllquader von $A$ und damit  $\mu(A) \leq B$.
+\end{proof}
+
+\begin{Satz}[$\sigma$-additivität]
+Sei $A_j \subset \mathbb{R}^n$ eine Folge von Mengen. Dann gilt
+\begin{align*}
+\mu (\bigcup_j^{\infty} A_j ) \leq \sum_{i=1}^{\infty} \mu(A_j)
+\end{align*}
+\end{Satz}
+\begin{proof}
+Für jedes $A_j$ und $\epsilon > 0$ können wir  eine geeignete Überdeckung  $A_j \subset \bigcup_k  K_{j,k}$ mit Hüllquadern $K_{j,k}$ finden, so dass 
+ $\sum_k \text{vol} (K_{j,k}) \leq \mu(A) + \frac{\epsilon}{2^{j+1}}$.
+Da $ \bigcup_j A_j \subset \bigcup_j \bigcup_k  K^j_{j,k}$ eine Überdeckung mit Hüllquadern ist, folgt
+\begin{align*}
+\mu \biggl (  \bigcup A_j  \biggr) \leq \sum_j \sum_k \text{vol} (K_{j,k}) \leq  \bigl( \sum_j  \mu(A_j) + \frac{\epsilon}{2^{j+1}} \bigr)  = \bigl (\sum_j \mu(A_j) \bigr ) + \epsilon
+\end{align*}
+(Die letzte Gleichung beruht auf dem Wert der \href{https://de.wikipedia.org/wiki/Geometrische_Reihe}{geometrischen Reihe}).
+\end{proof}
+
+\begin{Satz}
+Für $I \in \mathbb{I}(n)$  und $A \subset \mathbb{R}^n$ mit $I \subset A \subset \bar{I}$ gilt $\mu (A) = \text{vol}(I)$.
+\end{Satz}
+\begin{proof}
+\end{proof}
+
 \subsection{Lebesgue Integral}
 
 \subsubsection*{Anwendung: Fourierreihen, Fouriertransformation und FFT} 
