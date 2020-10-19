@@ -75,8 +75,11 @@ Archimedes approximierte den Flächeninhalt einer Kreisscheibe durch Vielecke, d
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Lebesgue Maß}
     \begin{block}{Quader}
-Für offene Intervalle $(a_i,b_i) \subset \mathbb{R}$ mit $a_i \leq b_i$ nennen wir $I := (a_1,b_1) \times \cdots \times (a_n,b_n)$ einen $n$-dimensionalen Quader 
-und $\bar{I}:= [a_1, b_1] \times \cdots \times [a_n,b_n]$ seinen Abschluss. Wir definieren das Volumen 
+Für offene Intervalle $(a_i,b_i) \subset \mathbb{R}$ mit $a_i \leq b_i$ nennen wir 
+$$I := (a_1,b_1) \times \cdots \times (a_n,b_n)$$ 
+einen $n$-dimensionalen Quader und 
+$$\bar{I}:= [a_1, b_1] \times \cdots \times [a_n,b_n]$$
+ seinen Abschluss. Wir definieren das Volumen 
 \begin{align*}
 \text{vol} (I):=   \prod_{i = 1}^n (b_i -a_i)  \; .
 \end{align*}
@@ -90,7 +93,7 @@ und $\bar{I}:= [a_1, b_1] \times \cdots \times [a_n,b_n]$ seinen Abschluss. Wir 
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Lebesgue Maß}
     \begin{block}{Quader}
-Mit $\mathbb{I}(n): = \{   (a_1,b_1) \times \cdots \times (a_n,b_n) \; | \;  (a_i, b_i) \subset \mathbb{R} \}$ bezeichnen wir die Menge aller $n$-dimensionalen Quader. 
+Mit $$\mathbb{I}(n): = \{   (a_1,b_1) \times \cdots \times (a_n,b_n) \; | \;  (a_i, b_i) \subset \mathbb{R} \}$$ bezeichnen wir die Menge aller $n$-dimensionalen Quader. 
 \end{block}
     \begin{block}{Hüllquader}
 Für eine Menge $A \subset \mathbb{R}^n$ bezeichnen wir eine Menge von Quadern $\{ I_j \; | \;  I_j \in \mathbf{I}(n)  \}$ mit $A \subset \bigcup_j I_j$ als Hüllquader für $A$.
@@ -142,7 +145,7 @@ Sei $A_j \subset \mathbb{R}^n$ eine Folge von Mengen. Dann gilt
     \begin{block}{}
 Für jedes $A_j$ und $\epsilon > 0$ können wir  eine geeignete Überdeckung  $A_j \subset \bigcup_k  K_{j,k}$ mit Hüllquadern $K_{j,k}$ finden, so dass 
  $\sum_k \text{vol} (K_{j,k}) \leq \mu(A) + \frac{\epsilon}{2^{j+1}}$.
-Da $ \bigcup_j A_j \subset \bigcup_j \bigcup_k  K^j_{j,k}$ eine Überdeckung mit Hüllquadern ist, folgt
+Da $ \bigcup_j A_j \subset \bigcup_j \bigcup_k  K_{j,k}$ eine Überdeckung mit Hüllquadern ist, folgt
 \begin{align*}
 \mu \biggl (  \bigcup A_j  \biggr) & \leq \sum_j \sum_k \text{vol} (K_{j,k}) \leq  \bigl( \sum_j  \mu(A_j) + \frac{\epsilon}{2^{j+1}} \bigr)  \\
 &= \bigl (\sum_j \mu(A_j) \bigr ) + \epsilon
