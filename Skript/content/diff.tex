@@ -255,6 +255,7 @@ Für $v \in \mathbb{R}^n$ mit $||v|| = 1$ gilt
 \begin {align*}
 \bigl( L(a) - df(a) \bigr)(v) =  \lim_{t \to 0}  \bigl( L(a) - df(a) \bigr) \bigl( \frac{tv}{||tv||} \bigr) = \lim_{t \to 0} \frac{\bigl( L(a) - df(a) \bigr)(tv) }{||tv||} = 0
 \end{align*}
+Da jeder Vektor als Linearkombination von Einheitsbasisvektoren dargestellt werden kann, folgt die Behauptung.
 \end{proof}
 
 \begin{Definition}[Differenzierbarer Weg]
@@ -537,12 +538,12 @@ und somit hat $F_v$ ein isoliertes lokales Maximum und $F_w$ ein isoliertes loka
 
 \subsubsection*{Anwendung: Gradientenverfahren} 
 Wie kann man Minima einer  differenzierteren Abbildung $f: \mathbb{R}^n \to \mathbb{R}$ finden? 
-Wir wissen, dass an jedem Punkt $x_k \in : \mathbb{R}^n$ der negative Gradient  $d_k := -\nabla f (x_k)$ in die steilste Abstiegsrichtung zeigt.
+Wir wissen, dass an jedem Punkt $x_k \in  \mathbb{R}^n$ der negative Gradient  $d_k := -\nabla f (x_k)$ in die steilste Abstiegsrichtung zeigt.
 Die Idee des Gradientenabstieg ist, ein bestimmtes  Stück in diese Richtung abzusteigen, damit der Funktionswert kleiner wird, also $x_{k+1} = x_k + \alpha_k d_k$ zu setzen. Für hinreichend kleines $\alpha_k$ folgt mit Satz \ref{lokaleLinearisierung} über die lokale Liberalisierung  
 $f(x_{k+1}) = f (x_k + \alpha_k d_k) =  f(x_k) + \alpha_k df(x_k)d_k + R( \alpha_k dk)$.  Somit gilt $f(x_{k+1}) \leq f(x_k)$, falls $\nabla f(x_k) \neq 0$ und falls die folge $f(x_k)$ beschränkt ist, so ist  dieser Fixpunkt $x^*$ ein minimum, da $\nabla f(x^*) = 0$ gelten muss.  
 
 \begin{algorithm}
-\caption{Gradientabstieg}
+\caption{Gradienentabstieg}
 \begin{algorithmic}[1]
 
 
@@ -631,10 +632,10 @@ kann man das Gradientenverfamren modifizieren, so dass man Gradienten nur auf Te
     \State Initialisiere $k:=0$ und zufällige Gewichte $w_0$.
 \State Initialisiere Genauigkeit $\epsilon > 0$.
 \State Wähle Teilmenge $D_0' \subset D$
-    \While{$|| \nabla L_{D'_0}(\omega) || > \epsilon$}  \Comment{So lange kein Extrema vorliegt}
-        \State Bestimme $\alpha_k$  mit $ L_{D'_0}(\omega_k + \alpha d_k) =  L_{D'_0}(\omega_k) + \alpha_k d L_{D'_0}(\omega_k)d_k + R( \alpha_k dk)$ \Comment{Schrittweite bestimmen}
+    \While{$|| \nabla L_{D'_k}(\omega) || > \epsilon$}  \Comment{So lange kein Extrema vorliegt}
+        \State Bestimme $\alpha_k$  mit $ L_{D'_k}(\omega_k + \alpha d_k) =  L_{D'_k}(\omega_k) + \alpha_k d L_{D'_k}(\omega_k)d_k + R( \alpha_k dk)$ \Comment{Schrittweite bestimmen}
         \State Setze $\omega_{k+1} := \omega_k  + \alpha_k d_k$. \Comment{Absteigen}
-	\State Wähle neue Teilmenge $D'_{k +} \subset D$.
+	\State Wähle neue Teilmenge $D'_{k +1} \subset D$.
  	\State  $k \leftarrow k+1$ \Comment{Wiederholen}
     \EndWhile  \label{roy's loop}
 
@@ -665,7 +666,7 @@ mit $\lim_{h \to 0} \frac{R(h)}{||h||} = 0$ gilt für alle $a \in U$ und $h \in 
 Im Fall $n = 1$ stimmt diese Definition mit der Alten Definition \ref{diffbarkeit} überein.
 \end{Bemerkung}
 \begin{proof}
-Nach Satz \label{lokaleLinearisierung} gilt für eine differenzierbare Funktion $f(a + th) = f(a) + df th + R(th)$ mit  $\lim{t \to 0} \frac{R(th)}{||h||} = 0$. Umstellen ergibt
+Nach Satz \label{lokaleLinearisierung} gilt für eine differenzierbare Funktion $f(a + th) = f(a) + df th + R(th)$ mit  $\lim{t \to 0} \frac{R(th)}{||th||} = 0$. Umstellen ergibt
 \begin{align*}
 df(a) h = \lim_{t \to 0} \frac{f(a + th) - f(a)}{t}
 \end{align*} 
@@ -731,7 +732,6 @@ Analog zu Baby Kettenregel.
 \end{figure}
 
 \href{https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html}{Automatisches Ableiten  in Pytorch}
-
 
 Mit Hilfe des Automatischen Ableiten kann man den Gradienten der Lossfunktion zu einem Neuroyalen Netzt einfach berechnen, da dieser sich aus einfachen Funktionen zusammensetzt.
 

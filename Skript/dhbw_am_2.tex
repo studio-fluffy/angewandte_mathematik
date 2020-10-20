@@ -140,6 +140,35 @@ Für $h \to 0$ gilt $\xi_i \to a$ und da die partiellen Ableitung stetig sind na
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
+\framesubtitle{Lokale Linearisierung}
+    \begin{block}{Eindeutigkeit des Differentials}
+Umformuliert bedeutet der Satz über die lokale Linearisierung, dass für das Differential einer differenzierbare Funktion
+\begin{align}
+\lim_{h \to 0} \frac{f(a + h) -f(a) - df(a) h }{||h||} = 0
+\end{align}
+gilt. Ist $L$ eine weiter lineare Abbildung mit $\lim_{h \to 0} \frac{f(a + h) -f(a) - L(a) h }{||h||}$, so ist $L = df$. Das Differential ist somit eindeutig durch die Eigenschaft der lokalen Linearisierung bestimmt.
+\end{block}
+ \end{frame}
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lokale Linearisierung}
+    \begin{block}{Eindeutigkeit des Differentials}
+Für $v \in \mathbb{R}^n$ mit $||v|| = 1$ gilt 
+\begin {align*}
+\bigl( L(a) - df(a) \bigr)(v) & =  \lim_{t \to 0}  \bigl( L(a) - df(a) \bigr) \bigl( \frac{tv}{||tv||} \bigr) \\
+& = \lim_{t \to 0} \frac{\bigl( L(a) - df(a) \bigr)(tv) }{||tv||} = 0
+\end{align*}
+Da jeder Vektor als Linearkombination von Einheitsbasisvektoren dargestellt werden kann, folgt die Behauptung.
+\end{block}
+ \end{frame}
+
+
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
 \framesubtitle{(Baby) Kettenregel}
     \begin{block}{Wege}
 Ein Weg ist eine Abbildung  
@@ -517,6 +546,7 @@ F_w' (t) = 0; \; F_w''(0) = w^T f''(a) w < 0 \\
 und somit hat $F_v$ ein isoliertes lokales Maximum und $F_w$ ein isoliertes lokales Minimum und damit $f$ kein lokales Extremum  in  $a$.
 \end{block}
  \end{frame}
+
 
 
 \end{document}
