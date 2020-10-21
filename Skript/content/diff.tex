@@ -21,7 +21,7 @@ $f'(\xi) = \frac{f(b) - f(a)} { b-a}$.
 
 \subsubsection*{Taylorapproximation einer Veränderlichen} 
 
-Jede  reelle Funktion $f$, deren $p+1$-ten Ableitungen existieren und stetig sind lässt sich mit Hilfe der Taylorreihe  $$f(x) = f(a) + \frac{1}{2!} f^{'} (x-a) +   \frac{1}{3!} f^{''}(a) (x-a)^2 + \cdots  +  \frac{1}{p!} f^{(p)}(a) (x-a)^{p-1} +  R_{p+1}(x,a) $$
+Jede  reelle Funktion $f$, deren $p+1$-ten Ableitungen existieren und stetig sind lässt sich mit Hilfe der Taylorreihe  $$f(x) = f(a) + f^{'}(a) (x-a) +   \frac{1}{2!} f^{''}(a) (x-a)^2 + \cdots  +  \frac{1}{p!} f^{(p)}(a) (x-a)^{p} +  R_{p+1}(x,a) $$
 und dem Restglied  $R_p(x,a) :=   \frac{1}{(p+1)!} f^{(p+1)}(\xi) (x-a)^{p} $ mit einem $\xi \in (x,a)$ darstellen.
 
 
@@ -415,9 +415,9 @@ ist $d^2f(a) \bigl(u , v ) = u^T  \cdot f''(a) \cdot v$. Die Matrix $f''(a)$ wir
 Sei   $f: U \to \mathbb{R}$ eine $\mathcal{C}^{p+1}$-Funktion und $x,a \in U$, so dass die Verbindung zwischen $x$ und $a$ in $U$ liegt.
 Dann gilt
 \begin{align*}
-f(x) = f(a) + \sum_{k=1}^{p} d^k f(a) (x-a)^k + R_{p+1} (x;a)
+f(x) = f(a) + \sum_{k=1}^{p} d^k f(a) (x-a)^k + R_{p+1} (x,a)
 \end{align*}
-mit dem Restglied $R_{p+1} (x;a) := \frac{1}{(p+1)!} d^{p+1}f(\xi) (x-a)^{p+1}$ für ein $\xi \in [a,x]$.
+mit dem Restglied $R_{p+1} (x,a) := \frac{1}{(p+1)!} d^{p+1}f(\xi) (x-a)^{p+1}$ für ein $\xi \in [a,x]$.
 \end{Satz}
 
 \begin{proof}
@@ -440,7 +440,7 @@ Da nach Konstruktion $F(0) = f(a)$ und $F(1)= f(x)$ folgt insgesamt die Behauptu
 \begin{Satz}[Qualitative Taylorformel]
 Sei $T_p(x,a) =  f(a) + \sum_{k=1}^{p} d^k f(a) (x-a)^k$ die Taylorraproximation einer $\mathcal{C}^{p}$-Funktion. Dann gilt: 
 \begin{align*}
-\lim_{x \to a} \frac{f(x) - T_p(x;a)}{  || x-a  ||^p} = 0 \;. 
+\lim_{x \to a} \frac{f(x) - T_p(x,a)}{  || x-a  ||^p} = 0 \;. 
 \end{align*}
 \end{Satz}
 \begin{proof}
@@ -663,7 +663,7 @@ mit $\lim_{h \to 0} \frac{R(h)}{||h||} = 0$ gilt für alle $a \in U$ und $h \in 
 \end{Definition}
 
 \begin{Bemerkung}
-Im Fall $n = 1$ stimmt diese Definition mit der Alten Definition \ref{diffbarkeit} überein.
+Im Fall $n = 1$ stimmt diese Definition mit der alten Definition \ref{diffbarkeit} überein.
 \end{Bemerkung}
 \begin{proof}
 Nach Satz \label{lokaleLinearisierung} gilt für eine differenzierbare Funktion $f(a + th) = f(a) + df th + R(th)$ mit  $\lim{t \to 0} \frac{R(th)}{||th||} = 0$. Umstellen ergibt

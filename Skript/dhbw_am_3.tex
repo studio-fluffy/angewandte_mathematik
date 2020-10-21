@@ -39,7 +39,7 @@
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Gradientenverfahren}
     \begin{block}{Gradientenverfahren}
-Wie kann man Minima einer  differenzierteren Abbildung $f: \mathbb{R}^n \to \mathbb{R}$ finden? 
+Wie kann man Minima einer  differenzierbaren Abbildung $f: \mathbb{R}^n \to \mathbb{R}$ finden? 
  
 \end{block}
 
@@ -75,7 +75,7 @@ $f(x_{k+1}) = f (x_k + \alpha_k d_k) =  f(x_k) + \alpha_k df(x_k)d_k + R( \alpha
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Gradientenverfahren}
-    \begin{block}{Höhenlineien}
+    \begin{block}{Höhenlinien}
 Sei  $f: \mathbb{R}^n \to \mathbb{R}$  eine differenzierbare Funktion. Eine Kurve $\gamma : I \to \mathbb{R}^n$, auf der $f$ konstant ist, also 
 $f(\gamma(t)) = c$ für eine festes $c \in \mathbb{R}$ gilt, heißt Höhenlinie.
 \end{block}
@@ -92,7 +92,7 @@ $f(\gamma(t)) = c$ für eine festes $c \in \mathbb{R}$ gilt, heißt Höhenlinie.
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Gradientenverfahren}
-    \begin{block}{Höhenlineien}
+    \begin{block}{Höhenlinien}
 Der Gradient steht senkrecht auf  Höhenlinien. Dies bedeutet, dass $$ \bigl \langle \nabla f(\gamma(t)), \gamma'(t) \bigr \rangle = 0$$ gilt. 
 
 \end{block}
@@ -111,7 +111,7 @@ $ \bigl \langle \nabla f(\gamma(t)), \gamma'(t) \bigr \rangle = 0$.
     \begin{block}{Backpropagation}
 Das Gradientenverfahren angewendet auf eine Lossfunktion eines neuronalen Netzes wird als Backpropagation bezeichnet.
 Gegeben ist ein neuronales Netz $f : \Omega \times \mathbb{R}^n \to \mathbb{R}^m$, 
-und ein  Datensatz $D : = \{ (x_i, y_i) \}$. Finde Gewichte Omega, so dass Lossfunktion
+und ein  Datensatz $D : = \{ (x_i, y_i) \}$ mit $x_i \in \mathbb{R}^n, y_i \in \mathbb{R}^m$. Finde Gewichte Omega, so dass Lossfunktion
 \begin{align*}
 L_D  : \Omega \subset \mathbb{R}^n \to \mathbb{R} 
 \end{align*}
@@ -217,7 +217,7 @@ mit $\lim_{h \to 0} \frac{R(h)}{||h||} = 0$ gilt für alle $a \in U$ und $h \in 
 \framesubtitle{ Ableitung mehrdimensionale Funktionen}
     \begin{block}{Gradient einer  mehrdimensionalen Funktion}
 
-Im Fall $n = 1$ stimmt diese Definition mit der Alten Definition überein.
+Im Fall $n = 1$ stimmt diese Definition mit der alten Definition überein.
 
 \end{block}
     \begin{block}{Beweis}
@@ -232,7 +232,7 @@ df(a) h = \lim_{t \to 0} \frac{f(a + th) - f(a)}{t}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Ableitung mehrdimensionale Funktionen}
     \begin{block}{Gradient einer linearen Funktion}
-Für $A \in \mathbb{R}^{n \times n}$, $b \in \mathbb{R}^n$  ist die Abbildung $F(x) := Ax +b$ differenzierbar, da
+Für $A \in \mathbb{R}^{n \times n}$, $b \in \mathbb{R}^n$ und $x \in \mathbb{R}^n$ ist die Abbildung $F(x) := Ax +b$ differenzierbar, da
 $F(a +h) = A(a+h) + b = A a+ Ah +b = Aa +b + Ah = F(a) + Ah$ und damit für $dF(a) := A$ und $R(h) = 0$ die Definition
  erfüllt ist.
 \end{block}
@@ -245,7 +245,7 @@ $F(a +h) = A(a+h) + b = A a+ Ah +b = Aa +b + Ah = F(a) + Ah$ und damit für $dF(
     \begin{block}{Differenzierbarkeit von Produktfunktionen}
 Eine Funktion $F:= (F_1, F_2) : U  \to \mathbb{R}^m \times \mathbb{R}^k$ ist genau dann differenzierbar, 
 wenn $F_1 : U  \to \mathbb{R}^m$ und   $F_2 : U  \to \mathbb{R}^k$ differenzierbar sind. In diesem Fall ist
-$$dF(a) = (dF_1(a), df_2 (a)) \;.$$ 
+$$dF(a) = (dF_1(a), dF_2 (a)) \;.$$ 
 \end{block}
  \end{frame}
 
