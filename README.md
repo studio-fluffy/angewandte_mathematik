@@ -13,6 +13,10 @@ https://www.youtube.com/watch?v=wG_nF1awSSY
 
 
 ## Videos zu Grundlagen reeller Funktion
+
+### Grenzwert
+https://www.youtube.com/watch?v=kfF40MiS7zA
+
 ### Mittelwertsatz
 https://www.youtube.com/watch?v=Gv7jBOUyrzg
 
