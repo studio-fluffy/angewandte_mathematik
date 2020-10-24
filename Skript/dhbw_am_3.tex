@@ -46,11 +46,11 @@ Wie kann man Minima einer  differenzierbaren Abbildung $f: \mathbb{R}^n \to \mat
     \begin{block}{Gradientenverfahren}
 \begin{itemize}
 \item An jedem Punkt $x_k \in  \mathbb{R}^n$ zeigt der negative Gradient  $d_k := -\nabla f (x_k)$ in die steilste Abstiegsrichtung.
-\item Für hinreichend kleines $\alpha_k$ folgt mit Satz über die lokale Linearisierung.  
+\item Für hinreichend kleines $\alpha_k$ folgt mit Satz über die lokale Linearisierung:
 $f(x_{k+1}) = f (x_k + \alpha_k d_k) =  f(x_k) + \alpha_k df(x_k)d_k + R( \alpha_k dk)$
 \item  Setze $x_{k+1} = x_k + \alpha_k d_k$ 
 \item Es gilt $f(x_{k+1}) \leq f(x_k)$, falls $\nabla f(x_k) \neq 0$
-\item  Falls die folge $f(x_k)$ beschränkt ist, so ist  dieser Fixpunkt $x^*$ ein minimum, da $\nabla f(x^*) = 0$ gelten muss.  
+\item  Falls die folge $f(x_k)$ beschränkt ist, so ist  dieser Fixpunkt $x^*$ ein Minimum, da $\nabla f(x^*) = 0$ gelten muss.  
 \end{itemize}
 
 \end{block}
@@ -77,7 +77,7 @@ $f(x_{k+1}) = f (x_k + \alpha_k d_k) =  f(x_k) + \alpha_k df(x_k)d_k + R( \alpha
 \framesubtitle{Gradientenverfahren}
     \begin{block}{Höhenlinien}
 Sei  $f: \mathbb{R}^n \to \mathbb{R}$  eine differenzierbare Funktion. Eine Kurve $\gamma : I \to \mathbb{R}^n$, auf der $f$ konstant ist, also 
-$f(\gamma(t)) = c$ für eine festes $c \in \mathbb{R}$ gilt, heißt Höhenlinie.
+$f(\gamma(t)) = c$ für ein festes $c \in \mathbb{R}$ gilt, heißt Höhenlinie.
 \end{block}
 
 \begin{figure}[H]
@@ -159,9 +159,9 @@ minimal wird. Zum Beispiel $$L_D(\omega) := \sum_{(x_i,y_i) \in D} (f(\omega, x_
 \framesubtitle{Backpropagation}
     \begin{block}{Mini Batch}
 \begin{itemize}
-\item   Datensatz $D$ sehr groß ist (Big Data)
-\item \pause Berechnung des Gradient der Lossfunktion entsprechend aufwendig. 
-\item \pause Wende Backpropagation auf Teilräume $D' \subset D$ an. (Minibatch).
+\item   Datensatz $D$ sehr groß (Big Data)
+\item \pause Berechnung des Gradienten der Lossfunktion entsprechend aufwendig. 
+\item \pause Wende Backpropagation auf Teilräume $D' \subset D$ an (Minibatch).
 \item \pause $\#D' = 1$ stochastischer Gradientenabstieg.
 \end{itemize}
 
