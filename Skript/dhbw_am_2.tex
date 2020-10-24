@@ -351,7 +351,7 @@ ist $d^2f(a) \bigl(u , v ) = u^T  \cdot f''(a) \cdot v$. Die Matrix $f''(a)$ wir
 Sei   $f: U \to \mathbb{R}$ eine $\mathcal{C}^{p+1}$-Funktion und $x,a \in U$, so dass die Verbindung zwischen $x$ und $a$ in $U$ liegt.
 Dann gilt
 \begin{align*}
-f(x) = f(a) + \sum_{k=1}^{p} d^k f(a) (x-a)^k + R_{p+1} (x;a)
+f(x) = f(a) + \sum_{k=1}^{p}\frac{1}{p!} d^k f(a) (x-a)^k + R_{p+1} (x;a)
 \end{align*}
 mit dem Restglied $R_{p+1} (x;a) := \frac{1}{(p+1)!} d^{p+1}f(\xi) (x-a)^{p+1}$ für ein $\xi \in [a,x]$.
 
@@ -390,7 +390,7 @@ Da nach Konstruktion $F(0) = f(a)$ und $F(1)= f(x)$ folgt insgesamt die Behauptu
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Höhere Ableitungen}
     \begin{block}{Taylorapproximation}
-Sei $T_p(x,a) =  f(a) + \sum_{k=1}^{p} d^k f(a) (x-a)^k$ die Taylorraproximation einer $\mathcal{C}^{p}$-Funktion. Dann gilt: 
+Sei $T_p(x,a) =  f(a) + \sum_{k=1}^{p}\frac{1}{p!} d^k f(a) (x-a)^k$ die Taylorraproximation einer $\mathcal{C}^{p}$-Funktion. Dann gilt: 
 \begin{align*}
 \lim_{x \to a} \frac{f(x) - T_p(x;a)}{  || x-a  ||^p} = 0 \;. 
 \end{align*}
