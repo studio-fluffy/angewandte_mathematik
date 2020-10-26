@@ -125,6 +125,7 @@ reduzieren. Die Menge aller messbaren Mengen bezeichnen wir mit $\mathcal{A}$.
 Nullmengen sind messbar.
 \end{Bemerkung}
 \begin{proof}
+
 \end{proof}
 
 
@@ -140,5 +141,24 @@ Eine Menge $A$ ist genau dann messbar, wenn $A = S \cup N$, wobei $N$ eine Nullm
 
 
 \subsection{Lebesgue Integral}
+ Eine Treppenfunktion ist eine Funktion, die auf endlich vielen Quadern einen konstanten Wert hat und sonst null ist. 
+
+\begin{Definition}
+Für eine Teilmenge $A \subset \mathbb{R}^n$ heißt
+$$ 1_A (x): = \begin{cases} 1 \text{  falls }   x \in A  \\  0  \text{  sonst}  \end{cases}$$
+heißt Indikatorfunktion.
+\end{Definition}
+
+\begin{Definition}
+Eine Funktion 
+$$ \varphi(x) := \sum_{k=1}^m c_k 1_{I_k}$$ mit $c_k \in \mathbb{R}$ und $I_k \in \mathbb{I}(n)$ mit $I_l \cap I_h = \emptyset$ für $i \neq j$
+heißt Treppenfunktion.
+\end{Definition}
+
+\begin{Definition}
+Für eine Treppenfunktion $ \varphi(x) := \sum c_k 1_{I_k}$ definieren wir das Integral durch
+$$\int_{\mathbb{R}^n} \varphi d\mu := \sum_{k =1}^m  c_k \mu(I_k) \; . $$
+\end{Definition}
 
 \subsubsection*{Anwendung: Fourierreihen, Fouriertransformation und FFT} 
+
