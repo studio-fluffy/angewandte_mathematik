@@ -14,6 +14,8 @@ https://www.youtube.com/watch?v=wG_nF1awSSY
 ## Nicht messbare Mengen
 https://www.youtube.com/watch?v=SJ8YoV6YZFA
 
+## Kompakte Mengen
+https://www.youtube.com/watch?v=1qqp8XoGL-k
 
 ## Videos zu Grundlagen reeller Funktion
 
