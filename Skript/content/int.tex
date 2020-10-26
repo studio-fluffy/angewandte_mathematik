@@ -16,10 +16,16 @@ Für eine Menge $A \subset \mathbb{R}^n$ definieren wir das Lebesguesche äußer
 \begin{align*}
 \mu (A):=   \inf \biggl \{ \sum_{j=1}^{\infty}   \text{vol} (I_j)\; ; \; I_j \in \mathbb{I}(n); A \subset \bigcup_{j= 1}^{\infty} I_j \biggr \} 
 \end{align*}
+Falls für alle Hüllquader $\text{vol} (I_j) = \infty$ gilt, so setzen wir $\mu (A) = \infty$.
 \end{Definition}
 
 \begin{Definition}[Erinnerung Infimum]
 \end{Definition}
+
+\begin{Definition}[Nullmenge]
+Eine Menge $N \subset \mathbb{R}^n$ mit $\mu (N) = 0$ heißt Nullmenge.
+\end{Definition}
+
 
 \begin{Bemerkung}
 \label{massmonton}
@@ -43,21 +49,94 @@ Da $ \bigcup_j A_j \subset \bigcup_j \bigcup_k  K_{j,k}$ eine Überdeckung mit H
 \mu \biggl (  \bigcup A_j  \biggr) \leq \sum_j \sum_k \text{vol} (K_{j,k}) \leq  \bigl( \sum_j  \mu(A_j) + \frac{\epsilon}{2^{j+1}} \bigr)  = \bigl (\sum_j \mu(A_j) \bigr ) + \epsilon
 \end{align*}
 (Die letzte Gleichung beruht auf dem Wert der \href{https://de.wikipedia.org/wiki/Geometrische_Reihe}{geometrischen Reihe}).
-Da die letzte Aussage für beliebiges $\epsilon$ gilt, folgt die Behauptung.
+Da die letzte Aussage für beliebiges $\epsilon > 0$ gilt, folgt die Behauptung.
+\end{proof}
+
+
+\begin{Bemerkung}
+\label{volimu}
+Für $I \in \mathbb{I}(n)$ gilt $\mu(I) = \text{vol}(I)$.
+\end{Bemerkung}
+\begin{proof}
+Seien  $I_j \in \mathbb{I}(n)$ mit $I \subset \bigcup_j  I_j$. Da $I$ beschränkt und abgeschlossen ist, ist $I$ kompakt. Damit reichen endlich 
+viele Intervalle, um $I  \subset  \bigcup_{j=1}^n  I_j$ zu überdecken. Für endlich viele Intervalle ist es einfach zu zeigen, dass
+$$\text{vol} (I) \leq \sum_{j=1}^n \text{vol} (I_j) $$
+gilt. Damit folgt die Behauptung.
 \end{proof}
 
 \begin{Satz}
 Für $I \in \mathbb{I}(n)$  und $A \subset \mathbb{R}^n$ mit $I \subset A \subset \bar{I}$ gilt $\mu (A) = \text{vol}(I)$.
 \end{Satz}
 \begin{proof}
+Mit $I_0:=  I$ und $I_j := \emptyset$ ist $I \subset \bigcup_j I_j$ und damit gilt 
+\begin{align*}
+\mu(I) \leq \sum_j \text{vol}(I_j) = \text{vol}(I)
+\end{align*}
+
+Es sei $\mathcal{A}_0 := \{ A  \in \mathbb{R}^n  \; | \;  I^0 \subset A \subset \bar{I^0}  \text{  mit } I^0 \in \mathbb{I}^0(n) \}$. Für $A_0 \in \mathcal{A}_0$ gibt es 
+$\epsilon > 0$ und $I_{\epsilon} \in \mathbb{I}(n)$ mit $A \subset I_{\epsilon}$ und $\text{vol} (I_{\epsilon})  \leq epsilon$ und damit $\mu(A_0) = 0$.
+Zu $I \in \mathbb{I}(n)$ gibt es $2n$-Seiten $J_j \in \mathcal{A}_0$ mit 
+$\bar{I} = I \cup \bigcup{j= 1}^{2n} J_j$. Aus der $\sigma$-subadditivität folgt
+\begin{align*}
+\mu(\bar{I})  \leq \mu(I) + \sum_{j=1}^{2n} \mu(J_j) = \mu (I)
+\end{align*}
+ Für $I \subset A \subset \bar{I}$ folgt damit und mit der Monotonie
+$$ \mu(I) = \mu(A) = \mu(\bar{I}) \;. $$
+Mit Bemerkung \ref{volimu} folgt die Behauptung.
+
 \end{proof}
 
 
-\begin{Definition}[$\mu$-Messbare Menge]
+Es sei $A, D \subset \mathbb{R}^n$  beschränkte Teilmenge mit $A \subset D$.  
+Man kann einerseits das Volumen $\mu(A)$, als auch das Volumen 
+$\mu_D(A) :=  \mu(D) - \mu(D  \setminus  A)$ berechnen. Man approximiert hierbei das Volumen von $A$ einmal mit Hüllquadern von außen und einmal von innen.
+ 
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=1.0\textwidth]{images/am}
+    \caption{Äußeres Maß}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=1.0\textwidth]{images/im}
+    \caption{Inneres Maß}
+  \end{minipage}
+\end{figure}
 
+Es ist daher sinnvoll von einer messbaren Menge zu sprechen, wenn diese beiden Volumen übereinstimmen, also
+$\mu_D(A) = \mu(A)$ gilt. Dies ist gleichbedeutend mit der Bedingung $\mu(D) = \mu(A) + \mu(D  \setminus A)$. 
+Für festes $D$ wären somit alle Mengen $A$ messbar, für die das äußere Lebesgue Maß additiv ist auf der Zerlegung $D = A \cup D \setminus A$. 
+Lässt man die Bedingungen der Beschränktheit und $A \subset D$ fallen, gelangt man zu folgender Definition.
+
+\begin{Definition}[$\mu$-messbare Menge]
+Eine Menge $A \subset \mathbb{R}^n$ heißt messbar, falls für alle $D \subset  \mathbb{R}^n$ gilt
+\begin{align*}
+\mu(D) =  \mu(A \cap D) + \mu(A^c \cap D)
+\end{align*}
+Da wir die $\sigma$-subadditivität bereits nachgewiesen haben, können wir diese Bedingung auf
+\begin{align*}
+\mu(D) \geq  \mu(A \cap D) + \mu(A^c \cap D)
+\end{align*}
+reduzieren. Die Menge aller messbaren Mengen bezeichnen wir mit $\mathcal{A}$.
 \end{Definition}
 
+\begin{Bemerkung}
+Nullmengen sind messbar.
+\end{Bemerkung}
+\begin{proof}
+\end{proof}
 
+
+
+\begin{Satz}[$\sigma$-Algbera der messbaren Mengen]
+\end{Satz}
+
+
+
+\begin{Satz}[Charakterisierung messbarer Mengen]
+Eine Menge $A$ ist genau dann messbar, wenn $A = S \cup N$, wobei $N$ eine Nullmenge und $S$ Vereinigung von kompakten Mengen ist.
+\end{Satz}
 
 
 \subsection{Lebesgue Integral}
