@@ -11,6 +11,9 @@ https://www.youtube.com/watch?v=QQPz3eXXgQI
 ## Automatisches Differenzieren (Kettenregel)
 https://www.youtube.com/watch?v=wG_nF1awSSY
 
+## Nicht messbare Mengen
+https://www.youtube.com/watch?v=SJ8YoV6YZFA
+
 
 ## Videos zu Grundlagen reeller Funktion
 
