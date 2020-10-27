@@ -29,7 +29,7 @@ Eine Menge $N \subset \mathbb{R}^n$ mit $\mu (N) = 0$ heißt Nullmenge.
 
 \begin{Bemerkung}
 \label{massmonton}
-Für $A \subset B \subset \mathbb{R}^n$ ist $\mu(A) \leq B$
+Für $A \subset B \subset \mathbb{R}^n$ ist $\mu(A) \leq \mu(B)$
 \end{Bemerkung}
 \begin{proof}
 Da $A \subset B$ Teilmenge ist, sind Hüllquader von $B$ sind auch Hüllquader von $A$ und damit  $\mu(A) \leq \mu(B)$.
@@ -43,7 +43,7 @@ Sei $A_j \subset \mathbb{R}^n$ eine Folge von Mengen. Dann gilt
 \end{Satz}
 \begin{proof}
 Für jedes $A_j$ und $\epsilon > 0$ können wir  eine geeignete Überdeckung  $A_j \subset \bigcup_k  K_{j,k}$ mit Hüllquadern $K_{j,k}$ finden, so dass 
- $\sum_k \text{vol} (K_{j,k}) \leq \mu(A) + \frac{\epsilon}{2^{j+1}}$.
+ $\sum_k \text{vol} (K_{j,k}) \leq \mu(A_j) + \frac{\epsilon}{2^{j+1}}$.
 Da $ \bigcup_j A_j \subset \bigcup_j \bigcup_k  K_{j,k}$ eine Überdeckung mit Hüllquadern ist, folgt
 \begin{align*}
 \mu \biggl (  \bigcup A_j  \biggr) \leq \sum_j \sum_k \text{vol} (K_{j,k}) \leq  \bigl( \sum_j  \mu(A_j) + \frac{\epsilon}{2^{j+1}} \bigr)  = \bigl (\sum_j \mu(A_j) \bigr ) + \epsilon
