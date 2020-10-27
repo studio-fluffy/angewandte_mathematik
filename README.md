@@ -13,6 +13,8 @@ https://www.youtube.com/watch?v=wG_nF1awSSY
 
 ## Nicht messbare Mengen
 https://www.youtube.com/watch?v=SJ8YoV6YZFA
+## Auswahlaxiom
+https://www.youtube.com/watch?v=-qPpiHZ82rw
 
 ## Kompakte Mengen
 https://www.youtube.com/watch?v=1qqp8XoGL-k
