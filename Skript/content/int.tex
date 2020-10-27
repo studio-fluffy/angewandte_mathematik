@@ -125,13 +125,20 @@ reduzieren. Die Menge aller messbaren Mengen bezeichnen wir mit $\mathcal{A}$.
 Nullmengen sind messbar.
 \end{Bemerkung}
 \begin{proof}
-
+Es sei $N, D \subset \mathbb{R}^n$ mit $\mu(N)= 0$. Wegen der Monotonie von $\mu$ ist $0 \leq \mu (N \cap D) \leq \mu(N) = 0$ und somit ist $N \cap D$ auch eine Nullmenge. Wir erhalten damit und nochmaliger Monotonie von $\mu$
+$$ \mu(N \cap D) + \mu (N^c \cap D) =  \mu (N^c \cap D) \leq \mu(D) $$
+und damit ist $N$ messbar.
 \end{proof}
 
 
 
-\begin{Satz}[$\sigma$-Algbera der messbaren Mengen]
-\end{Satz}
+\subsubsection*{$\sigma$-Algebra der messbaren Mengen}
+Die Menge der messbaren Mengen $\mathcal{A}$ hat einige besondere Eigenschaften. Wir geben hier nur diese Eigenschaften ohne Beweis an. Die Beweise verwenden im wesentlichen Techniken, die wir bereits kennengelernt haben.
+\begin{itemize}
+\item Für eine Folge $A_i \in \mathcal{A}$ von messbaren Mengen mit $A_i \cap A_j  =  \emptyset$ ist $\mu (\bigcup_i A_i ) = \sum_i \mu(A_i)$.
+\item Ist $A \in \mathcal{A} $, so ist auch $A^c \in \mathcal{A} $.
+\item Für eine Folge $A_i \in \mathcal{A}$ messbarer Mengen  ist $\bigcup_i A_i \in \mathcal{A}$ messbar.
+\end{itemize}
 
 
 
@@ -155,10 +162,47 @@ $$ \varphi(x) := \sum_{k=1}^m c_k 1_{I_k}$$ mit $c_k \in \mathbb{R}$ und $I_k \i
 heißt Treppenfunktion.
 \end{Definition}
 
+\begin{Bemerkung}
+Seien $\varphi(x) =   \sum_{k=1}^m  c_k 1_{I_k}$ und $\psi(x) =  \sum_{j=1}^l  u_j 1_{I_j}$. Dann definiert
+$(\varphi + \psi)(x) := \sum_{k=1}^m \sum_{j=1}^l   (c_k + u_j) 1_{I_{k,j}}$ mit $I_{k,j}:= I_k \cap I_j$ eine Treppenfunktion (nach entsprechender Umnummerierung zu einem einzigen Summenzeichen).
+\end{Bemerkung}
+
+
 \begin{Definition}
-Für eine Treppenfunktion $ \varphi(x) := \sum c_k 1_{I_k}$ definieren wir das Integral durch
+Für eine Treppenfunktion $ \varphi(x) := \sum_{k=1}^m c_k 1_{I_k}$ definieren wir das Integral durch
 $$\int_{\mathbb{R}^n} \varphi d\mu := \sum_{k =1}^m  c_k \mu(I_k) \; . $$
 \end{Definition}
 
-\subsubsection*{Anwendung: Fourierreihen, Fouriertransformation und FFT} 
+\begin{Satz}
+Seien $\varphi(x) =   \sum_{k=1}^m  c_k 1_{I_k}$ und $\psi(x) =  \sum_{j=1}^l  u_j 1_{I_j}$ zwei Treppenfunktionen.
+Für das Integral von Treppenfunktion gilt:
+\begin{itemize}
+\item Ist $\varphi(x) = \psi(x)$ für alle $x$, dann ist $\int_{\mathbb{R}^n} \varphi d\mu = \int_{\mathbb{R}^n} \psi d\mu$ (Das integral hängt nicht von der Zerlegung der Treppenfunktion ab und  ist wohldefiniert)
+\item $\int_{\mathbb{R}^n} \alpha \varphi  + \beta \psi d\mu = \alpha \int_{\mathbb{R}^n}  \varphi d\mu + \beta  \int_{\mathbb{R}^n}  \psi d\mu$
+\item $ \biggl|  \int_{\mathbb{R}^n} \varphi d\mu  \biggr| \leq \int_{\mathbb{R}^n} | \varphi | d\mu$
+\item Ist $\varphi(x) \leq \psi(x)$ für alle $x$, so ist $\int_{\mathbb{R}^n} \varphi d\mu \leq \int_{\mathbb{R}^n} \psi d\mu$ 
+\end{itemize}
+\end{Satz}
+
+\begin{proof}
+Der Beweis wird über eine Vollständige Induktion geführt. Der Induktionsanfang ist einfach zu zeigen. 
+Wir nehmen an, die Aussage gilt für alle Dimensionen $k < n$.
+Zerlege $\mathbb{R}^n = \mathbb{R}^p \times \mathbb{R}^{n-p}$. Jeder Quader $I \in \mathbb{I}(n)$ zerlegt sich damit ebenfalls in ein Produkt 
+$I = I' \times I''$ mit $I'  \in \mathbb{I}(p)$ und  $I''  \in \mathbb{I}(n-p)$ und für $z = (x,y) \in  \mathbb{R}^p \times \mathbb{R}^{n-p}$ gilt $1_{I} (z) = 1_{I'}(x) \cdot 1_{I''}(y)$. Es sei nun $\varphi(z):=   \sum_{k=1}^m  c_k 1_{I_k}(z)$ eine Treppenfunktion auf $ \mathbb{R}^p \times \mathbb{R}^{n-p}$. Für jedes $y \in \mathbb{R}^{n-p}$ definiert  $\varphi_y(x)=   \sum_{k=1}^m  c_k 1_{I''_k}(y) \cdot 1_{I'_k}(x)$ eine Treppenfunktion auf $\mathbb{R}^{n-p}$. 
+Nach Induktionsvoraussetzung hängt das Integral 
+$$\int_{\mathbb{R}^p}  \varphi_y(x) d \mu' = \sum_{k=1}^m  c_k \mu'(I'_k)  \cdot 1_{I''_k}(y)  =: \phi(y)$$
+nicht von der Zerlegung der Treppenfunktion ab. $\phi(y)$ ist wiederum eine Treppenfunktion auf $\mathbb{R}^{n-p}$ und Nach Induktionsvoraussetzung hängt das Integral 
+$$\int_{\mathbb{R}^{n-p}}  \phi(y) d \mu'' = \sum_{k=1}^m  c_k \mu'(I'_k)  \cdot \mu'' (I''_k)(y) $$
+nicht von der Zerlegung der Treppenfunktion ab. Somit gilt
+$$\int_{\mathbb{R}^{n-p}} \int_{\mathbb{R}^p}  \varphi_y(x) d \mu'  d \mu''  =   \sum_{k=1}^m  c_k \mu'(I'_k)  \cdot \mu''(I''_k)(y) = \sum_{k=1}^m  c_k  \mu(I_k)  = \int_{\mathbb{R}^n} \varphi(z) d\mu\;.$$
+Die linke Seite hängt  damit nicht von der Zerlegung der Treppenfunktion ab und alle Behauptungen können so auf den Fall $n=1$ zurückgeführt werden.
+\end{proof}
+
+\begin{Bemerkung}[Satz von Fubini für Treppenfunktionen]
+Es gilt $$\int_{\mathbb{R}^n} \varphi(x,y) d \mu = \int_{\mathbb{R}^{n-p}} \biggl (\int_{\mathbb{R}^{p}}  \varphi(x,y) d \mu' \biggr ) d \mu''$$
+\end{Bemerkung}
+\begin{proof}
+Siehe Beweis des letzten Satzes.
+\end{proof}
+
 
