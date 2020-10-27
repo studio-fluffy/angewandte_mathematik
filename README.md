@@ -11,6 +11,9 @@ https://www.youtube.com/watch?v=QQPz3eXXgQI
 ## Automatisches Differenzieren (Kettenregel)
 https://www.youtube.com/watch?v=wG_nF1awSSY
 
+## Backpropagation
+https://www.youtube.com/watch?v=6BMwisTZFr4
+
 ## Nicht messbare Mengen
 https://www.youtube.com/watch?v=SJ8YoV6YZFA
 ## Auswahlaxiom
