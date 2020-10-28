@@ -277,14 +277,14 @@ mit reellen, stetigen Funktionen $y_i : [a,b] \to \mathbb{R}$ (damit ist auch $\
 \end{figure}
 Im Folgenden gilt: $I := [a, b]$ mit $a,b \in \mathbb{R}$ und $U \subset \mathbb{R}^n$.
 \begin{Satz}[(Baby) Kettenregel]
-Sei $\gamma: I \to U$ ein differenzierterer Weg und $f: U \to \mathbb{R}$ eine differenziertere Funktion. Dann ist $f \circ \gamma : I \to \mathbb{R}$ differenzierbar und hat die Ableitung
+Sei $\gamma: I \to U$ ein differenzierbarer Weg und $f: U \to \mathbb{R}$ eine differenziertere Funktion. Dann ist $f \circ \gamma : I \to \mathbb{R}$ differenzierbar und hat die Ableitung
 \begin{align*}
 \frac{d(f \circ \gamma)}{dt}(t) = df(\gamma(t))\gamma'(t) = \sum_{i=1}^n  \frac{\partial f (\gamma(t))}{\partial x_i} \gamma'_i(t)
 \end{align*} 
 \end{Satz}
 
 \fbox{\parbox{\linewidth}{
-$\star \star \bigstar $  Das Differential einer differenzierteren Funktion  kann als eine Abbildung von Tangenten interpretiert werden.
+$\star \star \bigstar $  Das Differential einer differenzierbare Funktion  kann als eine Abbildung von Tangenten interpretiert werden.
 }}
 
 \begin{proof}
@@ -444,7 +444,7 @@ Sei $T_p(x,a) =  f(a) + \sum_{k=1}^{p} d^k f(a) (x-a)^k$ die Taylorraproximation
 \end{align*}
 \end{Satz}
 \begin{proof}
-Da die partiellen Ableitungen stetig sind, gibt es für jedes $\epsilon > 0$ ein Radius $r >0$, dass für alle $y \in K_r(a)$
+Da die partiellen Ableitungen stetig sind, gibt es für jedes $\epsilon > 0$ ein Radius $r >0$, so dass für alle $y \in K_r(a)$ gilt
 \begin{align*}
 \frac{1}{p!} (d^pf(y) -d^pf(a))h^p \leq \epsilon ||h||_{\infty}^p \; . 
 \end{align*}
