@@ -540,7 +540,7 @@ und somit hat $F_v$ ein isoliertes lokales Maximum und $F_w$ ein isoliertes loka
 Wie kann man Minima einer  differenzierbaren Abbildung $f: \mathbb{R}^n \to \mathbb{R}$ finden? 
 Wir wissen, dass an jedem Punkt $x_k \in  \mathbb{R}^n$ der negative Gradient  $d_k := -\nabla f (x_k)$ in die steilste Abstiegsrichtung zeigt.
 Die Idee des Gradientenabstieg ist, ein bestimmtes  Stück in diese Richtung abzusteigen, damit der Funktionswert kleiner wird, also $x_{k+1} = x_k + \alpha_k d_k$ zu setzen. Für hinreichend kleines $\alpha_k$ folgt mit Satz \ref{lokaleLinearisierung} über die lokale Linearisierung  
-$f(x_{k+1}) = f (x_k + \alpha_k d_k) =  f(x_k) + \alpha_k df(x_k)d_k + R( \alpha_k dk)$.  Somit gilt $f(x_{k+1}) \leq f(x_k)$, falls $\nabla f(x_k) \neq 0$ und falls die folge $f(x_k)$ beschränkt ist, so ist  dieser Fixpunkt $x^*$ ein Minimum, da $\nabla f(x^*) = 0$ gelten muss.  
+$f(x_{k+1}) = f (x_k + \alpha_k d_k) =  f(x_k) + \alpha_k df(x_k)d_k + R( \alpha_k dk)$.  Somit gilt $f(x_{k+1}) \leq f(x_k)$, falls $\nabla f(x_k) \neq 0$ und falls die folge $f(x_k)$ beschränkt ist, so gibt es einen Fixpunkt $x^*$ und dieser ist ein Minimum, da $\nabla f(x^*) = 0$ gelten muss.  
 
 \begin{algorithm}
 \caption{Gradienentabstieg}
