@@ -9,8 +9,12 @@ und $\bar{I}:= [a_1, b_1] \times \cdots \times [a_n,b_n]$ seinen Abschluss. Wir 
 \text{vol} (I):=   \prod_{i = 1}^n (b_i -a_i)  \; .
 \end{align*}
 
-Mit $\mathbb{I}(n): = \{   (a_1,b_1) \times \cdots \times (a_n,b_n) \; | \;  (a_i, b_i) \subset \mathbb{R} \}$ bezeichnen wir die Menge aller $n$-dimensionalen Quader und mit $\mathbb{I}^0(n): = \{   (a_1,b_1) \times \cdots \times (a_n,b_n) \; | \;  (a_i, b_i) \subset \mathbb{R}  \text { und } a_k = b_k \text{ für ein k}\}$ die Menge der degenerierten Quader.  
-Für eine Menge $A \subset \mathbb{R}^n$ bezeichnen wir eine Menge von Quadern $\{ I_j \; | \;  I_j \in \mathbf{I}(n)  \}$ mit $A \subset \bigcup_j I_j$ als Hüllquader für $A$.
+Mit 
+$$\mathbb{I}(n): = \{   (a_1,b_1) \times \cdots \times (a_n,b_n) \; | \;  (a_i, b_i) \subset \mathbb{R} \}$$
+ bezeichnen wir die Menge aller $n$-dimensionalen Quader und mit
+$$\mathbb{I}^0(n): = \{   (a_1,b_1) \times \cdots \times (a_n,b_n) \; | \;  (a_i, b_i) \subset \mathbb{R}  \text { und } a_k = b_k \text{ für ein k}\}$$ 
+die Menge der degenerierten Quader.   Für eine Menge $A \subset \mathbb{R}^n$ bezeichnen wir eine Menge von Quadern 
+$$ \biggl \{ I_j \; | \;  I_j \in \mathbf{I}(n)   \text{ mit } A \subset \bigcup_j I_j  \biggr \}$$ als Hüllquader für $A$.
 \begin{Definition}[Lebesguesche äußere Maß]
 Für eine Menge $A \subset \mathbb{R}^n$ definieren wir das Lebesguesche äußere Maß durch 
 \begin{align*}
@@ -32,7 +36,7 @@ Eine Menge $N \subset \mathbb{R}^n$ mit $\mu (N) = 0$ heißt Nullmenge.
 Für $A \subset B \subset \mathbb{R}^n$ ist $\mu(A) \leq \mu(B)$
 \end{Bemerkung}
 \begin{proof}
-Da $A \subset B$ Teilmenge ist, sind Hüllquader von $B$ sind auch Hüllquader von $A$ und damit  $\mu(A) \leq \mu(B)$.
+Da $A \subset B$ Teilmenge ist, sind Hüllquader von $B$  auch Hüllquader von $A$ und damit  $\mu(A) \leq \mu(B)$.
 \end{proof}
 
 \begin{Satz}[$\sigma$-subadditivität]
@@ -74,9 +78,9 @@ Mit $I_0:=  I$ und $I_j := \emptyset$ ist $I \subset \bigcup_j I_j$ und damit gi
 \end{align*}
 
 Es sei $\mathcal{A}_0 := \{ A  \in \mathbb{R}^n  \; | \;  I^0 \subset A \subset \bar{I^0}  \text{  mit } I^0 \in \mathbb{I}^0(n) \}$. Für $A_0 \in \mathcal{A}_0$ gibt es 
-$\epsilon > 0$ und $I_{\epsilon} \in \mathbb{I}(n)$ mit $A \subset I_{\epsilon}$ und $\text{vol} (I_{\epsilon})  \leq epsilon$ und damit $\mu(A_0) = 0$.
+$\epsilon > 0$ und $I_{\epsilon} \in \mathbb{I}(n)$ mit $A \subset I_{\epsilon}$ und $\text{vol} (I_{\epsilon})  \leq \epsilon$ und damit $\mu(A_0) = 0$.
 Zu $I \in \mathbb{I}(n)$ gibt es $2n$-Seiten $J_j \in \mathcal{A}_0$ mit 
-$\bar{I} = I \cup \bigcup{j= 1}^{2n} J_j$. Aus der $\sigma$-subadditivität folgt
+$\bar{I} = I \cup \bigcup_{j= 1}^{2n} J_j$. Aus der $\sigma$-subadditivität folgt
 \begin{align*}
 \mu(\bar{I})  \leq \mu(I) + \sum_{j=1}^{2n} \mu(J_j) = \mu (I)
 \end{align*}

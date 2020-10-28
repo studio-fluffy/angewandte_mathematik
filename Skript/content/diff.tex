@@ -21,11 +21,11 @@ $f'(\xi) = \frac{f(b) - f(a)} { b-a}$.
 
 \subsubsection*{Taylorapproximation einer Veränderlichen} 
 
-Jede  reelle Funktion $f$, deren $p+1$-ten Ableitungen existieren und stetig sind lässt sich mit Hilfe der Taylorreihe  $$f(x) = f(a) + f^{'}(a) (x-a) +   \frac{1}{2!} f^{''}(a) (x-a)^2 + \cdots  +  \frac{1}{p!} f^{(p)}(a) (x-a)^{p} +  R_{p+1}(x,a) $$
+Jede  reelle Funktion $f$, deren $p+1$-ten Ableitungen existieren und stetig sind lässt sich mit Hilfe des Taylorpolynoms  $$f(x) = f(a) + f^{'}(a) (x-a) +   \frac{1}{2!} f^{''}(a) (x-a)^2 + \cdots  +  \frac{1}{p!} f^{(p)}(a) (x-a)^{p} +  R_{p+1}(x,a) $$
 und dem Restglied  $R_p(x,a) :=   \frac{1}{(p+1)!} f^{(p+1)}(\xi) (x-a)^{p} $ mit einem $\xi \in (x,a)$ darstellen.
 
 
-\subsubsection*{Cauchy-Schwarzsche Ungleichung}
+\subsubsection*{Cauchy-Schwarzsche Gleichung}
  Für zwei Vektoren $v,w \in \mathbb{R}^n$ gilt: 
 \begin{align*}
 \frac{\langle v, w \rangle}{||v|| \cdot ||w||} = \cos(\varphi) 
@@ -57,7 +57,7 @@ In diesem Abschnitt ist $U \subset \mathbb{R}^n$ stets eine offene Teilmenge des
 \begin{align*}
 \forall {\varepsilon > 0} \ \exists \ N \in \mathbb{N} \; \forall \ n > N: \; d(a, a_n) < \varepsilon\,
 \end{align*}
-In Worten: Es gibt für jedes beliebige (noch so kleine) $\varepsilon$ einen Index $N$ derart, dass für alle Indizes $n > N$, also alle weiteren Folgenglieder, gilt: Der Abstand $d(a, a_n)$ ist kleiner als $\varepsilon$.
+In Worten: Es gibt für jedes beliebige (noch so kleine) $\varepsilon > 0$ einen Index $N$ derart, dass für alle Indizes $n > N$, also alle weiteren Folgenglieder, gilt: Der Abstand $d(a, a_n)$ ist kleiner als $\varepsilon$.
 \end{Definition}
 
 \begin{figure}[H]
@@ -171,7 +171,7 @@ Dann gilt
 \end{align*} 
 \end{Satz}
 \begin{proof}
-Mit der CSU Ungleichung folgt für beliebiges $h$ 
+Mit der Cauchy-Schwarz Gleichung folgt für beliebiges $h$ 
 \begin{align*}
 \partial_h f(a) = df(a) h = \langle \nabla f(a) , h \rangle = || \nabla f(a)||  \cdot ||h|| \cdot \cos(\varphi) 
 \end{align*} 
@@ -248,7 +248,7 @@ Umformuliert bedeutet Satz \ref{lokaleLinearisierung}, dass für das Differentia
 \begin{align}
 \lim_{h \to 0} \frac{f(a + h) -f(a) - df(a) h }{||h||} = 0
 \end{align}
-Ist $L$ eine weiter lineare Abbildung mit $\lim_{h \to 0} \frac{f(a + h) -f(a) - L(a) h }{||h||}$, so ist $L = df$. Das Differential ist somit eindeutig durch die Eigenschaft der lokalen Linearisierung bestimmt.
+gilt. Ist $L$ eine weiter lineare Abbildung mit $\lim_{h \to 0} \frac{f(a + h) -f(a) - L(a) h }{||h||}$, so ist $L = df$. Das Differential ist somit eindeutig durch die Eigenschaft der lokalen Linearisierung bestimmt.
 \end{Bemerkung}
 \begin{proof}
 Für $v \in \mathbb{R}^n$ mit $||v|| = 1$ gilt 
@@ -537,7 +537,7 @@ und somit hat $F_v$ ein isoliertes lokales Maximum und $F_w$ ein isoliertes loka
 
 
 \subsubsection*{Anwendung: Gradientenverfahren} 
-Wie kann man Minima einer  differenzierteren Abbildung $f: \mathbb{R}^n \to \mathbb{R}$ finden? 
+Wie kann man Minima einer  differenzierbaren Abbildung $f: \mathbb{R}^n \to \mathbb{R}$ finden? 
 Wir wissen, dass an jedem Punkt $x_k \in  \mathbb{R}^n$ der negative Gradient  $d_k := -\nabla f (x_k)$ in die steilste Abstiegsrichtung zeigt.
 Die Idee des Gradientenabstieg ist, ein bestimmtes  Stück in diese Richtung abzusteigen, damit der Funktionswert kleiner wird, also $x_{k+1} = x_k + \alpha_k d_k$ zu setzen. Für hinreichend kleines $\alpha_k$ folgt mit Satz \ref{lokaleLinearisierung} über die lokale Linearisierung  
 $f(x_{k+1}) = f (x_k + \alpha_k d_k) =  f(x_k) + \alpha_k df(x_k)d_k + R( \alpha_k dk)$.  Somit gilt $f(x_{k+1}) \leq f(x_k)$, falls $\nabla f(x_k) \neq 0$ und falls die folge $f(x_k)$ beschränkt ist, so ist  dieser Fixpunkt $x^*$ ein Minimum, da $\nabla f(x^*) = 0$ gelten muss.  
