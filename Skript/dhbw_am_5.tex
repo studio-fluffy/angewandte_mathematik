@@ -128,7 +128,7 @@ Für das Integral von Treppenfunktion gilt:
 Der Beweis wird über eine vollständige Induktion geführt. Der Induktionsanfang ist einfach zu zeigen. 
 Wir nehmen an, die Aussage gilt für alle Dimensionen $k < n$.
 Zerlege $\mathbb{R}^n = \mathbb{R}^p \times \mathbb{R}^{n-p}$. Jeder Quader $I \in \mathbb{I}(n)$ zerlegt sich damit ebenfalls in ein Produkt 
-$I = I' \times I''$ mit $I'  \in \mathbb{I}(p)$ und  $I''  \in \mathbb{I}(n-p)$ und für $z = (x,y) \in  \mathbb{R}^p \times \mathbb{R}^{n-p}$ gilt $1_{I} (z) = 1_{I'}(x) \cdot 1_{I''}(y)$. Es sei nun $\varphi(z):=   \sum_{k=1}^m  c_k 1_{I_k}(z)$ eine Treppenfunktion auf $ \mathbb{R}^p \times \mathbb{R}^{n-p}$. Für jedes $y \in \mathbb{R}^{n-p}$ definiert  $\varphi_y(x)=   \sum_{k=1}^m  c_k 1_{I''_k}(y) \cdot 1_{I'_k}(x)$ eine Treppenfunktion auf $\mathbb{R}^{n-p}$. 
+$I = I' \times I''$ mit $I'  \in \mathbb{I}(p)$ und  $I''  \in \mathbb{I}(n-p)$ und für $z = (x,y) \in  \mathbb{R}^p \times \mathbb{R}^{n-p}$ gilt $1_{I} (z) = 1_{I'}(x) \cdot 1_{I''}(y)$. Es sei nun $\varphi(z):=   \sum_{k=1}^m  c_k 1_{I_k}(z)$ eine Treppenfunktion auf $ \mathbb{R}^p \times \mathbb{R}^{n-p}$. Für jedes $y \in \mathbb{R}^{n-p}$ definiert  $\varphi_y(x)=   \sum_{k=1}^m  c_k 1_{I''_k}(y) \cdot 1_{I'_k}(x)$ eine Treppenfunktion auf $\mathbb{R}^{p}$. 
 Nach Induktionsvoraussetzung hängt das Integral 
 $$\int_{\mathbb{R}^p}  \varphi_y(x) d \mu' = \sum_{k=1}^m  c_k \mu'(I'_k)  \cdot 1_{I''_k}(y)  =: \phi(y)$$
 nicht von der Zerlegung der Treppenfunktion ab.  \end{frame}
@@ -216,7 +216,7 @@ Für $f,g : \mathbb{R}^n \to \mathbb{R}$ und $c \in \mathbb{R}$ gilt:
  \begin{itemize}
 \item Für eine Hüllreihe $\varphi$ von $f$ ist $|c| \cdot \varphi$ eine Hüllreihe von $c \cdot f$. 
 \item Da $|f +g | \leq | f | + | g |$ folgt Behauptung aus (iii) und der verallgemeinerten Dreiecksungleichung.
-\item Hullreihen sind immer größer-gleich der Funktion und damit haben größere Funktionen größere Hüllreihen.
+\item Hüllreihen sind immer größer-gleich der Funktion und damit haben größere Funktionen größere Hüllreihen.
 \end{itemize}
  \end{frame}
 
@@ -393,7 +393,7 @@ Dann ist $f$ integrierbar und es gilt $$ \int f d \mu = lim_{k \to \infty}  \int
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Beweis}
-Aus $f  - \varphi_k = \sum_{i=k}^{\infty} (\varphi_{k+1} - \varphi_k)$ folgt mit der verallgemeinerten Dreiecksungleichung Lemma \ref{vdug}  und Lemma \ref{normbetragintegral}
+Aus $f  - \varphi_k = \sum_{i=k}^{\infty} (\varphi_{k+1} - \varphi_k)$ folgt mit der verallgemeinerten Dreiecksungleichung  und dem Satz über Norm und Integration 
 \begin{align*}
 || f - \varphi_k ||_1 \leq \sum_{i=k}^{\infty} \int | \varphi_{i+1} - \varphi_i | d \mu =  \sum_{i=k}^{\infty} \biggl ( \int  \varphi_{i+1}d \mu -  \int \varphi_i  d \mu \biggr ) \; .
 \end{align*}
