@@ -278,14 +278,95 @@ $$ || f -  \varphi_k ||_1 \to 0 \text{ für } k \to \infty \;. $$
 
 
 
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Beweis}
+Für Treppenfunktionen $\psi$ und $\xi$ gilt 
+\begin{align*}
+\biggl | \int \psi d \mu - \int \xi d \mu \biggr |  &  \leq \int | \psi - \xi | d \mu = || \psi - \xi ||_1 \\
+& \leq  || \psi - f ||_1 +  || f - \xi ||_1
+\end{align*}
+woraus die Behauptungen folgen.
+ \end{frame}
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+    \begin{block}{Integral und Norm}
+Ist $f$ über $\mathbb{R}^n$ integrierbar, so auch $|f|$ und es gilt
+$$ \biggl | \int f d \mu \biggr | \leq \int  | f | d \mu = || f ||_1 \; .$$
+\end{block}
+
+ \end{frame}
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Beweis}
+Sei $f$ integrierbar und $\varphi_k$ eine Folge von Treppenfunktionen mit $|| f - \varphi_k ||_1 \to 0$. 
+Aus $\bigl | | f | - | \varphi_k | \bigr | \leq | f -\varphi | $ ergibt sich wegen der Monotonie der $L^1$-Norm
+$$\bigl |  \bigl |  | f | - | \varphi_k | \bigr | \bigr |_1 \leq \bigl |  \bigl |   f  -  \varphi_k  \bigr | \bigr |_1  \; .$$ 
+Damit gilt $\bigl |  \bigl |  | f | - | \varphi_k | \bigr | \bigr |_1 \to 0$ und somit ist $|f|$ integrierbar und mit der Abschätzung von Beträgen für Treppenfunktionen gilt 
+\begin{align*}
+\biggl | \int f d \mu \biggr | = \biggl | \lim_k \int \varphi_k d \mu \biggr | \leq  \int |\varphi_k| d \mu = \int |f| d\mu
+\end{align*} 
+und damit der erste Teil der Behauptung. 
+Mit der Dreiecksungleichung erhalten wir
+$$ || f || - ||  f - \varphi ||_1 \leq || \varphi_k ||_1  \leq || f ||_1 + || f - \varphi_k ||_1 $$
+und wegen $|| \varphi_k ||_1 = \int | \varphi_k | d \mu \to \int | f | d \mu$ folgt die Behauptung.
+ \end{frame}
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+    \begin{block}{Rechenregeln}
+Sind $f$ und $g$ integrierbar, so gilt
+\begin{itemize}
+\item $ \alpha f + \beta g$ mit $\alpha, \beta \in \mathbb{R}$ ist integrierbar mit 
+$$\int \alpha f + \beta g d\mu = \alpha \int f d\mu + \beta \int g d \mu \; .$$ 
+\item Aus $f(x) \leq g(x)$ für alle $x \in \mathbb{R}^n$ folgt $\int f d \mu \leq \int g d \mu$.
+\item Ist $g$ zusätzlich beschränkt, so ist auch $f \cdot g$ integrierbar.
+\end{itemize}
+
+\end{block}
+
+ \end{frame}
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Beweis}
+\begin{itemize}
+\item Sind $\phi_k$ und $\psi_k$ approximierende Folge von  Treppenfunktionen von $f$ und $g$, so ist $\alpha \phi_k + \beta \psi_k$ eine approximierende Folge von $\alpha f + \beta g$.
+\item Es  ist $\int (g-f) d \mu = || g - f ||_1 \geq 0$.
+\end{itemize}
+ \end{frame}
+
 
 
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Lebesgue Integral}
-    \begin{block}{Vektorraum der Indikatorfunktionen}
+    \begin{block}{Min Max}
+Ist $f$ integrierbar, so auch $f^+ := \max(f,0)$ und $f^- := \min(f,0)$. Damit ist $f = f^+ + f^-$ genau dann integrierbar, wenn $f^+$ und $f^-$ integrierbar sind. Da $- f^- \geq 0$ ist, kann man sich in Beweisen häufig auf den Fall $f \geq 0$ beschränken.
+\end{block}
+    \begin{block}{Beweis}
+Es ist $ \max(f,0) = \frac{1}{2} (f + | f |)$ und  $ \min(f,0) = \frac{1}{2} (f - | f |)$ und die Behauptung folgt aus den Rechenregeln.
 
+\end{block}
+ \end{frame}
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+    \begin{block}{Integration über Teilmengen}
+Für  eine Teilmenge $A \subset \mathbb{R}^n$ und eine Funktion $f: A \to \mathbb{R}$ heißt
+$$  f_A (x) : = \begin{cases}  f(x) \text{ für } x \in A \\ 0  \text{ für } x \in \mathbb{R}^n \setminus A \end{cases}$$ 
+die triviale Fortsetzung von $f$ auf $\mathbb{R}^n$. $f$ heißt integrierbar über $A$, falls $f_A$ über $\mathbb{R}^n$ integrierbar ist und in diesem Fall bezeichnen wir mit $$ \int_A f(x) d \mu := \int f_A (x) d\mu$$ als das Integral von $f$ über $A$.
 \end{block}
 
  \end{frame}
@@ -294,8 +375,60 @@ $$ || f -  \varphi_k ||_1 \to 0 \text{ für } k \to \infty \;. $$
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
-\framesubtitle{Beweis}
+\framesubtitle{Lebesgue Integral}
+    \begin{block}{Kleiner Satz von B. Levi}
+Zu $f: \mathbb{R}^n \to \mathbb{R}$ gebe es eine monoton wachsende Folge $\varphi_k$ von Treppenfunktionen mit
+\begin{itemize}
+\item Für alles $x \in \mathbb{R}^n$ git $\lim_{k \to \infty} \varphi(x) =  f(x)$. $f$ ist also die punktweise gebildete Grenzfunktion der $\varphi_k$.
+\item Die reelle Folge der Integrale $\int \varphi_k d \mu $ ist beschränkt.
+\end{itemize}
+Dann ist $f$ integrierbar und es gilt $$ \int f d \mu = lim_{k \to \infty}  \int \varphi_k d \mu \; .$$
+\end{block}
 
+ \end{frame}
+
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Beweis}
+Aus $f  - \varphi_k = \sum_{i=k}^{\infty} (\varphi_{k+1} - \varphi_k)$ folgt mit der verallgemeinerten Dreiecksungleichung Lemma \ref{vdug}  und Lemma \ref{normbetragintegral}
+\begin{align*}
+|| f - \varphi_k ||_1 \leq \sum_{i=k}^{\infty} \int | \varphi_{i+1} - \varphi_i | d \mu =  \sum_{i=k}^{\infty} \biggl ( \int  \varphi_{i+1}d \mu -  \int \varphi_i  d \mu \biggr ) \; .
+\end{align*}
+Die Folge $\int \varphi_k$ ist monoton wachsend und beschränkt und damit konvergent. Bezeichnen wir mit $I$ den Grenzwert, so folgt 
+$|| f -\varphi_k ||_1 \leq I - \int \varphi_k d \mu $. Also gilt $|| f -\varphi_k ||_1 \to 0$ für $k \to \infty$ und damit ist $f$ integrierbar und mit der Definition des Integrals folgt die Behauptung.
+ \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+    \begin{block}{Offene Mengen}
+Eine Menge $U \subset \mathbb{R}^n$ heißt offen, falls für alle $a \in U$ ein Radius $r >0$ existiert, so dass der Ball $B_r(a) : = \{ x \in \mathbb{R}^n \; | \; ||x -a|| \leq r \} \subset U$ in $U$ enthalten ist.
+\end{block}
+
+ \end{frame}
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+    \begin{block}{Stetige Funktionen auf offenen Mengen sind integrierbar}
+Sei $U \subset \mathbb{R}^n$ offen und beschränkt und $f : U \to \mathbb{R}$ stetig und beschränkt. Dann ist $f$ über $U$ integrierbar.
+\end{block}
+
+ \end{frame}
+
+
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Beweis}
+Da $U$ offen ist, kann man man um jeden Punkt $a \in U$ einen Würfel $W_r(a)$ finden, dessen Mittelpunkt $a$  und dessen Kantenlänge $r$ eine rationale Zahl ist. Damit kann man zu Punkten $a_1, \cdots,  a_n$ Würfel wählen, so dass $W_r(a_i) \cap W_r(a_j) = \emptyset$ für $i \neq j$ und mit $m_i := \min \{ f(x)  | x \in W_r(a_i) \} $ Hüllreihen   $\psi_{a_1, \cdots, a_n} := \sum_{i=1}^n m_i 1_{W_r(a_i)} $  konstruieren mit  $\psi \leq f$. Bezeichnen  wir mit $\mathcal{T} :=  \{ \psi_k  \}$ die abzählbare Menge dieser Treppenfunktionen, so ist $f = \sup \{ \psi \; | \; \psi \in \mathcal{T}  \}$ und $\varphi_k : = max \{ \psi_1, \cdots \psi_k  \}$ eine monoton wachsende Treppenfunktion mit $\varphi_k \to f$. Da $U$ beschränkt ist, gibt es eine Quader $I$ mit $U \subset I$ und mit $M : = \max f$  ist $\int \varphi_k d \mu \leq M \mu(I)$ beschränkt. Mit dem Satz von B. Levi folgt die Behauptung.
  \end{frame}
 
 
