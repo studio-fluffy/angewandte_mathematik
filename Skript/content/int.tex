@@ -298,9 +298,13 @@ $$ || \varphi ||_1 = \int | \varphi | d \mu  \; .$$
 \begin{Definition}
 Eine Funktion $f : \mathbb{R}^n \to \mathbb{R}$ heißt integrierbar, falls eine Folge von Treppenfunktionen  $\varphi_k$ existiert mit
 $$ || f -  \varphi_k ||_1 \to 0 \text{ für } k \to \infty \;. $$
+In diesem Fall heißt
+$$ \int_{\mathbb{R}^n} f(x) d \mu := \lim_{k \to \infty} \varphi_k d \mu$$
+das Integral von $f$ über $\mathbb{R}^n$.
 \end{Definition}
 
 \begin{Bemerkung}
+\hfill
 \begin{itemize}
 \item Die reelle Zahlenfolge $\int \varphi_k d\mu$ ist eine Cauchyfolge und damit konvergent. 
 \item Der Grenzwert ist unabhängig von der Folge $\varphi_k$.
@@ -395,11 +399,32 @@ Eine Menge $U \subset \mathbb{R}^n$ heißt offen, falls für alle $a \in U$ ein 
 \end{Definition}
 
 \begin{Satz}
+\label{fintu}
 Sei $U \subset \mathbb{R}^n$ offen und beschränkt und $f : U \to \mathbb{R}$ stetig und beschränkt. Dann ist $f$ über $U$ integrierbar.
 \end{Satz}
 
 \begin{proof}
-Da $U$ offen ist, kann man man um jeden Punkt $a \in U$ einen Würfel $W_r(a)$ finden, dessen Mittelpunkt $a$  und dessen Kantenlänge $r$ eine rationale Zahl ist. Damit kann man zu Punkten $a_1, \cdots,  a_n$ Würfel wählen, so dass $W_r(a_i) \cap W_r(a_j) = \emptyset$ für $i \neq j$ und mit $m_i := \min \{ f(x)  | x \in W_r(a_i) \} $ Hüllreihen   $\psi_{a_1, \cdots, a_n} := \sum_{i=1}^n m_i 1_{W_r(a_i)} $  konstruieren mit  $\psi \leq f$. Bezeichnen  wir mit $\mathcal{T} :=  \{ \psi_k  \}$ die abzählbare Menge dieser Treppenfunktionen, so ist $f = \sup \{ \psi \; | \; \psi \in \mathcal{T}  \}$ und $\varphi_k : = max \{ \psi_1, \cdots \psi_k  \}$ eine monoton wachsende Treppenfunktion mit $\varphi_k \to f$. Da $U$ beschränkt ist, gibt es eine Quader $I$ mit $U \subset I$ und mit $M : = \max f$  ist $\int \varphi_k d \mu \leq M \mu(I)$ beschränkt. Mit dem Satz von B. Levi folgt die Behauptung. 
+Da $U$ offen ist, kann  man um jeden Punkt $a \in U$ einen Würfel $W_r(a)$ finden, dessen Mittelpunkt $a$  und dessen Kantenlänge $r$ eine rationale Zahl ist. Damit kann man zu Punkten $a_1, \cdots,  a_n$ Würfel wählen, so dass $W_r(a_i) \cap W_r(a_j) = \emptyset$ für $i \neq j$ und mit $m_i := \min \{ f(x)  | x \in W_r(a_i) \} $ Hüllreihen   $\psi_{a_1, \cdots, a_n} := \sum_{i=1}^n m_i 1_{W_r(a_i)} $  konstruieren mit  $\psi \leq f$. Bezeichnen  wir mit $\mathcal{T} :=  \{ \psi_k  \}$ die abzählbare Menge dieser Treppenfunktionen, so ist $f = \sup \{ \psi \; | \; \psi \in \mathcal{T}  \}$ und $\varphi_k : = max \{ \psi_1, \cdots \psi_k  \}$ eine monoton wachsende Treppenfunktion mit $\varphi_k \to f$. Da $U$ beschränkt ist, gibt es eine Quader $I$ mit $U \subset I$ und mit $M : = \max f$  ist $\int \varphi_k d \mu \leq M \mu(I)$ beschränkt. Mit dem Satz von B. Levi folgt die Behauptung. 
 \end{proof}
 
+
+\begin{Satz}[Schnittmenge]
+Sei $ A \subset \mathbb{R}^n$. Für $ y \in \mathbb{R}^p$ heißt
+$$ A_y :=  \biggl \{    x \in \mathbb{R}^{n-p}  \; | \;  (x,y) \in A \biggr \}$$  
+Schnittmenge von $A$ zu $y$.
+\end{Satz}
+
+
+\begin{Satz}[Kleiner Satz von B. Levi]
+Sei $A \subset \mathbb{R}^n$ eine offene und beschränkte Teilmenge und $f : U \to \mathbb{R}$  eine stetige und beschränkte Funktion.
+Dann ist für jedes $ y \in \mathbb{R}^p$ mit $A_y \neq \emptyset$ die Funktion $f_y(x) := f(x,y)$ über $A_y$ und   
+$$ F(y) := \begin{cases}   \int_{A_y} f(x,y) d \mu_{p}  , \text{ falls }  A_y \neq \emptyset 
+\\ 0 \text{ sonst } \end{cases} $$
+ist über $\mathbb{R}^{p}$ integrierbar und es gilt 
+$$ \int_A f(x,y) d \mu_n = \int_{\mathbb{R}^p} $$. Hierfür schreiben wir auch kurz
+$$ \int_A f(x,y) d \mu_n  = \int_{\mathbb{R}^{p} }  \biggl ( \int_{A_y} f(x,y)  d\mu_{n-p} \biggr ) d\mu_p$$
+\end{Satz}
+\begin{proof}
+Wie in Beweis zu Satz \label{fintu} sei  $\varphi_k$ eine Folge von Treppenfunktionen mit $|| f_A - \varphi_k ||_1 \to 0$.
+\end{proof}
 
