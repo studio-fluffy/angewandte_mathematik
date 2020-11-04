@@ -5,7 +5,10 @@ Vorlesungsunterlagen angewandte Mathematik an der DHBW
 ## Begleitende Videos
 https://www.khanacademy.org/math/multivariable-calculus
 
-### Gradient
+## Riemann Integral vs Lebesgue Integral
+https://www.youtube.com/watch?v=uUkDdz48myo
+
+## Gradient
 https://www.youtube.com/watch?v=QQPz3eXXgQI
 
 ## Automatisches Differenzieren (Kettenregel)
@@ -26,6 +29,8 @@ https://www.youtube.com/watch?v=1qqp8XoGL-k
 
 ### Grenzwert
 https://www.youtube.com/watch?v=kfF40MiS7zA
+### Cauchy-Folge
+https://www.youtube.com/watch?v=yID1KUgEOKc
 
 ### Mittelwertsatz
 https://www.youtube.com/watch?v=Gv7jBOUyrzg

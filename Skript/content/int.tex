@@ -14,7 +14,7 @@ $$\mathbb{I}(n): = \{   (a_1,b_1) \times \cdots \times (a_n,b_n) \; | \;  (a_i, 
  bezeichnen wir die Menge aller $n$-dimensionalen Quader und mit
 $$\mathbb{I}^0(n): = \{   (a_1,b_1) \times \cdots \times (a_n,b_n) \; | \;  (a_i, b_i) \subset \mathbb{R}  \text { und } a_k = b_k \text{ für ein k}\}$$ 
 die Menge der degenerierten Quader.   Für eine Menge $A \subset \mathbb{R}^n$ bezeichnen wir eine Menge von Quadern 
-$$ \biggl \{ I_j \; | \;  I_j \in \mathbf{I}(n)   \text{ mit } A \subset \bigcup_j I_j  \biggr \}$$ als Hüllquader für $A$.
+$$ \biggl \{ I_j \; | \;  I_j \in \mathbb{I}(n)   \text{ mit } A \subset \bigcup_j I_j  \biggr \}$$ als Hüllquader für $A$.
 \begin{Definition}[Lebesguesche äußere Maß]
 Für eine Menge $A \subset \mathbb{R}^n$ definieren wir das Lebesguesche äußere Maß durch 
 \begin{align*}
@@ -42,7 +42,7 @@ Da $A \subset B$ Teilmenge ist, sind Hüllquader von $B$  auch Hüllquader von $
 \begin{Satz}[$\sigma$-subadditivität]
 Sei $A_j \subset \mathbb{R}^n$ eine Folge von Mengen. Dann gilt
 \begin{align*}
-\mu (\bigcup_j^{\infty} A_j ) \leq \sum_{i=1}^{\infty} \mu(A_j)
+\mu (\bigcup_j^{\infty} A_j ) \leq \sum_{j=1}^{\infty} \mu(A_j)
 \end{align*}
 \end{Satz}
 \begin{proof}
