@@ -26,6 +26,8 @@ https://www.youtube.com/watch?v=1qqp8XoGL-k
 
 ### Grenzwert
 https://www.youtube.com/watch?v=kfF40MiS7zA
+### Cauchy-Folge
+https://www.youtube.com/watch?v=yID1KUgEOKc
 
 ### Mittelwertsatz
 https://www.youtube.com/watch?v=Gv7jBOUyrzg
