@@ -212,6 +212,7 @@ Die linke Seite hängt  damit nicht von der Zerlegung der Treppenfunktion ab und
 \end{proof}
 
 \begin{Bemerkung}[Satz von Fubini für Treppenfunktionen]
+\label{FTF}
 Es gilt $$\int_{\mathbb{R}^n} \varphi(x,y) d \mu = \int_{\mathbb{R}^{n-p}} \biggl (\int_{\mathbb{R}^{p}}  \varphi(x,y) d \mu' \biggr ) d \mu''$$
 \end{Bemerkung}
 \begin{proof}
@@ -374,6 +375,7 @@ die triviale Fortsetzung von $f$ auf $\mathbb{R}^n$. $f$ heißt integrierbar üb
 
 
 \begin{Satz}[Kleiner Satz von B. Levi]
+\label{KBL}
 Zu $f: \mathbb{R}^n \to \mathbb{R}$ gebe es eine monoton wachsende Folge $\varphi_k$ von Treppenfunktionen mit
 \begin{itemize}
 \item Für alles $x \in \mathbb{R}^n$ git $\lim_{k \to \infty} \varphi(x) =  f(x)$. $f$ ist also die punktweise gebildete Grenzfunktion der $\varphi_k$.
@@ -404,7 +406,7 @@ Sei $U \subset \mathbb{R}^n$ offen und beschränkt und $f : U \to \mathbb{R}$ st
 \end{Satz}
 
 \begin{proof}
-Da $U$ offen ist, kann  man um jeden Punkt $a \in U$ einen Würfel $W_r(a)$ finden, dessen Mittelpunkt $a$  und dessen Kantenlänge $r$ eine rationale Zahl ist. Damit kann man zu Punkten $a_1, \cdots,  a_n$ Würfel wählen, so dass $W_r(a_i) \cap W_r(a_j) = \emptyset$ für $i \neq j$ und mit $m_i := \min \{ f(x)  | x \in W_r(a_i) \} $ Hüllreihen   $\psi_{a_1, \cdots, a_n} := \sum_{i=1}^n m_i 1_{W_r(a_i)} $  konstruieren mit  $\psi \leq f$. Bezeichnen  wir mit $\mathcal{T} :=  \{ \psi_k  \}$ die abzählbare Menge dieser Treppenfunktionen, so ist $f = \sup \{ \psi \; | \; \psi \in \mathcal{T}  \}$ und $\varphi_k : = max \{ \psi_1, \cdots \psi_k  \}$ eine monoton wachsende Treppenfunktion mit $\varphi_k \to f$. Da $U$ beschränkt ist, gibt es eine Quader $I$ mit $U \subset I$ und mit $M : = \max f$  ist $\int \varphi_k d \mu \leq M \mu(I)$ beschränkt. Mit dem Satz von B. Levi folgt die Behauptung. 
+Da $U$ offen ist, kann  man um jeden Punkt $a \in U$ einen Würfel $W_r(a)$ finden, dessen Mittelpunkt $a$  und dessen Kantenlänge $r$ eine rationale Zahl ist. Damit kann man zu Punkten $a_1, \cdots,  a_n$ Würfel wählen, so dass $W_r(a_i) \cap W_r(a_j) = \emptyset$ für $i \neq j$ und mit $m_i := \min \{ f(x)  | x \in W_r(a_i) \} $ Hüllreihen   $\psi_{a_1, \cdots, a_n} := \sum_{i=1}^n m_i 1_{W_r(a_i)} $  konstruieren mit  $\psi \leq f$. Bezeichnen  wir mit $\mathcal{T} :=  \{ \psi_k  \}$ die abzählbare Menge dieser Treppenfunktionen, so ist $f = \sup \{ \psi \; | \; \psi \in \mathcal{T}  \}$ und $\varphi_k : = max \{ \psi_1, \cdots \psi_k  \}$ eine monoton wachsende Treppenfunktion mit $\varphi_k \to f$. Da $U$ beschränkt ist, gibt es eine Quader $I$ mit $U \subset I$ und mit $M : = \max (f)$  ist $\int \varphi_k d \mu \leq M \mu(I)$ beschränkt. Mit dem Satz von B. Levi folgt die Behauptung. 
 \end{proof}
 
 
@@ -415,16 +417,100 @@ Schnittmenge von $A$ zu $y$.
 \end{Satz}
 
 
-\begin{Satz}[Kleiner Satz von B. Levi]
+\begin{Satz}[Kleiner Satz von Fubuni]
 Sei $A \subset \mathbb{R}^n$ eine offene und beschränkte Teilmenge und $f : U \to \mathbb{R}$  eine stetige und beschränkte Funktion.
 Dann ist für jedes $ y \in \mathbb{R}^p$ mit $A_y \neq \emptyset$ die Funktion $f_y(x) := f(x,y)$ über $A_y$ und   
 $$ F(y) := \begin{cases}   \int_{A_y} f(x,y) d \mu_{p}  , \text{ falls }  A_y \neq \emptyset 
 \\ 0 \text{ sonst } \end{cases} $$
-ist über $\mathbb{R}^{p}$ integrierbar und es gilt 
-$$ \int_A f(x,y) d \mu_n = \int_{\mathbb{R}^p} $$. Hierfür schreiben wir auch kurz
+über $\mathbb{R}^{p}$ integrierbar und es gilt 
+$$ \int_A f(x,y) d \mu_n = \int_{\mathbb{R}^p}  \int_{\mathbb{R}^p } F(y) d \mu_p \; .$$
+ Hierfür schreiben wir auch kurz
 $$ \int_A f(x,y) d \mu_n  = \int_{\mathbb{R}^{p} }  \biggl ( \int_{A_y} f(x,y)  d\mu_{n-p} \biggr ) d\mu_p$$
 \end{Satz}
 \begin{proof}
-Wie in Beweis zu Satz \label{fintu} sei  $\varphi_k$ eine Folge von Treppenfunktionen mit $|| f_A - \varphi_k ||_1 \to 0$.
+Wie in Beweis zu Satz \label{fintu} sei  $\varphi_k$ eine monoton wachsende Folge von Treppenfunktionen auf $\mathbb{R}^n$ mit $|| f_A - \varphi_k ||_1 \to 0$.
+Für jedes $y \in \mathbb{R}^p$ bilden dann die Funktionen $\varphi_k(x)_y := \varphi_k(x,y)$ eine monoton wachsende Folge von Treppenfunktionen auf $\mathbb{R}^{n-p}$, die gegen $f_y(x):= f_A(x,y)$ konvergiert. Die Folge der Integrale $\int_{\mathbb{R}^{n-p}} \varphi_k(x)_y d \mu_{n-p}$ ist beschränkt,  da $A$ beschränkt ist, und daher gibt es eine Quader $I$ mit $U \subset I$ und  mit $M : = \max (f)$  ist $\int \varphi_k d \mu \leq M \mu(I)$ beschränkt. Mit dem kleinen Satz von B. Levi \ref{KBL}
+gilt
+$$ F(y) := \lim_{k \to \infty} \int_{\mathbb{R}^{n-p}} \varphi_k(x)_y d \mu_{n-p} \; .$$
+Die Funktionen 
+$$\phi_k (y) := \int_{\mathbb{R}^{n-p}} \varphi_k (x,y) d \mu_{n-p}$$
+sind Treppenfunktionen auf $\mathbb{R}^{p}$ und die Folge $\phi_k$ konvergiert monoton wachsend gegen $F$ und die Folge der Integrale 
+$\int \phi_k(y) d \mu_{p}$ ist beschränkt, da  mit dem Satz von Fubini für Treppenfunktionen \ref{FTF} und $\varphi_k \leq f_A$  
+$$ \int_{\mathbb{R}^{p}} \phi_k(y) d \mu_{p} = \int_{\mathbb{R}^n} \varphi_k(x,y) d\mu_{n} \leq \int_{\mathbb{R}^n} f_A(x,y) d \mu_{n} \; .$$
+Mit dem kleinen Satz von B. Levi ist $F$ integrierbar und es gilt
+\begin{align*}
+ \int_{\mathbb{R}^{p}}   F(y) d \mu_{p} & = \lim_{k \to \infty}  \int_{\mathbb{R}^{p}}  \phi_k (y) d \mu_{p} =  \lim_{k \to \infty}  \int_{\mathbb{R}^{n}}  \varphi_k(x,y) d \mu_{n} \\
+& =   \int_{\mathbb{R}^{n}}  f_A (x,y) d \mu_{n}  \; .
+\end{align*} 
+\end{proof}
+
+
+\begin{Satz}[Lebesgue vs. Riemann]
+Eine \href{https://de.wikipedia.org/wiki/Regelfunktion}{Regelfunktion} $f$ auf $[a,b] \subset \mathbb{R}$ ist über $[a,b] $ Lebesgueintegrierbar und es gilt 
+\begin{align*}
+\int_{[a,b]} f(x) d \mu_1 = \int_a^b f(x) dx \; .
+\end{align*}
+\end{Satz}
+\begin{proof}
+Sei $\varphi_k$ eine Folge von Treppenfunktionen mit $|| f -\varphi_k ||_{\infty} \to 0$. Da für jede Funktion $h$ auf $[a,b]$ die Abschätzung
+$|h| \leq || h ||_{\infty} 1_{[a,b]}$ gilt, folgt auch $$|| f_A -\varphi_{k,A} ||_{1} \to 0$$ und damit ist $f_{[a,b]}$ auch Lebesgueintegrierbar über $[a,b]$ mit Lebesgueintegral
+\begin{align*}
+\int_{[a,b]} f(x) d \mu= \int_{\mathbb{R}} f_A(x) d\mu = \lim_k \varphi_{k,A} d \mu = \lim_k \int_a^b \varphi_k dx = \int_a^b f (x) dx
+\end{align*}
+ 
+\end{proof}
+
+\begin{Beispiel} [Integration über Kreis]
+Sei $K := B^2_1(0) := \{   (x,y) \in \mathbb{R}^2 \; | \; \sqrt{x^2 + y^2 } \leq 1\}$. Mit dem kleinen Satz von Fubini erhalten wir
+\begin{align*}
+\int_K 1 d \mu = &  \int_{-1}^{1} \biggl ( \int_{-\sqrt{1- y^2}}^{\sqrt{1- y^2}} 1 dx \biggr ) dy = \\ 
+& =  2 \int_{-1}^{1}  \sqrt{1 - y^2}   \; dy  \\ 
+ & (substitution \;   y = sin(u)) =   2 \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}   \cos(u)^2   \; du = 2 \cdot \frac{\pi}{2} = \pi
+\end{align*}
+\end{Beispiel}
+\begin{figure}[H]
+      \centering
+    \includegraphics[width=0.8\textwidth]{images/Kreis}
+\end{figure}
+
+
+\subsubsection*{Transformationssatz}
+
+
+
+
+\begin{Satz}
+Seien $U$ und $V$ offene Teilmengen des $\mathbb{R}^n$, $T': U \to V$ ein lineare Abbildung und  $Q \in \mathbb{I}(n)$ ein Quader.
+Dann gilt:
+ $$ \text{vol}  (T'(Q))   =  \det (T') \cdot   \text{vol}(Q) \; .$$
+\end{Satz}
+\begin{proof}
+Für Vektoren $a_1, \cdots c_n$ im $\mathbb{R}^n$ heißt die Menge 
+$$ P(a_1, \cdots,  a_n) := \biggl \{  x = \sum_{k=1}^n t_k a_k  \; | \; t_1, \cdots , t_n \in [0,1]  \biggr \}$$
+Parallelotop.
+\begin{figure}[H]
+      \centering
+    \includegraphics[width=0.6 \textwidth]{images/640px-Parallelepiped-0}    
+\end{figure}
+Es gilt  $$  \text{vol} \bigr( P(a_1, \cdots, a_n) \bigr) =  | det (a_1, \cdots, a_n) |   \; .$$
+
+\href{https://www.math.uchicago.edu/~may/VIGRE/VIGRE2007/REUPapers/FINALAPP/Peng.pdf}{Ausfürlicher Beweis}
+
+\end{proof}
+
+
+\begin{Definition}[Diffeomorphismus]
+Seien $U$ und $V$ offene Teilmengen des $\mathbb{R}^n$. Eine Abbildung  $T: U \to V$ heißt diffeomorphismus, wenn eine  Umkehrfunktion $T^{-1}: V  \to U$ existiert, also $T^{-1} (T (u)) = u$ gilt für alle $u \in U$, die ebenfalls differenzierbar ist.
+\end{Definition}
+
+\begin{Beispiel}
+Für eine invertiertere Matrix $A$ ist $T(x):= Ax$ ein Diffeomorphismus.
+\end{Beispiel}
+
+\begin{Satz}
+Seien $U$ und $V$ offene Teilmengen des $\mathbb{R}^n$ und $T: U \to V$ eine differenzierbare Abbildung.
+\end{Satz}
+\begin{proof}
+
 \end{proof}
 
