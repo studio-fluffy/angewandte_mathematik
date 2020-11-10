@@ -262,21 +262,69 @@ Dann ist die oben definierte Funktion $F$ stetig.
  \end{frame}
 
 
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Beweis}
+Sei  $x_k \to x$   eine konvergente Folge in $X$ und $f_k(t):= f(x_k,t)$. Nach Voraussetzung konvergiert diese Folge Punktweise gegen die Funktion $f_t(x)$ und $| f_k (x) | \leq \phi(x)$. Mit dem Satz von Lebesgue folgt
+$$ \lim_{k \to \infty} \int_T f_k(t) d \mu_T = \int_T f(x,t) d \mu_T$$
+und damit $ \lim_{k \to \infty} F(x_k) =  F(x)$.
+ \end{frame}
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+\begin{block}{}
+$f$ habe zusätzlich die Eigenschaften:
+\begin{itemize}
+\item Für festes $t$ ist $f_t(x):= f(x,z)$ stetig differenzierbar.
+\item Es gibt auf $T$ eine integrierbare Funktion $\phi$ mit $\phi(t) \geq 0$ und $| \frac{\partial}{\partial x_i} f(x,t)| \leq \phi(t)$ für alle $(x,t) \in X \times T$ und $i=1, \cdots n-p$.
+\end{itemize}
+Dann ist die oben definierte Funktion $F$ stetig differenzierbar und es gilt
+$$\frac{\partial}{\partial x_k} F(x)  = \int_T \frac{\partial}{\partial x_k} f(x,t) d \mu_T \; .$$ 
+\end{block}
+ \end{frame}
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Beweis}
+Sei $x_k := x_0 + h_k e_i$ und 
+$$ \varphi_k (t) := \frac{f(x,t)  - f(x_0,t)  }{h_k} \; .$$
+Damit sind die Funktionen  $\varphi_k $ integrierbar und für jedes $t \in T$ gilt
+
+$$  \lim_{k \to \infty} \varphi_k (t) = \frac{\partial}{\partial x_i}f(x_0, t) \; .$$
+Mit dem Satz von Lebesgue gilt
+$$ \lim_{k \to \infty}  \int_T \varphi_k (t) d \mu_T = \int_T   \frac{\partial}{\partial x_i}f(x_0, t) d \mu_T $$
+und da 
+$$  \int_T \varphi_k (t) d \mu_T = \frac{F(x_k) -F(x_0)}{h_k}$$ ist, folgt die Behauptung.
+ \end{frame}
+
 
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Lebesgue Integral}
 \begin{block}{}
+Für integrierbare Funktionen  $f$ und $g$ auf $\mathbb{R}^n$ ist die Faltung definiert durch
+\begin{align}
+(f * g )(x) := \int_{\mathbb{R}^n}  f(y) \cdot g(x-y) \; d \mu_y  \; .
+\end{align}
+Das Integral existiert wegen dem Satz von Fubini.
 \end{block}
  \end{frame}
 
 
+
+
+
 \begin{frame}
     \frametitle{Angewandte Mathematik}
-\framesubtitle{Beweis}
-
+\framesubtitle{Lebesgue Integral}
+\begin{block}{}
+Für die Faltung gilt bei entsprechenden Voraussetzungen der Differenzierbarkeit der Funktionen 
+$$ \partial^{\alpha} (f  * g) = f * \partial^{\alpha} g \; .$$
+\end{block}
  \end{frame}
+
 
 
 
