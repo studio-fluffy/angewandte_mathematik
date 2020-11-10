@@ -308,15 +308,15 @@ $$ \biggl | \int f d \mu \biggr | \leq \int  | f | d \mu = || f ||_1 \; .$$
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Beweis}
 Sei $f$ integrierbar und $\varphi_k$ eine Folge von Treppenfunktionen mit $|| f - \varphi_k ||_1 \to 0$. 
-Aus $\bigl | | f | - | \varphi_k | \bigr | \leq | f -\varphi | $ ergibt sich wegen der Monotonie der $L^1$-Norm
+Aus $\bigl | | f | - | \varphi_k | \bigr | \leq | f -\varphi_k | $ ergibt sich wegen der Monotonie der $L^1$-Norm
 $$\bigl |  \bigl |  | f | - | \varphi_k | \bigr | \bigr |_1 \leq \bigl |  \bigl |   f  -  \varphi_k  \bigr | \bigr |_1  \; .$$ 
 Damit gilt $\bigl |  \bigl |  | f | - | \varphi_k | \bigr | \bigr |_1 \to 0$ und somit ist $|f|$ integrierbar und mit der Abschätzung von Beträgen für Treppenfunktionen gilt 
 \begin{align*}
-\biggl | \int f d \mu \biggr | = \biggl | \lim_k \int \varphi_k d \mu \biggr | \leq  \int |\varphi_k| d \mu = \int |f| d\mu
+\biggl | \int f d \mu \biggr | = \biggl | \lim_k \int \varphi_k d \mu \biggr | \leq  \lim_k \int |\varphi_k| d \mu = \int |f| d\mu
 \end{align*} 
 und damit der erste Teil der Behauptung. 
 Mit der Dreiecksungleichung erhalten wir
-$$ || f || - ||  f - \varphi ||_1 \leq || \varphi_k ||_1  \leq || f ||_1 + || f - \varphi_k ||_1 $$
+$$ || f || - ||  f - \varphi_k ||_1 \leq || \varphi_k ||_1  \leq || f ||_1 + || f - \varphi_k ||_1 $$
 und wegen $|| \varphi_k ||_1 = \int | \varphi_k | d \mu \to \int | f | d \mu$ folgt die Behauptung.
  \end{frame}
 
@@ -382,7 +382,7 @@ die triviale Fortsetzung von $f$ auf $\mathbb{R}^n$. $f$ heißt integrierbar üb
     \begin{block}{Kleiner Satz von B. Levi}
 Zu $f: \mathbb{R}^n \to \mathbb{R}$ gebe es eine monoton wachsende Folge $\varphi_k$ von Treppenfunktionen mit
 \begin{itemize}
-\item Für alles $x \in \mathbb{R}^n$ git $\lim_{k \to \infty} \varphi(x) =  f(x)$. $f$ ist also die punktweise gebildete Grenzfunktion der $\varphi_k$.
+\item Für alle $x \in \mathbb{R}^n$ gilt $\lim_{k \to \infty} \varphi_k(x) =  f(x)$. $f$ ist also die punktweise gebildete Grenzfunktion der $\varphi_k$.
 \item Die reelle Folge der Integrale $\int \varphi_k d \mu $ ist beschränkt.
 \end{itemize}
 Dann ist $f$ integrierbar und es gilt $$ \int f d \mu = lim_{k \to \infty}  \int \varphi_k d \mu \; .$$

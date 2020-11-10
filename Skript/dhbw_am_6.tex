@@ -56,7 +56,7 @@ Dann ist für jedes $ y \in \mathbb{R}^p$ mit $A_y \neq \emptyset$ die Funktion 
 $$ F(y) := \begin{cases}   \int_{A_y} f(x,y) d \mu_{p}  , \text{ falls }  A_y \neq \emptyset 
 \\ 0 \text{ sonst } \end{cases} $$
 über $\mathbb{R}^{p}$ integrierbar und es gilt 
-$$ \int_A f(x,y) d \mu_n = \int_{\mathbb{R}^p}  \int_{\mathbb{R}^p } F(y) d \mu_p \; .$$
+$$ \int_A f(x,y) d \mu_n = \int_{\mathbb{R}^p } F(y) d \mu_p \; .$$
  Hierfür schreiben wir auch kurz
 $$ \int_A f(x,y) d \mu_n  = \int_{\mathbb{R}^{p} }  \biggl ( \int_{A_y} f(x,y)  d\mu_{n-p} \biggr ) d\mu_p$$
 \end{block}
@@ -66,7 +66,7 @@ $$ \int_A f(x,y) d \mu_n  = \int_{\mathbb{R}^{p} }  \biggl ( \int_{A_y} f(x,y)  
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
-\framesubtitle{Beweisl}
+\framesubtitle{Beweis}
 Sei  $\varphi_k$ eine monoton wachsende Folge von Treppenfunktionen auf $\mathbb{R}^n$ mit $|| f_A - \varphi_k ||_1 \to 0$.
 Für jedes $y \in \mathbb{R}^p$ bilden dann die Funktionen $\varphi_k(x)_y := \varphi_k(x,y)$ eine monoton wachsende Folge von Treppenfunktionen auf $\mathbb{R}^{n-p}$, die gegen $f_y(x):= f_A(x,y)$ konvergiert. Die Folge der Integrale $\int_{\mathbb{R}^{n-p}} \varphi_k(x)_y d \mu_{n-p}$ ist beschränkt,  da $A$ beschränkt ist, und daher gibt es eine Quader $I$ mit $U \subset I$ und  mit $M : = \max (f)$  ist $\int \varphi_k d \mu \leq M \mu(I)$ beschränkt. Mit dem kleinen Satz von B. Levi
 gilt
@@ -116,7 +116,7 @@ Eine \href{https://de.wikipedia.org/wiki/Regelfunktion}{Regelfunktion} $f$ auf $
 Sei $\varphi_k$ eine Folge von Treppenfunktionen mit $|| f -\varphi_k ||_{\infty} \to 0$. Da für jede Funktion $h$ auf $[a,b]$ die Abschätzung
 $|h| \leq || h ||_{\infty} 1_{[a,b]}$ gilt, folgt auch $$|| f_A -\varphi_{k,A} ||_{1} \to 0$$ und damit ist $f_{[a,b]}$ auch Lebesgueintegrierbar über $[a,b]$ mit Lebesgueintegral
 \begin{align*}
-\int_{[a,b]} f(x) d \mu= \int_{\mathbb{R}} f_A(x) d\mu = \lim_k \varphi_{k,A} d \mu = \lim_k \int_a^b \varphi_k dx = \int_a^b f (x) dx
+\int_{[a,b]} f(x) d \mu= \int_{\mathbb{R}} f_A(x) d\mu = \lim_k \int_{\mathbb{R}} \varphi_{k,A} d \mu = \lim_k \int_a^b \varphi_k dx = \int_a^b f (x) dx
 \end{align*}
  
 
