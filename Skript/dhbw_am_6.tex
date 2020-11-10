@@ -214,6 +214,34 @@ Die Behauptung folgt dann (nicht trivial) durch den Übergang zu Grenzwerten mit
  \end{frame}
 
 
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+\begin{block}{Beispiel}
+Wir betrachten den Ball $B_r^3(0):= \{ x \in \mathbb{R}^3 \; | \; || x || \leq r  \}$, den Quader $I := [0,r] \times [- \pi, \pi] \times [- \frac{\pi}{2}, \frac{\pi}{2}]$ und die Abbildung
+\begin{align*}
+T : I \to B_1^3(0) \\
+T(r, \varphi, \psi) := \begin{pmatrix} r \cos(\varphi) \cos(\psi)   \\  r \sin(\varphi) \cos(\psi) \\ r  \sin(\psi)     \end{pmatrix}
+\end{align*}
+\end{block}
+\begin{block}{Beispiel}
+$\det T'(r, \varphi, \psi) = r^2 \cos(\psi)$
+\end{block}
+ \end{frame}
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+\begin{align*}
+\int_{B_r^3(0)} 1 d\mu = \int_{ [0,r] } \int_{ [- \pi, \pi]} \int_{[- \frac{\pi}{2}, \frac{\pi}{2}]} r^2 \cos(\psi) d \psi \; d \varphi \; dr = \frac{4} {3} \pi r^3
+\end{align*}
+\begin{figure}[H]
+      \centering
+    \includegraphics[width=0.4 \textwidth]{images/500px-Kugelkoord-def}    
+\end{figure}
+ \end{frame}
+
+
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
