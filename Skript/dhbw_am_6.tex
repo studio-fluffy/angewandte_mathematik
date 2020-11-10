@@ -50,7 +50,7 @@ Schnittmenge von $A$ zu $y$.
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Lebesgue Integral}
-\begin{block}{}
+\begin{block}{Kleiner Satz von Fubini}
 Sei $A \subset \mathbb{R}^n$ eine offene und beschränkte Teilmenge und $f : U \to \mathbb{R}$  eine stetige und beschränkte Funktion.
 Dann ist für jedes $ y \in \mathbb{R}^p$ mit $A_y \neq \emptyset$ die Funktion $f_y(x) := f(x,y)$ über $A_y$ und   
 $$ F(y) := \begin{cases}   \int_{A_y} f(x,y) d \mu_{p}  , \text{ falls }  A_y \neq \emptyset 
@@ -127,7 +127,7 @@ $|h| \leq || h ||_{\infty} 1_{[a,b]}$ gilt, folgt auch $$|| f_A -\varphi_{k,A} |
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Lebesgue Integral}
-\begin{block}{}
+\begin{block}{Beispiel}
 Sei $K := B^2_1(0) := \{   (x,y) \in \mathbb{R}^2 \; | \; \sqrt{x^2 + y^2 } \leq 1\}$. Mit dem kleinen Satz von Fubini erhalten wir
 \begin{align*}
 \int_K 1 d \mu = &  \int_{-1}^{1} \biggl ( \int_{-\sqrt{1- y^2}}^{\sqrt{1- y^2}} 1 dx \biggr ) dy = \\ 
@@ -153,7 +153,7 @@ Sei $K := B^2_1(0) := \{   (x,y) \in \mathbb{R}^2 \; | \; \sqrt{x^2 + y^2 } \leq
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Lebesgue Integral}
-\begin{block}{}
+\begin{block}{Quader und lineare Abbildungen}
 Seien $U$ und $V$ offene Teilmengen des $\mathbb{R}^n$, $T': U \to V$ ein lineare Abbildung und  $Q \in \mathbb{I}(n)$ ein Quader.
 Dann gilt:
  $$ \text{vol}  (T'(Q))   =  \det (T') \cdot   \text{vol}(Q) \; .$$
@@ -186,8 +186,8 @@ Es gilt  $$  \text{vol} \bigr( P(a_1, \cdots, a_n) \bigr) =  | det (a_1, \cdots,
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Lebesgue Integral}
-\begin{block}{}
-Seien $U$ und $V$ offene Teilmengen des $\mathbb{R}^n$. Eine Abbildung  $T: U \to V$ heißt diffeomorphismus, wenn eine  Umkehrfunktion $T^{-1}: V  \to U$ existiert, also $T^{-1} (T (u)) = u$ gilt für alle $u \in U$, die ebenfalls differenzierbar ist.
+\begin{block}{Diffeomorphismus}
+Seien $U$ und $V$ offene Teilmengen des $\mathbb{R}^n$. Eine Abbildung  $T: U \to V$ heißt Diffeomorphismus, wenn eine  Umkehrfunktion $T^{-1}: V  \to U$ existiert, also $T^{-1} (T (u)) = u$ gilt für alle $u \in U$, die ebenfalls differenzierbar ist.
 \end{block}
 
 \begin{block}{}
@@ -199,7 +199,7 @@ Für eine invertiertere Matrix $A$ ist $T(x):= Ax$ ein Diffeomorphismus.
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Lebesgue Integral}
-\begin{block}{}
+\begin{block}{Transformationssatz}
 Seien $U$ und $V$ offene Teilmengen des $\mathbb{R}^n$, $T: U \to V$ ein Diffeomorpismus und $f: V \to \mathbb{R}$ eine integrierbare Funktion. Dann gilt:
 $$ \int_V  f(y)  d \mu = \int_U f(T (x))  \cdot | \det(T' (x)) | d \mu   \; .$$
 \end{block}
@@ -218,7 +218,7 @@ Die Behauptung folgt dann (nicht trivial) durch den Übergang zu Grenzwerten mit
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Lebesgue Integral}
-\begin{block}{}
+\begin{block}{Konvergenz fast überall}
 Eine Folge von Funktionen $f_k$ konvergiert Punktweise fast überall gegen eine Funktion $f$, falls es eine Nullmenge $N$ gibt, mit 
 $\lim_{k \to \infty} f_k (x) = f(x)$ für alle $x \in \mathbb{R}^n \setminus N$.
 \end{block}
@@ -228,7 +228,7 @@ $\lim_{k \to \infty} f_k (x) = f(x)$ für alle $x \in \mathbb{R}^n \setminus N$.
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Lebesgue Integral}
-\begin{block}{}
+\begin{block}{Satz von Lebesgue}
 Sei $f_k$ eine Folge integrierbarer Funktionen auf $\mathbb{R}^n$ die fast überall Punktweise gegen eine Funktion $f$ konvergiert.
 Es gebe eine integrierbare Funktion $F$ mit $|f_k (x)| \leq F(x) $ für alle $x \in \mathbb{R}^n$ und alles $k$. Dann ist $f$ integrierbar und es gilt
 $$ \int f(x) d \mu = \lim_{k \to \infty} f_k(x) d \mu $$
@@ -240,7 +240,7 @@ $$ \int f(x) d \mu = \lim_{k \to \infty} f_k(x) d \mu $$
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Lebesgue Integral}
-\begin{block}{}
+\begin{block}{Parameterabhängige Integrale}
 Sei $f: X \times T \subset \mathbb{R}^{n-p} \times \mathbb{R}^p$ eine Funktion, so dass für festes $x \in X$ die Funktion $f_x(t) := f(x,t)$ über $T$ integrierbar ist. Durch Integration erhält man die Funktion 
 $$ F(x) := \int_T f(x,t)  d \mu_T$$ 
 auf $X$.
@@ -251,7 +251,7 @@ auf $X$.
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Lebesgue Integral}
-\begin{block}{}
+\begin{block}{Stetigkeitssatz}
 $f$ habe zusätzlich die Eigenschaften:
 \begin{itemize}
 \item Für festes $t$ ist $f_t(x):= f(x,z)$ stetig.
@@ -273,7 +273,7 @@ und damit $ \lim_{k \to \infty} F(x_k) =  F(x)$.
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Lebesgue Integral}
-\begin{block}{}
+\begin{block}{Differentiationssatz}
 $f$ habe zusätzlich die Eigenschaften:
 \begin{itemize}
 \item Für festes $t$ ist $f_t(x):= f(x,z)$ stetig differenzierbar.
@@ -303,7 +303,7 @@ $$  \int_T \varphi_k (t) d \mu_T = \frac{F(x_k) -F(x_0)}{h_k}$$ ist, folgt die B
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Lebesgue Integral}
-\begin{block}{}
+\begin{block}{Faltung}
 Für integrierbare Funktionen  $f$ und $g$ auf $\mathbb{R}^n$ ist die Faltung definiert durch
 \begin{align}
 (f * g )(x) := \int_{\mathbb{R}^n}  f(y) \cdot g(x-y) \; d \mu_y  \; .
@@ -319,7 +319,7 @@ Das Integral existiert wegen dem Satz von Fubini.
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Lebesgue Integral}
-\begin{block}{}
+\begin{block}{Ableitung einer Faltung}
 Für die Faltung gilt bei entsprechenden Voraussetzungen der Differenzierbarkeit der Funktionen 
 $$ \partial^{\alpha} (f  * g) = f * \partial^{\alpha} g \; .$$
 \end{block}
