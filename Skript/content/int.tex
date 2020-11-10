@@ -474,7 +474,7 @@ Sei $K := B^2_1(0) := \{   (x,y) \in \mathbb{R}^2 \; | \; \sqrt{x^2 + y^2 } \leq
 \end{figure}
 
 
-\subsubsection*{Transformationssatz}
+\subsubsection{Transformationssatz}
 
 
 
@@ -512,7 +512,60 @@ Seien $U$ und $V$ offene Teilmengen des $\mathbb{R}^n$, $T: U \to V$ ein Diffeom
 $$ \int_V  f(y)  d \mu = \int_U f(T (x))  \cdot | \det(T' (x)) | d \mu   \; .$$
 \end{Satz}
 \begin{proof}
-Für  
-$\sum_$
+Seien $I_k \in \mathbb{I}(n)$ Quader, $J_k := T(I_k)$ und $b_k = T(c_k)$. Dann ist 
+$$\sum_{k=1}^n  b_k  \text{vol}(J_k) \approx  \sum_{k=1}^n T(c_k) \cdot | \det T' (c_k)|  \text{vol}(I_k) \; .$$
+Die Behauptung folgt dann (nicht trivial) durch den Übergang zu Grenzwerten mit entsprechenden Konvergenzsätzen.
 \end{proof}
 
+\subsubsection{Parameterabhängige Integrale}
+
+\begin{Definition}
+Eine Folge von Funktionen $f_k$ konvergiert Punktweise fast überall gegen eine Funktion $f$, falls es eine Nullmenge $N$ gibt, mit 
+$\lim_{k \to \infty} f_k (x) = f(x)$ für alle $x \in \mathbb{R}^n \setminus N$.
+\end{Definition}
+
+\begin{Satz}[Satz von Lebesgue]
+Sei $f_k$ eine Folge integrierbarer Funktionen auf $\mathbb{R}^n$ die fast überall Punktweise gegen eine Funktion $f$ konvergiert.
+Es gebe eine integrierbare Funktion $F$ mit $|f_k (x)| \leq F(x) $ für alle $x \in \mathbb{R}^n$ und alles $k$. Dann ist $f$ integrierbar und es gilt
+$$ \int f(x) d \mu = \lim_{k \to \infty} f_k(x) d \mu $$
+\end{Satz}
+
+Sei $f: X \times T \subset \mathbb{R}^{n-p} \times \mathbb{R}^p$ eine Funktion, so dass für festes $x \in X$ die Funktion $f_x(t) := f(x,t)$ über $T$ integrierbar ist. Durch Integration erhält man die Funktion 
+$$ F(x) := \int_T f(x,t)  d \mu_T$$ 
+auf $X$.
+
+\begin{Satz}[Stetigkeitssatz]
+$f$ habe zusätzlich die Eigenschaften:
+\begin{itemize}
+\item Für festes $t$ ist $f_t(x):= f(x,z)$ stetig.
+\item Es gibt auf $T$ eine integrierbare Funktion $\phi$ mit $\phi(t) \geq 0$ und $|f(x,t)| \leq \phi(t)$ für alle $(x,t) \in X \times T$.
+\end{itemize}
+Dann ist die oben definierte Funktion $F$ stetig. 
+\end{Satz}
+\begin{proof}
+Sei  $x_k \to x$   eine konvergente Folge in $X$ und $f_k(t):= f(x_k,t)$. Nach Voraussetzung konvergiert diese Folge Punktweise gegen die Funktion $f_t(x)$ und $| f_k (x) | \leq \phi(x)$. Mit dem Satz von Lebesgue folgt
+$$ \lim_{k \to \infty} \int_T f_k(t) d \mu_T = \int_T f(x,t) d \mu_T$$
+und damit $ \lim_{k \to \infty} F(x_k) =  F(x)$.
+\end{proof}
+
+\begin{Satz}[Differentiationssatz]
+$f$ habe zusätzlich die Eigenschaften:
+\begin{itemize}
+\item Für festes $t$ ist $f_t(x):= f(x,z)$ stetig differenzierbar.
+\item Es gibt auf $T$ eine integrierbare Funktion $\phi$ mit $\phi(t) \geq 0$ und $| \frac{\partial}{\partial x_i} f(x,t)| \leq \phi(t)$ für alle $(x,t) \in X \times T$ und $i=1, \cdots n-p$.
+\end{itemize}
+Dann ist die oben definierte Funktion $F$ stetig differenzierbar und es gilt
+$$\frac{\partial}{\partial x_k} F(x)  = \int_T \frac{\partial}{\partial x_k} f(x,t) d \mu_T \; .$$ 
+\end{Satz}
+\begin{proof}
+Sei $x_k := x_0 + h_k e_i$ und 
+$$ \varphi_k (t) := \frac{f(x,t)  - f(x_0,t)  }{h_k} \; .$$
+Damit sind die Funktionen  $\varphi_k $ integrierbar und für jedes $t \in T$ gilt
+
+$$  \lim_{k \to \infty} \varphi_k (t) = \frac{\partial}{\partial x_i}f(x_0, t) \; .$$
+Mit dem Satz von Lebesgue gilt
+$$ \lim_{k \to \infty}  \int_T \varphi_k (t) d \mu_T = \int_T   \frac{\partial}{\partial x_i}f(x_0, t) d \mu_T $$
+und da 
+$$  \int_T \varphi_k (t) d \mu_T = \frac{F(x_k) -F(x_0)}{h_k}$$ ist, folgt die Behauptung.
+ 
+\end{proof}
