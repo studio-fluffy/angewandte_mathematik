@@ -33,6 +33,254 @@
 
 \frame{\titlepage}
 
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+\begin{block}{Schnittmenge}
+Sei $ A \subset \mathbb{R}^n$. Für $ y \in \mathbb{R}^p$ heißt
+$$ A_y :=  \biggl \{    x \in \mathbb{R}^{n-p}  \; | \;  (x,y) \in A \biggr \}$$  
+Schnittmenge von $A$ zu $y$.
+\end{block}
+ \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+\begin{block}{}
+Sei $A \subset \mathbb{R}^n$ eine offene und beschränkte Teilmenge und $f : U \to \mathbb{R}$  eine stetige und beschränkte Funktion.
+Dann ist für jedes $ y \in \mathbb{R}^p$ mit $A_y \neq \emptyset$ die Funktion $f_y(x) := f(x,y)$ über $A_y$ und   
+$$ F(y) := \begin{cases}   \int_{A_y} f(x,y) d \mu_{p}  , \text{ falls }  A_y \neq \emptyset 
+\\ 0 \text{ sonst } \end{cases} $$
+über $\mathbb{R}^{p}$ integrierbar und es gilt 
+$$ \int_A f(x,y) d \mu_n = \int_{\mathbb{R}^p}  \int_{\mathbb{R}^p } F(y) d \mu_p \; .$$
+ Hierfür schreiben wir auch kurz
+$$ \int_A f(x,y) d \mu_n  = \int_{\mathbb{R}^{p} }  \biggl ( \int_{A_y} f(x,y)  d\mu_{n-p} \biggr ) d\mu_p$$
+\end{block}
+ \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Beweisl}
+Sei  $\varphi_k$ eine monoton wachsende Folge von Treppenfunktionen auf $\mathbb{R}^n$ mit $|| f_A - \varphi_k ||_1 \to 0$.
+Für jedes $y \in \mathbb{R}^p$ bilden dann die Funktionen $\varphi_k(x)_y := \varphi_k(x,y)$ eine monoton wachsende Folge von Treppenfunktionen auf $\mathbb{R}^{n-p}$, die gegen $f_y(x):= f_A(x,y)$ konvergiert. Die Folge der Integrale $\int_{\mathbb{R}^{n-p}} \varphi_k(x)_y d \mu_{n-p}$ ist beschränkt,  da $A$ beschränkt ist, und daher gibt es eine Quader $I$ mit $U \subset I$ und  mit $M : = \max (f)$  ist $\int \varphi_k d \mu \leq M \mu(I)$ beschränkt. Mit dem kleinen Satz von B. Levi
+gilt
+$$ F(y) := \lim_{k \to \infty} \int_{\mathbb{R}^{n-p}} \varphi_k(x)_y d \mu_{n-p} \; .$$
+ \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Beweis}
+Die Funktionen 
+$$\phi_k (y) := \int_{\mathbb{R}^{n-p}} \varphi_k (x,y) d \mu_{n-p}$$
+sind Treppenfunktionen auf $\mathbb{R}^{p}$ und die Folge $\phi_k$ konvergiert monoton wachsend gegen $F$ und die Folge der Integrale 
+$\int \phi_k(y) d \mu_{p}$ ist beschränkt, da  mit dem Satz von Fubini für Treppenfunktionen und $\varphi_k \leq f_A$  
+$$ \int_{\mathbb{R}^{p}} \phi_k(y) d \mu_{p} = \int_{\mathbb{R}^n} \varphi_k(x,y) d\mu_{n} \leq \int_{\mathbb{R}^n} f_A(x,y) d \mu_{n} \; .$$
+Mit dem kleinen Satz von B. Levi ist $F$ integrierbar und es gilt
+\begin{align*}
+ \int_{\mathbb{R}^{p}}   F(y) d \mu_{p} & = \lim_{k \to \infty}  \int_{\mathbb{R}^{p}}  \phi_k (y) d \mu_{p} =  \lim_{k \to \infty}  \int_{\mathbb{R}^{n}}  \varphi_k(x,y) d \mu_{n} \\
+& =   \int_{\mathbb{R}^{n}}  f_A (x,y) d \mu_{n}  \; .
+\end{align*} 
+
+ \end{frame}
+
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+\begin{block}{Riemann vs. Lebesgue}
+Eine \href{https://de.wikipedia.org/wiki/Regelfunktion}{Regelfunktion} $f$ auf $[a,b] \subset \mathbb{R}$ ist über $[a,b] $ Lebesgueintegrierbar und es gilt 
+\begin{align*}
+\int_{[a,b]} f(x) d \mu_1 = \int_a^b f(x) dx \; .
+\end{align*}
+\end{block}
+ \end{frame}
+
+
+
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Beweis}
+Sei $\varphi_k$ eine Folge von Treppenfunktionen mit $|| f -\varphi_k ||_{\infty} \to 0$. Da für jede Funktion $h$ auf $[a,b]$ die Abschätzung
+$|h| \leq || h ||_{\infty} 1_{[a,b]}$ gilt, folgt auch $$|| f_A -\varphi_{k,A} ||_{1} \to 0$$ und damit ist $f_{[a,b]}$ auch Lebesgueintegrierbar über $[a,b]$ mit Lebesgueintegral
+\begin{align*}
+\int_{[a,b]} f(x) d \mu= \int_{\mathbb{R}} f_A(x) d\mu = \lim_k \varphi_{k,A} d \mu = \lim_k \int_a^b \varphi_k dx = \int_a^b f (x) dx
+\end{align*}
+ 
+
+ \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+\begin{block}{}
+Sei $K := B^2_1(0) := \{   (x,y) \in \mathbb{R}^2 \; | \; \sqrt{x^2 + y^2 } \leq 1\}$. Mit dem kleinen Satz von Fubini erhalten wir
+\begin{align*}
+\int_K 1 d \mu = &  \int_{-1}^{1} \biggl ( \int_{-\sqrt{1- y^2}}^{\sqrt{1- y^2}} 1 dx \biggr ) dy = \\ 
+& =  2 \int_{-1}^{1}  \sqrt{1 - y^2}   \; dy  \\ 
+ & (substitution \;   y = sin(u)) =   2 \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}   \cos(u)^2   \; du = 2 \cdot \frac{\pi}{2} = \pi
+\end{align*}
+\end{block}
+ \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+\begin{figure}[H]
+      \centering
+    \includegraphics[width=0.8\textwidth]{images/Kreis}
+\end{figure}
+ \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+\begin{block}{}
+Seien $U$ und $V$ offene Teilmengen des $\mathbb{R}^n$, $T': U \to V$ ein lineare Abbildung und  $Q \in \mathbb{I}(n)$ ein Quader.
+Dann gilt:
+ $$ \text{vol}  (T'(Q))   =  \det (T') \cdot   \text{vol}(Q) \; .$$
+\end{block}
+ \end{frame}
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Beweis}
+Für Vektoren $a_1, \cdots a_n$ im $\mathbb{R}^n$ heißt die Menge 
+$$ P(a_1, \cdots,  a_n) := \biggl \{  x = \sum_{k=1}^n t_k a_k  \; | \; t_1, \cdots , t_n \in [0,1]  \biggr \}$$
+Parallelotop.
+\begin{figure}[H]
+      \centering
+    \includegraphics[width=0.6 \textwidth]{images/640px-Parallelepiped-0}    
+\end{figure}
+ \end{frame}
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Beweis}
+
+Es gilt  $$  \text{vol} \bigr( P(a_1, \cdots, a_n) \bigr) =  | det (a_1, \cdots, a_n) |   \; .$$
+
+\href{https://www.math.uchicago.edu/~may/VIGRE/VIGRE2007/REUPapers/FINALAPP/Peng.pdf}{Ausfürlicher Beweis}
+ \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+\begin{block}{}
+Seien $U$ und $V$ offene Teilmengen des $\mathbb{R}^n$. Eine Abbildung  $T: U \to V$ heißt diffeomorphismus, wenn eine  Umkehrfunktion $T^{-1}: V  \to U$ existiert, also $T^{-1} (T (u)) = u$ gilt für alle $u \in U$, die ebenfalls differenzierbar ist.
+\end{block}
+
+\begin{block}{}
+Für eine invertiertere Matrix $A$ ist $T(x):= Ax$ ein Diffeomorphismus.
+\end{block}
+ \end{frame}
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+\begin{block}{}
+Seien $U$ und $V$ offene Teilmengen des $\mathbb{R}^n$, $T: U \to V$ ein Diffeomorpismus und $f: V \to \mathbb{R}$ eine integrierbare Funktion. Dann gilt:
+$$ \int_V  f(y)  d \mu = \int_U f(T (x))  \cdot | \det(T' (x)) | d \mu   \; .$$
+\end{block}
+ \end{frame}
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Beweis}
+Seien $I_k \in \mathbb{I}(n)$ Quader, $J_k := T(I_k)$ und $b_k = T(c_k)$. Dann ist 
+$$\sum_{k=1}^n  b_k  \text{vol}(J_k) \approx  \sum_{k=1}^n T(c_k) \cdot | \det T' (c_k)|  \text{vol}(I_k) \; .$$
+Die Behauptung folgt dann (nicht trivial) durch den Übergang zu Grenzwerten mit entsprechenden Konvergenzsätzen.
+ \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+\begin{block}{}
+Eine Folge von Funktionen $f_k$ konvergiert Punktweise fast überall gegen eine Funktion $f$, falls es eine Nullmenge $N$ gibt, mit 
+$\lim_{k \to \infty} f_k (x) = f(x)$ für alle $x \in \mathbb{R}^n \setminus N$.
+\end{block}
+ \end{frame}
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+\begin{block}{}
+Sei $f_k$ eine Folge integrierbarer Funktionen auf $\mathbb{R}^n$ die fast überall Punktweise gegen eine Funktion $f$ konvergiert.
+Es gebe eine integrierbare Funktion $F$ mit $|f_k (x)| \leq F(x) $ für alle $x \in \mathbb{R}^n$ und alles $k$. Dann ist $f$ integrierbar und es gilt
+$$ \int f(x) d \mu = \lim_{k \to \infty} f_k(x) d \mu $$
+\end{block}
+ \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+\begin{block}{}
+Sei $f: X \times T \subset \mathbb{R}^{n-p} \times \mathbb{R}^p$ eine Funktion, so dass für festes $x \in X$ die Funktion $f_x(t) := f(x,t)$ über $T$ integrierbar ist. Durch Integration erhält man die Funktion 
+$$ F(x) := \int_T f(x,t)  d \mu_T$$ 
+auf $X$.
+\end{block}
+ \end{frame}
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+\begin{block}{}
+$f$ habe zusätzlich die Eigenschaften:
+\begin{itemize}
+\item Für festes $t$ ist $f_t(x):= f(x,z)$ stetig.
+\item Es gibt auf $T$ eine integrierbare Funktion $\phi$ mit $\phi(t) \geq 0$ und $|f(x,t)| \leq \phi(t)$ für alle $(x,t) \in X \times T$.
+\end{itemize}
+Dann ist die oben definierte Funktion $F$ stetig. 
+\end{block}
+ \end{frame}
+
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lebesgue Integral}
+\begin{block}{}
+\end{block}
+ \end{frame}
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Beweis}
+
+ \end{frame}
+
+
+
+
 \begin{frame}
     \frametitle{Digitale Bilder}
 \framesubtitle{}
@@ -315,6 +563,15 @@ Kantenschärfung \\
  \end{frame}
 
 
+
+
+
+\begin{frame}
+    \frametitle{Kantenerkennung}
+\framesubtitle{}
+\begin{block}{}
+\end{block}
+ \end{frame}
 
 \end{document}
 

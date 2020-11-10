@@ -576,7 +576,15 @@ $$  \int_T \varphi_k (t) d \mu_T = \frac{F(x_k) -F(x_0)}{h_k}$$ ist, folgt die B
 \begin{Definition}
 Für integrierbare Funktionen  $f$ und $g$ auf $\mathbb{R}^n$ ist die Faltung definiert durch
 \begin{align}
-(f * g )(x) := \int_{\mathbb{R}^n}  f(y-x) \cdot g(y) \; d \mu_y  \; .
+(f * g )(x) := \int_{\mathbb{R}^n}  f(y) \cdot g(x-y) \; d \mu_y  \; .
 \end{align}
 Das Integral existiert wegen dem Satz von Fubini.
 \end{Definition}
+
+\begin{Satz}
+Für die Faltung gilt bei entsprechenden Voraussetzungen der Differenzierbarkeit der Funktionen 
+$$ \partial^{\alpha} (f  * g) = f * \partial^{\alpha} g \; .$$
+\end{Satz}
+\begin{proof}
+Folgt direkt aus dem Differentiationssatz.
+\end{proof}
