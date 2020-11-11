@@ -474,6 +474,13 @@ Sei $K := B^2_1(0) := \{   (x,y) \in \mathbb{R}^2 \; | \; \sqrt{x^2 + y^2 } \leq
 \end{figure}
 
 
+
+
+\begin{Satz}[Produktsatz]
+Für Funktionen $f : \mathbb{R}^n \to \mathbb{R}$ und $g: \mathbb{R}^m \to \mathbb{R}$ definiert $(f \otimes g) (x,y) := f(x) \cdot g(x)$ eine Abbildung $f \otimes g : \mathbb{R}^{n+m} \to \mathbb{R}$. Sind $f$  und $g$ integrierbar, so ist $f \otimes g$ integrierbar und es gilt
+$$ \int_{\mathbb{R}^{n+m} } (f \otimes g) (x,y) d \mu_{n+m} =  \biggl (    \int_{\mathbb{R}^{n} } f (x) d \mu_{n}  \biggr ) \cdot \biggl (    \int_{\mathbb{R}^{m} } g (y) d \mu_{m}  \biggr )$$
+\end{Satz}
+
 \subsubsection{Transformationssatz}
 
 
@@ -516,6 +523,9 @@ Seien $I_k \in \mathbb{I}(n)$ Quader, $J_k := T(I_k)$ und $b_k = T(c_k)$. Dann i
 $$\sum_{k=1}^n  b_k  \text{vol}(J_k) \approx  \sum_{k=1}^n T(c_k) \cdot | \det T' (c_k)|  \text{vol}(I_k) \; .$$
 Die Behauptung folgt dann (nicht trivial) durch den Übergang zu Grenzwerten mit entsprechenden Konvergenzsätzen.
 \end{proof}
+
+
+
 
 \subsubsection{Parameterabhängige Integrale}
 
@@ -569,6 +579,7 @@ und da
 $$  \int_T \varphi_k (t) d \mu_T = \frac{F(x_k) -F(x_0)}{h_k}$$ ist, folgt die Behauptung.
  
 \end{proof}
+
 
 
 
