@@ -481,6 +481,16 @@ Für Funktionen $f : \mathbb{R}^n \to \mathbb{R}$ und $g: \mathbb{R}^m \to \math
 $$ \int_{\mathbb{R}^{n+m} } (f \otimes g) (x,y) d \mu_{n+m} =  \biggl (    \int_{\mathbb{R}^{n} } f (x) d \mu_{n}  \biggr ) \cdot \biggl (    \int_{\mathbb{R}^{m} } g (y) d \mu_{m}  \biggr )$$
 \end{Satz}
 
+\begin{proof}
+Für Treppenfunktionen folgt der Satz durch direktes nachrechnen. Es gilt die Abschätzung $|| f \otimes g ||_1 \leq ||f ||_1 \cdot || g ||_1$  da das Produkt von  Hüllreihen von $f$ und $g$ eine Hüllreihe für $f \otimes g$ ist. Ist $\varphi_k$ eine Treppenfunktion mit $|| f - \varphi_k ||_1 \to 0$ und $\psi_k$ eine Treppenfunktion mit $|| g - \psi_k ||_1 \to 0$ so gilt $|| f \otimes g - \varphi_k \otimes \psi_k ||_1 \to 0$, da
+\begin{align*}
+& ||  f \otimes g - \varphi_k \otimes \psi_k  ||_1  = ||  (f - \varphi_k) \otimes (g - \psi_k)    + \psi_k \otimes (f  -  \varphi_k)  + \varphi_k \otimes (g - \psi_k)||_1 \\
+& \leq  ||  (f - \varphi_k) \otimes (g - \psi_k)  ||_1  + || \psi_k \otimes (f -   \varphi_k) ||_1 + || \varphi_k \otimes (g -  \psi_k)||_1 \\
+& \leq   \underbrace{||  f - \varphi_k ||_1}_{\to 0} \cdot   \underbrace{|| g - \psi_k  ||_1}_{\to 0} +  || \psi_k ||_1 \cdot   \underbrace{|| f -  \varphi_k ||_1}_{\to 0} + || \varphi_k ||_1 \cdot  \underbrace{|| g - \psi_k||_1}_{\to 0} \to 0
+\end{align*}
+\end{proof}
+
+
 \subsubsection{Transformationssatz}
 
 
@@ -595,10 +605,50 @@ Das Integral existiert wegen dem Satz von Fubini.  Nach Anwendung der Transforma
 \end{align}
 \end{Definition}
 
-\begin{Satz}
+\begin{Satz}[Differentiationssatz der Faltung]
 Für die Faltung gilt bei entsprechenden Voraussetzungen der Differenzierbarkeit der Funktionen 
 $$ \partial^{\alpha} (f  * g) = f * \partial^{\alpha} g \; .$$
 \end{Satz}
 \begin{proof}
 Nach Anwendung der Transformation $y \to x -y$ folgt die Aussage direkt aus dem Differentiationssatz.
 \end{proof}
+
+\begin{Definition}
+Eine Folge von messbaren Funktionen $\delta_k : \mathbb{R} \to \mathbb{R}$ heißt Dirac-Folge, falls gilt:
+\begin{itemize}
+\item $\delta_k (x) \geq 0$ für alle $x \in \mathbb {R}^n$ und alle $k$.
+\item $\int_{\mathbb{R}^n} \delta_k d \mu = 1$ für alle $k$.
+\item Für jede Kugel $B_r(0)$ ist $\lim_{k \to \infty} \int_{\mathbb{R}^n \setminus B_r(0)} \delta_k = 0$
+\end{itemize}
+\end{Definition}
+
+
+\begin{Beispiel}[Variable Glockenkurve]
+Definiere $\delta_1 (t) := \frac{1}{(2 \pi)^{\frac{n}{2}}} e^{ \frac{ - || t ||^2}{2}}$ und $\delta_k(t) := k^n \delta_1(k t)$.  
+Für das Integral erhalten wir $\int_{\mathbb{R}^n} \delta_1 (t)  d \mu_n = 1$. Um dies einzusehen betrachten wir den Spezialfall
+\begin{align*}
+& I := \int_{0}^{\infty} e^{-x^2} \; dx\\
+& I^2 = \int_{0}^{\infty} \int_{0}^{\infty} e^{-(x^2+y^2)} \; dx \;dy \\
+&x=r \cos \varphi ,y=r\sin \varphi ,r^2 = x^2 + y^2  \; (\text{ da } \cos^2 + \sin^2 = 1)\\
+ &\text{ \href{https://de.wikipedia.org/wiki/Polarkoordinaten\#Zylinderkoordinaten}{LINK: Polarkoordinatentransformation}} \\
+& = \int_{0}^{\frac{\pi}{2}}  \int_{0}^{\infty}r \cdot e^{-r^2} \; dr \;d\varphi \\
+&= \frac{\pi}{2} \int_{0}^{\infty}r \cdot e^{-r^2} \; dr \\
+&= -\frac{\pi}{4} [e^{-r^2} ]_0^{\infty} = \frac{\pi}{4} \Rightarrow I = \frac{\sqrt{\pi}}{2}
+\end{align*}
+Mit der skalierung $T(t) : = \frac{t}{k}$ folgt mit dem Transformationssatz $\int \delta_k (t) d \mu = \int  k^n \delta_1(k t) d \mu = 1$.
+\end{Beispiel}
+
+\begin{Satz}[Faltung mit Dirac-Folge]
+
+\end{Satz}
+
+
+\begin{Satz}[Umkehrsatz]
+
+\end{Satz}
+
+\subsubsection{Fouriertransformation}
+
+\begin{Satz}[Shannon-Abtasttheorem]
+
+\end{Satz}
