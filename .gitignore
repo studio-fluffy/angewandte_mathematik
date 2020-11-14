@@ -1,0 +1,9 @@
+**/.ipynb_checkpoints
+*.DS_Store
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.log
+*.toc
+*.synctex.gz
