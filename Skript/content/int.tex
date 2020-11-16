@@ -639,6 +639,7 @@ Eine Folge von messbaren Funktionen $\delta_k : \mathbb{R}^n \to \mathbb{R}$ hei
 
 
 \begin{Beispiel}[Variable Glockenkurve]
+\label{Diracfolgeb}
 Definiere $\delta_1 (t) := \frac{1}{(2 \pi)^{\frac{n}{2}}} e^{ \frac{ - || t ||^2}{2}}$ und $\delta_k(t) := k^n \delta_1(k t)$.  
 Für das Integral erhalten wir $\int_{\mathbb{R}^n} \delta_1 (t)  d \mu_n = 1$. Um dies einzusehen betrachten wir den Spezialfall
 \begin{align*}
@@ -677,6 +678,7 @@ $$ \langle f ,g \rangle_{L^1} := \int f \cdot g d \mu$$
 auf dem Raum der integrierbaren Funktion betrachten.  Mit $ e^{i z} = \cos(z) + i\cdot  \sin(z) $ können wir die Fouriertransformierte am Punkt $x$ als den Anteil  der  Frequenz $x$ innerhalb des Signals interpretieren. 
 
 \begin{Beispiel}
+\label{hatgleichf}
 Für $f(t) := e^{- \frac{ ||t||^2 }{2}}$ gilt $\hat{f} = f$.
 \end{Beispiel}
 \begin{proof}
@@ -697,8 +699,17 @@ f(t) =  \frac{1}{ (2 \pi)^{\frac{n}{2}}}  \int_{\mathbb{R}^n} \hat{f}(x)  \cdot 
 Kurz $\hat{\hat{f}}(t) = f(-t)$. Gleichheit gilt an jedem Punkt, an dem $f$ stetig ist.
 Gleichung \ref{Spektraldarstellung} wird auch die Spektraldarstellung von $f$ genannt.
 \end{Satz}
-
 \begin{proof}
+Für die  Dirac-Folge $\delta_k$ aus Beispiel \ref{Diracfolgeb} ist nach Beispiel \ref{hatgleichf}  $\hat{\delta_1} = \delta_1$  und damit
+\begin{align*}
+\delta_k(t) =   \frac{k^n}{(2 \pi)^n} \int_{\mathbb{R}^n} e^{- \frac{|| \xi ||^2}{2}}  \cdot e^{i \langle \xi , k t  \rangle }  d \mu_{\xi}  
+= \frac{1}{(2 \pi)^n} \int_{\mathbb{R}^n} e^{- \frac{|| x ||^2}{2k^2}}  \cdot e^{i \langle x ,  t  \rangle }  d \mu_{x}  \;.
+\end{align*}
+
+Falten mit  $f$ ergibt 
+\begin{align*}
+(f * \delta_k)(t) = \frac{1}{(2 \pi)^n} \int_{\mathbb{R}^n} \frac{1}{(2 \pi)^n} \int_{\mathbb{R}^n} f(s) e^{- \frac{|| x ||^2}{2k^2}}  \cdot e^{i \langle x ,  t - s  \rangle }  d \mu_{x}   d \mu_s
+\end{align*}
 
 \end{proof}
  
@@ -708,3 +719,22 @@ Gleichung \ref{Spektraldarstellung} wird auch die Spektraldarstellung von $f$ ge
 
 
 \subsubsection{Diskrete Fouriertransformation}
+
+%Mit dem Umkehrsatz gilt
+%$$f(t)= \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^\infty \hat f(\omega) e^{i \omega t} \, \mathrm d \omega
+%$$
+Im eindimensionalen Fall ist die Fouriertransformation gegeben durch
+$$
+\hat f(\omega)= \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^\infty f(t) e^{-i \omega t} \, \mathrm d t.
+$$
+Wählen wir einen Radius $R$ so groß, dass außerhalb des Intervalls $[-R,R]$ nur noch ein unwesentlicher Teil von $f$ liegt, ist $f$ außerdem stetig und eine Zahl $N$ so groß gewählt, dass $T:=R/N$ klein genug ist, um $f$ sinnvoll singulär,  durch Funktionswerte $f(kT)$, abzutasten, so kann das Fourierintegral in der Transformationsformel sinnvoll durch eine Summe ersetzt werden:
+$$
+\hat f(\omega)\approx F(\omega)=\frac{1}{\sqrt{2 \pi}} \sum_{k=-N}^N e^{-i \omega kT}f(kT) \,T
+$$
+
+%Das entspricht, bis auf einen konstanten Faktor $T/\sqrt{2 \pi}$ der Berechnungsformel der DFT. Der Vektor $x=( f(-NT),\dotsc,f(NT))$ hat 
+%$2N+1$ Elemente. Wir wissen bereits, dass es ausreicht, die Frequenzkoeffizienten für die$2N+1$ Frequenzen $\omega_n:=2\pi\cdot \frac{n}{(2N+1)T}$mit $n=-N,\dotsc,-1,0,1,\dotsc,N$ zu bestimmen, um die Funktionswerte im Vektor $x$ zu rekonstruieren. Mit der notwendigen Anpassung der Konstanten in der iDFT erhalten wir
+%$$
+f%(nT)=\frac{1}{\sqrt{2 \pi}}\sum_{k=-N}^N e^{i \omega_k nT}F(\omega_k)\,\frac{2\pi}{(2N+1)T}.
+%$$
+%Der Diskretisierungsabstand im Frequenzbereich ist proportional zu $1/R$, also nach Voraussetzung ebenfalls klein, sodass diese Berechnung der Diskretisierung der inversen Fourier-Transformation entspricht.
