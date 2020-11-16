@@ -723,14 +723,18 @@ Falten mit  $f$ ergibt
 %Mit dem Umkehrsatz gilt
 %$$f(t)= \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^\infty \hat f(\omega) e^{i \omega t} \, \mathrm d \omega
 %$$
-Im eindimensionalen Fall ist die Fouriertransformation gegeben durch
+Im eindimensionalen Fall ist die Fouriertransformation einer Funktion gegeben durch
 $$
 \hat f(\omega)= \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^\infty f(t) e^{-i \omega t} \, \mathrm d t.
 $$
 Wählen wir einen Radius $R$ so groß, dass außerhalb des Intervalls $[-R,R]$ nur noch ein unwesentlicher Teil von $f$ liegt, ist $f$ außerdem stetig und eine Zahl $N$ so groß gewählt, dass $T:=R/N$ klein genug ist, um $f$ sinnvoll singulär,  durch Funktionswerte $f(kT)$, abzutasten, so kann das Fourierintegral in der Transformationsformel sinnvoll durch eine Summe ersetzt werden:
 $$
-\hat f(\omega)\approx F(\omega)=\frac{1}{\sqrt{2 \pi}} \sum_{k=-N}^N e^{-i \omega kT}f(kT) \,T
+\hat f(\omega)\approx F(\omega)=\frac{1}{\sqrt{2 \pi}} \sum_{k=-N}^N e^{-i \omega kT}f(kT) \,T \;.
 $$
+
+Die diskrete Fouriertransformation (DFT) eines diskreten Signals $(a_0, \cdots a_{N-1})$ ist dann definiert durch vielfaches
+$\hat{a_i} : = \sum_{j=0}^{N-1} e^{-2 \pi i \frac{jk}{N}} a_j$. 
+Für höhere Dimensionen diskretisiert man analog in alle Koordinatenrichtungen. 
 
 %Das entspricht, bis auf einen konstanten Faktor $T/\sqrt{2 \pi}$ der Berechnungsformel der DFT. Der Vektor $x=( f(-NT),\dotsc,f(NT))$ hat 
 %$2N+1$ Elemente. Wir wissen bereits, dass es ausreicht, die Frequenzkoeffizienten für die$2N+1$ Frequenzen $\omega_n:=2\pi\cdot \frac{n}{(2N+1)T}$mit $n=-N,\dotsc,-1,0,1,\dotsc,N$ zu bestimmen, um die Funktionswerte im Vektor $x$ zu rekonstruieren. Mit der notwendigen Anpassung der Konstanten in der iDFT erhalten wir
