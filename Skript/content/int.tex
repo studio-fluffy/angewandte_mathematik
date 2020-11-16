@@ -599,11 +599,26 @@ Für integrierbare Funktionen  $f$ und $g$ auf $\mathbb{R}^n$ ist die Faltung de
 \begin{align}
 (f * g )(x) := \int_{\mathbb{R}^n}  f(x- y) \cdot g(y) \; d \mu_y  \; .
 \end{align}
-Das Integral existiert wegen dem Satz von Fubini.  Nach Anwendung der Transformation $y \to x -y$ lässt sich die Faltung auch definieren durch  
+Das Integral existiert wegen dem Satz von Fubini.  Nach Anwendung der Transformation $y \to x -y$  ist  
 \begin{align}
 (f * g )(x) := \int_{\mathbb{R}^n}  f(y) \cdot g(x-y) \; d \mu_y  \; .
 \end{align}
+und damit $f*g = g*f$
 \end{Definition}
+
+
+\begin{Satz}
+Für die Faltung gilt
+\begin{itemize}
+\item $ \int (f * g) d \mu = \int f d \mu \cdot \int g d \mu$.
+\item $||f *g ||_1 \leq ||f||_1 \cdot ||g||_1$.
+\end{itemize}
+\end{Satz}
+\begin{proof}
+Die erste Behauptung folgt durch Vertauschen der Integrationsreihenfolge (möglich wegen Fubini) und Anwendung des Produktsatzes.
+Die Zweite aus $| f*g| \leq |f| \cdot |g|$.
+\end{proof}
+
 
 \begin{Satz}[Differentiationssatz der Faltung]
 Für die Faltung gilt bei entsprechenden Voraussetzungen der Differenzierbarkeit der Funktionen 
@@ -614,7 +629,7 @@ Nach Anwendung der Transformation $y \to x -y$ folgt die Aussage direkt aus dem 
 \end{proof}
 
 \begin{Definition}
-Eine Folge von messbaren Funktionen $\delta_k : \mathbb{R} \to \mathbb{R}$ heißt Dirac-Folge, falls gilt:
+Eine Folge von messbaren Funktionen $\delta_k : \mathbb{R}^n \to \mathbb{R}$ heißt Dirac-Folge, falls gilt:
 \begin{itemize}
 \item $\delta_k (x) \geq 0$ für alle $x \in \mathbb {R}^n$ und alle $k$.
 \item $\int_{\mathbb{R}^n} \delta_k d \mu = 1$ für alle $k$.
@@ -650,12 +665,46 @@ Für eine Integrierbare Funktion $f$ und eine Dirac-Folge $\delta$ gilt $|| f - 
 
 
 \subsubsection{Fouriertransformation}
+Eine Funktion $g :\mathbb{R}^n \to \mathbb{C}$ heißt integrierbar, wenn sowohl ihr Realteil $\text{Re}(g) $ als auch ihr Imaginärteil $\text{Im}(g) $  integrierbar sind. In diesem Fall setzen wir
+$$ \int_{\mathbb{R}^n} g d \mu :=  \int_{\mathbb{R}^n}  \text{Re}(g) d \mu  + i \int_{\mathbb{R}^n}  \text{Im}(g) d \mu$$
+\begin{Definition}
+Sei $f: \mathbb{R}^n \to \mathbb{R}$ eine integrierbare Funktion. Ihre Fouriertransformierte ist definiert durch 
+$$ \hat{f}(x) :=  \frac{1}{ (2 \pi)^{\frac{n}{2}}} \int_{\mathbb{R}^n} f  \cdot e^{ - i \langle x , t  \rangle }d \mu_{t}  $$
+\end{Definition}
 
+Aufgrund der Linearität des Integrals und da $\int f^2 d \mu  \geq 0$ wegen $f^2(x) \geq 0$ gilt, können wir das Integral als Skalarpdukt (hermetische Produkt)
+$$ \langle f ,g \rangle_{L^1} := \int f \cdot g d \mu$$
+auf dem Raum der integrierbaren Funktion betrachten.  Mit $ e^{i z} = \cos(z) + i\cdot  \sin(z) $ können wir die Fouriertransformierte am Punkt $x$ als den Anteil  der  Frequenz $x$ innerhalb des Signals interpretieren. 
+
+\begin{Beispiel}
+Für $f(t) := e^{- \frac{ ||t||^2 }{2}}$ gilt $\hat{f} = f$.
+\end{Beispiel}
+\begin{proof}
+\href{https://mathworld.wolfram.com/FourierTransformGaussian.html}{Beweis für $n=1$}.
+Für $n > 1$ erhalten wir mit der Produktdarstellung $e^{- \frac{ ||t||^2 }{2}} \cdot e^{ - i \langle x , t  \rangle } = \prod_{k=1}^n e^{-\frac{t_k^2}{2}} \cdot e^{-ix_kt_k}$ und dem Produktsatz
+\begin{align*}
+\hat{f}(x)  =  \prod_{k=1}^n \frac{1}{\sqrt{2 \pi}} \int_{\mathbb{R} } e^{-\frac{t_k^2}{2}} \cdot e^{-ix_kt_k} d \mu_t = \prod_{k=1}^n e^{-i \frac{x^2_k}{2}} = f(x)
+\end{align*}
+
+\end{proof}
 
 \begin{Satz}[Umkehrsatz]
-
+Sei $f :\mathbb{R}^n \to \mathbb{R}$ eine integrierbare Funktion. Dann gilt überall bis auf einer Nullmenge
+\begin{align}
+\label{Spektraldarstellung}
+f(t) =  \frac{1}{ (2 \pi)^{\frac{n}{2}}}  \int_{\mathbb{R}^n} \hat{f}(x)  \cdot e^{i \langle x , t  \rangle } d \mu_{x}   \; .
+\end{align}
+Kurz $\hat{\hat{f}}(t) = f(-t)$. Gleichheit gilt an jedem Punkt, an dem $f$ stetig ist.
+Gleichung \ref{Spektraldarstellung} wird auch die Spektraldarstellung von $f$ genannt.
 \end{Satz}
 
+\begin{proof}
+
+\end{proof}
+ 
 \begin{Satz}[Shannon-Abtasttheorem]
 
 \end{Satz}
+
+
+\subsubsection{Diskrete Fouriertransformation}
