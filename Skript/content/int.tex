@@ -654,7 +654,7 @@ Für das Integral erhalten wir $\int_{\mathbb{R}^n} \delta_1 (t)  d \mu_n = 1$. 
 Mit der skalierung $T(t) : = \frac{t}{k}$ folgt mit dem Transformationssatz $\int \delta_k (t) d \mu = \int  k^n \delta_1(k t) d \mu = 1$.
 \end{Beispiel}
 
-\begin{Satz}[Faltung mit Dirac-Folge]
+\begin{Satz}[Approximationssatz]
 Für eine Integrierbare Funktion $f$ und eine Dirac-Folge $\delta$ gilt $|| f -  f *\delta_k ||_1 \to 0 $. Die Folge  $f *\delta_k$ konvergiert also in der $L^1$-Norm gegen $f$.
 \end{Satz}
 \begin{figure}[H]
@@ -708,15 +708,35 @@ Für die  Dirac-Folge $\delta_k$ aus Beispiel \ref{Diracfolgeb} ist nach Beispie
 
 Falten mit  $f$ ergibt 
 \begin{align*}
-(f * \delta_k)(t) = \frac{1}{(2 \pi)^n} \int_{\mathbb{R}^n} \frac{1}{(2 \pi)^n} \int_{\mathbb{R}^n} f(s) e^{- \frac{|| x ||^2}{2k^2}}  \cdot e^{i \langle x ,  t - s  \rangle }  d \mu_{x}   d \mu_s
+(f * \delta_k)(t) = \frac{1}{(2 \pi)^n} \int_{\mathbb{R}^n}\int_{\mathbb{R}^n} f(s) e^{- \frac{|| x ||^2}{2k^2}}  \cdot e^{i \langle x ,  t - s  \rangle }  d \mu_{x}   d \mu_s
 \end{align*}
+Vertauschen der Integrationsreihenfolge und auswerten des inneren Integrals ergibt 
 
+\begin{align*}
+(f * \delta_k)(t) = \frac{1}{(2 \pi)^n} \int_{\mathbb{R}^n}  \hat{f}(x)  e^{i \langle x ,  t  \rangle }  e^{- \frac{|| x ||^2}{2k^2}}  d \mu_{x}  \; .
+\end{align*}
+Für $k \to \infty$ konvergiert der Integrant $ \hat{f}(x) e^{i \langle x ,  t  \rangle }  e^{- \frac{|| x ||^2}{2k^2}} \to \hat{f}(x) e^{i \langle x ,  t  \rangle } $. Nach dem Satz von Lebesgue konvergiert die Folge $(f *\delta_k)(t)$ gegen $ \frac{1}{(2 \pi)^n} \int_{\mathbb{R}^n}  \hat{f}(x)  e^{i \langle x ,  t  \rangle } d \mu_{x} $. Andererseits konvergiert die Folge $(f *\delta_k)(t)$ nach dem Approximationssatz gegen $f$.
 \end{proof}
  
 \begin{Satz}[Shannon-Abtasttheorem]
-
+Eine stetige, integrierbare Funktion $f: \mathbb{R} \to \mathbb{R}$, dessen Fouriertransformierte $\hat{f}$ eines Intervall $(-b,b) \subset \mathbb{R}$ verschwindet, kann für jedes $T$ mit $T < \frac{pi}{b}$ aus Ihren Funktionswerten $f(kT)$ mit $k \in \mathbb{Z}$ rekonstruiert werden. Insbesondere gilt
+$$ f(x) = \sum_{k= -\infty}^{\infty} f(kT) \cdot \text{sinc} \biggl (   \frac{\pi}{T}(x - k T) \biggr)$$  mit 
+$ \text{sinc}(x):=  \frac{\sin(x)}{x}$.
 \end{Satz}
-
+\begin{proof}
+Da $\hat{f}$ stetig und beschränkt ist, ist $\hat{f}$ integrierbar und nach dem Umkehrsatz gilt
+$$ f(x) = \frac{1}{\sqrt{2 \pi}} \int_{\frac{- \pi}{T}}^{\frac{ \pi}{T}} \hat{f}(\xi) e^{ix \xi} \; .$$
+Es seien $F(\xi):= \hat{f}(\xi)$ und $G_x(\xi):=\frac{1}{\sqrt{2 \pi}} e^{-ix \xi}$. Ihre Fourierkoeffizienten sind gegeben durch
+\begin{align*}
+\hat{F}(k) = \sqrt{\frac{T}{2 \pi}} \int_{\frac{- \pi}{T}}^{\frac{ \pi}{T}} \hat{f} (\xi) e^{ikT \xi}  d \xi = \sqrt{T} f(kT)  \\
+\hat{G}(k) =  \frac{\sqrt{T}}{2 \pi} \int_{\frac{- \pi}{T}}^{\frac{ \pi}{T}}  e^{-i (x-kT) \xi}  d \xi = \frac{1}{\sqrt{T} }  \text{sinc} \biggl (   \frac{\pi}{T}(x - k T) \biggr)
+\end{align*}
+Nach der Parsevalschen Formel gilt
+\begin{align*}
+f(x) =  \int_{\frac{- \pi}{T}}^{\frac{- \pi}{T}} F(\xi) \overline{G_x(\xi)} d \xi =  \sum_{k= -\infty}^{\infty} \hat{F}(k) \overline {\hat{G}_x (k) } \; . 
+\end{align*}
+ 
+\end{proof}
 
 \subsubsection{Diskrete Fouriertransformation}
 
@@ -739,6 +759,6 @@ Für höhere Dimensionen diskretisiert man analog in alle Koordinatenrichtungen.
 %Das entspricht, bis auf einen konstanten Faktor $T/\sqrt{2 \pi}$ der Berechnungsformel der DFT. Der Vektor $x=( f(-NT),\dotsc,f(NT))$ hat 
 %$2N+1$ Elemente. Wir wissen bereits, dass es ausreicht, die Frequenzkoeffizienten für die$2N+1$ Frequenzen $\omega_n:=2\pi\cdot \frac{n}{(2N+1)T}$mit $n=-N,\dotsc,-1,0,1,\dotsc,N$ zu bestimmen, um die Funktionswerte im Vektor $x$ zu rekonstruieren. Mit der notwendigen Anpassung der Konstanten in der iDFT erhalten wir
 %$$
-f%(nT)=\frac{1}{\sqrt{2 \pi}}\sum_{k=-N}^N e^{i \omega_k nT}F(\omega_k)\,\frac{2\pi}{(2N+1)T}.
+%(nT)=\frac{1}{\sqrt{2 \pi}}\sum_{k=-N}^N e^{i \omega_k nT}F(\omega_k)\,\frac{2\pi}{(2N+1)T}.
 %$$
 %Der Diskretisierungsabstand im Frequenzbereich ist proportional zu $1/R$, also nach Voraussetzung ebenfalls klein, sodass diese Berechnung der Diskretisierung der inversen Fourier-Transformation entspricht.
