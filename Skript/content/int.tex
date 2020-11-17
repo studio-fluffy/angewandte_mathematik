@@ -563,7 +563,7 @@ $f$ habe zusätzlich die Eigenschaften:
 Dann ist die oben definierte Funktion $F$ stetig. 
 \end{Satz}
 \begin{proof}
-Sei  $x_k \to x$   eine konvergente Folge in $X$ und $f_k(t):= f(x_k,t)$. Nach Voraussetzung konvergiert diese Folge Punktweise gegen die Funktion $f_t(x)$ und $| f_k (x) | \leq \phi(x)$. Mit dem Satz von Lebesgue folgt
+Sei  $x_k \to x$   eine konvergente Folge in $X$ und $f_k(t):= f(x_k,t)$. Nach Voraussetzung konvergiert diese Folge Punktweise gegen die Funktion $f_x(t)$ und $| f_k (x) | \leq \phi(x)$. Mit dem Satz von Lebesgue folgt
 $$ \lim_{k \to \infty} \int_T f_k(t) d \mu_T = \int_T f(x,t) d \mu_T$$
 und damit $ \lim_{k \to \infty} F(x_k) =  F(x)$.
 \end{proof}
@@ -571,7 +571,7 @@ und damit $ \lim_{k \to \infty} F(x_k) =  F(x)$.
 \begin{Satz}[Differentiationssatz]
 $f$ habe zusätzlich die Eigenschaften:
 \begin{itemize}
-\item Für festes $t$ ist $f_t(x):= f(x,z)$ stetig differenzierbar.
+\item Für festes $t$ ist $f_t(x):= f(x,t)$ stetig differenzierbar.
 \item Es gibt auf $T$ eine integrierbare Funktion $\phi$ mit $\phi(t) \geq 0$ und $| \frac{\partial}{\partial x_i} f(x,t)| \leq \phi(t)$ für alle $(x,t) \in X \times T$ und $i=1, \cdots n-p$.
 \end{itemize}
 Dann ist die oben definierte Funktion $F$ stetig differenzierbar und es gilt
@@ -579,7 +579,7 @@ $$\frac{\partial}{\partial x_k} F(x)  = \int_T \frac{\partial}{\partial x_k} f(x
 \end{Satz}
 \begin{proof}
 Sei $x_k := x_0 + h_k e_i$ und 
-$$ \varphi_k (t) := \frac{f(x,t)  - f(x_0,t)  }{h_k} \; .$$
+$$ \varphi_k (t) := \frac{f(x_k,t)  - f(x_0,t)  }{h_k} \; .$$
 Damit sind die Funktionen  $\varphi_k $ integrierbar und für jedes $t \in T$ gilt
 
 $$  \lim_{k \to \infty} \varphi_k (t) = \frac{\partial}{\partial x_i}f(x_0, t) \; .$$
