@@ -5,7 +5,10 @@ Vorlesungsunterlagen angewandte Mathematik an der DHBW
 ## Begleitende Videos
 https://www.khanacademy.org/math/multivariable-calculus
 
-##Fourier Transformation
+## Fourier Reihe
+https://www.youtube.com/watch?v=r6sGWTCMz2k
+
+## Fourier Transformation
 https://www.youtube.com/watch?v=spUNpyF58BY
 
 ## Riemann Integral vs Lebesgue Integral
