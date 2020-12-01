@@ -5,6 +5,9 @@ Vorlesungsunterlagen angewandte Mathematik an der DHBW
 ## Begleitende Videos
 https://www.khanacademy.org/math/multivariable-calculus
 
+## Volterra-Lotka System
+https://www.youtube.com/watch?v=wxdAH84imIw
+
 ## Fourier Reihe
 https://www.youtube.com/watch?v=r6sGWTCMz2k
 
