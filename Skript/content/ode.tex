@@ -85,6 +85,7 @@ $F(t,x):= A(t) x(t) + b(t)$ ist Lipschitz-Stetig mit Konstanten $L:= \max_{t \in
 \end{proof}
 
 \begin{Satz}[Lösungsraum der homogenen Gleichung]
+\label{LHL}
 \hfill
 \begin{itemize}
 \item Die Menge $\mathcal{L}$ der auf $I$ definierten Lösungen der homogenen Gleichung $x'(t) = A(t)x(t)$ ist eine $n$-dimensionaler reeller Vektorraum.
@@ -117,5 +118,35 @@ $$  (e^{ tA})' = A e^{tA}  \; .$$
 
 \begin{Satz}
 Für eine Matrix $A$ lautet die Lösung des Anfangswertproblems $x'(t) = Ax(t)$ und $x(0) = x_0$
-$$ x(t) = e^{tA} x_0 \;.$$
+$$ x(t) = e^{tA} x_0 \;.$$ Ist $v_1, \cdots , v_n$ eine Basis des $\mathbb{R}^n$, so ist $e^{tA}v_1, \cdots , e^{tA}v_n$ ein Fundamentalsystem für $\mathcal{L}$. Damit bilden die Spalten von  $e^{tA}$ ein Fundamentalsystem.
 \end{Satz}
+\begin{proof}
+Es ist $x(0) = x_0$ und $x'(t)= A x(t)$. Der Rest folgt aus Satz  \ref{LHL}
+\end{proof}
+
+\begin{Lemma}
+Sei $v$ eine Eigenvektor von $A$ zum Eigenwert $\lambda$. Dann löst 
+$$ \varphi_v(t) := e^{t \lambda} v$$ das AWP $x' = Ax$ mit $x(0) = v$.
+\end{Lemma}
+\begin{proof}
+$\varphi_v'(t) =  \lambda  e^{tA}  v =  e^{tA}  \lambda v =  e^{tA}  A v  = A e^{tA}   v  = A  \varphi_v(t)$.
+\end{proof}
+
+\begin{Lemma}
+Hat eine Matrix $A$ $n$ Eigenvektoren $v_1, \cdots , v_n$ zu den Eigenwerten $\lambda_1, \cdots  \lambda_n$, 
+so bilden die Lösungen $ \varphi_{v_1}, \cdots  \varphi_{v_n}$ ein Fundamentalsystem.
+\end{Lemma}
+\begin{proof}
+Eigenvektoren sind linear unabhängig.
+\end{proof}
+
+
+\begin{Definition}
+Ein Vektor $v$ heißt Hauptvektor zum Eigenwert $\lambda$, falls es eine Zahl $s>0$ gibt mit 
+$$ (A - \lambda E)^s v = 0$$
+Die kleinste Zahl $s$, für die dies gilt heißt Stufe.
+\end{Definition}
+
+\begin{Bemerkung}
+Eigenvektoren sind Haupvektoren der Stufe $1$.
+\end{Bemerkung}
