@@ -1,0 +1,121 @@
+\section{Gewöhnliche Differentialgleichungen}
+
+\subsection{Dynamische Systeme}
+
+\begin{Definition}[Vektorfeld]
+Ein Vektorfeld ist eine Abbildung $$v : \Omega \subset \mathbb{R}^n \to \mathbb{R}^n \; ,$$ die jedem Punkt $x  \in \Omega$ einen Vektor $v(x) \in \mathbb{R}^n$ zuordnet.
+\end{Definition}
+
+\begin{Definition}[Integralkurve eines Vertorfeldes]
+Eine Weg $\varphi : I \subset \mathbb{R}^n$ heißt Integralkurve in dem Vektorfeld $v : \Omega \subset \mathbb{R}^n \to \mathbb{R}^n$, falls 
+$$\varphi' (t) = v(\varphi(t))$$ gilt für alle $t \in  I$.
+\end{Definition}
+
+\begin{Definition}[Dynamisches System]
+Ein dynamisches System ist eine  Abbildung $F : U \subset \mathbb{R} \times \mathbb{R}^n \to \mathbb{R}^n$, die jedem Punkt $(t,x)  \in U$ einen Vektor $F(t,x) \in \mathbb{R}^n$ zuordnet. Eine Integralkurve oder Lösung für $F$ ist eine Weg $\varphi : I \to \mathbb{R}^n$ mit 
+$$\varphi'(t) = F(t, \varphi(t)) $$
+für alles $t \in I$.
+\end{Definition}
+
+
+\begin{Satz}[Gewöhnliche Differentialgleichung und Afangswertproblem]
+\end{Satz}
+
+\subsubsection*{Normen}
+Wir betrachten in diesem Abschnitt immer die Norm $|| x || := \max_i | x_i |$. 
+
+\begin{Definition}[Lipschitz-Stetig]
+Eine  Abbildung $F : U \subset \mathbb{R} \times \mathbb{R}^n \to \mathbb{R}^n$ heißt Lipschitz-Stetig,
+falls es eine Konstante $L \geq 0$ gibt  mit
+$$ || F(t,x) - F(t,x') ||  \leq L || x -x' ||  $$
+für alle $(t,x)$ und $(t,x')$ in $U$.
+\end{Definition}
+
+\begin{Definition}[Integral vektorwertiger Funktionen]
+Für eine  vektorwertige Funktion  $f : I   \to \mathbb{R}^n; f(t) : = \begin{pmatrix} f_1(t)  \\ \vdots \\ f_n(t) \end{pmatrix}$ definieren wir das Integral komponentenweise durch
+$$\int_{a}^{b}  f(t) dt := \begin{pmatrix} \int_{a}^{b}  f_1(t) dt  \\ \vdots \\ \int_{a}^{b}  f_n(t) dt \end{pmatrix} \; .$$
+\end{Definition}
+
+
+\begin{Satz}[Integralversion einer Differentialgleichung]
+
+\end{Satz}
+
+
+
+\begin{Satz}[Banachscher Fixpunktsatz]
+\end{Satz}
+
+
+\begin{Satz}[Lokaler Existenzsatz (Picard-Lindelöf)]
+Das dynamisches System  $$F : U \subset \mathbb{R} \times \mathbb{R}^n \to \mathbb{R}^n$$ sei Lipschitz-Stetig. 
+Dann gibt es zu jedem Punkt $(t_0, x_0) \in U$ ein Intervall $I_\delta (t_0) := (t_0 - \delta, t_0 + \delta) \subset \mathbb{R}$ auf dem das AWP 
+$$ x' = F(t,x), \; \; x(t_0) = x_0$$
+eine Lösung besitzt.
+\end{Satz}
+\begin{proof}
+Es Sei $Q := \bar{I}_a(t_0) \times \bar{K}_b(x_0)$ ein kompakter Quader in $U$ mit Kantenlängen $a$ bzw. $b$.
+\end{proof}
+
+
+\begin{Lemma}[Gronwall]
+\end{Lemma}
+
+
+\begin{Satz}[Eindeutigkeitssatz]
+\end{Satz}
+
+
+\subsection{Lineare Differentialgleichung}
+
+\begin{Definition}
+Eine Differentialgleichung der Form
+$$ x' (t): = A(t) x(t) + b(t)$$
+mit $A: I \subset \mathbb{R} \to \mathbb{R}^{n \times n}$ und $b: I \subset \mathbb{R} \to \mathbb{R}^{n}$ heißt lineare (gewöhnliche) Differentialgleichung.
+\end{Definition}
+
+\begin{Satz}[Existenz und Eindeutigkeit]
+Ist $ x' (t): = A(t) x(t) + b(t)$ eine lineare Differentialgleichung und $A$ und $b$ stetig, so besitzt das AWP 
+$$ x' (t): = A(t) x(t) + b(t) ; \; \; x(t_0) = x_0 $$
+genau eine auf ganz $I$ definierte Lösung.
+\end{Satz}
+
+\begin{proof}
+$F(t,x):= A(t) x(t) + b(t)$ ist Lipschitz-Stetig mit Konstanten $L:= \max_{t \in J}|| A(t) ||$ für jedes kompakte Intervall $J \subset I$.
+\end{proof}
+
+\begin{Satz}[Lösungsraum der homogenen Gleichung]
+\hfill
+\begin{itemize}
+\item Die Menge $\mathcal{L}$ der auf $I$ definierten Lösungen der homogenen Gleichung $x'(t) = A(t)x(t)$ ist eine $n$-dimensionaler reeller Vektorraum.
+\item $n$ Lösungen $\varphi_1, \cdots, \varphi_n : I \to \mathbb{R}^n$ bilden genau dann eine Basis für $\mathcal{L}$, wenn die Vektoren $\varphi_1(t), \cdots, \varphi_n(t)$ für ein $t \in I$ eine Basis des $\mathbb{R}^n$ bilden.
+\end{itemize}
+\end{Satz}
+\begin{proof}
+Sind  $\varphi_1, \cdots, \varphi_n$ Lösungen der homogenen Gleichung, so auch $ c_1 \cdot \varphi_1 + \cdots + c_n \cdot \varphi_n$, da die Ableitung linear ist.
+$\mathcal{L}$ ist somit ein Vektorraum. Definiere 
+\begin{align*}
+& \alpha_{t_0} : \mathcal{L} \to \mathbb{R}^n \\
+& \alpha_{t_0} (\varphi) := \varphi(t_0) \; .
+\end{align*} 
+Aufgrund des Existenzsatzes und der linearität ist $ \alpha_{t_0}$ surjektiv und wegen der Eindeutigkeit der Lösung injektiv.
+\end{proof}
+
+\begin{Definition}
+Eine Basis  $\varphi_1, \cdots, \varphi_n$ des Lösungsraumes $\mathcal{L}$ der homogenen Gleichung $x'(t) = A(t)x(t)$ heißt Fundamentalsystem.
+\end{Definition}
+
+\subsubsection{Lineare Differentialgleichung mit konstanter Matrix $A$}
+
+\begin{Definition}
+Für eine Matrix $A \in \mathbb{R}^{n \times n}$ definiert man die Exponentialfunktion 
+$$  e^{ A}  := \sum_{k= 0}^{\infty} \frac{1}{k!} A^k \; .$$
+Es gilt  
+$$  (e^{ tA})' = A e^{tA}  \; .$$
+\end{Definition}
+
+
+\begin{Satz}
+Für eine Matrix $A$ lautet die Lösung des Anfangswertproblems $x'(t) = Ax(t)$ und $x(0) = x_0$
+$$ x(t) = e^{tA} x_0 \;.$$
+\end{Satz}
