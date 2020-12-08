@@ -148,5 +148,19 @@ Die kleinste Zahl $s$, für die dies gilt heißt Stufe.
 \end{Definition}
 
 \begin{Bemerkung}
-Eigenvektoren sind Haupvektoren der Stufe $1$.
+Eigenvektoren sind Hauptvektoren der Stufe $1$.
+\end{Bemerkung}
+
+
+\begin{Satz}
+Zu jeder Matrix $A \in \mathbb{R}^{n \times n}$ gibt es eine Basis aus Hauptvektoren. 
+\end{Satz}
+
+
+\begin{Bemerkung}
+Ist $v$ ein Hauptvektor der Stufe $s$ zum Eigenwert $\lambda$ der Matrix $A$, so gilt
+\begin{align*}
+& e^{tA}v = e^{t \lambda E} e^{t(A - \lambda E)} v = e^{t \lambda}  \biggl( \sum_{k=0}^{\infty} \frac{1}{k!} (A - \lambda E)^k t^k \biggr) v \\
+& =  e^{t \lambda}  \biggl ( \sum_{k=0}^{s -1} \frac{1}{k!} (A - \lambda E)^k t^k \biggr) v 
+\end{align*}
 \end{Bemerkung}
