@@ -35,7 +35,7 @@ Werden zusätzlich die Anfanfsbedingungen $x_1(t_0)= x_0^1; \dots x_n(t_0) = x_0
 Eine Lösung ist eine Funktion $x : I \subset \mathbb{R} \to \mathbb{R}^n$, deren Koordinatenfunktionen diese Bedingungen erfüllt.
 \end{Definition}
 
-\begin{Satz}[Univeralität der Systeme $1$-ter Ordnung]
+\begin{Satz}[Universalität der Systeme $1$-ter Ordnung]
 Ein Anfangswertproblem $n$-ter Ordnung
  $$ x^{(n)}(t) = f(t, x^{(n)}, x^{(n-1)} , \cdots , x', x) $$ mit  $x(t_0) = x_0 ; x'(t_0) = x_1; \cdots ; x^{n-1}(t_{0})= x_{n-1}  $ ist äquivalent zu dem System von   Differentialgleichungen $1$-ter Ordnung
 \begin{align*}
@@ -50,10 +50,23 @@ mit den Anfangswertbedingungen  $x_1(t_0) = x_0 ; x_2(t_1) = x_1; \cdots ; x_{n-
 Ein Vektorfeld ist eine Abbildung $$v : \Omega \subset \mathbb{R}^n \to \mathbb{R}^n \; ,$$ die jedem Punkt $x  \in \Omega$ einen Vektor $v(x) \in \mathbb{R}^n$ zuordnet.
 \end{Definition}
 
+\begin{figure}[H]
+      \centering
+    \includegraphics[width=0.9\textwidth]{images/480px-VectorField.png}
+\caption{Quelle: Wikipedia:https://en.wikipedia.org/wiki/Vector\_field\#/media/File:VectorField.svg}
+\end{figure}
+
 \begin{Definition}[Integralkurve eines Vertorfeldes]
 Eine Weg $\varphi : I \subset \mathbb{R} \to \mathbb{R}^n$ heißt Integralkurve in dem Vektorfeld $v : \Omega \subset \mathbb{R}^n \to \mathbb{R}^n$, falls 
 $$\varphi' (t) = v(\varphi(t))$$ gilt für alle $t \in  I$.
 \end{Definition}
+
+
+\begin{figure}[H]
+      \centering
+    \includegraphics[width=0.9\textwidth]{images/Slope_Field.png}
+\caption{Quelle: Wikipedia:https://en.wikipedia.org/wiki/Integral\_curve\#/media/File:Slope\_Field.png}
+\end{figure}
 
 \begin{Definition}[Dynamisches System]
 Ein dynamisches System ist eine  Abbildung $F : U \subset \mathbb{R} \times \mathbb{R}^n \to \mathbb{R}^n$, die jedem Punkt $(t,x)  \in U$ einen Vektor $F(t,x) \in \mathbb{R}^n$ zuordnet. Eine Integralkurve oder Lösung für $F$ ist eine Weg $\varphi : I \to \mathbb{R}^n$ mit 
