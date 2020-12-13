@@ -1,5 +1,29 @@
 \section{Gewöhnliche Differentialgleichungen}
 
+
+\begin{Definition}[Gewöhnliche Differentialgleichung]
+Eine (explizite) gewöhnliche Differentialgleichung (ODE) $n$-ter Ordnung ist eine Gleichung der Form
+$$ x^{(n)}(t) = f(t, x^{(n)}, x^{(n-1)} , \cdots , x', x) \; .$$ 
+Ein Anfangswertproblem (AWP) ist eine Differentialgleichung, bei der zusätzlich die Werte $x(t_0) = x_0 ; x'(t_1) = x_1; \cdots ; x^{n-1}(t_{n-1})= x_{n-1}  $ vorgegeben sind. Eine Funktion $x : I \subset \mathbb{R} \to \mathbb{R}$ heißt Lösung der Differentialgleichung, falls
+$$ x^{(n)}(t) = f(t, x^{(n)}, x^{(n-1)} , \cdots , x', x) $$ und $x(t_0) = x_0$ gilt und Lösung des AWP, falls zusätzlich $x(t_0) = x_0 ; x'(t_1) = x_1; \cdots ; x^{n-1}(t_{n-1})= x_{n-1} $ gilt. 
+\end{Definition}
+
+
+\begin{Definition}
+Eine gewöhnliche Differentialgleichung $1$-ter Ordnung heißt separate, falls
+$$ x'(t) = h(x)g(t)$$ ist.
+\end{Definition}
+
+
+\begin{Satz}[Separation der Variablen]
+Gegeben sei ein Anfangswertproblem mit einer separablen  Differentialgleichung $1$-ter Ordnung
+$$ x'(t) = h(x(t))g(t)$$ und der Anfangsbedingung $x(t_0)= x_0$. Dann ergibt die Auflösung der Gleichung 
+$$ \int_{x_0}^{x(t)} \frac{dy}{h(y)}  =  \int_{t_0}^{t} g(s) ds $$  nach $x(t)$ eine Lösung des Anfangswertproblem.
+\end{Satz}
+\begin{proof}
+Folgt im Wesentlichen aus dem Hauptsatz der Integral- und Differentialrechnung.
+Ein Beweis findet sich \href{https://de.wikipedia.org/wiki/Trennung_der\_Ver%C3%A4nderlichen}{hier}
+\end{proof}
 \subsection{Dynamische Systeme}
 
 \begin{Definition}[Vektorfeld]
@@ -7,7 +31,7 @@ Ein Vektorfeld ist eine Abbildung $$v : \Omega \subset \mathbb{R}^n \to \mathbb{
 \end{Definition}
 
 \begin{Definition}[Integralkurve eines Vertorfeldes]
-Eine Weg $\varphi : I \subset \mathbb{R}^n$ heißt Integralkurve in dem Vektorfeld $v : \Omega \subset \mathbb{R}^n \to \mathbb{R}^n$, falls 
+Eine Weg $\varphi : I \subset \mathbb{R} \to \mathbb{R}^n$ heißt Integralkurve in dem Vektorfeld $v : \Omega \subset \mathbb{R}^n \to \mathbb{R}^n$, falls 
 $$\varphi' (t) = v(\varphi(t))$$ gilt für alle $t \in  I$.
 \end{Definition}
 
@@ -38,7 +62,9 @@ $$\int_{a}^{b}  f(t) dt := \begin{pmatrix} \int_{a}^{b}  f_1(t) dt  \\ \vdots \\
 
 
 \begin{Satz}[Integralversion einer Differentialgleichung]
-
+Ein Weg $\varphi : I \subset \mathbb{R} \to \mathbb{R}^n$ ist genau dann Lösung des AWP $\varphi'(t) = F(t , \varphi)$ mit $ \varphi(t_0)= x_0$, wenn
+$$ \varphi(t) =  x_0 + \int_{t_0}^{t} F(t, \varphi) dt$$
+gilt.
 \end{Satz}
 
 
@@ -48,7 +74,7 @@ $$\int_{a}^{b}  f(t) dt := \begin{pmatrix} \int_{a}^{b}  f_1(t) dt  \\ \vdots \\
 
 
 \begin{Satz}[Lokaler Existenzsatz (Picard-Lindelöf)]
-Das dynamisches System  $$F : U \subset \mathbb{R} \times \mathbb{R}^n \to \mathbb{R}^n$$ sei Lipschitz-Stetig. 
+Das dynamisches System  $$F : U \subset \mathbb{R} \times \mathbb{R}^n \to \mathbb{R}^n$$ sei lokal Lipschitz-Stetig. 
 Dann gibt es zu jedem Punkt $(t_0, x_0) \in U$ ein Intervall $I_\delta (t_0) := (t_0 - \delta, t_0 + \delta) \subset \mathbb{R}$ auf dem das AWP 
 $$ x' = F(t,x), \; \; x(t_0) = x_0$$
 eine Lösung besitzt.
@@ -129,7 +155,7 @@ Sei $v$ eine Eigenvektor von $A$ zum Eigenwert $\lambda$. Dann löst
 $$ \varphi_v(t) := e^{t \lambda} v$$ das AWP $x' = Ax$ mit $x(0) = v$.
 \end{Lemma}
 \begin{proof}
-$\varphi_v'(t) =  \lambda  e^{tA}  v =  e^{tA}  \lambda v =  e^{tA}  A v  = A e^{tA}   v  = A  \varphi_v(t)$.
+$\varphi_v'(t) =  \lambda  e^{t \lambda}  v =  e^{t\lambda}  \lambda v =  e^{t\lambda}  A v  = A e^{t\lambda}   v  = A  \varphi_v(t)$.
 \end{proof}
 
 \begin{Lemma}
