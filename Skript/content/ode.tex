@@ -99,11 +99,14 @@ Ein Weg $\varphi : I \subset \mathbb{R} \to \mathbb{R}^n$ ist genau dann Lösung
 $$ \varphi(t) =  x_0 + \int_{t_0}^{t} F(t, \varphi) dt$$
 gilt.
 \end{Satz}
-
+\begin{proof}
+Folgt direkt durch komponentenweise Anwendung des Hauptsatzes der Integral- und Differentialrechnung.
+\end{proof}
 
 
 \begin{Satz}[Banachscher Fixpunktsatz]
 \end{Satz}
+Es sei $(X,d)$ ein vollständiger metrischer Raum und $P: X \to X$ eine Abbildung mit $$d(P(x), P(x)) < \lambda d(x,y)$$ und $\lambda < 1$. Dann besitzt $P$ genau einen Fixpunkt $x^* \in X$ mit $P(x^*) = x^*$.
 \begin{figure}[H]
       \centering
     \includegraphics[width=0.9\textwidth]{images/640px-Floral_matryoshka_set_2_smallest_doll_nested.JPG}
@@ -117,7 +120,7 @@ $$ x' = F(t,x), \; \; x(t_0) = x_0$$
 eine Lösung besitzt.
 \end{Satz}
 \begin{proof}
-Es Sei $Q := \bar{I}_a(t_0) \times \bar{K}_b(x_0)$ ein kompakter Quader in $U$ mit Kantenlängen $a$ bzw. $b$.
+Es Sei $Q := \bar{I}_a(t_0) \times \bar{K}_b(x_0)$ ein kompakter Quader in $U \subset \mathbb{R} \times \mathbb{R}^n$ mit Kantenlängen $a$ und $b$.
 \end{proof}
 
 
