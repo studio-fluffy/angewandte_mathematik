@@ -103,15 +103,30 @@ gilt.
 Folgt direkt durch komponentenweise Anwendung des Hauptsatzes der Integral- und Differentialrechnung.
 \end{proof}
 
+\subsubsection*{Metrische Räume und Fixpunktsätze} 
+Ein metrischer Raum $(X,d)$ ist eine Menge $X$ zusammen mit einer Abbildung $d : X \times X \to X$ die linear ist in beiden Argumenten und die Dreiecksungleichung $d(x,y) \leq d(x,z) + d(z,y)$ erfüllt. Ein typisches Beispiel ist  $d(x,y) : = || y- x ||$  wobei $||  \cdot ||$  eine Norm ist.  Das für uns später relevante Beispiel ist der Funktionenraum mit der Maximumsnorm $|| \varphi || := \max_t$
 
 \begin{Satz}[Banachscher Fixpunktsatz]
 \end{Satz}
 Es sei $(X,d)$ ein vollständiger metrischer Raum und $P: X \to X$ eine Abbildung mit $$d(P(x), P(x)) < \lambda d(x,y)$$ und $\lambda < 1$. Dann besitzt $P$ genau einen Fixpunkt $x^* \in X$ mit $P(x^*) = x^*$.
+\begin{proof}
+Wähle beliebiges $x_0 \in X$. Durch wiederholtes Abbilden erhalten wir die Folge  $x_n:= \P(x_{n-1})$. Für diese Gilt nach Voraussetzung an $P$
+\begin{align*}
+d(x_{n+1} , x_{n}) < \lambda d(x_{n} , x_{n-1})   < \lambda^n d(x_{1} , x_{0})  \; .
+\end{align*}
+Mit der Dreiecksungleichung gilt 
+\begin{align*}
+d(x_{n + m} , x_{ m}) \leq d(x_{n+1} , x_{n})  +  d(x_{n +2} , x_{n +1}) +   \cdots   +  d(x_{n + m } , x_{n +m -1}) \; .
+\end{align*}
+Da $\lambda < 1$ folgt $  \lim_{n \to \infty} d(x_{n + m} , x_{ m})   \leq  \lim_{n \to \infty} \frac{\lambda^n}{1 - \lambda} d(x_{1} , d_{0}) = 0$ und damit ist $x_n$ eine Cauchyfolge.  Da $(X,d)$ vollständig ist, konvergiert die Folge in $X$ gegen einen Grenzwert $x^*$. Für diesen gilt $P(x^*) =  P (  \lim_{n \to \infty}  x^*) =  \lim_{n \to \infty} P(x_n)  =  \lim_{n \to \infty} x_{n+1} = x^*$ und damit ist $x^*$ ein Fixpunkt von $P$.
+\end{proof}
 \begin{figure}[H]
       \centering
     \includegraphics[width=0.9\textwidth]{images/640px-Floral_matryoshka_set_2_smallest_doll_nested.JPG}
 \caption{Quelle: Wikipedia}
 \end{figure}
+
+\subsubsection*{Existenz- und Eindeutigkeitssätze für gewöhnliche Differentialgleichungen} 
 
 \begin{Satz}[Lokaler Existenzsatz (Picard-Lindelöf)]
 Das dynamisches System  $$F : U \subset \mathbb{R} \times \mathbb{R}^n \to \mathbb{R}^n$$ sei lokal Lipschitz-Stetig. 
