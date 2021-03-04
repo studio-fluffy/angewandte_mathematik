@@ -536,7 +536,8 @@ und somit hat $F_v$ ein isoliertes lokales Maximum und $F_w$ ein isoliertes loka
 
 
 
-\subsubsection*{Anwendung: Gradientenverfahren} 
+\subsubsection{Anwendung: Gradientenverfahren} 
+\label{gradientenabstieg}
 Wie kann man Minima einer  differenzierbaren Abbildung $f: \mathbb{R}^n \to \mathbb{R}$ finden? 
 Wir wissen, dass an jedem Punkt $x_k \in  \mathbb{R}^n$ der negative Gradient  $d_k := -\nabla f (x_k)$ in die steilste Abstiegsrichtung zeigt.
 Die Idee des Gradientenabstieg ist, ein bestimmtes  Stück in diese Richtung abzusteigen, damit der Funktionswert kleiner wird, also $x_{k+1} = x_k + \alpha_k d_k$ zu setzen. Für hinreichend kleines $\alpha_k$ folgt mit Satz \ref{lokaleLinearisierung} über die lokale Linearisierung  
@@ -547,10 +548,10 @@ $f(x_{k+1}) = f (x_k + \alpha_k d_k) =  f(x_k) + \alpha_k df(x_k)d_k + R( \alpha
 \begin{algorithmic}[1]
 
 
-    \State Initialisiere $k:=0$ und zufälligen Startwert $x_0$.
+    \State Initialisiere $k:=0$ und  zufälligen Startwert $x_0$.
 \State Initialisiere Genauigkeit $\epsilon > 0$.
     \While{$|| \nabla f(x_k) || > \epsilon$}  \Comment{So lange kein Extrema vorliegt}
-        \State Bestimme $\alpha_k$  mit $f (x_k + \alpha d_k) =  f(x_k) + \alpha_k df(x_k)d_k + R( \alpha_k dk)$ \Comment{Schrittweite bestimmen}
+	\State Berechne $d_k :=  - \nabla f(x_k)$ und wähle $\alpha_k$ klein genug (siehe oben).
         \State Setze $x_{k+1} := x_k  + \alpha_k d_k$. \Comment{Absteigen}
  	\State  $k \leftarrow k+1$ \Comment{Wiederholen}
     \EndWhile  \label{Gradientenverfahren}
@@ -606,16 +607,16 @@ L_D  : \Omega \subset \mathbb{R}^n \to \mathbb{R}
 \end{align*}
 minimal wird. Zum Beispiel $L_D(\omega) := \sum_{(x_i,y_i) \in D} (f(\omega, x_i) - y_i)^2$.
 
-Wende Gradientenverfahren an:
+Wende Gradientenverfahren an (vergleiche \ref{gradientenabstieg}):
 
 \begin{algorithm}
 \caption{Gradientabstieg}
 \begin{algorithmic}[1]
     \State Initialisiere $k:=0$ und zufällige Gewichte $w_0$.
 \State Initialisiere Genauigkeit $\epsilon > 0$.
-    \While{$|| \nabla L_D(\omega) || > \epsilon$}  \Comment{So lange kein Extrema vorliegt}
-        \State Bestimme $\alpha_k$  mit $ L_D(\omega_k + \alpha d_k) =  L_D(\omega_k) + \alpha_k d L_D(\omega_k)d_k + R( \alpha_k dk)$ \Comment{Schrittweite bestimmen}
-        \State Setze $\omega_{k+1} := \omega_k  + \alpha_k d_k$. \Comment{Absteigen}
+    \While{$|| \nabla L_D(\omega) || > \epsilon$}  \Comment{So lange kein Extrema vorliegt}	
+	\State Berechne $d_k :=  - \nabla L_D(\omega_k)$ und wähle $\alpha_k$ klein genug.
+             \State Setze $\omega_{k+1} := \omega_k  + \alpha_k d_k$. \Comment{Absteigen}
  	\State  $k \leftarrow k+1$ \Comment{Wiederholen}
     \EndWhile  \label{roy's loop}
 
@@ -633,7 +634,7 @@ kann man das Gradientenverfamren modifizieren, so dass man Gradienten nur auf Te
 \State Initialisiere Genauigkeit $\epsilon > 0$.
 \State Wähle Teilmenge $D_0' \subset D$
     \While{$|| \nabla L_{D'_k}(\omega) || > \epsilon$}  \Comment{So lange kein Extrema vorliegt}
-        \State Bestimme $\alpha_k$  mit $ L_{D'_k}(\omega_k + \alpha d_k) =  L_{D'_k}(\omega_k) + \alpha_k d L_{D'_k}(\omega_k)d_k + R( \alpha_k dk)$ \Comment{Schrittweite bestimmen}
+	\State Berechne $d_k :=  - \nabla  L_{D'_k}(\omega_k)$ und wähle $\alpha_k$ klein genug.
         \State Setze $\omega_{k+1} := \omega_k  + \alpha_k d_k$. \Comment{Absteigen}
 	\State Wähle neue Teilmenge $D'_{k +1} \subset D$.
  	\State  $k \leftarrow k+1$ \Comment{Wiederholen}
