@@ -14,8 +14,6 @@ https://www.amazon.de/Numerische-Mathematik-algorithmisch-orientierte-Einf%C3%BC
 
 https://www.amazon.de/gp/product/0813349109/ref=ppx_yo_dt_b_asin_title_o06_s00?ie=UTF8&psc=1
 
-https://www.amazon.de/Numerische-Mathematik-Gew-C3-B6hnliche-Differentialgleichungen-Gruyter-dp-3110316331/dp/3110316331/ref=dp_ob_image_bk
-
 https://www.amazon.de/gp/product/354040371X/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1
 
 https://www.amazon.de/gp/product/3528031794/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1
