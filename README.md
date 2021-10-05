@@ -45,6 +45,8 @@ https://www.youtube.com/watch?v=yID1KUgEOKc
 https://www.youtube.com/watch?v=Gv7jBOUyrzg
 
 ### Taylor Reihe
+https://www.youtube.com/watch?v=3d6DsjIBzJ4
+
 https://www.youtube.com/watch?v=amLjNyuxLSs
 
 https://www.youtube.com/watch?v=ELPvMyhNrz8
