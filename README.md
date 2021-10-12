@@ -20,7 +20,7 @@ https://www.amazon.de/gp/product/3528031794/ref=ppx_yo_dt_b_asin_title_o02_s00?i
 
 https://www.amazon.de/gp/product/3642542735/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1
 
-
+https://www.amazon.de/Deep-Learning-Adaptive-Computation-Machine/dp/0262035618/ref=sr_1_19?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=math+deep+learning&qid=1634025227&sr=8-19
 
 ## Begleitende Videos
 https://www.khanacademy.org/math/multivariable-calculus
