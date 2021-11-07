@@ -55,6 +55,8 @@ https://www.youtube.com/watch?v=-qPpiHZ82rw
 https://www.youtube.com/watch?v=1qqp8XoGL-k
 
 ## Videos zu Grundlagen reeller Funktion
+###Ableitung
+https://www.youtube.com/watch?v=oUCqT7aM7hE
 
 ### Grenzwert
 https://www.youtube.com/watch?v=kfF40MiS7zA
