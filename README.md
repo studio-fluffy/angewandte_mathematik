@@ -80,3 +80,8 @@ https://www.youtube.com/watch?v=UCc9q_cAhho
 
 https://www.youtube.com/watch?v=xsP-S7yKaRA
 
+### Eigenvektoren
+
+https://www.3blue1brown.com/lessons/eigenvalues
+
+https://www.youtube.com/watch?v=Rr0aa7oo5u8
