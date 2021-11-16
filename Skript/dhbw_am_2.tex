@@ -244,7 +244,7 @@ $(f \circ \gamma)(t) := f (\gamma(t)) $
 \item $\gamma$ und $f$ differenzierbar
 \begin{align*}
 & \gamma (t + k) = \gamma(t) + k \gamma'(t) + r_1 (k) |k|\\
-& f(\gamma(t) + h) = f(\gamma(t)) + df(\gamma(t)) \cdot \gamma'(t) h +  r_2 (h)  ||h|| 
+& f(\gamma(t) + h) = f(\gamma(t)) + df(\gamma(t)) \cdot  h +  r_2 (h)  ||h|| 
 \end{align*}
  $lim_{k \to 0} r_1(k) = 0$, $lim_{h \to 0} r_2(h) = 0$.
 \pause \item  $h:= \gamma(t + k) - \gamma(t)$ 
@@ -253,7 +253,7 @@ f(\gamma(t + k)) = f(\gamma(t)) + df(\gamma(t)) \cdot \gamma'(t) k +  R(k)
 \end{align*}  
 mit dem Restglied
 \begin{align*}
-R(k) := & df(\gamma(t)) r_1(k) |k| + r_2 \bigl( \gamma (t + k) \\
+R(k) := & df(\gamma(t)) + r_1(k) |k| + r_2 \bigl( \gamma (t + k) \\
  & - \gamma(t) \bigr) ||\gamma'(t) k + r_1(k) |k| || 
 \end{align*}  
 \end{itemize}
@@ -356,6 +356,9 @@ f(x) = f(a) + \sum_{k=1}^{p}\frac{1}{p!} d^k f(a) (x-a)^k + R_{p+1} (x;a)
 mit dem Restglied $R_{p+1} (x;a) := \frac{1}{(p+1)!} d^{p+1}f(\xi) (x-a)^{p+1}$ für ein $\xi \in [a,x]$.
 
 \end{block}
+\begin{block}{Beispiel}
+\href{https://de.wikipedia.org/wiki/Taylor-Formel\#Taylor-Formel_im_Mehrdimensionalen}{Wiki}
+\end{block}
  \end{frame}
 
 
@@ -363,7 +366,7 @@ mit dem Restglied $R_{p+1} (x;a) := \frac{1}{(p+1)!} d^{p+1}f(\xi) (x-a)^{p+1}$ 
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Höhere Ableitungen}
     \begin{block}{Beweis}
-Sei $h := (x-a)$ und $F(t) := f(a + th)$ mit $t \in [0,1]$. Wiederholte Anwendung der (Baby) Kettenregel mit $\gamma(t) := a +th$ ergibt
+Sei $F(t) := f(a + th)$ mit $t \in [0,1]$. Wiederholte Anwendung der (Baby) Kettenregel mit $\gamma(t) := a +th$ ergibt
 \begin{align*}
 & F'(t) = \sum_{i=1}^n  \frac{\partial}{\partial x_{i}} f(a + th) h_i \\
 & F''(t) =\sum_{j=1}^n \sum_{i=1}^n   \frac{\partial}{\partial x_{j}} \frac{\partial}{\partial x_{i}} f(a + th) h_i h_j \\
@@ -377,7 +380,7 @@ Sei $h := (x-a)$ und $F(t) := f(a + th)$ mit $t \in [0,1]$. Wiederholte Anwendun
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Höhere Ableitungen}
     \begin{block}{Beweis}
-Mit der Taylorapproximation für Funktionen einer Veränderlichen folgt
+Mit der Taylorapproximation für Funktionen einer Veränderlichen  folgt für $h := (x-a)$ 
 \begin{align*}
  F(1) = F(0) + F'(0) + \frac{1}{2!} F''(0) + \cdots + \frac{1}{p!} F^p(0) + R_{p+1} 
 \end{align*}

@@ -88,7 +88,7 @@ heißt Treppenfunktion.
     \begin{block}{Vektorraum der Indikatorfunktionen}
 
 Seien $\varphi(x) =   \sum_{k=1}^m  c_k 1_{I_k}$ und $\psi(x) =  \sum_{j=1}^l  u_j 1_{I_j}$. Dann definiert
-$(\varphi + \psi)(x) := \sum_{k=1}^m \sum_{j=1}^l   (c_k + u_j) 1_{I_{k,j}}$ mit $I_{k,j}:= I_k \cap I_j$ eine Treppenfunktion (nach entsprechender Umnummerierung zu einem einzigen Summenzeichen).
+$(\varphi + \psi)(x) := \sum_{k=1}^m \sum_{j=1}^l   (c_k + u_j) 1_{I_{k,j}}$ mit $I_{k,j}:= I_k \cap I_j$ eine Treppenfunktion (nach entsprechender Umnummerierung zu einem einzigen Summenzeichen \href{https://de.wikipedia.org/wiki/Cantors_erstes_Diagonalargument}{wiki}).
 \end{block}
 
  \end{frame}
@@ -232,16 +232,35 @@ $$ \biggl | \biggl | \sum_{k=1}^{\infty} f_k \biggr | \biggr |_1 \leq  \sum_{k=1
 
  \end{frame}
 
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Beweis}
+Wähle zu $\epsilon > 0$ Hüllreihe $\phi_k := \sum_i c_{ik}1_{I_{ik}}$  von $f_k$ mit Inhalt 
+$I(\phi_k) \leq || f_k||_1 + \frac{\epsilon}{2^k}$. Mit der geometrischen Reihe und $\epsilon \to 0$ folgt die Behauptung.  
+ \end{frame}
+
+
+
+\begin{frame}
+
+    \begin{block}{Integral eines Quaders}
+Für einen abgeschlossenen Quader A gilt
+$$ ||1_{A} ||_1 = \mu(A) = \int 1_{A}$$
+\end{block}
+
+
+ \end{frame}
+
 
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Beweis}
-$ 1 \cdot 1_I$ ist eine Hüllreihe von $1_i$ und damit gilt $|| 1_I || \leq \mu(I)$. 
-Sei $\phi(x) = \sum_k c_k 1_{I_k} $ eine Hüllreihe von $1_i$ und $\epsilon >0$. Da $\phi(x) \geq 1$ gibt es für jedes $x$ einen Index $N(x)$ mit 
+$ 1 \cdot 1_I$ ist eine Hüllreihe von $1_I$ und damit gilt $|| 1_I || \leq \mu(I)$.  \\ 
+Sei $\phi(x) = \sum_k c_k 1_{I_k} $ eine Hüllreihe von $1_I$ und $\epsilon >0$. Da $\phi(x) \geq 1$ gibt es für jedes $x$ einen Index $N(x)$ mit 
 $\sum_{k=1}^{N(x)} c_k 1_{I_k} \geq 1 - \epsilon$. Da die $I_k$ offen sind, gibt es für jedes $x$ eine Umgebung $U(x)$, so dass letztere Gleichung gilt. Da $\bar{I}$ kompakt ist (beschränkt und abgeschlossen), überdecken endlich viele $U(x_1), \cdots , U(x_n)$ den Quader $I$. Mit $N:= \max \{ N(x_1), \cdots , N(x_n)$ folgt $\sum_{k=1}^N c_k 1_{I_k} \geq (1-\epsilon) 1_I$. Aus den Rechenregeln für Treppenfunktionen (iii) folgt
 $$ I (\phi) = \sum_k c_k \mu(I_k) \geq \sum_{k=1}^N c_k \mu (I_k) \geq (1 - \epsilon) \mu(I) \;.$$
-Mit $\epsilon \to 0$ folgt $I (\phi) \geq \mu(i)$ und damit insgesamt die Behauptung.  
+Mit $\epsilon \to 0$ folgt $I (\phi) \geq \mu(I)$ und damit insgesamt die Behauptung.  
  \end{frame}
 
 
