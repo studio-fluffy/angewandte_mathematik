@@ -103,6 +103,10 @@ Eine \href{https://de.wikipedia.org/wiki/Regelfunktion}{Regelfunktion} $f$ auf $
 \int_{[a,b]} f(x) d \mu_1 = \int_a^b f(x) dx \; .
 \end{align*}
 \end{block}
+\begin{figure}
+      \centering
+    \includegraphics[width=0.5 \textwidth]{images/RiemannVsLebesgue}    
+\end{figure}
  \end{frame}
 
 
@@ -651,15 +655,22 @@ Kantenschärfung \\
  \end{frame}
 
 
+\begin{frame}
+Eine Funktion $g :\mathbb{R}^n \to \mathbb{C}$ heißt integrierbar, wenn sowohl ihr Realteil $\text{Re}(g) $ als auch ihr Imaginärteil $\text{Im}(g) $  integrierbar sind. In diesem Fall setzen wir
+$$ \int_{\mathbb{R}^n} g d \mu :=  \int_{\mathbb{R}^n}  \text{Re}(g) d \mu  + i \int_{\mathbb{R}^n}  \text{Im}(g) d \mu$$
 
-
+Sei $f: \mathbb{R}^n \to \mathbb{R}$ eine integrierbare Funktion. Ihre Fouriertransformierte ist definiert durch 
+$$ \hat{f}(x) :=  \frac{1}{ (2 \pi)^{\frac{n}{2}}} \int_{\mathbb{R}^n} f  \cdot e^{ - i \langle x , t  \rangle }d \mu_{t}  $$
+ \end{frame}
 
 \begin{frame}
-    \frametitle{Kantenerkennung}
-\framesubtitle{}
-\begin{block}{}
-\end{block}
+Aufgrund der Linearität des Integrals und da $\int f^2 d \mu  \geq 0$ wegen $f^2(x) \geq 0$ gilt, können wir das Integral als Skalarpdukt (hermetische Produkt)
+$$ \langle f ,g \rangle_{L^1} := \int f \cdot g d \mu$$
+auf dem Raum der integrierbaren Funktion betrachten.  Mit $ e^{i z} = \cos(z) + i\cdot  \sin(z) $ können wir die Fouriertransformierte am Punkt $x$ als den Anteil  der  Frequenz $x$ innerhalb des Signals interpretieren. 
  \end{frame}
+
+
+
 
 \end{document}
 
