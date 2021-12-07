@@ -37,7 +37,7 @@
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
-\framesubtitle{Dynamische Systeme Systeme}
+\framesubtitle{Dynamische Systeme }
 \begin{block}{Motivation}
 Gegeben ist ein zeitabhängiges System $t \mapsto x(t)$. Möchten verstehen, wie sich $x(t)$ über die Zeit entwickelt. Zu festen Zeitpunkten $t_0, \cdots t_n $ lässt sich $x(t_i)$ messen und damit $x'(t_i) \cong \frac{x(x(t_i) - x(t_{i-1}))}{t_i - t_{i-1}}$ näherungsweise bestimmen. Im allgemeinen ist $x'(t) = f(x(t), t)$. 
 \end{block}
@@ -45,7 +45,7 @@ Gegeben ist ein zeitabhängiges System $t \mapsto x(t)$. Möchten verstehen, wie
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
-\framesubtitle{Dynamische Systeme Systeme}
+\framesubtitle{Dynamische Systeme }
 \begin{block}{Beispiel}
 $(1) \;x'(t) = \mu e^{x}$.  Dann ist $x(t)= c e^{\mu t}$ für alle $c \in \mathbb{R}$ eine Lösung. Ist $x(0) = x_0$, so ist   $x(t)= x_0 e^{\mu t}$ eine Lösung von (1) mit $x(0) = x_0$. 
 \end{block}
@@ -53,20 +53,20 @@ $(1) \;x'(t) = \mu e^{x}$.  Dann ist $x(t)= c e^{\mu t}$ für alle $c \in \mathb
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
-\framesubtitle{Dynamische Systeme Systeme}
+\framesubtitle{Dynamische Systeme }
 \begin{block}{System von Differentialgleichungen}
 Ein System von Differentialgleichungen $1$-ter Ordnung ist ein System von Gleichungen
 \begin{align*}
 \begin{matrix} x_1'(t) = f_1(t, x_1, \cdots, x_n ) \\  \\ x_2'(t) = f_2(t, x_1, \cdots, x_n ) \\  \vdots \\  x_n'(t) = f_n(t, x_1, \cdots, x_n )\end{matrix}
 \end{align*}
-Werden zusätzlich die Anfanfsbedingungen $x_1(t_0)= x_0^1; \dots x_n(t_0) = x_0^n$ vorgegebenen, so spricht man von einem Anfangswertproblem.
+Werden zusätzlich die Anfanfsbedingungen $x_1(t_0)= x_0^1, \dots ,  x_n(t_0) = x_0^n$ vorgegebenen, so spricht man von einem Anfangswertproblem.
 Eine Lösung ist eine Funktion $x : I \subset \mathbb{R} \to \mathbb{R}^n$, deren Koordinatenfunktionen diese Bedingungen erfüllt.
 \end{block}
  \end{frame}
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
-\framesubtitle{Dynamische Systeme Systeme}
+\framesubtitle{Dynamische Systeme }
 \begin{block}{System von Differentialgleichungen}
 
 Ein Anfangswertproblem $n$-ter Ordnung
@@ -74,14 +74,14 @@ Ein Anfangswertproblem $n$-ter Ordnung
 \begin{align*}
 \begin{matrix} x_1'(t) = x_2(t) \\  \\ x_2'(t) = x_3(t) \\  \vdots  \\ x_n'(t) = f(t, x_1, \cdots, x_n )\end{matrix}
 \end{align*}
-mit den Anfangswertbedingungen  $x_1(t_0) = x_0 ; x_2(t_1) = x_1; \cdots ; x_{n-1}(t_{0})= x_{n-1} $.
+mit den Anfangswertbedingungen  $x_1(t_0) = x_0 , x_2(t_0) = x_1, \cdots , x_{n-1}(t_{0})= x_{n-1} $.
 \end{block}
  \end{frame}
 
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
-\framesubtitle{Dynamische Systeme Systeme}
+\framesubtitle{Dynamische Systeme }
 \begin{block}{System von Differentialgleichungen}
 Ein Vektorfeld ist eine Abbildung $$v : \Omega \subset \mathbb{R}^n \to \mathbb{R}^n \; ,$$ die jedem Punkt $x  \in \Omega$ einen Vektor $v(x) \in \mathbb{R}^n$ zuordnet.
 \end{block}
@@ -95,7 +95,7 @@ Ein Vektorfeld ist eine Abbildung $$v : \Omega \subset \mathbb{R}^n \to \mathbb{
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
-\framesubtitle{Dynamische Systeme Systeme}
+\framesubtitle{Dynamische Systeme }
 \begin{block}{System von Differentialgleichungen}
 Eine Weg $\varphi : I \subset \mathbb{R} \to \mathbb{R}^n$ heißt Integralkurve in dem Vektorfeld $v : \Omega \subset \mathbb{R}^n \to \mathbb{R}^n$, falls 
 $$\varphi' (t) = v(\varphi(t))$$ gilt für alle $t \in  I$.
@@ -111,7 +111,7 @@ $$\varphi' (t) = v(\varphi(t))$$ gilt für alle $t \in  I$.
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
-\framesubtitle{Dynamische Systeme Systeme}
+\framesubtitle{Dynamische Systeme }
 \begin{block}{System von Differentialgleichungen}
 Ein dynamisches System ist eine  Abbildung $F : U \subset \mathbb{R} \times \mathbb{R}^n \to \mathbb{R}^n$, die jedem Punkt $(t,x)  \in U$ einen Vektor $F(t,x) \in \mathbb{R}^n$ zuordnet. Eine Integralkurve oder Lösung für $F$ ist eine Weg $\varphi : I \to \mathbb{R}^n$ mit 
 $$\varphi'(t) = F(t, \varphi(t)) $$
@@ -122,7 +122,7 @@ für alles $t \in I$.
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
-\framesubtitle{Dynamische Systeme Systeme}
+\framesubtitle{Dynamische Systeme }
 \begin{block}{System von Differentialgleichungen}
 
 Für eine  vektorwertige Funktion  $f : I   \to \mathbb{R}^n; f(t) : = \begin{pmatrix} f_1(t)  \\ \vdots \\ f_n(t) \end{pmatrix}$ definieren wir das Integral komponentenweise durch
@@ -132,7 +132,7 @@ $$\int_{a}^{b}  f(t) dt := \begin{pmatrix} \int_{a}^{b}  f_1(t) dt  \\ \vdots \\
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
-\framesubtitle{Dynamische Systeme Systeme}
+\framesubtitle{Dynamische Systeme }
 \begin{block}{System von Differentialgleichungen}
 Ein Weg $\varphi : I \subset \mathbb{R} \to \mathbb{R}^n$ ist genau dann Lösung des AWP $\varphi'(t) = F(t , \varphi)$ mit $ \varphi(t_0)= x_0$, wenn
 $$ \varphi(t) =  x_0 + \int_{t_0}^{t} F(t, \varphi) dt$$
@@ -146,7 +146,7 @@ Folgt direkt durch komponentenweise Anwendung des Hauptsatzes der Integral- und 
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
-\framesubtitle{Dynamische Systeme Systeme}
+\framesubtitle{Dynamische Systeme }
 \begin{block}{Lipschitz-Stetig}
 Eine  Abbildung $F : U \subset \mathbb{R} \times \mathbb{R}^n \to \mathbb{R}^n$ heißt Lipschitz-Stetig,
 falls es eine Konstante $L \geq 0$ gibt  mit
@@ -159,7 +159,7 @@ für alle $(t,x)$ und $(t,x')$ in $U$.
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
-\framesubtitle{Dynamische Systeme Systeme}
+\framesubtitle{Dynamische Systeme }
 \begin{block}{Metrischer Raum}
 Ein metrischer Raum $(X,d)$ ist eine Menge $X$ zusammen mit einer Abbildung $d : X \times X \to X$ die linear ist in beiden Argumenten und die Dreiecksungleichung $d(x,y) \leq d(x,z) + d(z,y)$ erfüllt.  
 \end{block}
@@ -175,7 +175,7 @@ Das für uns später relevante Beispiel ist der Funktionenraum mit der Maximumsn
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
-\framesubtitle{Dynamische Systeme Systeme}
+\framesubtitle{Dynamische Systeme }
 \begin{block}{Banachscher Fixpunktsatz}
 Es sei $(X,d)$ ein vollständiger metrischer Raum und $P: X \to X$ eine Abbildung mit $$d(P(x), P(x)) < \lambda d(x,y)$$ und $\lambda < 1$. Dann besitzt $P$ genau einen Fixpunkt $x^* \in X$ mit $P(x^*) = x^*$.
 
@@ -185,7 +185,7 @@ Es sei $(X,d)$ ein vollständiger metrischer Raum und $P: X \to X$ eine Abbildun
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
-\framesubtitle{Dynamische Systeme Systeme}
+\framesubtitle{Dynamische Systeme }
 \begin{figure}[H]
       \centering
     \includegraphics[width=0.7\textwidth]{images/640px-Floral_matryoshka_set_2_smallest_doll_nested.JPG}
@@ -212,7 +212,7 @@ Da $\lambda < 1$ folgt $  \lim_{n \to \infty} d(x_{n + m} , x_{ m})   \leq  \lim
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
-\framesubtitle{Dynamische Systeme Systeme}
+\framesubtitle{Dynamische Systeme }
 \begin{block}{Lokaler Existenzsatz von Picard-Lindelöf}
 Das dynamisches System  $$F : U \subset \mathbb{R} \times \mathbb{R}^n \to \mathbb{R}^n$$ sei lokal Lipschitz-Stetig. 
 Dann gibt es zu jedem Punkt $(t_0, x_0) \in U$ ein Intervall $I_\delta (t_0) := (t_0 - \delta, t_0 + \delta) \subset \mathbb{R}$ auf dem das AWP 
@@ -224,14 +224,19 @@ $$ x' = F(t,x), \; \; x(t_0) = x_0$$
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Beweis}
-
+Betrachte die Menge  $M: = \{ \psi : I_\delta (t_0) \to \mathbb{R}^n \; | \; ||\psi(t) - x_0 || \leq b  \}$ von Wegen in der Nähe von $x_0$ und die Abbildung
+\begin{align*}
+& P : M \to M \\
+& (P \psi)(t) := x_0 + \int_{t_0}^{t} F(t, \psi(t)) dt
+\end{align*}
+Ein Fixpunkt von $P$ ist eine Lösung der Differentialgleichung. P ist eine Kontraktion.
  \end{frame}
 
 
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
-\framesubtitle{Dynamische Systeme Systeme}
+\framesubtitle{Dynamische Systeme }
 \begin{block}{Lineare (gewöhnliche) Differentialgleichung.}
 Eine Differentialgleichung der Form
 $$ x' (t): = A(t) x(t) + b(t)$$
@@ -243,7 +248,7 @@ mit $A: I \subset \mathbb{R} \to \mathbb{R}^{n \times n}$ und $b: I \subset \mat
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
-\framesubtitle{Dynamische Systeme Systeme}
+\framesubtitle{Dynamische Systeme }
 \begin{block}{Existenz und Eindeutigkeit]}
 Ist $x' (t): = A(t) x(t) + b(t)$ eine lineare Differentialgleichung und $A$ und $b$ stetig, so besitzt das AWP 
 $$ x' (t): = A(t) x(t) + b(t) ; \; \; x(t_0) = x_0 $$
