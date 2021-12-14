@@ -108,7 +108,7 @@ Ein Vektorfeld ist eine Abbildung $$v : \Omega \subset \mathbb{R}^n \to \mathbb{
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Dynamische Systeme }
 \begin{block}{System von Differentialgleichungen}
-Eine Weg $\varphi : I \subset \mathbb{R} \to \mathbb{R}^n$ heißt Integralkurve in dem Vektorfeld $v : \Omega \subset \mathbb{R}^n \to \mathbb{R}^n$, falls 
+Ein Weg $\varphi : I \subset \mathbb{R} \to \mathbb{R}^n$ heißt Integralkurve in dem Vektorfeld $v : \Omega \subset \mathbb{R}^n \to \mathbb{R}^n$, falls 
 $$\varphi' (t) = v(\varphi(t))$$ gilt für alle $t \in  I$.
 \end{block}
 \begin{figure}[H]
@@ -172,7 +172,7 @@ für alle $(t,x)$ und $(t,x')$ in $U$.
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Dynamische Systeme }
 \begin{block}{Metrischer Raum}
-Ein metrischer Raum $(X,d)$ ist eine Menge $X$ zusammen mit einer Abbildung $d : X \times X \to X$ die linear ist in beiden Argumenten und die Dreiecksungleichung $d(x,y) \leq d(x,z) + d(z,y)$ erfüllt.  
+Ein metrischer Raum $(X,d)$ ist eine Menge $X$ zusammen mit einer Abbildung $d : X \times X \to \mathbb{R}$ die linear ist in beiden Argumenten und die Dreiecksungleichung $d(x,y) \leq d(x,z) + d(z,y)$ erfüllt.  
 \end{block}
 \begin{block}{Beispiel}
 $d(x,y) : = || y- x  ||$  wobei $||  \cdot ||$  eine Norm ist. 
@@ -217,7 +217,7 @@ Mit wiederholtem Anwenden der Dreiecksungleichung gilt
 \begin{align*}
 d(x_{n + m} , x_{ m}) \leq d(x_{n+1} , x_{n})  +  d(x_{n +2} , x_{n +1}) +   \cdots   +  d(x_{n + m } , x_{n +m -1}) \; .
 \end{align*}
-Da $\lambda < 1$ folgt $  \lim_{n \to \infty} d(x_{n + m} , x_{ m})   \leq  \lim_{n \to \infty} \frac{\lambda^n}{1 - \lambda} d(x_{1} , d_{0}) = 0$ und damit ist $x_n$ eine Cauchyfolge.  Da $(X,d)$ vollständig ist, konvergiert die Folge in $X$ gegen einen Grenzwert $x^*$. Für diesen gilt $P(x^*) =  P (  \lim_{n \to \infty}  x^*) =  \lim_{n \to \infty} P(x_n)  =  \lim_{n \to \infty} x_{n+1} = x^*$ und damit ist $x^*$ ein Fixpunkt von $P$.
+Da $\lambda < 1$ folgt $  \lim_{n \to \infty} d(x_{n + m} , x_{ m})   \leq  \lim_{n \to \infty} \frac{\lambda^n}{1 - \lambda} d(x_{1} , d_{0}) = 0$ und damit ist $x_n$ eine Cauchyfolge.  Da $(X,d)$ vollständig ist, konvergiert die Folge in $X$ gegen einen Grenzwert $x^*$. Für diesen gilt $P(x^*) =  P (  \lim_{n \to \infty}  x_n) =  \lim_{n \to \infty} P(x_n)  =  \lim_{n \to \infty} x_{n+1} = x^*$ und damit ist $x^*$ ein Fixpunkt von $P$.
 
  \end{frame}
 
