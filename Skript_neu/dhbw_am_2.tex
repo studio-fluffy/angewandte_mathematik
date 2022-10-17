@@ -85,7 +85,8 @@ Eine Funktion  $f: U \subset \mathbb{R}^n \to \mathbb{R}$ heisst differenzierter
 $df(a):  \mathbb{R}^n \to  \mathbb{R}^n$ gibt mit
 \begin{align}
 \label{diff}
-f(a + h)  =  f(a)  +  df(a)  h + o(||h||) 
+f(a + h)  =  f(a)  +  df(a) h + o(||h||)  \\
+\Leftrightarrow lim_{h \to 0} \frac{f(a + h)  -  f(a)  -  df(a)h}{||h||} = 0
 \end{align}
 für alle $h \in \mathbb{R}^n$
 \end{block}
@@ -117,7 +118,9 @@ Die lineare Abbildung $df(a)$ ist eindeutig bestimmt.
     \begin{block}{Beweis}
 Ist $df'(a)$ eine weiter Abbildung mit Eigenschaft $(\ref{diff})$, so gilt für jeden Basisvektor $e_i$
 \begin{align}
-(df(a) - df'(a))(e_i) = lim_{t \to 0}\frac{(df'(a) - df(a))(t e_i)}{||te_i||} = 0
+& \lim_{t \to 0} \frac{f(a+te_i) - f(a) - df(a)h }{|t e_i|} = 0 \\
+ & \lim_{t \to 0} \frac{f(a+te_i) - f(a) - df'(a)h }{|t e_i|}  = 0\\
+& \Rightarrow (df(a) - df'(a))(e_i) = lim_{t \to 0}\frac{(df'(a) - df(a))(t e_i)}{||te_i||} = 0
 \end{align}
 \end{block}
  \end{frame}
@@ -220,7 +223,7 @@ existieren.
     \frametitle{Mehrdimensionale Differentialrechnung}
 \framesubtitle{Differenzierbarkeit}
     \begin{block}{Beispiel}
-Ist eine Funktion $f$ in $a$ differenzierter, so ist sie dort partiell differenzierbar und es gilt
+Ist eine Funktion $f$ in $a$ differenzierbar, so ist sie dort partiell differenzierbar und es gilt
 \begin{align*}
 df(a)h = f'(a)h = \sum_{i=1}^{n} \partial_i f(a) \cdot h_i \\
 f'(a) = \bigl( \partial_1f(a), \cdots , \partial_n f(a) \bigr)
