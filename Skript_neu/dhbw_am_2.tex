@@ -65,7 +65,7 @@ Eine Funktion $f :U \to \mathbb{R}^m$ heißt stetig, wenn sie für alle $a \in U
     \frametitle{Mehrdimensionale Differentialrechnung}
 \framesubtitle{Limes}
     \begin{block}{Landau Notation}
-Für eine Funktion $g : U \subset \mathbb{R}^n \to \mathbb{R}^m$ bezeichnen wir die Wachstumsklasse 
+Für eine Funktion $g : U \subset \mathbb{R}^n \to \mathbb{R}$ bezeichnen wir die Wachstumsklasse 
 \begin{align*}
 o(g) := \{ f : U  \to \mathbb{R} \; | \; \lim_{x \to a} \frac {|f(x)|}{|g(x)|} = 0 \; \forall a \in U \} \\
 O(g) := \{ f : U  \to \mathbb{R} \; | \; \lim_{x \to a} \frac {|f(x)|}{|g(x)|} < \infty \; \forall a \in U \}
@@ -79,7 +79,7 @@ O(g) := \{ f : U  \to \mathbb{R} \; | \; \lim_{x \to a} \frac {|f(x)|}{|g(x)|} <
 \framesubtitle{Lokale Linearisierung}
     \begin{block}{Lokale Linearisierung}
 Eine Funktion  $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ heisst differenzierter  in $a \in U$ falls es eine lineare Funktion 
-$df(a):  \mathbb{R}^n \to  \mathbb{R}^n$ gibt mit
+$df(a):  \mathbb{R}^n \to  \mathbb{R}^m$ gibt mit
 \begin{align}
 \label{diff}
 f(a + h)  =  f(a)  +  df(a) h + o(||h||)  \\
