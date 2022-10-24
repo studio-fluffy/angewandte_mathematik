@@ -1,5 +1,5 @@
 SyncTeX Version:1
-Input:1:/Users/johannesriesterer/code/angewandte_mathematik/Skript_neu/TSWLatexianTemp_000070.tex
+Input:1:/Users/johannesriesterer/code/angewandte_mathematik/Skript_neu/TSWLatexianTemp_000075.tex
 Input:2:/usr/local/texlive/2011/texmf-dist/tex/latex/beamer/beamer.cls
 Input:3:/usr/local/texlive/2011/texmf-dist/tex/latex/beamer/beamerbasercs.sty
 Input:4:/usr/local/texlive/2011/texmf-dist/tex/latex/beamer/beamerbasemodes.sty
@@ -151,15 +151,15 @@ Input:149:/usr/local/texlive/2011/texmf-dist/tex/generic/xypic/xypdf-cu.tex
 Input:150:/usr/local/texlive/2011/texmf-dist/tex/generic/xypic/xypdf-fr.tex
 Input:151:/usr/local/texlive/2011/texmf-dist/tex/generic/xypic/xypdf-li.tex
 Input:152:/usr/local/texlive/2011/texmf-dist/tex/generic/xypic/xypdf-ro.tex
-Input:153:/Users/johannesriesterer/code/angewandte_mathematik/Skript_neu/./TSWLatexianTemp_000070.aux
+Input:153:/Users/johannesriesterer/code/angewandte_mathematik/Skript_neu/./TSWLatexianTemp_000075.aux
 Input:154:/usr/local/texlive/2011/texmf-dist/tex/context/base/supp-pdf.mkii
 Input:155:/usr/local/texlive/2011/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Input:156:/usr/local/texlive/2011/texmf-dist/tex/latex/oberdiek/grfext.sty
 Input:157:/usr/local/texlive/2011/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 Input:158:/usr/local/texlive/2011/texmf-dist/tex/latex/hyperref/nameref.sty
 Input:159:/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
-Input:160:/Users/johannesriesterer/code/angewandte_mathematik/Skript_neu/./TSWLatexianTemp_000070.out
-Input:161:/Users/johannesriesterer/code/angewandte_mathematik/Skript_neu/./TSWLatexianTemp_000070.out
+Input:160:/Users/johannesriesterer/code/angewandte_mathematik/Skript_neu/./TSWLatexianTemp_000075.out
+Input:161:/Users/johannesriesterer/code/angewandte_mathematik/Skript_neu/./TSWLatexianTemp_000075.out
 Input:162:/usr/local/texlive/2011/texmf-dist/tex/latex/beamer/translator/dicts/translator-basic-dictionary/translator-basic-dictionary-English.dict
 Input:163:/usr/local/texlive/2011/texmf-dist/tex/latex/beamer/translator/dicts/translator-bibliography-dictionary/translator-bibliography-dictionary-English.dict
 Input:164:/usr/local/texlive/2011/texmf-dist/tex/latex/beamer/translator/dicts/translator-environment-dictionary/translator-environment-dictionary-English.dict
@@ -168,7 +168,7 @@ Input:166:/usr/local/texlive/2011/texmf-dist/tex/latex/beamer/translator/dicts/t
 Input:167:/usr/local/texlive/2011/texmf-dist/tex/latex/beamer/translator/dicts/translator-theorem-dictionary/translator-theorem-dictionary-English.dict
 Input:168:/usr/local/texlive/2011/texmf-dist/tex/latex/amsfonts/umsa.fd
 Input:169:/usr/local/texlive/2011/texmf-dist/tex/latex/amsfonts/umsb.fd
-Input:170:/Users/johannesriesterer/code/angewandte_mathematik/Skript_neu/./TSWLatexianTemp_000070.nav
+Input:170:/Users/johannesriesterer/code/angewandte_mathematik/Skript_neu/./TSWLatexianTemp_000075.nav
 Output:pdf
 Magnification:1000
 Unit:1
@@ -4945,13 +4945,13 @@ x1,123:11296160,10484562
 x1,123:11953043,10484562
 )
 (1,123:3929477,11462287:8036324,538214,179404
-k1,123:7350533,11462287:3421056
+k1,123:7151194,11462287:3221717
 x1,123:8127954,11462287
 (1,123:8127954,11574387:217453,359279,0
 x1,123:8260848,11574387
 )
-x1,123:8544746,11462287
-k1,123:11965801,11462287:3421055
+x1,123:8744085,11462287
+k1,123:11965801,11462287:3221716
 )
 ]
 h1,123:11965801,10970036:78643,0,0
@@ -5055,13 +5055,13 @@ x1,123:11480025,12455525
 x1,123:12136908,12455525
 )
 (1,123:3929477,13433250:8220189,538214,179404
-k1,123:7442465,13433250:3512988
+k1,123:7243126,13433250:3313649
 x1,123:8219886,13433250
 (1,123:8219886,13545350:217453,359279,0
 x1,123:8352780,13545350
 )
-x1,123:8636678,13433250
-k1,123:12149666,13433250:3512988
+x1,123:8836017,13433250
+k1,123:12149666,13433250:3313649
 )
 ]
 h1,123:12149666,12940999:78643,0,0
@@ -23394,7 +23394,7 @@ g1,429:22311243,17900937
 ]
 !16859
 }29
-Input:171:/Users/johannesriesterer/code/angewandte_mathematik/Skript_neu/./TSWLatexianTemp_000070.aux
+Input:171:/Users/johannesriesterer/code/angewandte_mathematik/Skript_neu/./TSWLatexianTemp_000075.aux
 !113
 Postamble:
 Count:19916
