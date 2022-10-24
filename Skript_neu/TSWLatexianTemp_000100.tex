@@ -186,7 +186,7 @@ Richtungsableitung von $f$ am Punkt $a$ in Richtung $h$. Sie misst die Änderung
 
 Speziell nennen wir für die Standard Basisvektoren $e_i$ 
 \begin{align*}
-\frac{\partial f(a)}{\partial x_n}  := \partial_{e_i} f(a) := \lim_{t \to 0} \frac{f(a + t e_i) - f(a)}{t}
+\frac{\partial f(a)}{\partial x_i}  := \partial_{e_i} f(a) := \lim_{t \to 0} \frac{f(a + t e_i) - f(a)}{t}
 \end{align*}
 die partielle Ableitung von $f$ in $a$ nach $x_i$.
 \end{block}
@@ -247,9 +247,9 @@ f'(a) = \bigl( \partial_1f(a), \cdots , \partial_n f(a) \bigr)
 Ist $f$ differenzierter, so gilt für $t \in \mathbb{R}$ und $h \in \mathbb{R}^n$
 \begin{align*}
 & f(a + th)  =  f(a)  +  df(a) th + R(||th||) \\
-& \lim_{th \to 0} \frac{|R(th)|}{|th|} = 0 \\
-&\Rightarrow  \lim_{t \to 0} \frac{|R(th)|}{|th|} = 0 \\
-&\Rightarrow  df(a)h = \lim_{t \to 0} \frac{f(a+th) - f(a)}{|t|} = \partial_h f(a)\\
+& \lim_{th \to 0} \frac{||R(th)||}{||th||} = 0 \\
+&\Rightarrow  \lim_{t \to 0} \frac{||R(th)||}{||th||} = 0 \\
+&\Rightarrow  df(a)h = \lim_{t \to 0} \frac{f(a+th) - f(a)}{||t||} = \partial_h f(a)\\
 &\Rightarrow df(a)e_i = \partial_if(a)
 \end{align*}
 \end{block}
