@@ -31,7 +31,7 @@
     \frametitle{Mehrdimensionale Differentialrechnung}
 \framesubtitle{Limes}
     \begin{block}{Konvergenz}
-Eine Funktion $f :U \to \mathbb{R}^m$ heißt stetig in $a$, wenn für alle folgen $x_n  \in U$  mit $x_n \to a$ die Folge $f(x_n)$ gegen $f(a)$ konvergiert.
+Eine Funktion $f :U \to \mathbb{R}^m$ heißt stetig in $a \in U$, wenn für alle folgen $x_n  \in U$  mit $x_n \to a$ die Folge $f(x_n)$ gegen $f(a)$ konvergiert.
 
 Dies ist gleichbedeutend damit, dass für jedes $\epsilon > 0$ ein $\delta > 0$ existiert, so dass
 $d(f(x) ,L_a) < \epsilon$ gilt für jedes $x$ mit $d(x, a) < \delta$.
@@ -78,7 +78,7 @@ O(g) := \{ f : U  \to \mathbb{R} \; | \; \lim_{x \to a} \frac {|f(x)|}{|g(x)|} <
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Lokale Linearisierung}
     \begin{block}{Lokale Linearisierung}
-Eine Funktion  $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ heisst differenzierter  in $a \in U$ falls es eine lineare Funktion 
+Eine Funktion  $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ heisst differenzierbar  in $a \in U$ falls es eine lineare Funktion 
 $df(a):  \mathbb{R}^n \to  \mathbb{R}^m$ gibt mit
 \begin{align}
 \label{diff}
@@ -127,7 +127,7 @@ Ist $df'(a)$ eine weiter Abbildung mit Eigenschaft $(\ref{diff})$, so gilt für 
     \frametitle{Mehrdimensionale Differentialrechnung}
 \framesubtitle{Limes}
     \begin{block}{Beispiel}
-$A \in \mathbb{R}^{n \times m}$, $b \in \mathbb{R}^m$ 
+$A \in \mathbb{R}^{n \times m}$, $b \in \mathbb{R}^n$ 
 \begin{align}
 f(x) : = A\cdot x + b \\
 df(a) : = A 
@@ -247,7 +247,7 @@ f'(a) = \bigl( \partial_1f(a), \cdots , \partial_n f(a) \bigr)
 Ist $f$ differenzierter, so gilt für $t \in \mathbb{R}$ und $h \in \mathbb{R}^n$
 \begin{align*}
 & f(a + th)  =  f(a)  +  df(a) th + R(||th||) \\
-& \lim_{h \to 0} \frac{|R(th)|}{|th|} = 0 \\
+& \lim_{th \to 0} \frac{|R(th)|}{|th|} = 0 \\
 &\Rightarrow  \lim_{t \to 0} \frac{|R(th)|}{|th|} = 0 \\
 &\Rightarrow  df(a)h = \lim_{t \to 0} \frac{f(a+th) - f(a)}{|t|} = \partial_h f(a)\\
 &\Rightarrow df(a)e_i = \partial_if(a)
