@@ -248,8 +248,8 @@ Ist $f$ differenzierter, so gilt für $t \in \mathbb{R}$ und $h \in \mathbb{R}^n
 \begin{align*}
 & f(a + th)  =  f(a)  +  df(a) th + R(||th||) \\
 & \lim_{th \to 0} \frac{||R(th)||}{||th||} = 0 \\
-&\Rightarrow  \lim_{t \to 0} \frac{||R(th)||}{||th||} = 0 \\
-&\Rightarrow  df(a)h = \lim_{t \to 0} \frac{f(a+th) - f(a)}{||t||} = \partial_h f(a)\\
+&\Rightarrow  \lim_{t \to 0} \frac{||R(th)||}{||th||} = 0 \Rightarrow  \lim_{t \to 0} \frac{||R(th)||}{|t|} = 0  \\
+&\Rightarrow  df(a)h = \lim_{t \to 0} \frac{f(a+th) - f(a)}{|t|} = \partial_h f(a)\\
 &\Rightarrow df(a)e_i = \partial_if(a)
 \end{align*}
 \end{block}
