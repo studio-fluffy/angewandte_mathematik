@@ -32,17 +32,17 @@
 \framesubtitle{Kettenregel}
 
     \begin{block}{Mehrdimensionale Differenzierbarkeit}
-Für $z:= (z_1, \cdots ,z_n) \in \mathbb{R}^k$ bezeichnen 
+Für $z:= (z_1, \cdots ,z_k) \in \mathbb{R}^k$ bezeichnen 
 \begin{align*}
 & pr_i : \mathbb{R}^k \to \mathbb{R} \\
-& pr_i(z): = z_i
+& pr_i(z): = <e_i, z>_2 = z_i
 \end{align*}
 die Projektionen auf die $i$-te Koordinate.
 \end{block}
 
 
     \begin{block}{Mehrdimensionale Differenzierbarkeit}
-Für zwei Funktionen  $g: U \subset \mathbb{R}^n \to V  \subset \mathbb{R}^m$ und $g: V \subset \mathbb{R}^m \to W  \subset \mathbb{R}^l$ bezeichnet 
+Für zwei Funktionen  $g: U \subset \mathbb{R}^n \to V  \subset \mathbb{R}^m$ und $f: V \subset \mathbb{R}^m \to W  \subset \mathbb{R}^l$ bezeichnet 
 \begin{align*}
 & f \circ g: U \to W \\
 & (f \circ g)(x) : = f (g(x))
@@ -61,7 +61,7 @@ die Hintereinanderausführung (Verkettung) von $f$ und $g$.
 \framesubtitle{Kettenregel}
 
     \begin{block}{Mehrdimensionale Differenzierbarkeit}
-Eine Funktion $F: U \subset \mathbb{R}^n \to \mathbb{R}^n$ ist genau dann differenzierbar, wenn alle Koordinatenfunktionen
+Eine Funktion $F: U \subset \mathbb{R}^n \to \mathbb{R}^m$ ist genau dann differenzierbar, wenn alle Koordinatenfunktionen
 \begin{align*}
 & F_i :U \subset \mathbb{R}^n \to \mathbb{R} \\
 & F_i(x): = (pr_i \circ F) (x) := pr_i(F(x))
@@ -78,7 +78,7 @@ differenzierbar sind.
 \framesubtitle{Kettenregel}
 
     \begin{block}{Beweis}
-Betrachte $dF = (dF_1, \cdots, dF_n) $ zusammen mit dem  Restglied $R(h)  = (R_1(h), \cdots, R_n(h))$ definiert jeweils durch die rechte oder linke Seite.
+Betrachte $dF = (dF_1, \cdots, dF_m) $ zusammen mit dem  Restglied $R(h)  = (R_1(h), \cdots, R_m(h))$ definiert jeweils durch die rechte oder linke Seite.
 \end{block}
 
  \end{frame}
@@ -108,17 +108,17 @@ mit $b = g(a)$.
 Nach Voraussetzung gilt
 \begin{align*}
 g(a + h) = g(a) + dg(a)h + ||h||r_1(h);  \; \; \lim_{h \to 0} r_1(h) = 0\\
-f(b + k) = f(b) + df(b)h + ||k||r_2(k); \; \; \lim_{k \to 0} r_1(k) = 0
+f(b + k) = f(b) + df(b)k + ||k||r_2(k); \; \; \lim_{k \to 0} r_1(k) = 0
 \end{align*}
 \end{block}
 
-    \begin{block}{Beweis}
-Einsetzten ergibt mit $k= dg(a)h + ||h||r_1(h)$ und $R(h):= ||h|| df(b) r_1(h) + ||k|| r_2(k)$  
+    \begin{block}{Beweis Kettenregel}
+Einsetzten ergibt 
 \begin{align*}
 (f \circ g)(a + h) = (f \circ g)(a)  + (df(b) \cdot dg(a) )h + R(h)
 \end{align*}
+mit $k= dg(a)h + ||h||r_1(h)$ und $R(h):= ||h|| df(b) r_1(h) + ||k|| r_2(k)$  
 \end{block}
-
  \end{frame}
 
 
@@ -126,12 +126,12 @@ Einsetzten ergibt mit $k= dg(a)h + ||h||r_1(h)$ und $R(h):= ||h|| df(b) r_1(h) +
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Kettenregel}
-    \begin{block}{Beweis}
-Müssen nur noch zeigen, dass $\lim_{h \o 0} \frac{R(h)}{||h||} = 0$ gilt.
+    \begin{block}{Beweis Kettenregel}
+Müssen nur noch zeigen, dass $\lim_{h \to 0} \frac{R(h)}{||h||} = 0$ gilt.
 
 \end{block}
 
-    \begin{block}{Beweis}
+    \begin{block}{Beweis Kettenregel}
 Da $dg(a)$ eine lineare Abbildung ist, gibt es ein $c \in \mathbb{R}$ mit 
 \begin{align*}
 ||k|| \leq ||h|| (c + || r_1(h)||)
