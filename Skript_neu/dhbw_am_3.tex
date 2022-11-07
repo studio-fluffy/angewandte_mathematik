@@ -440,6 +440,28 @@ und somit hat $F_v$ ein isoliertes lokales Maximum und $F_w$ ein isoliertes loka
 
 
 
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Mittelwertsatz}
+    \begin{block}{Mittelwertsatz}
+Ist $f: U \to \mathbb{R}$ eine differenziertere Funktion und $a,b \in U$ Punkte, deren Verbindungsstrecke in $U$ verläuft. Dann gibt gibt es einen Punkt $\xi$ auf dieser Verbindungsstrecke mit
+\begin{align*}
+f(b) - f(a) = df(\xi)(b-a) = f'(\xi) (b-a)
+\end{align*}
+\end{block}
+ \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Mittelwertsatz}
+    \begin{block}{Beweis Mittelwertsatz}
+Die Verbindungsstrecke ist gegeben durch $\gamma(t) := a + t(b-a)$ mit $t \in [0,1]$. Für $F:= f \circ gamma : [0,1] \to \mathbb{R}$ gilt $f(b) - f(a)= F(1) - F(0)$.
+Nach der Kettenregel ist $F$ differenzierbar. Mit dem eindimensionalen Mittelwertsatz gibt es also ein $\tau \in (0,1)$ mit
+$F(1) - F(0) = F'(\tau)$. Mit der Kettenregel folgt $F'(\tau) = df(\gamma(\tau)) (b-a)$ und somit folgt mit $\xi= \gamma(\tau)$ die Behauptung.
+\end{block}
+ \end{frame}
 
 
 \end{document}
