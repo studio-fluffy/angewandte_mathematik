@@ -215,28 +215,13 @@ minimal wird. Zum Beispiel $$L_D(\omega) := \sum_{(x_i,y_i) \in D} (f(\omega, x_
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Backpropagation}
     \begin{block}{Konditionszahl}
-Ist $f : U \to \mathbb{R}^m$ differnzierbar, so lässt dich mit dem Mittelwertsatz die Konditionszahlen berechnen durch
+Ist $f : U \to \mathbb{R}^n$ differnzierbar, so lässt dich mit dem Mittelwertsatz die Konditionszahlen berechnen durch
 \begin{align*}
-& \kappa = || f'(x) || \\
-& \kappa_{rel} = \frac{||x||}{|| f(x)||} ||f'(x) ||
+\kapa = || f'(x) || \\
+\kappa_{rel} = \frac{||x||}{|| f(x)||} ||f'(x) ||
 \end{align*}
-mit der Operatornorm 
-$||h|| : = \sup_{||x|| =  1} ||h(x)||$
 
-\end{block}
- \end{frame}
 
-\begin{frame}
-    \frametitle{Angewandte Mathematik}
-\framesubtitle{Backpropagation}
-    \begin{block}{Konditionszahl Addition/Subtraction}
-Für $f:(x,y):= x \pm y$ ist $f'(x,y) = (1,\pm 1)$ und dem Betrag als Norm auf $\mathbb{R}$  und der Norm $||(x,y)|| := |x| + |y|$ ist 
-\begin{align*}
-& \kappa = 1 \\
-& \kappa_{rel} = \frac{|a| + |b| }{|a \pm b|}
-\end{align*}
-Für die Addition ist  $\kappa_{rel} = 1$ und damit gut konditioniert.
-Für die Subtraktion zweier fast gleich großer Zahlen ist $|a - b| << |a| + |b|$ und damit ist in diesem Fall $\kappa_{rel} >> 1$ und damit schlecht konditioniert. 
 \end{block}
  \end{frame}
 
