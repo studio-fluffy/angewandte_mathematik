@@ -193,7 +193,7 @@ $\theta''(t) = -L \theta - \underbrace{\mu \theta'}_{\text{drag}}$. $L \theta = 
     \begin{align*}
     \det (\begin{pmatrix}
         0 & -1  \\ 1 & 0
-    \end{pmatrix} - \lambda I) = 
+    \end{pmatrix} - \lambda E) = 
     \det \begin{pmatrix}
         -\lambda & -1  \\ 1 & -\lambda  
     \end{pmatrix} = \lambda^2 +1 \Rightarrow \lambda_{1,2} = \pm i
@@ -224,7 +224,7 @@ Komplexer Eigenwert.
     \begin{align*}
     \det (\begin{pmatrix}
         1 & 1  \\ 1 & 0
-    \end{pmatrix} - I) = 
+    \end{pmatrix} - E) = 
     \det \begin{pmatrix}
         1-\lambda & 1  \\ 0 & 1-\lambda  
     \end{pmatrix} = (1-\lambda)^2 \Rightarrow \lambda_{1,2} = 1
@@ -241,7 +241,7 @@ Doppelter Eigenwert.
     \begin{align*}
     \ker (\begin{pmatrix}
         1 & 1  \\ 0 & 1
-    \end{pmatrix} - I) = 
+    \end{pmatrix} - E) = 
     \ker \begin{pmatrix}
         0 & 1  \\ 0 & 0  
     \end{pmatrix} = \{e_1\}
@@ -252,7 +252,7 @@ Doppelter Eigenwert aber Eigenraum ist eindimensional.
     \begin{align*}
     \ker ( (\begin{pmatrix}
         1 & 1  \\ 0 & 1
-    \end{pmatrix} - I)^2) = 
+    \end{pmatrix} - E)^2) = 
     \ker \begin{pmatrix}
         0 & 1  \\ 0 & 0  
     \end{pmatrix}^2 = \ker \begin{pmatrix}
@@ -263,9 +263,9 @@ $e_2$ ist Hauptvektor der Stufe $2$, $e_1$ Hauptvekrot der Stufe $1$, also
 
 $ \biggl (\begin{pmatrix}
     1 & 1  \\ 0 & 1
-\end{pmatrix} - I \biggr) e_2 = e_1; \;  \biggl (\begin{pmatrix}
+\end{pmatrix} - E \biggr) e_2 = e_1; \;  \biggl (\begin{pmatrix}
     1 & 1  \\ 0 & 1
-\end{pmatrix} - I \biggr) e_1 = 0$ 
+\end{pmatrix} - E \biggr) e_1 = 0$ 
  \end{block}
  \end{frame}
 
@@ -275,10 +275,9 @@ $ \biggl (\begin{pmatrix}
 \framesubtitle{Dynamische Systeme }
 
 \begin{block}{Allgemeine Lösung}
-  
     \begin{align*}
         & \varphi_1(t) := e^t \cdot e_1 = e^t \begin{pmatrix} 1 \\ 0\end{pmatrix} \\
-        & \varphi_2(t) := e^t \biggl (I  +  \bigl (\begin{pmatrix} 1 & 1 \\ 0 & 1\end{pmatrix} - I\bigl)t \biggr )e_2 = e^t \begin{pmatrix} t  \\ 1 \end{pmatrix} \\
+        & \varphi_2(t) := e^t \biggl (E  +  \bigl (\begin{pmatrix} 1 & 1 \\ 0 & 1\end{pmatrix} - I\bigl)t \biggr )e_2 = e^t \begin{pmatrix} t  \\ 1 \end{pmatrix} \\
         & \varphi(t) = c_1 \varphi_1(t) +  c_2\varphi_2(t)
     \end{align*}
 \end{block}
