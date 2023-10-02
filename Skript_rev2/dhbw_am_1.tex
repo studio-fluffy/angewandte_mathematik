@@ -143,10 +143,27 @@ Ein Algorithmus ist eine eindeutige Handlungsvorschrift zur Lösung eines Proble
     \begin{block}{Achilles und die Schildkröte infinitessimal betrachtet}
 Sei $s_0$ der Vorsprung der Schildkröte zu Beginn des Rennens, $t_0$ die Zeit, die Achilles benötigt, um $s_0$ zurückzulegen. Die Schildkröte ist $q$-mal langsamer als Achilles.
 Dann holt Achilles die Schildkröte nach der Zeit $t_0 \cdot q$ ein weiteres Mal ein, nach der Zeit $(t_0 \cdot q) \cdot q = t_0 \cdot q^2$ ein drittes Mal usw.
-Mit $q^0 = 1$ ist die Summe aller von Zenon betrachteten Zeiten, die Achilles zurücklegt:
+Mit $q^0 = 1$ ist die Summe aller betrachteten Zeiten, die Achilles zurücklegt:
 
 $t = t_0 \cdot \sum_{n=0}^\infty q^n = t_0 \cdot \lim_{n \to \infty} \sum_{k=0}^{n} q^{k} = t_0 \cdot \lim_{n \to \infty} \frac{1 - q^{n+1}}{1 -q} = \frac{t_0}{1 -q}$.
 \end{block}
+ \end{frame}
+
+
+
+
+\begin{frame}
+    \frametitle{Mehrdimensionale Differentialrechnung}
+\framesubtitle{Limes}
+    \begin{block}{Konvergenz}
+\begin{figure}[H]
+      \centering
+    \includegraphics[width=0.6\textwidth]{images/newton}
+      \caption{Quelle: DALLE}
+\end{figure}
+
+\end{block}
+
  \end{frame}
 
 
@@ -325,7 +342,7 @@ Für eine Gleikommarealisierung $\hat{f}$ eines Algorithmus zur Lösung des Prob
 \end{align*}
 für alle $\widetilde{x} \in E$
 \end{block}
-    \begin{block}{Kondition eines Problems}
+    \begin{block}{Stabilität eines Algorithmus}
 Der Algorithmus $\hat{f}$ heisst stabil, wenn $\sigma$ kleiner ist als die Anzahl der hintereinander ausgeführten Elementaroperationen. 
 \end{block}
  \end{frame}
