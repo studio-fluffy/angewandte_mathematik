@@ -111,22 +111,6 @@ $x''(t) = -x(t)$.
 \end{pmatrix} 
 \end{align*}
 \end{block}
-
-\begin{block}{Lösung Harmonischer Oszillator}
-    Anfangswert $\begin{pmatrix}
-        x_1 \\ x_2\end{pmatrix} = \begin{pmatrix}
-            x_1(t_0) \\ x_2(t_0)\end{pmatrix}$
-    \begin{align*}
-        \begin{pmatrix}
-            x_1(t) \\ x_2(t)
-        \end{pmatrix} = e^{ \begin{pmatrix}
-            0 & -1  \\ 1 & 0
-        \end{pmatrix} t } \cdot \begin{pmatrix}
-            x_1\\ x_2
-        \end{pmatrix}
-    \end{align*}
-\end{block}
-
  \end{frame}
 
 
@@ -138,7 +122,7 @@ $x''(t) = -x(t)$.
 \framesubtitle{Dynamische Systeme }
 \begin{block}{System von Differentialgleichungen}
 
-Für eine  vektorwertige Funktion  $f : I   \to \mathbb{R}^n; f(t) : = \begin{pmatrix} f_1(t)  \\ \vdots \\ f_n(t) \end{pmatrix}$ definieren wir das Integral komponentenweise durch
+Für eine  vekorwertige Funktion  $f : I   \to \mathbb{R}^n; f(t) : = \begin{pmatrix} f_1(t)  \\ \vdots \\ f_n(t) \end{pmatrix}$ definieren wir das Integral komponentenweise durch
 $$\int_{a}^{b}  f(t) dt := \begin{pmatrix} \int_{a}^{b}  f_1(t) dt  \\ \vdots \\ \int_{a}^{b}  f_n(t) dt \end{pmatrix} \; .$$
 \end{block}
  \end{frame}
@@ -209,12 +193,34 @@ für alles $t \in I$.
  \end{frame}
 
 
+
+
+
+ \begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Dynamische Systeme }
+\center
+\includegraphics[scale=0.35]{images/harmonicoszillatorphasespace}
+ \end{frame}
+
+
  \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Dynamische Systeme }
 
 \begin{block}{Lösung Harmonischer Oszillator}
-  
+  \begin{align*}
+    \frac{d}{dt}\begin{pmatrix}
+        x_1(t) \\ x_2(t)
+    \end{pmatrix} = 
+\begin{pmatrix}
+    0 & -1  \\ 1 & 0
+\end{pmatrix} \cdot
+\begin{pmatrix} 
+    x_1(t) \\ x_2(t)
+\end{pmatrix} 
+\end{align*}
+
     \begin{align*}
         \begin{pmatrix}
             x_1(t) \\ x_2(t)
@@ -225,8 +231,42 @@ für alles $t \in I$.
         \end{pmatrix}
     \end{align*}
 \end{block}
-\center
-\includegraphics[scale=0.25]{images/harmonicoszillatorphasespace}
+ \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Dynamische Systeme }
+\begin{block}{Harmonischer Oszillator}
+\begin{align*}
+    \frac{d}{dt}\begin{pmatrix}
+        x_1(t) \\ x_2(t)
+    \end{pmatrix} = 
+\begin{pmatrix}
+    0 & -1  \\ 1 & 0
+\end{pmatrix} \cdot
+\begin{pmatrix} 
+    x_1(t) \\ x_2(t)
+\end{pmatrix} 
+\end{align*}
+\end{block}
+
+\begin{block}{Lösung Harmonischer Oszillator}
+    Anfangswert $\begin{pmatrix}
+        x_1 \\ x_2\end{pmatrix} = \begin{pmatrix}
+            x_1(t_0) \\ x_2(t_0)\end{pmatrix}$
+    \begin{align*}
+        \begin{pmatrix}
+            x_1(t) \\ x_2(t)
+        \end{pmatrix} = e^{ \begin{pmatrix}
+            0 & -1  \\ 1 & 0
+        \end{pmatrix} t } \cdot \begin{pmatrix}
+            x_1\\ x_2
+        \end{pmatrix}
+    \end{align*}
+\end{block}
+
  \end{frame}
 
 
