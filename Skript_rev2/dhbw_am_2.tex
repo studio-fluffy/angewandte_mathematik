@@ -38,7 +38,7 @@
 \begin{block}{Motivation}
 Gegeben ist ein zeitabhängiges System $t \mapsto x(t)$. 
 Möchten verstehen, wie sich $x(t)$ über die Zeit entwickelt. 
-Zu festen Zeitpunkten $t_0, \cdots t_n $ lässt sich $x(t_i)$ messen und damit $x'(t_i) \cong \frac{x(x(t_i) - x(t_{i-1}))}{t_i - t_{i-1}}$ näherungsweise bestimmen. Im allgemeinen ist $x'(t) = f(x(t), t)$. 
+Zu festen Zeitpunkten $t_0, \cdots t_n $ lässt sich $x(t_i)$ messen und damit $x'(t_i) \cong \frac{x(x(t_i) - x(t_{i-1}))}{t_i - t_{i-1}}$ näherungsweise bestimmen. Im allgemeinen ist die Ableitung $x'(t) = f(x(t), t)$ eine Funktion in der Zeit und der Funktion selbst. 
 \end{block}
  \end{frame}
 
@@ -84,11 +84,8 @@ mit den Anfangswertbedingungen  $x_1(t_0) = x_0 , x_2(t_0) = x_1, \cdots , x_{n-
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Dynamische Systeme }
+\center
 \includegraphics[scale=0.35]{images/federpendel}
-
-\begin{block}{Harmonischer Oszillator}
-$x''(t) = -x(t)$.
-\end{block}
 
  \end{frame}
 
@@ -98,6 +95,9 @@ $x''(t) = -x(t)$.
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Dynamische Systeme }
+\begin{block}{Harmonischer Oszillator}
+$x''(t) = -x(t)$.
+\end{block}
 \begin{block}{Harmonischer Oszillator}
 \begin{align*}
     \frac{d}{dt}\begin{pmatrix}
