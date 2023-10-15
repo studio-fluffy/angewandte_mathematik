@@ -106,9 +106,9 @@ d(x_{n+1} , x_{n}) < \lambda d(x_{n} , x_{n-1})   < \lambda^n d(x_{1} , x_{0})  
 \end{align*}
 Mit wiederholtem Anwenden der Dreiecksungleichung gilt 
 \begin{align*}
-d(x_{n + m} , x_{ m}) \leq d(x_{n+1} , x_{n})  +  d(x_{n +2} , x_{n +1}) +   \cdots   +  d(x_{n + m } , x_{n +m -1}) \; .
+d(x_{n + m} , x_{ n}) \leq d(x_{n+1} , x_{n})  +  d(x_{n +2} , x_{n +1}) +   \cdots   +  d(x_{n + m } , x_{n +m -1}) \; .
 \end{align*}
-Da $\lambda < 1$ folgt $  \lim_{n \to \infty} d(x_{n + m} , x_{ m})   \leq  \lim_{n \to \infty} \frac{\lambda^n}{1 - \lambda} d(x_{1} , d_{0}) = 0$ und damit ist $x_n$ eine Cauchyfolge.  Da $(X,d)$ vollständig ist, konvergiert die Folge in $X$ gegen einen Grenzwert $x^*$. Für diesen gilt $P(x^*) =  P (  \lim_{n \to \infty}  x_n) =  \lim_{n \to \infty} P(x_n)  =  \lim_{n \to \infty} x_{n+1} = x^*$ und damit ist $x^*$ ein Fixpunkt von $P$.
+Da $\lambda < 1$ folgt $  \lim_{n \to \infty} d(x_{n + m} , x_{ n})   \leq  \lim_{n \to \infty} \frac{\lambda^n}{1 - \lambda} d(x_{1} , d_{0}) = 0$ und damit ist $x_n$ eine Cauchyfolge.  Da $(X,d)$ vollständig ist, konvergiert die Folge in $X$ gegen einen Grenzwert $x^*$. Für diesen gilt $P(x^*) =  P (  \lim_{n \to \infty}  x_n) =  \lim_{n \to \infty} P(x_n)  =  \lim_{n \to \infty} x_{n+1} = x^*$ und damit ist $x^*$ ein Fixpunkt von $P$.
 
  \end{frame}
 
