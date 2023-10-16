@@ -455,6 +455,17 @@ t_{n+1} &= t_n + h \\
     \end{block}
 \end{frame}
 
+ \begin{frame}
+\framesubtitle{Numerische Lösungen}
+    \begin{block}{Runge Kuta Verfahren als numerische Integration}
+$\dot{y}=f(t,y), \quad  y(t_0)=y_0$
+\begin{align}
+& y_{n+1} = y_n + \int_{t_n}^{t_{n+1}} f(t, y) dt \\
+&  \int_{t_n}^{t_{n+1}} f(t, y) dt \approx h \cdot \sum_{i=1}^4 \gamma_i k_i
+\end{align}
+    \end{block}
+\end{frame}
+
 
 
 \end{document}
