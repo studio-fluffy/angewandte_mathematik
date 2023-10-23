@@ -110,8 +110,7 @@ d(x_{n + m} , x_{ n}) \leq d(x_{n+1} , x_{n})  +  d(x_{n +2} , x_{n +1}) +   \cd
 \end{align*}
 Damit erhalten wir
 \begin{align*}
-& \lim_{n \to \infty} d(x_{n + m} , x_{ n})   \leq  \lim_{n \to \infty}  \lambda^n (\sum_{i=0}^m \lambda^i) d(x_{1} , d_{0} \\
-& = \frac{\lambda^n (1- \lambda^m)}{1-\lambda}  d(x_{1} , d_{0}) \leq  \frac{\lambda^n}{1-\lambda}  d(x_{1} , d_{0}) 
+\lim_{n \to \infty} d(x_{n + m} , x_{ n})   \leq  \lim_{n \to \infty} \frac{\lambda^n}{\sum_{i=0}^m \lambdaî} d(x_{1} , d_{0}) = 0
 \end{align*}
  und da $\lambda < 1$ ist $x_n$ eine Cauchyfolge.  Da $(X,d)$ vollständig ist, konvergiert die Folge in $X$ gegen einen Grenzwert $x^*$. Für diesen gilt $P(x^*) =  P (  \lim_{n \to \infty}  x_n) =  \lim_{n \to \infty} P(x_n)  =  \lim_{n \to \infty} x_{n+1} = x^*$ und damit ist $x^*$ ein Fixpunkt von $P$.
 
