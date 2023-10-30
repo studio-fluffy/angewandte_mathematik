@@ -1,5 +1,7 @@
 \documentclass{beamer}
 \usetheme{Warsaw}
+\setbeamertemplate{footline}[frame number]
+
 
 \usepackage[utf8]{inputenc}
 \usepackage{fancybox}
@@ -277,7 +279,7 @@ Zu jeder Matrix $A \in \mathbb{R}^{n \times n}$ gibt es eine Basis aus Hauptvekt
 \begin{block}{Hauptvektoren}
     Für einen Haupvektor $v$ der Stufe $s$ zum Eigenwert $\lambda$ ist
     \begin{align*}
-       e^{A t} v = e^{\lambda I t}e^{(A - \lambda I)t} = e^{\lambda t} \sum_{k=0}^{s-1} \frac{1}{k!}((A - \lambda I)^k t^k v)
+       e^{A t} v = e^{\lambda I t}e^{(A - \lambda I)t} v = e^{\lambda t} \sum_{k=0}^{s-1} \frac{1}{k!}((A - \lambda I)^k t^k v)
     \end{align*}
 \end{block}
 
