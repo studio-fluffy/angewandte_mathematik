@@ -1,0 +1,59 @@
+\documentclass[a4paper,13pt]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{color}
+\usepackage[ngerman]{babel}
+\usepackage[pdftex]{graphicx}
+%\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\pagestyle{empty}
+
+%\topmargin20mm
+\oddsidemargin0mm
+\parindent0mm
+\parskip2mm
+\textheight25.5cm
+\textwidth15.8cm
+\unitlength1mm
+
+
+
+\begin{document}
+\section*{\large  Übungsblatt 2 \hfill Angewandte Mathematik }
+\hrule
+\hrule
+\vspace{4mm}
+%\includegraphics[width=0.8\textwidth]{sampleplot.pdf}
+
+{\bf Aufgabe 1}
+Betrachte die Menge  $M: = \{ \psi : I_\delta (t_0) \to \mathbb{R}^n \; | \; ||\psi(t) - x_0 || \leq b  \}$ von Wegen in der Nähe von $x_0$ und die Abbildung
+\begin{align*}
+& P : M \to M \\
+& (P \psi)(t) := x_0 + \int_{t_0}^{t} F(t, \psi(t)) dt
+\end{align*}
+Zeigen Sie, dass ein Fixpunkt $\psi^*$ von $P$ eine Lösung der Differentialgleichung 
+$\psi'(t) = F(t, \psi(t))$ ist.
+\vspace{8mm}
+
+
+{\bf Aufgabe 2}
+Seien  $\varphi_1, \cdots, \varphi_n$ 
+Lösungen der homogenen Gleichung $\varphi'(t) = A \varphi(t)$.
+Zeigen Sie, dass dann
+ $c_1 \cdot \varphi_1 + \cdots + c_n \cdot \varphi_n$  auch eine Lösung ist.
+\vspace{8mm}
+
+\vspace{8mm}
+
+{\bf Aufgabe 3}
+
+Programmieren Sie das Runge-Kutta Verfahren in Python. Lösen Sie damit Näherungsweise
+das Räuber-Beute Model und plotten Sie die Lösungen in Python. 
+
+
+\end{document}
+
