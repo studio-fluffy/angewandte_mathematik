@@ -171,7 +171,7 @@ Eine  Funktion  $f: U \to \mathbb{R}$ für die alle partiellen Ableitungen
 \begin{align*}
  \frac{\partial}{\partial x_{i_1}} \cdots   \frac{\partial}{\partial x_{i_k}} f(a)
 \end{align*}
-mit $ i_1,  \cdots, i_k \leq k$ existieren und stetig sind heißt $\mathcal{C}^k$-Funktion oder $k$-mal stetig differenzierbar.
+mit $ i_1 +  \cdots + i_k \leq k$ existieren und stetig sind heißt $\mathcal{C}^k$-Funktion oder $k$-mal stetig differenzierbar.
 \end{block}
     \begin{block}{$\mathcal{C}^k$-Funktionen}
  Eine  $\mathcal{C}^1$-Funktion ist also eine differenzierbare Funktion.
@@ -457,7 +457,8 @@ f(b) - f(a) = df(\xi)(b-a) = f'(\xi) (b-a)
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Mittelwertsatz}
     \begin{block}{Beweis Mittelwertsatz}
-Die Verbindungsstrecke ist gegeben durch $\gamma(t) := a + t(b-a)$ mit $t \in [0,1]$. Für $F:= f \circ gamma : [0,1] \to \mathbb{R}$ gilt $f(b) - f(a)= F(1) - F(0)$.
+Die Verbindungsstrecke ist gegeben durch $\gamma(t) := a + t(b-a)$ mit $t \in [0,1]$. 
+Für $F:= f \circ \gamma : [0,1] \to \mathbb{R}$ gilt $f(b) - f(a)= F(1) - F(0)$.
 Nach der Kettenregel ist $F$ differenzierbar. Mit dem eindimensionalen Mittelwertsatz gibt es also ein $\tau \in (0,1)$ mit
 $F(1) - F(0) = F'(\tau)$. Mit der Kettenregel folgt $F'(\tau) = df(\gamma(\tau)) (b-a)$ und somit folgt mit $\xi= \gamma(\tau)$ die Behauptung.
 \end{block}
