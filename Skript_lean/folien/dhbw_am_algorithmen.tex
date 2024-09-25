@@ -1,0 +1,225 @@
+\documentclass{beamer}
+\usetheme{Warsaw}
+\setbeamertemplate{footline}[frame number]
+
+\usepackage[utf8]{inputenc}
+\usepackage{fancybox}
+\usepackage{multimedia} 
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[all]{xy}
+\begin{document}
+
+
+\title[Angewandte Mathematik] % (optional, only for long titles)
+{Angewandte Mathematik
+\\
+\includegraphics[scale=0.15]{images/cover}
+}
+\subtitle{}
+\author[Dr. Johannes Riesterer] % (optional, for multiple authors)
+{Dr.  rer. nat. Johannes Riesterer}
+
+\date[KPT 2004] % (optional)
+{}
+
+\subject{Angewandte Mathematik}
+
+\frame{\titlepage}
+
+
+\begin{frame}
+\framesubtitle{Algorithmus}
+    \begin{block}{Algorithmus}
+\begin{figure}[H]
+      \centering
+    \includegraphics[width=0.7\textwidth]{images/algo}
+      \caption{Quelle: Wikipedia}
+\end{figure}
+\end{block}
+
+ \end{frame}
+
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{}
+    \begin{block}{Algorithmus Informell}
+Ein Algorithmus ist eine eindeutige Handlungsvorschrift zur Lösung eines Problems oder einer Klasse von Problemen. Algorithmen bestehen aus endlich vielen, wohldefinierten Einzelschritten.
+\end{block}
+    \begin{block}{Algorithmus Formal}
+\includegraphics[scale=0.8]{images/Turingmaschine}
+\end{block}
+ \end{frame}
+
+\begin{frame}
+\framesubtitle{Algorithmus}
+    \begin{block}{Algorithmus}
+\begin{figure}[H]
+      \centering
+    \includegraphics[width=0.7\textwidth]{images/computer}
+      \caption{Quelle: Wikipedia}
+\end{figure}
+\end{block}
+
+ \end{frame}
+
+
+
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Fehleranalyse}
+    \begin{block}{Gleitkommazahl}
+Eine Gleitkommazahl ist eine Zahl $z$ der Form
+\begin{align*}
+z = a d^e ; \;\;
+a = (\pm) \sum_{i=1}^l c_i d^{-i} \\
+e, c_i \in \{e_{min}, \cdots , e_{max}  \} \subset \mathbb{Z}
+\end{align*}
+\end{block}
+
+    \begin{block}{Gleitkommazahl $d=10$}
+\begin{align*}
+0.314156 \cdot 10^1
+\end{align*}
+\end{block}
+
+\begin{block}{Gleitkommazahl Darstellung $d=2$}
+\begin{figure}[H]
+    \centering
+  \includegraphics[width=0.7\textwidth]{images/float}\end{figure}
+\end{block}
+
+ \end{frame}
+
+ \begin{frame}
+    \framesubtitle{Algorithmus}
+        \begin{block}{Schaltwerke}
+    \begin{figure}[H]
+          \centering
+        \includegraphics[width=0.7\textwidth]{images/Volladdierer}
+          \caption{Quelle: Wikipedia}
+    \end{figure}
+    \end{block}
+    
+     \end{frame}
+    
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Fehleranalyse}
+    \begin{block}{Gleitkommazahl}
+Ist x eine reelle Zahl so gibt es eine  Gleitkommazahl $fl(x)$ mit
+\begin{align*}
+\frac{|x-fl(x)| }{|x|} \leq eps := d^{1-l}/2
+\end{align*}
+\end{block}
+
+ \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Fehleranalyse}
+    \begin{block}{Gleitkommazahl}
+Für eine exakte Operation $\circ \in \{+,-, \cdot, : \}$ gilt für die entsprechende Ausführung $\hat{\circ}$ auf einem Computer
+\begin{align*}
+a \hat{\circ}  b = (a \circ b) (1  + \epsilon) , \ \epsilon \leq eps 
+\end{align*}
+\end{block}
+ \end{frame}
+
+
+ \begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Fehleranalyse}
+\begin{figure}[H]
+      \centering
+    \includegraphics[width=0.7\textwidth]{images/fehler}\end{figure}
+ \end{frame}
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Fehleranalyse}
+    \begin{block}{Konditionszahl}
+ Die Kondition beschreibt  die Abhängigkeit der Lösung eines Problems von der Störung der Eingangsdaten.  Die Konditionszahl stellt ein Maß für diese Abhängigkeit dar. Sie beschreibt das Verhältnis von  $E:= \{\widetilde{x} \; | \; ||\widetilde{x} -x || \leq eps ||x|| \}$ zu $R: = \{f(\widetilde{x}) \; | \; \widetilde{x} \in E \}$.
+\end{block}
+\begin{figure}[H]
+      \centering
+    \includegraphics[width=0.8\textwidth]{images/kondition}
+      \caption{}
+\end{figure}
+
+ \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Fehleranalyse}
+    \begin{block}{Kondition eines Problems}
+Die absolute Konditionierung eines Problems $(f,x)$ ist die Kleinste Zahl $\kappa_{abs}$ mit 
+\begin{align*}
+|| f(x) - f(\widetilde{x}) || \leq \kappa_{abs} || x - \widetilde{x} || , \;  \widetilde{x} \to x
+\end{align*}
+\end{block}
+
+    \begin{block}{Kondition eines Problems}
+Die relative  Konditionierung eines Problems $(f,x)$ ist die Kleinste Zahl $\kappa_{rel}$ mit 
+\begin{align*}
+\frac{|| f(x) - f(\widetilde{x}) ||}{||f(x) || } \leq \kappa_{rel} \frac{|| x - \widetilde{x} ||}{||x||} , \; \widetilde{x} \to x
+\end{align*}
+\end{block}
+
+ \end{frame}
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Fehleranalyse}
+    \begin{block}{Kondition eines Problems}
+Momentan können wir noch keine Konditionszahlen berechnen. Wir werden später lernen, wie wir sie in vielen Fällen abschätzen können.
+\end{block}
+ \end{frame}
+
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Fehleranalyse}
+    \begin{block}{Stabilität}
+\end{block}
+\begin{figure}[H]
+      \centering
+    \includegraphics[width=0.8\textwidth]{images/stabilitaet}
+      \caption{}
+\end{figure}
+ \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Fehleranalyse}
+    \begin{block}{Stabilität}
+Für eine Gleikommarealisierung $\hat{f}$ eines Algorithmus zur Lösung des Problems $(f,x)$ mit relativer Konditionszahl $\kappa_rel$ ist der Stabilitätsindikator definiert als die kleinste Zahl $\sigma \geq 0$ mit 
+\begin{align*}
+\frac{|| \hat{f}(\widetilde{x}) - f(\widetilde{x}) ||}{||f(\widetilde{x}) || } \leq \sigma  \kappa_{rel} eps , \; eps \to 0
+\end{align*}
+für alle $\widetilde{x} \in E$
+\end{block}
+    \begin{block}{Stabilität eines Algorithmus}
+Der Algorithmus $\hat{f}$ heisst stabil, wenn $\sigma$ kleiner ist als die Anzahl der hintereinander ausgeführten Elementaroperationen. 
+\end{block}
+ \end{frame}
+
+\end{document}
+

@@ -29,8 +29,55 @@
 \frame{\titlepage}
 
 
+
+
+
+
 \begin{frame}
-    \frametitle{Angewandte Mathematik}
+    \frametitle{Infinitessimalrechnung}
+    \framesubtitle{Infinitessimalrechnung}
+    \begin{block}{Sir Isaac Newton}
+\begin{figure}[H]
+      \centering
+    \includegraphics[width=0.6\textwidth]{images/Newton.jpg}
+      \caption{Quelle: DALLE}
+\end{figure}
+
+\end{block}
+
+ \end{frame}
+
+
+
+
+ \begin{frame}
+    \frametitle{Infinitessimalrechnung}
+\framesubtitle{Infinitessimalrechnung}
+    \begin{block}{Konvergenz erfahrungsgemäß}
+Etwas  konvergiert gegen einen Grenzwert, 
+wenn es sich diesem Grenzwert beliebig nahe annähert.
+\end{block}
+
+    \begin{figure}[H]
+          \centering
+        \includegraphics[width=0.8\textwidth]{images/limit}
+          \caption{Konvergente Schienen}
+    \end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Infinitessimalrechnung}
+\framesubtitle{Infinitessimalrechnung}
+    \begin{block}{Infinitessimalrechnung}
+        Wie kann man damit rechnen und braucht man das?
+\end{block}
+ \end{frame}
+
+
+ \begin{frame}
+    \frametitle{Infinitessimalrechnung}
 \framesubtitle{Limes}
     \begin{block}{Achilles und die Schildkröte}
 \begin{figure}[H]
@@ -47,7 +94,7 @@
 
 
 \begin{frame}
-    \frametitle{Angewandte Mathematik}
+    \frametitle{Infinitessimalrechnung}
 \framesubtitle{Limes}
     \begin{block}{Achilles und die Schildkröte infinitessimal betrachtet}
 Sei $s_0$ der Vorsprung der Schildkröte zu Beginn des Rennens, $t_0$ die Zeit, die Achilles benötigt, um $s_0$ zurückzulegen. Die Schildkröte ist $q$-mal langsamer als Achilles.
@@ -61,51 +108,48 @@ $t = t_0 \cdot \sum_{n=0}^\infty q^n = t_0 \cdot \lim_{n \to \infty} \sum_{k=0}^
 
 
 
-\begin{frame}
-    \frametitle{Mehrdimensionale Differentialrechnung}
-\framesubtitle{Limes}
-    \begin{block}{Konvergenz}
-\begin{figure}[H]
-      \centering
-    \includegraphics[width=0.6\textwidth]{images/newton}
-      \caption{Quelle: DALLE}
-\end{figure}
 
+
+\begin{frame}
+    \frametitle{Infinitessimalrechnung}
+\framesubtitle{Limes}
+
+\begin{block}{Folge}
+    Eine reelle Folge ist eine Abbildung
+    \begin{align*}
+    a: \mathbb{N} \rightarrow \mathbb{R}^n
+    \end{align*}
+ Für $n \in \mathbb{N}$ bezeichnen wir $a_n := a(n)$ als $n$ tes Folgenglied.
 \end{block}
+
 
  \end{frame}
 
 
-\begin{frame}
-    \frametitle{Mehrdimensionale Differentialrechnung}
+
+ \begin{frame}
+    \frametitle{Infinitessimalrechnung}
 \framesubtitle{Limes}
-    \begin{block}{Konvergenz}
+
+\begin{block}{Konvergenz}
+    Eine Folge $a_n$ in $\mathbb{R}^n$ heißt konvergent gegen den Grenzwert $a \in \mathbb{R}^n$, wenn gilt:
+    \begin{align*}
+    \forall {\varepsilon > 0} \ \exists \ N \in \mathbb{N} \; \forall \ n > N: \; d(a, a_n) < \varepsilon\,
+    \end{align*}
+    in Worten: Es gibt für jedes beliebige (noch so kleine) $\varepsilon$ einen Index $N$ derart, dass für alle Indizes $n > N$, alle weiteren Folgenglieder, gilt: der Abstand $d(a, a_n)$ ist kleiner als $\varepsilon$.
+    \end{block}
+
+
 \begin{figure}[H]
       \centering
-    \includegraphics[width=0.8\textwidth]{images/500px-Epsilonschlauch_klein}
+    \includegraphics[width=0.7\textwidth]{images/500px-Epsilonschlauch_klein}
       \caption{Quelle: Wikipedia: https://commons.wikimedia.org/wiki/File:Epsilonschlauch\_klein.svg}
 \end{figure}
 
-\end{block}
+
 
  \end{frame}
 
-
-
-
-
-
-\begin{frame}
-    \frametitle{Mehrdimensionale Differentialrechnung}
-\framesubtitle{Limes}
-    \begin{block}{Konvergenz}
-Eine Folge $(a_n)$ in $\mathbb{R}^n$ heißt konvergent gegen den Grenzwert $a \in \mathbb{R}^n$, wenn gilt:
-\begin{align*}
-\forall {\varepsilon > 0} \ \exists \ N \in \mathbb{N} \; \forall \ n > N: \; d(a, a_n) < \varepsilon\,
-\end{align*}
-in Worten: Es gibt für jedes beliebige (noch so kleine) $\varepsilon$ einen Index $N$ derart, dass für alle Indizes $n > N$, alle weiteren Folgenglieder, gilt: der Abstand $d(a, a_n)$ ist kleiner als $\varepsilon$.
-\end{block}
- \end{frame}
 
 
 
