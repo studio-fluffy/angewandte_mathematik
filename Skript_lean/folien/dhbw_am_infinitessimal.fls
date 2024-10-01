@@ -1457,6 +1457,7 @@ INPUT ./images/500px-Epsilonschlauch_klein.png
 INPUT images/500px-Epsilonschlauch_klein.png
 INPUT ./images/500px-Epsilonschlauch_klein.png
 INPUT ./images/500px-Epsilonschlauch_klein.png
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmssi10.tfm
 OUTPUT dhbw_am_infinitessimal.nav
 OUTPUT dhbw_am_infinitessimal.toc
 OUTPUT dhbw_am_infinitessimal.snm
@@ -1465,6 +1466,7 @@ INPUT ./dhbw_am_infinitessimal.out
 INPUT ./dhbw_am_infinitessimal.out
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb
