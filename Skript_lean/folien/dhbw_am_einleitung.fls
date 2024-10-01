@@ -1438,11 +1438,16 @@ INPUT ./images/cover.png
 INPUT ./images/cover.png
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
 INPUT /usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map
+INPUT ./images/hardchoice.png
+INPUT ./images/hardchoice.png
+INPUT images/hardchoice.png
+INPUT ./images/hardchoice.png
+INPUT ./images/hardchoice.png
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmss10.tfm
 INPUT ./images/modellierung.jpeg
 INPUT images/modellierung.jpeg
 INPUT ./images/modellierung.jpeg
 INPUT ./images/modellierung.jpeg
-INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmss10.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmss9.tfm
 OUTPUT dhbw_am_einleitung.nav
 OUTPUT dhbw_am_einleitung.toc

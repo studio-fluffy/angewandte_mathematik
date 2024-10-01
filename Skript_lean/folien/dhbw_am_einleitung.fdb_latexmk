@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1727702233 "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript_lean/folien/dhbw_am_einleitung.tex" "dhbw_am_einleitung.pdf" "dhbw_am_einleitung" 1727702234 0
-  "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript_lean/folien/dhbw_am_einleitung.tex" 1727702233 2738 8c1f06fbd29a77c4e707a1b31b338e56 ""
+["pdflatex"] 1727793000 "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript_lean/folien/dhbw_am_einleitung.tex" "dhbw_am_einleitung.pdf" "dhbw_am_einleitung" 1727793001 0
+  "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript_lean/folien/dhbw_am_einleitung.tex" 1727793000 3202 48799eb10699d64496fc0cc45ad553c8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -234,11 +234,12 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1698836375 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1698836342 7883462 8a4d061ad2ccf4b7ea70dd63c461eb78 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "dhbw_am_einleitung.aux" 1727702234 1740 d0e662cfc26b6d34d9cbf825d28d4189 "pdflatex"
-  "dhbw_am_einleitung.nav" 1727702234 843 f4a71d716015e985440506cf477f7120 "pdflatex"
-  "dhbw_am_einleitung.out" 1727702234 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "dhbw_am_einleitung.tex" 1727702233 2738 8c1f06fbd29a77c4e707a1b31b338e56 ""
+  "dhbw_am_einleitung.aux" 1727793001 1731 2bd18ebaeb3e24c390ce0e9f30482582 "pdflatex"
+  "dhbw_am_einleitung.nav" 1727793001 835 b5c49ba28d3d2049d1773682fb2767a8 "pdflatex"
+  "dhbw_am_einleitung.out" 1727793001 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "dhbw_am_einleitung.tex" 1727793000 3202 48799eb10699d64496fc0cc45ad553c8 ""
   "images/cover.png" 1698834502 646146 46821660292bbcef098553c678fd004c ""
+  "images/hardchoice.png" 1727763924 579968 9f52300df30fb70580a093db08ddf5e1 ""
   "images/modellierung.jpeg" 1698834502 280486 edd9f56f45ebdd92e5d35d13d2ebe0ed ""
   (generated)
   "dhbw_am_einleitung.aux"
