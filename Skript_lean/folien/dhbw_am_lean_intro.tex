@@ -8,7 +8,10 @@
 \usepackage{subfig}
 \usepackage{amsmath}
 \usepackage{hyperref}
+\urlstyle{same}
+
 \usepackage[all]{xy}
+
 \begin{document}
 
 
@@ -27,6 +30,7 @@
 \subject{Angewandte Mathematik}
 
 \frame{\titlepage}
+
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
@@ -47,6 +51,19 @@
     
         \item Beweise von Aussagen $\leftrightarrow$  Programme, die zu diesen Typen gehören
     \end{itemize}
+    \end{block}
+ \end{frame}
+
+ \begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Einleitung Lean}
+    \begin{block}{Lean Installation}
+
+        
+        \href{https://github.com/leanprover-community/mathlib4}{Lean mathlib} \\
+        \href{https://adam.math.hhu.de/}{mathlib lernen} 
+
+
     \end{block}
 
  \end{frame}
@@ -74,9 +91,9 @@
         Ein Beweis für \( A \wedge B \) ist ein Paar \((a, b)\), wobei \( a \) ein Beweis für \( A \) und \( b \) ein Beweis für \( B \) ist.
     \end{block}
 
-    \begin{block}{NOTATION}
+    \begin{block}{LOGIK VS TYPES}
         \[
-        A \wedge B \quad \Rightarrow \quad A \times B
+        A \wedge B \quad \leftrightarrow \quad A \times B
         \]
     \end{block}
     
@@ -92,9 +109,9 @@
         Ein Beweis für \( A \vee B \) ist entweder ein Beweis für \( A \) oder ein Beweis für \( B \).
     \end{block}
 
-    \begin{block}{NOTATION}
+    \begin{block}{LOGIK VS TYPES}
         \[
-        A \vee B \quad \Rightarrow \quad A + B
+        A \vee B \quad \leftrightarrow \quad A + B
         \]
     \end{block}
 
@@ -110,9 +127,9 @@
         Ein Beweis für \( A \Rightarrow B \) ist eine Funktion, die aus einem Beweis für \( A \) einen Beweis für \( B \) konstruiert.
     \end{block}
 
-    \begin{block}{NOTATION}
+    \begin{block}{LOGIK VS TYPES}
         \[
-        A \Rightarrow B \quad \Rightarrow \quad A \to B
+        A \Rightarrow B \quad \leftrightarrow \quad A \to B
         \]
     \end{block}
 
@@ -128,9 +145,9 @@
         Ein Beweis für \( \forall x \in A \, . \, P(x) \) ist eine Funktion, die jedem \( x \in A \) einen Beweis für \( P(x) \) zuordnet.
     \end{block}
 
-    \begin{block}{NOTATION}
+    \begin{block}{LOGIK VS TYPES}
         \[
-        \forall x \in A \, . \, P(x) \quad \Rightarrow \quad \prod_{x : A} P(x)
+        \forall x \in A \, . \, P(x) \quad \leftrightarrow \quad \prod_{x : A} P(x)
         \]
     \end{block}
 
@@ -148,9 +165,9 @@
         Ein Beweis für \( \exists x \in A \, . \, P(x) \) ist ein Paar \((x, \text{Beweis für } P(x))\), wobei \( x \in A \) und \( P(x) \) gilt.
     \end{block}
 
-    \begin{block}{NOTATION}
+    \begin{block}{LOGIK VS TYPES}
         \[
-        \exists x \in A \, . \, P(x) \quad \Rightarrow \quad \sum_{x : A} P(x)
+        \exists x \in A \, . \, P(x) \quad \leftrightarrow \quad \sum_{x : A} P(x)
         \]
     \end{block}
 
@@ -161,16 +178,6 @@
     \]
 \end{frame}
 
-
-\begin{frame}
-    \frametitle{Angewandte Mathematik}
-\framesubtitle{Einleitung Lean}
-    \begin{block}{Lean Installation}
-        \begin{itemize}
-            \item TODO
-        \end{itemize}
-    \end{block}
- \end{frame}
 
 
 \end{document}
