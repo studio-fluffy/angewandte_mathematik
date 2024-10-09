@@ -1443,12 +1443,12 @@ INPUT ./images/Newton.jpg
 INPUT images/Newton.jpg
 INPUT ./images/Newton.jpg
 INPUT ./images/Newton.jpg
-INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmss10.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmss9.tfm
 INPUT ./images/limit.png
 INPUT images/limit.png
 INPUT ./images/limit.png
 INPUT ./images/limit.png
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmss10.tfm
 INPUT ./images/Zeno_Achilles_Paradox.png
 INPUT images/Zeno_Achilles_Paradox.png
 INPUT ./images/Zeno_Achilles_Paradox.png
