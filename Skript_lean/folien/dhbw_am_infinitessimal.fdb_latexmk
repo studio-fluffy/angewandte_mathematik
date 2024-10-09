@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1727800543 "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript_lean/folien/dhbw_am_infinitessimal.tex" "dhbw_am_infinitessimal.pdf" "dhbw_am_infinitessimal" 1727800545 0
-  "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript_lean/folien/dhbw_am_infinitessimal.tex" 1727800541 6502 8755160f4fef045050a76c80250c663d ""
+["pdflatex"] 1728468022 "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript_lean/folien/dhbw_am_infinitessimal.tex" "dhbw_am_infinitessimal.pdf" "dhbw_am_infinitessimal" 1728468023 0
+  "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript_lean/folien/dhbw_am_infinitessimal.tex" 1728468022 7731 7f0d92bdcfbd282f7e7a73ba82da17d2 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -243,15 +243,15 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1698836375 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1698836342 7883462 8a4d061ad2ccf4b7ea70dd63c461eb78 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "dhbw_am_infinitessimal.aux" 1727800545 2372 17da32272a86cca66a76332c971fbc08 "pdflatex"
-  "dhbw_am_infinitessimal.nav" 1727800545 1295 ef040a83926d85743749b42a2275f515 "pdflatex"
-  "dhbw_am_infinitessimal.out" 1727800544 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "dhbw_am_infinitessimal.tex" 1727800541 6502 8755160f4fef045050a76c80250c663d ""
-  "images/500px-Epsilonschlauch_klein.png" 1698834502 14354 d08757a2a13b2aaba706282d02f1b749 ""
-  "images/Newton.jpg" 1727254767 987984 e13fe9dcf19b2b3c91b63ea6992386dc ""
-  "images/Zeno_Achilles_Paradox.png" 1698834502 66185 5d51a75a2e55f17b6984f3d8adc9f7eb ""
-  "images/cover.png" 1698834502 646146 46821660292bbcef098553c678fd004c ""
-  "images/limit.png" 1727255607 747582 cf4c9f2c468e557f8306c93f2231600d ""
+  "dhbw_am_infinitessimal.aux" 1728468023 2759 721fc3bd6330a65ad7cc82b484b90cee "pdflatex"
+  "dhbw_am_infinitessimal.nav" 1728468023 1574 f5abf7444d939a8c2cd188b6df8c9c87 "pdflatex"
+  "dhbw_am_infinitessimal.out" 1728468022 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "dhbw_am_infinitessimal.tex" 1728468022 7731 7f0d92bdcfbd282f7e7a73ba82da17d2 ""
+  "images/500px-Epsilonschlauch_klein.png" 1727802035 14354 d08757a2a13b2aaba706282d02f1b749 ""
+  "images/Newton.jpg" 1727802035 987984 e13fe9dcf19b2b3c91b63ea6992386dc ""
+  "images/Zeno_Achilles_Paradox.png" 1727802035 66185 5d51a75a2e55f17b6984f3d8adc9f7eb ""
+  "images/cover.png" 1727802035 646146 46821660292bbcef098553c678fd004c ""
+  "images/limit.png" 1727802035 747582 cf4c9f2c468e557f8306c93f2231600d ""
   (generated)
   "dhbw_am_infinitessimal.aux"
   "dhbw_am_infinitessimal.log"

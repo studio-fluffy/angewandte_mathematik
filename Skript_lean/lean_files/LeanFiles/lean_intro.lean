@@ -1,6 +1,8 @@
 import Mathlib.Topology.Instances.Real
 import Mathlib.Data.Set.Basic
 
+
+
 -- Lean-Code: Eine Funktion, die eine natürliche Zahl in eine reelle Zahl umwandelt
 example : ℕ → ℝ :=
 fun n => (n : ℝ) + 0.5  -- Gebe das Ergebnis `n + 0.5` zurück, was ein reeller Wert ist
@@ -88,3 +90,8 @@ example {α : Type*} (A B : Set α) (x : α) (h : x ∈ A ∪ B) : x ∈ A ∨ x
   cases h with
   | inl ha => left; exact ha  -- Fall `x ∈ A`
   | inr hb => right; exact hb -- Fall `x ∈ B`
+
+example (x y z : ℝ) (h₀ : x ≤ y) (h₁ : y ≤ z) : x ≤ z := by
+  apply le_trans
+  apply h₀
+  apply h₁

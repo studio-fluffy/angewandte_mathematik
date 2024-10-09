@@ -172,6 +172,16 @@ $t = t_0 \cdot \sum_{n=0}^\infty q^n = t_0 \cdot \lim_{n \to \infty} \sum_{k=0}^
 \end{frame}
 
 
+
+\begin{frame}
+    \frametitle{Beispiel: atTop}
+   
+    \begin{align}
+        aTop := \bigcup_{n \in \mathbb{N}} M_n  \\
+        M_n : = \{ m    \mid m \geq n\}
+    \end{align}
+\end{frame}
+
 % Folie 1: Definition eines Filters
 \begin{frame}
     \frametitle{Definition: Filter}
@@ -188,6 +198,39 @@ $t = t_0 \cdot \sum_{n=0}^\infty q^n = t_0 \cdot \lim_{n \to \infty} \sum_{k=0}^
     \frametitle{Beispiel: Umgebungsfilter}
     Sei $X$ ein topologischer Raum und $x \in X$. Der \emph{Umgebungsfilter} $\mathcal{U}(x)$ besteht aus allen Teilmengen $U \subseteq X$, für die es eine offene Menge $V$ gibt, sodass $x \in V \subseteq U$.
 \end{frame}
+
+
+\begin{frame}
+    \frametitle{Beispiel: Bildfilter}
+    Sei $m: X \to Y  $ ein Abbildung und $\mathcal{F}$ ein Filter auf $X$. Der \emph{Bildfilter} von $\mathcal{F}$ unter $m$ ist definiert durch 
+    \begin{align}
+        MAP(m)(\mathcal{F}) := \{ M \subset Y \mid m^{-1} (M) \in \mathcal{F} \}.
+    \end{align}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Konvergenz}
+    \begin{block}{Konvergenz von Filtern}
+    Seien  $\mathcal{F}$ und $\mathcal{G}$ Filter auf $Y$. Wir sagen $\mathcal{F}$ konvergiert gegen  $\mathcal{G}$ falls
+    \begin{align}
+       F \in \mathcal{G} \; \forall F \in \mathcal{F}
+    \end{align}
+    Wir schreiben hierfür auch $\mathcal{F} \leq \mathcal{G}$
+    \end{block}
+ 
+    \begin{block}{Konvergenz einer Folge}
+        Eine Folge
+    \begin{align*}
+            a: \mathbb{N} \rightarrow \mathbb{R}^n
+            \end{align*}
+    heißt konvergent gegen den Grenzwert $a \in \mathbb{R}^n$, wenn gilt:
+    \begin{align}  
+        MAP(m)(aTop) \leq  \mathcal{U}(a)
+    \end{align}
+\end{block}
+
+\end{frame}
+
 
 
 \end{document}
