@@ -149,7 +149,80 @@ $t = t_0 \cdot \sum_{n=0}^\infty q^n = t_0 \cdot \lim_{n \to \infty} \sum_{k=0}^
 
  \end{frame}
 
- \begin{frame}
+
+
+
+\begin{frame}{Axiome eines metrischen Raumes}
+    Ein metrischer Raum ist ein Paar \((X, d)\), wobei \( X \) eine Menge und \( d: X \times X \rightarrow \mathbb{R} \) eine Abbildung ist, die die folgenden Axiome erfüllt:
+    \begin{itemize}
+      \item \textbf{Nichtnegativität}: \( d(x, y) \geq 0 \quad \forall x, y \in X \).
+      \item \textbf{Identität der Ununterscheidbaren}: \( d(x, y) = 0 \) genau dann, wenn \( x = y \).
+      \item \textbf{Symmetrie}: \( d(x, y) = d(y, x) \quad \forall x, y \in X \).
+      \item \textbf{Dreiecksungleichung}: \( d(x, z) \leq d(x, y) + d(y, z) \quad \forall x, y, z \in X \).
+    \end{itemize}
+  \end{frame}
+  
+  \begin{frame}{Beispiel eines metrischen Raumes}
+    Betrachte den Raum \( \mathbb{R} \) mit der absoluten Differenz als Metrik:
+    \[
+    d(x, y) = |x - y|, \quad \forall x, y \in \mathbb{R}.
+    \]
+    Überprüfung der Axiome:
+    \begin{itemize}
+      \item \textbf{Nichtnegativität}: \( |x - y| \geq 0 \).
+      \item \textbf{Identität der Ununterscheidbaren}: \( |x - y| = 0 \) genau dann, wenn \( x = y \).
+      \item \textbf{Symmetrie}: \( |x - y| = |y - x| \).
+      \item \textbf{Dreiecksungleichung}: \( |x - z| \leq |x - y| + |y - z| \).
+    \end{itemize}
+  \end{frame}
+  
+
+  \begin{frame}{Normen in einem Vektorraum}
+    Sei \( X = \mathbb{R}^n \) ein Vektorraum. Eine Norm auf \( X \) ist eine Abbildung \( \| \cdot \| : X \rightarrow \mathbb{R} \), 
+    die für alle \( x, y \in X \) und \( \alpha \in \mathbb{R} \) folgende Eigenschaften erfüllt:
+    \begin{itemize}
+      \item \textbf{Positive Definitheit}: \( \|x\| \geq 0 \) und \( \|x\| = 0 \) genau dann, wenn \( x = 0 \).
+      \item \textbf{Homogenität}: \( \|\alpha x\| = |\alpha| \cdot \|x\| \).
+      \item \textbf{Dreiecksungleichung}: \( \|x + y\| \leq \|x\| + \|y\| \).
+    \end{itemize}
+  
+    \vspace{0.5cm}
+    \textbf{Beispiel: Euklidische Norm in \( \mathbb{R}^2 \)}
+  
+    Sei \( x = (x_1, x_2) \in \mathbb{R}^2 \). Dann ist die euklidische Norm gegeben durch:
+    \[
+    \|x\|_2 = \sqrt{x_1^2 + x_2^2}.
+    \]
+  
+    \textbf{Konkretes Beispiel:} Für \( x = (3, 4) \) gilt:
+    \[
+    \|x\|_2 = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5.
+    \]
+  \end{frame}
+  
+
+  \begin{frame}{Abstände durch Normen}
+    Sei \( X = \mathbb{R}^n \)  ein Vektorraum und \( \| \cdot \| : X \rightarrow \mathbb{R} \) eine Norm. Ein durch die Norm definierter Abstand ist gegeben durch:
+    \[
+    d(x, y) = \| x - y \|,
+    \]
+    wobei \( x, y \in X \) beliebige Punkte sind. Dieser Abstand erfüllt die Axiome eines metrischen Raumes:
+    \begin{itemize}
+      \item \textbf{Nichtnegativität}: \( d(x, y) = \| x - y \| \geq 0 \).
+      \item \textbf{Identität der Ununterscheidbaren}: \( d(x, y) = 0 \) genau dann, wenn \( x = y \).
+      \item \textbf{Symmetrie}: \( d(x, y) = \| x - y \| = \| y - x \| = d(y, x) \).
+      \item \textbf{Dreiecksungleichung}: \( \| x - z \| \leq \| x - y \| + \| y - z \| \quad \forall x, y, z \in X \).
+    \end{itemize}
+    \textbf{Beispiele:}
+    \begin{itemize}
+      \item \textbf{Euklidische Norm:} \( \| x \|_2 = \sqrt{\sum_{i=1}^{n} |x_i|^2} \).
+      \item \textbf{Manhattan-Norm:} \( \| x \|_1 = \sum_{i=1}^{n} |x_i| \).
+      \item \textbf{Maximum-Norm:} \( \| x \|_\infty = \max_{1 \leq i \leq n} |x_i| \).
+    \end{itemize}
+  \end{frame}
+
+
+  \begin{frame}
     \frametitle{Definition: Topologischer Raum}
     Ein \emph{topologischer Raum} ist ein Paar $(X, \mathcal{T})$, wobei $X$ eine Menge und $\mathcal{T}$ eine Familie von Teilmengen von $X$ ist, die folgende Eigenschaften erfüllt:
     \begin{enumerate}
@@ -159,6 +232,7 @@ $t = t_0 \cdot \sum_{n=0}^\infty q^n = t_0 \cdot \lim_{n \to \infty} \sum_{k=0}^
     \end{enumerate}
     Die Familie $\mathcal{T}$ heißt die \emph{Topologie} auf der Menge $X$. Die Mengen in $\mathcal{T}$ werden als \emph{offene Mengen} bezeichnet.
 \end{frame}
+
 
 % Folie 2: Beispiel: Standardtopologie durch den Abstand
 \begin{frame}
@@ -173,14 +247,6 @@ $t = t_0 \cdot \sum_{n=0}^\infty q^n = t_0 \cdot \lim_{n \to \infty} \sum_{k=0}^
 
 
 
-\begin{frame}
-    \frametitle{Beispiel: atTop}
-   
-    \begin{align}
-        aTop := \bigcup_{n \in \mathbb{N}} M_n  \\
-        M_n : = \{ m    \mid m \geq n\}
-    \end{align}
-\end{frame}
 
 % Folie 1: Definition eines Filters
 \begin{frame}
@@ -192,6 +258,17 @@ $t = t_0 \cdot \sum_{n=0}^\infty q^n = t_0 \cdot \lim_{n \to \infty} \sum_{k=0}^
         \item Falls $A \in \mathcal{F}$ und $A \subseteq B \subseteq X$, dann gilt $B \in \mathcal{F}$
     \end{enumerate}
 \end{frame}
+
+
+\begin{frame}
+    \frametitle{Beispiel: atTop}
+   
+    \begin{align}
+        atTop := \bigcup_{n \in \mathbb{N}} M_n  \\
+        M_n : = \{ m    \mid m \geq n\}
+    \end{align}
+\end{frame}
+
 
 % Folie 2: Beispiel eines Umgebungsfilters
 \begin{frame}
@@ -225,7 +302,7 @@ $t = t_0 \cdot \sum_{n=0}^\infty q^n = t_0 \cdot \lim_{n \to \infty} \sum_{k=0}^
             \end{align*}
     heißt konvergent gegen den Grenzwert $a \in \mathbb{R}^n$, wenn gilt:
     \begin{align}  
-        MAP(m)(aTop) \leq  \mathcal{U}(a)
+        MAP(m)(atTop) \leq  \mathcal{U}(a)
     \end{align}
 \end{block}
 
