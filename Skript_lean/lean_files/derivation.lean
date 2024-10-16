@@ -28,7 +28,7 @@ theorem directional_deriv_eq_inner_product:
   directional_deriv f x v = ⟪gradient f x, v⟫ :=
 by
   rw [directional_deriv, gradient]
-  sorry
+  rw [toDual_symm_apply]
 
 -- Beweis, dass der Gradient in die Richtung des steilsten Anstiegs zeigt
 theorem gradient_max_directional_deriv (hf : DifferentiableAt ℝ f x) (v : F) :
