@@ -3,11 +3,14 @@ import Mathlib.Analysis.Calculus.FDeriv.Basic
 import Mathlib.Analysis.Calculus.Deriv.Basic
 import Mathlib.Analysis.Calculus.Gradient.Basic
 
+import Mathlib.LinearAlgebra.FiniteDimensional
+import Mathlib.Data.Matrix.Basic
+
 open Topology InnerProductSpace Set Filter Real
 
 noncomputable section
 
-variable {𝕜 F : Type*} [RCLike 𝕜]
+--variable {𝕜 F : Type*} [RCLike 𝕜]
 
 
 --variable [NormedAddCommGroup F] [InnerProductSpace  ℝ F] [CompleteSpace F]
@@ -46,22 +49,14 @@ by
   exact real_inner_le_norm (gradient f x) v
 
 
-
 -- Beweis, dass die Richtungsableitung in Richtung des Gradienten maximal ist
 theorem gradient_steepest_ascent (hf : DifferentiableAt ℝ f x) :
   ∀ v : F, ‖v‖ = 1 → directional_deriv f x v ≤ ‖gradient f x‖ :=
 by
-  intros v hv
-  have h : ‖directional_deriv f x v‖ ≤ ‖gradient f x‖ * ‖v‖ :=
---    gradient_max_directional_deriv hf v
---  rw [hv, mul_one] at h
---  exact h
-    sorry
-  sorry
-
-
---def directional_deriv_std (f : F → ℝ) (x : F) (n : ℕ) : ℝ :=
---  (fderiv ℝ f x)
-
+intros v hv
+have h : directional_deriv f x v ≤ ‖gradient f x‖ * ‖v‖ :=
+  gradient_max_directional_deriv hf v
+rw [hv, mul_one] at h
+exact h
 
 end
