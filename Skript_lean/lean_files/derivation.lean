@@ -8,7 +8,15 @@ open Topology InnerProductSpace Set Filter Real
 noncomputable section
 
 variable {𝕜 F : Type*} [RCLike 𝕜]
-variable [NormedAddCommGroup F] [InnerProductSpace  ℝ F] [CompleteSpace F]
+
+
+--variable [NormedAddCommGroup F] [InnerProductSpace  ℝ F] [CompleteSpace F]
+variables {n : ℕ} -- Dimension des Raums
+
+-- Definiere F als endlichdimensionalen Vektorraum der Dimension n
+variables {F : Type*} [NormedAddCommGroup F] [InnerProductSpace ℝ F] [FiniteDimensional ℝ F]
+variables [FiniteDimensional ℝ F] [CompleteSpace F]
+
 variable {f : F →  ℝ} {f' x : F}
 local notation "⟪" x ", " y "⟫" => @inner ℝ _ _ x y
 scoped[Gradient] notation "∇" => gradient
@@ -50,5 +58,10 @@ by
 --  exact h
     sorry
   sorry
+
+
+--def directional_deriv_std (f : F → ℝ) (x : F) (n : ℕ) : ℝ :=
+--  (fderiv ℝ f x)
+
 
 end
