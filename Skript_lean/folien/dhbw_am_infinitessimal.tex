@@ -222,6 +222,46 @@ $t = t_0 \cdot \sum_{n=0}^\infty q^n = t_0 \cdot \lim_{n \to \infty} \sum_{k=0}^
   \end{frame}
 
 
+  
+  \begin{frame}{Skalarprodukt}
+      \textbf{Definition:} \\
+      Ein Skalarprodukt ist eine Abbildung 
+      \[
+      \langle \cdot, \cdot \rangle: V \times V \to \mathbb{R}
+      \]
+      auf einem reellen Vektorraum \( V \), die folgende Eigenschaften erfüllt:
+      \begin{itemize}
+          \item \textbf{Linearität:} \( \langle a \mathbf{v} + b \mathbf{w}, \mathbf{u} \rangle = a \langle \mathbf{v}, \mathbf{u} \rangle + b \langle \mathbf{w}, \mathbf{u} \rangle \)
+          \item \textbf{Symmetrie:} \( \langle \mathbf{v}, \mathbf{u} \rangle = \langle \mathbf{u}, \mathbf{v} \rangle \)
+          \item \textbf{Positivität:} \( \langle \mathbf{v}, \mathbf{v} \rangle \geq 0 \) und \( \langle \mathbf{v}, \mathbf{v} \rangle = 0 \) genau dann, wenn \( \mathbf{v} = 0 \)
+      \end{itemize}
+  \end{frame}
+  
+  \begin{frame}{Euklidisches Skalarprodukt}
+      \textbf{Beispiel: Euklidisches Skalarprodukt} \\
+      In \( \mathbb{R}^n \) ist das Skalarprodukt definiert als:
+      \[
+      \langle \mathbf{v}, \mathbf{w} \rangle = \sum_{i=1}^n v_i w_i
+      \]
+      für \( \mathbf{v} = (v_1, v_2, \dots, v_n) \) und \( \mathbf{w} = (w_1, w_2, \dots, w_n) \).
+  \end{frame}
+  
+  \begin{frame}{Zusammenhang mit der Norm}
+      \textbf{Definition:} \\
+      Die durch das Skalarprodukt induzierte Norm ist definiert als:
+      \[
+      \|\mathbf{v}\| = \sqrt{\langle \mathbf{v}, \mathbf{v} \rangle}
+      \]
+      \textbf{Beispiel: Euklidische Norm} \\
+      Für das euklidische Skalarprodukt ist die Norm:
+      \[
+      \|\mathbf{v}\| = \sqrt{\sum_{i=1}^n v_i^2}
+      \]
+      Diese Norm wird auch als \textit{Euklidische Norm} oder \textit{2-Norm} bezeichnet.
+  \end{frame}
+  
+
+
   \begin{frame}
     \frametitle{Definition: Topologischer Raum}
     Ein \emph{topologischer Raum} ist ein Paar $(X, \mathcal{T})$, wobei $X$ eine Menge und $\mathcal{T}$ eine Familie von Teilmengen von $X$ ist, die folgende Eigenschaften erfüllt:
