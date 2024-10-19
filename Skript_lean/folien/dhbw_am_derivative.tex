@@ -8,6 +8,16 @@
 \usepackage{subfig}
 \usepackage{amsmath}
 \usepackage{hyperref}
+% Setze die Optionen für das hyperref-Paket
+\hypersetup{
+    colorlinks=true,    % Färbt die Links
+    linkcolor=blue,     % Farbe für interne Links
+    filecolor=magenta,  % Farbe für Links zu lokalen Dateien
+    urlcolor=cyan,      % Farbe für externe Links
+    pdftitle={Angewandte Mathematik}, % Titel des Dokuments
+    pdfpagemode=FullScreen, % Öffnet das PDF im Vollbildmodus
+}
+
 \usepackage[all]{xy}
 \begin{document}
 
@@ -31,7 +41,19 @@
 \begin{frame}
     \frametitle{Angewandte Mathematik}
     \framesubtitle{Asymptotics}
-    \begin{block}{Landau-O-Notation (Großes \( O \))}
+    \begin{block}{Fast alle (Filter) \href{https://github.com/leanprover-community/mathlib4/blob/418a5eb7aec3fb639097cb13f74fc031ac4057f2/Mathlib/Order/Filter/Defs.lean\#L243-L244}{Mathlib}}
+        Für einen Filter $f$ bedeutet die Bedingung 
+        \( \forall^f x \;  p(x) \) 
+       dass die Menge der Elemente, für die \( p(x) \) gilt, ein Element des Filters \( f \) ist, also
+        \( \{ X \; | \;  p(x) \} \in f \).
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+    \framesubtitle{Asymptotics}
+    \begin{block}{Landau-O-Notation (Großes \( O \)) \href{https://github.com/leanprover-community/mathlib4/blob/418a5eb7aec3fb639097cb13f74fc031ac4057f2/Mathlib/Analysis/Asymptotics/Asymptotics.lean\#L75-L80}{Mathlib}
+        }
     \( f(n) = O(g(n)) \) bedeutet, dass \( f(n) \) asymptotisch nach oben durch \( g(n) \) beschränkt ist. Das heißt, es existieren Konstanten \( C > 0 \) und \( n_0 \), sodass für alle \( n \geq n_0 \) gilt:
     \[
     |f(n)| \leq C \cdot |g(n)|.

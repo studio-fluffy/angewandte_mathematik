@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1729149342 "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript_lean/folien/dhbw_am_derivative.tex" "dhbw_am_derivative.pdf" "dhbw_am_derivative" 1729149344 0
-  "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript_lean/folien/dhbw_am_derivative.tex" 1729149342 2757 c753e96bc1c1b32b19eaf47fc22a77c2 ""
+["pdflatex"] 1729342799 "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript_lean/folien/dhbw_am_derivative.tex" "dhbw_am_derivative.pdf" "dhbw_am_derivative" 1729342801 0
+  "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript_lean/folien/dhbw_am_derivative.tex" 1729342799 3865 c0a0f9d20678fdacda0cbfedb56b4bf6 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -37,6 +37,7 @@
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb" 1248133631 24420 52dbb8e8aa0069a1b987309557f8d303 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb" 1248133631 24373 a91d375736817a75026663adcb2190c1 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb" 1248133631 25150 e0d09798d232ab9d00c5c0a8df6cc22d ""
+  "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb" 1248133631 25168 33771b85f45c82138dd7745db7092d1c ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2023/texmf-dist/tex/generic/atbegshi/atbegshi.sty" 1575674566 24708 5584a51a7101caf7e6bbf1fc27d8f7b1 ""
@@ -192,6 +193,7 @@
   "/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-cfg/color.cfg" 1459978653 1213 620bba36b25224fa9b7e1ccb4ecb76fd ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-cfg/graphics.cfg" 1465944070 1224 978390e9c2234eab29404bc21b268d1e ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-def/pdftex.def" 1663965824 19448 1e988b341dda20961a6b931bcde55519 ""
+  "/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/color.sty" 1654720880 7233 e46ce9241d2b2ca2a78155475fdd557a ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/graphics.sty" 1654720880 18387 8f900a490197ebaf93c02ae9476d4b09 ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/graphicx.sty" 1654720880 8010 a8d949cbdbc5c983593827c9eec252e1 ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/keyval.sty" 1654720880 2671 7e67d78d9b88c845599a85b2d41f2e39 ""
@@ -237,10 +239,10 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1698836375 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1698836342 7883462 8a4d061ad2ccf4b7ea70dd63c461eb78 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "dhbw_am_derivative.aux" 1729149343 1359 84162024bb77ad92f2652c0935a53120 "pdflatex"
-  "dhbw_am_derivative.nav" 1729149343 571 686a2d273024229235dc0db1f461ba6c "pdflatex"
-  "dhbw_am_derivative.out" 1729149343 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "dhbw_am_derivative.tex" 1729149342 2757 c753e96bc1c1b32b19eaf47fc22a77c2 ""
+  "dhbw_am_derivative.aux" 1729342800 1483 c4f652b9ce8faf5cf7b2a9437c83d624 "pdflatex"
+  "dhbw_am_derivative.nav" 1729342800 659 3cb0dd10b35feddfc4c8158c93cb8db0 "pdflatex"
+  "dhbw_am_derivative.out" 1729342800 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "dhbw_am_derivative.tex" 1729342799 3865 c0a0f9d20678fdacda0cbfedb56b4bf6 ""
   "images/cover.png" 1727802035 646146 46821660292bbcef098553c678fd004c ""
   (generated)
   "dhbw_am_derivative.aux"

@@ -14,11 +14,11 @@ noncomputable section
 
 
 --variable [NormedAddCommGroup F] [InnerProductSpace  ℝ F] [CompleteSpace F]
-variables {n : ℕ} -- Dimension des Raums
+variable {n : ℕ} -- Dimension des Raums
 
 -- Definiere F als endlichdimensionalen Vektorraum der Dimension n
-variables {F : Type*} [NormedAddCommGroup F] [InnerProductSpace ℝ F] [FiniteDimensional ℝ F]
-variables [FiniteDimensional ℝ F] [CompleteSpace F]
+variable {F : Type*} [NormedAddCommGroup F] [InnerProductSpace ℝ F] [FiniteDimensional ℝ F]
+variable [FiniteDimensional ℝ F] [CompleteSpace F]
 
 variable {f : F →  ℝ} {f' x : F}
 local notation "⟪" x ", " y "⟫" => @inner ℝ _ _ x y

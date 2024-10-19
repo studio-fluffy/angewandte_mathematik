@@ -8,6 +8,16 @@
 \usepackage{subfig}
 \usepackage{amsmath}
 \usepackage{hyperref}
+% Setze die Optionen für das hyperref-Paket
+\hypersetup{
+    colorlinks=true,    % Färbt die Links
+    linkcolor=blue,     % Farbe für interne Links
+    filecolor=magenta,  % Farbe für Links zu lokalen Dateien
+    urlcolor=cyan,      % Farbe für externe Links
+    pdftitle={Angewandte Mathematik}, % Titel des Dokuments
+    pdfpagemode=FullScreen, % Öffnet das PDF im Vollbildmodus
+}
+
 \usepackage[all]{xy}
 \begin{document}
 
@@ -263,7 +273,9 @@ $t = t_0 \cdot \sum_{n=0}^\infty q^n = t_0 \cdot \lim_{n \to \infty} \sum_{k=0}^
 
 
   \begin{frame}
-    \frametitle{Definition: Topologischer Raum}
+    
+    \frametitle{Definition: Topologischer Raum }
+    \begin{block}{Topologischer Raum \href{https://github.com/leanprover-community/mathlib4/blob/418a5eb7aec3fb639097cb13f74fc031ac4057f2/Mathlib/Topology/Defs/Basic.lean\#L61-L71}{Mathlib}}
     Ein \emph{topologischer Raum} ist ein Paar $(X, \mathcal{T})$, wobei $X$ eine Menge und $\mathcal{T}$ eine Familie von Teilmengen von $X$ ist, die folgende Eigenschaften erfüllt:
     \begin{enumerate}
         \item $\emptyset \in \mathcal{T}$ und $X \in \mathcal{T}$ (Die leere Menge und die Gesamtheit $X$ gehören zur Topologie).
@@ -271,7 +283,8 @@ $t = t_0 \cdot \sum_{n=0}^\infty q^n = t_0 \cdot \lim_{n \to \infty} \sum_{k=0}^
         \item Wenn $\{A_i\}_{i \in I}$ eine beliebige Familie von Mengen in $\mathcal{T}$ ist, dann gilt $\bigcup_{i \in I} A_i \in \mathcal{T}$ (Vereinigungsstabilität von beliebigen Mengen).
     \end{enumerate}
     Die Familie $\mathcal{T}$ heißt die \emph{Topologie} auf der Menge $X$. Die Mengen in $\mathcal{T}$ werden als \emph{offene Mengen} bezeichnet.
-\end{frame}
+\end{block}           
+  \end{frame}
 
 
 % Folie 2: Beispiel: Standardtopologie durch den Abstand
@@ -290,40 +303,38 @@ $t = t_0 \cdot \sum_{n=0}^\infty q^n = t_0 \cdot \lim_{n \to \infty} \sum_{k=0}^
 
 % Folie 1: Definition eines Filters
 \begin{frame}
-    \frametitle{Definition: Filter}
+    \frametitle{Definition: Filter }
+    \begin{block}{Filter \href{https://github.com/leanprover-community/mathlib4/blob/418a5eb7aec3fb639097cb13f74fc031ac4057f2/Mathlib/Order/Filter/Defs.lean\#L62-L70}{Mathlib}}
     Ein \emph{Filter} $\mathcal{F}$ auf einer Menge $X$ ist eine nicht-leere Familie von Teilmengen von $X$, die folgende Eigenschaften erfüllt:
     \begin{enumerate}
         \item $\emptyset \notin \mathcal{F}$
         \item Falls $A, B \in \mathcal{F}$, dann gilt $A \cap B \in \mathcal{F}$
         \item Falls $A \in \mathcal{F}$ und $A \subseteq B \subseteq X$, dann gilt $B \in \mathcal{F}$
     \end{enumerate}
+    \end{block}
 \end{frame}
 
 
 \begin{frame}
-    \frametitle{Beispiel: atTop}
-   
+    \frametitle{Beispiel}
+   \begin{block}{Filter atTop}
     \begin{align}
         atTop := \bigcup_{n \in \mathbb{N}} M_n  \\
         M_n : = \{ m    \mid m \geq n\}
     \end{align}
+    \end{block}   
+    \begin{block}{Umgebungsfilter}
+      Sei $X$ ein topologischer Raum und $x \in X$. Der \emph{Umgebungsfilter} $\mathcal{U}(x)$ besteht aus allen Teilmengen $U \subseteq X$, für die es eine offene Menge $V$ gibt, sodass $x \in V \subseteq U$.
+    \end{block}
+    \begin{block}{Bildfilter}
+      Sei $m: X \to Y  $ ein Abbildung und $\mathcal{F}$ ein Filter auf $X$. Der \emph{Bildfilter} von $\mathcal{F}$ unter $m$ ist definiert durch 
+      \begin{align}
+          MAP(m)(\mathcal{F}) := \{ M \subset Y \mid m^{-1} (M) \in \mathcal{F} \}.
+      \end{align}
+    \end{block}
 \end{frame}
 
 
-% Folie 2: Beispiel eines Umgebungsfilters
-\begin{frame}
-    \frametitle{Beispiel: Umgebungsfilter}
-    Sei $X$ ein topologischer Raum und $x \in X$. Der \emph{Umgebungsfilter} $\mathcal{U}(x)$ besteht aus allen Teilmengen $U \subseteq X$, für die es eine offene Menge $V$ gibt, sodass $x \in V \subseteq U$.
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Beispiel: Bildfilter}
-    Sei $m: X \to Y  $ ein Abbildung und $\mathcal{F}$ ein Filter auf $X$. Der \emph{Bildfilter} von $\mathcal{F}$ unter $m$ ist definiert durch 
-    \begin{align}
-        MAP(m)(\mathcal{F}) := \{ M \subset Y \mid m^{-1} (M) \in \mathcal{F} \}.
-    \end{align}
-\end{frame}
 
 \begin{frame}
     \frametitle{Konvergenz}
