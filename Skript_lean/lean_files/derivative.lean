@@ -6,6 +6,34 @@ import Mathlib.Analysis.Calculus.Gradient.Basic
 import Mathlib.LinearAlgebra.FiniteDimensional
 import Mathlib.Data.Matrix.Basic
 
+import Mathlib.Analysis.Asymptotics.Asymptotics
+
+open Filter Asymptotics
+
+
+--------------------------------------------------------------------------------
+-- O Kalkül
+--------------------------------------------------------------------------------
+-- Definition einer quadratischen Funktion f(n) = n^2 + n
+def f (n : Nat) : Nat := n * n + n
+
+-- Hilfslemma, das eine obere Schranke für n^2 + n angibt
+theorem f_bound (n : Nat) : f n ≤ 2 * n * n := by
+  calc
+    f n = n * n + n   := rfl
+    _ ≤ n * n + n * n := Nat.add_le_add_left (Nat.le_mul_self n) (n * n)
+    _ = 2 * n * n     := by ring
+
+-- Beweis, dass f(n) in O(n^2) liegt
+example : ∃ C, ∀ n ≥ 1, f n ≤ C * n * n := by
+  use 2  -- Wir setzen C = 2
+  intros n hn
+  apply f_bound
+
+
+--------------------------------------------------------------------------------
+-- Ableitungen
+--------------------------------------------------------------------------------
 open Topology InnerProductSpace Set Filter Real
 
 noncomputable section
