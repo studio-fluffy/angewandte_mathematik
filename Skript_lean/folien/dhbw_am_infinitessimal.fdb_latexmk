@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1729676464 "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript_lean/folien/dhbw_am_infinitessimal.tex" "dhbw_am_infinitessimal.pdf" "dhbw_am_infinitessimal" 1729676466 0
-  "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript_lean/folien/dhbw_am_infinitessimal.tex" 1729676464 13726 644dc2d1c615c81e53f1aefb852503f9 ""
+["pdflatex"] 1729677845 "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript_lean/folien/dhbw_am_infinitessimal.tex" "dhbw_am_infinitessimal.pdf" "dhbw_am_infinitessimal" 1729677847 0
+  "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript_lean/folien/dhbw_am_infinitessimal.tex" 1729677845 13795 c06d2f3f46f501a53ca936b9c6411c9f ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -246,15 +246,15 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1698836375 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1698836342 7883462 8a4d061ad2ccf4b7ea70dd63c461eb78 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "dhbw_am_infinitessimal.aux" 1729676466 3533 93861f27799d0c8cc8134d9147db2e5e "pdflatex"
-  "dhbw_am_infinitessimal.nav" 1729676466 2132 9ecbcfc9f7de68c052dc9846a033acac "pdflatex"
-  "dhbw_am_infinitessimal.out" 1729676465 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "dhbw_am_infinitessimal.tex" 1729676464 13726 644dc2d1c615c81e53f1aefb852503f9 ""
+  "dhbw_am_infinitessimal.aux" 1729677847 3533 93861f27799d0c8cc8134d9147db2e5e "pdflatex"
+  "dhbw_am_infinitessimal.nav" 1729677847 2132 9ecbcfc9f7de68c052dc9846a033acac "pdflatex"
+  "dhbw_am_infinitessimal.out" 1729677846 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "dhbw_am_infinitessimal.tex" 1729677845 13795 c06d2f3f46f501a53ca936b9c6411c9f ""
   "images/500px-Epsilonschlauch_klein.png" 1727802035 14354 d08757a2a13b2aaba706282d02f1b749 ""
   "images/Newton.jpg" 1727802035 987984 e13fe9dcf19b2b3c91b63ea6992386dc ""
   "images/Zeno_Achilles_Paradox.png" 1727802035 66185 5d51a75a2e55f17b6984f3d8adc9f7eb ""
   "images/cover.png" 1727802035 646146 46821660292bbcef098553c678fd004c ""
-  "images/filter_conv.png" 1729676463 357858 70602c751094cde8f8da0bf5fd3ec884 ""
+  "images/filter_conv.png" 1729677695 358064 6a22f3518f8e84eb8f9483d8c71c09ed ""
   "images/limit.png" 1727802035 747582 cf4c9f2c468e557f8306c93f2231600d ""
   (generated)
   "dhbw_am_infinitessimal.aux"
