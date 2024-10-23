@@ -1462,6 +1462,11 @@ INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmssi10.tfm
+INPUT ./images/filter_conv.png
+INPUT ./images/filter_conv.png
+INPUT images/filter_conv.png
+INPUT ./images/filter_conv.png
+INPUT ./images/filter_conv.png
 OUTPUT dhbw_am_infinitessimal.nav
 OUTPUT dhbw_am_infinitessimal.toc
 OUTPUT dhbw_am_infinitessimal.snm
