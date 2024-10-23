@@ -128,6 +128,44 @@
  \end{frame}
 
 
+ \begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Lokale Linearisierung}
+    \begin{block}{Lokale Linearisierung}
+Eine Funktion  $f: U \subset \mathbb{R}^n \to \mathbb{R}^m$ heisst differenzierbar  in $a \in U$ falls es eine lineare Funktion 
+$df(a):  \mathbb{R}^n \to  \mathbb{R}^m$ gibt mit
+\begin{align}
+\label{diff}
+f(a + h)  =  f(a)  +  df(a) h + o(||h||)  \\
+\Leftrightarrow lim_{h \to 0} \frac{f(a + h)  -  f(a)  -  df(a)h}{||h||} = 0
+\end{align}
+für alle $h \in \mathbb{R}^n$
+\end{block}
+    \begin{block}{Bedeutung}
+Eine differenzierbare Funktion kann  auf hinreichend kleinen Umgebungen 
+beliebig genau durch eine lineare Funktion approximiert werden. 
+\end{block}
+ \end{frame}
+
+
+ \begin{frame}
+    \frametitle{Angewandte Mathematik}
+    \framesubtitle{Ableitungen}
+    \begin{block}{Beispiel}
+$A \in \mathbb{R}^{n \times m}$, $b \in \mathbb{R}^n$ 
+\begin{align}
+f(x) : = A\cdot x + b \\
+df(a) : = A 
+\end{align}
+\end{block}
+    \begin{block}{Beweis}
+\begin{align}
+& \lim_{h\to 0} \frac{A(x + h) - A\cdot x -A\cdot h}{||h||} = \\
+& \lim_{h\to 0} \frac{A\cdot x + A \cdot h - A\cdot x -A\cdot h}{||h||} = 0
+\end{align}
+\end{block}
+
+ \end{frame}
 
 
 
@@ -184,26 +222,6 @@
         \end{block}
         
     \end{frame}
-    
-
-    \begin{frame}
-        \frametitle{Angewandte Mathematik}
-        \framesubtitle{Ableitungen}
-        \begin{block}{Beispiel}
-    $A \in \mathbb{R}^{n \times m}$, $b \in \mathbb{R}^n$ 
-    \begin{align}
-    f(x) : = A\cdot x + b \\
-    df(a) : = A 
-    \end{align}
-    \end{block}
-        \begin{block}{Beweis}
-    \begin{align}
-    & \lim_{h\to 0} \frac{A(x + h) - A\cdot x -A\cdot h}{||h||} = \\
-    & \lim_{h\to 0} \frac{A\cdot x + A \cdot h - A\cdot x -A\cdot h}{||h||} = 0
-    \end{align}
-    \end{block}
-    
-     \end{frame}
     
 
     \begin{frame}
