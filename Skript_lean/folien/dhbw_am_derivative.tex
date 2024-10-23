@@ -50,8 +50,8 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Definition}
-
+    \frametitle{Angewandte Mathematik}
+    \framesubtitle{Asymptotics}
     \begin{block}{Big O Notation \href{https://github.com/leanprover-community/mathlib4/blob/69d256b3c87085fec8063376dfb231ee1fd345d8/Mathlib/Analysis/Asymptotics/Asymptotics.lean\#L75-L80}{Mathlib}}
         Für einen Filter $l$ und Funktionen $f,g$ definieren wir 
         \[
@@ -66,7 +66,8 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Definition}
+    \frametitle{Angewandte Mathematik}
+    \framesubtitle{Asymptotics}
 
     \begin{block}{Klein-o Notation \href{https://github.com/leanprover-community/mathlib4/blob/69d256b3c87085fec8063376dfb231ee1fd345d8/Mathlib/Analysis/Asymptotics/Asymptotics.lean\#L161-L162}{Mathlib}}
         Für einen Filter $l$ und Funktionen $f,g$ definieren wir 
@@ -88,7 +89,9 @@
     
 \end{frame}
 
-\begin{frame}{Ableitungsdefinitionen}
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+    \framesubtitle{Ableitungen}
     \textbf{Klassische Definition in einer Dimension:}
     \[
     f'(a) = \lim_{h \to 0} \frac{f(a + h) - f(a)}{h}
@@ -114,8 +117,8 @@
   \end{frame}
   
   \begin{frame}
-    \frametitle{Mehrdimensionale Differentialrechnung}
-\framesubtitle{Limes}
+    \frametitle{Angewandte Mathematik}
+    \framesubtitle{Ableitungen}
 
 \begin{figure}[H]
       \centering
@@ -127,23 +130,10 @@
 
 
 
-\begin{frame}{Definition der Ableitung entlang eines Filters }
-    \begin{block}{Ableitung in mehreren Dimensionen}
-    Eine Funktion \( f: \mathbb{R}^n \to  \mathbb{R}^m\) hat die (lineare) Abbildung \( df \) als Ableitung, falls
-    \begin{align}
-    \label{diff}
-    f(a + h) = f(a) + df(a)h + o(h),
-\end{align}
-    Die Ableitung wird auch mit $f':=df$ bezeichnet.
-
-    \end{block}
-    
-
-    \end{frame}
 
     \begin{frame}
-        \frametitle{Mehrdimensionale Differentialrechnung}
-    \framesubtitle{Limes}
+        \frametitle{Angewandte Mathematik}
+        \framesubtitle{Ableitungen}
         \begin{block}{Eindeutigkeit}
     Die Ableitung  $df$ ist eindeutig bestimmt.
     \end{block}
@@ -158,7 +148,9 @@
      \end{frame}
     
 
-    \begin{frame}{Definition der Ableitung entlang eines Filters }
+    \begin{frame}
+        \frametitle{Angewandte Mathematik}
+        \framesubtitle{Ableitungen}
  
         \begin{block}{Ableitung Lean}
             Eine Funktion \( f: V \to  W \) zwischen normierten Räumen hat die lineare Abbildung \( f' \) als Ableitung entlang des Filters \( L \), falls
@@ -209,7 +201,8 @@
     \end{frame}
     
     \begin{frame}
-        \frametitle{Vergleich: Lineare Abbildungen in Mathematik und Lean (Mathlib)}
+        \frametitle{Angewandte Mathematik}
+        \framesubtitle{Ableitungen}
   
         \begin{block}{Definition in Lean (Mathlib)}
             In Lean4 (Mathlib) wird eine lineare Abbildung \( T \) zwischen zwei normierten Vektorräumen \( V \) und \( W \) über \( \mathbb{R} \) als eine stetige lineare Abbildung (\texttt{continuous\_linear\_map}) definiert:
@@ -232,8 +225,8 @@
 
 
     \begin{frame}
-        \frametitle{Mehrdimensionale Differentialrechnung}
-    \framesubtitle{Limes}
+        \frametitle{Angewandte Mathematik}
+        \framesubtitle{Ableitungen}
         \begin{block}{Beispiel}
     $A \in \mathbb{R}^{n \times m}$, $b \in \mathbb{R}^n$ 
     \begin{align}
@@ -252,8 +245,8 @@
     
 
     \begin{frame}
-        \frametitle{Vergleich: Lineare Abbildungen in Mathematik und Lean (Mathlib)}
-  
+        \frametitle{Angewandte Mathematik}
+        \framesubtitle{Ableitungen}
         \begin{block}{Partielle Ableitung}
             In Lean4 (Mathlib) wird eine lineare Abbildung \( T \) zwischen zwei normierten Vektorräumen \( V \) und \( W \) über \( \mathbb{R} \) als eine stetige lineare Abbildung (\texttt{continuous\_linear\_map}) definiert:
             \[
@@ -270,9 +263,60 @@
 
 
 
-    \begin{frame}
-        \frametitle{Vergleich: Lineare Abbildungen in Mathematik und Lean (Mathlib)}
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+    \framesubtitle{Ableitungen}
+
+
+\begin{block}{Definition}
+  Eine Funktion \( f \) ist an \( x \) differenzierbar, wenn:
+  \[
+  f(x') - f(x) - f'(x' - x) = o_L(x' - x)
+  \]
+  Dies bedeutet, dass der Restterm \( f(x') - f(x) - f'(x' - x) \) schneller gegen 0 geht als \( x' - x \), wenn \( x' \to x \) unter einem Filter \( L \).
+\end{block}
+
+\begin{block}{Beispiele für Filter \( L \)}
+  \begin{itemize}
+    \item \textbf{Standardfall: Filter der Umgebung von \( x \)} \\
+    Der Filter \( L = \mathcal{N}(x) \) beschreibt, dass \( x' \) beliebig nahe an \( x \) heranrückt. Dieser Filter erfasst alle offenen Umgebungen von \( x \). 
+    \[
+    o_{\mathcal{N}(x)}(x' - x)
+    \]
+    bedeutet, dass der Restterm verschwindet, wenn \( x' \) gegen \( x \) läuft.
+  \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+    \framesubtitle{Ableitungen}
+
+\begin{block}{Beispiele für Filter \( L \) (Fortsetzung)}
+  \begin{itemize}
+      
+    \item \textbf{Filter auf einem Teilraum:} \\
+    Wenn man Differenzierbarkeit nur auf einem Teilraum \( S \subseteq E \) betrachtet, verwendet man den Filter \( \mathcal{N}[S](x) \), der Umgebungen in \( S \) enthält. Damit kann man die Differenzierbarkeit von \( f \) auf \( S \) testen.
   
+    \item \textbf{Filter für gerichtete Mengen:} \\
+    Bei Funktionen auf gerichteten Mengen (z.B. in Optimierungsproblemen) verwendet man den Filter \( L \), der beschreibt, wie \( x' \) sich entlang einer Richtung oder eines Pfades \( \gamma(t) \to x \) nähert.
+  \end{itemize}
+\end{block}
+
+\vspace{-0.5cm} % Adjust spacing to avoid overfull vbox
+
+\begin{block}{Zusammenfassung}
+  Der Filter \( L \) gibt die Art und Weise an, wie \( x' \) gegen \( x \) strebt. Der häufigste Fall ist der Filter der offenen Umgebungen von \( x \), aber auch Teilräume oder spezielle Pfade können durch Filter modelliert werden.
+\end{block}
+
+\end{frame}
+
+
+    \begin{frame}
+        \frametitle{Angewandte Mathematik}
+        \framesubtitle{Ableitungen}
         \begin{block}{Ableitung Berechnen}
             Wie kann man die Ableitung einer Funktion berechnen?
         \end{block}
@@ -283,8 +327,8 @@
 
 
     \begin{frame}
-        \frametitle{Vergleich: Lineare Abbildungen in Mathematik und Lean (Mathlib)}
-  
+        \frametitle{Angewandte Mathematik}
+        \framesubtitle{Ableitungen}  
         \begin{block}{Partielle Ableitung}
             Für eine Funktion $f: \mathbb{R}^n \to \mathbb{R}$ definert man die partielle Ableitung 
             \[
@@ -306,8 +350,8 @@
     \end{frame}
 
     \begin{frame}
-        \frametitle{Mehrdimensionale Differentialrechnung}
-    \framesubtitle{Limes}
+        \frametitle{Angewandte Mathematik}
+        \framesubtitle{Ableitungen}  
     
     \begin{figure}[H]
           \centering
@@ -321,7 +365,9 @@
 
 
      \begin{frame}
-        \frametitle{Mehrdimensionale Differentialrechnung}
+        \frametitle{Angewandte Mathematik}
+        \framesubtitle{Ableitungen}
+        
     \framesubtitle{Differenzierbarkeit}
         \begin{block}{Gradient}
     
