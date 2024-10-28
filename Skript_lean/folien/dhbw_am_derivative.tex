@@ -581,4 +581,69 @@ Da $F_k$ eine Funktion einer Veränderlichen ist, gilt $F'(0) = 0$. Da $\frac{\p
  \end{frame}
 
 
+
+
+
+ \begin{frame}{Zielsetzung: Filterdifferenzierbarkeit der Komposition}
+    \begin{block}{Theorem (Filterdifferenzierbarkeit der Komposition)}
+        Gegeben seien differenzierbare Funktionen \( f : E \rightarrow F \) und \( g : F \rightarrow G \) mit
+        \[
+        f'(x) : E \to F \quad \text{und} \quad g'(f(x)) : F \to G,
+        \]
+        wobei \( f'(x) \) und \( g'(f(x)) \) die Ableitungen von \( f \) bzw. \( g \) an den jeweiligen Punkten darstellen.
+
+        Dann ist die Komposition \( h = g \circ f \) differenzierbar und die Ableitung \( h'(x) \) gegeben durch:
+        \[
+        h'(x) = g'(f(x)) \circ f'(x).
+        \]
+    \end{block}
+\end{frame}
+
+\begin{frame}{Schritte des Beweises in klassischer Mathematik}
+    \begin{block}{1. Definition des Fehlerterms für \( f \)}
+        Da \( f \) an \( x \) differenzierbar ist:
+        \[
+        f(y) = f(x) + f'(x)(y - x) + o(\| y - x \|),
+        \]
+        wobei der Fehlerterm \( o(\| y - x \|) \) schneller gegen Null geht als \( \| y - x \| \).
+    \end{block}
+
+    \begin{block}{2. Definition des Fehlerterms für \( g \)}
+        Da \( g \) an \( f(x) \) differenzierbar ist:
+        \[
+        g(f(y)) = g(f(x)) + g'(f(x))(f(y) - f(x)) + o(\| f(y) - f(x) \|).
+        \]
+    \end{block}
+\end{frame}
+
+\begin{frame}{Kombinieren der Fehlerterme}
+    \begin{block}{3. Einsetzen des Fehlers von \( f \) in den Fehler von \( g \)}
+        Ersetzen von \( f(y) - f(x) \) durch den Ausdruck aus Schritt 1 ergibt:
+        \begin{align*}
+        g(f(y)) = g(f(x)) + g'(f(x))\left(f'(x)(y - x)  + o(\| y - x \|)\right)  \\ 
+        + o(\| f(y) - f(x) \|).
+    \end{align*}
+\end{block}
+
+    \begin{block}{4. Vereinfachen und Abschätzen}
+        Da die Terme \( g'(f(x))(o(\| y - x \|)) \) und \( o(\| f(y) - f(x) \|) \) gegen Null gehen, ist
+        \[
+        h(y) = h(x) + h'(x)(y - x) + \text{Fehlerterm},
+        \]
+        was die Differenzierbarkeit von \( h = g \circ f \) zeigt.
+    \end{block}
+\end{frame}
+
+
+
+\begin{frame}{Verbindung zwischen klassischem Beweis und Lean-Code}
+    \begin{block}{Schritt-für-Schritt-Übersetzung}
+        \begin{itemize}
+            \item \texttt{hg : HasFDerivAtFilter g g' (f x) L'} und \texttt{hf : HasFDerivAtFilter f f' x L} entsprechen den Differenzierbarkeitsannahmen von \( g \) und \( f \).
+            \item \texttt{eq\(_1\)} und \texttt{eq\(_2\)} repräsentieren die asymptotischen Abschätzungen, die den klassischen Fehlertermen entsprechen.
+            \item \texttt{refine .of\_isLittleO <| eq\(_2\).triangle <| eq\(_1\).congr\_left} verwendet die Dreiecksungleichung und die \( o(\cdot) \)-Schranken, um die Differenzierbarkeit zu folgern.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
 \end{document}
