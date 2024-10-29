@@ -228,10 +228,12 @@ df(a) : = A
     \end{frame}
     
 
+
     \begin{frame}
         \frametitle{Angewandte Mathematik}
         \framesubtitle{Ableitungen}
-        \begin{block}{Partielle Ableitung}
+    
+        \begin{block}{Lineare Abbildung in Lean \href{https://github.com/leanprover-community/mathlib4/blob/f4f0b47a2f859d27e965c812344deb1435fe8d48/Mathlib/Topology/Algebra/Module/Basic.lean\#L222-L225}{Mathlib}}
             In Lean4 (Mathlib) wird eine lineare Abbildung \( T \) zwischen zwei normierten Vektorräumen \( V \) und \( W \) über \( \mathbb{R} \) als eine stetige lineare Abbildung (\texttt{continuous\_linear\_map}) definiert:
             \[
             T : V \to L[\mathbb{R}] W
@@ -243,8 +245,13 @@ df(a) : = A
             \end{itemize}
         \end{block}
     
+        \begin{block}{Vergleich}
+           Im endlichdimensionalen Fall entspricht die Definition in Lean der üblichen Definition einer linearen Abbildung. 
+           Im unendlichdimensionalen Fall wird zusätzlich die Stetigkeit gefordert, da diese nicht automatisch gegeben ist.
+        \end{block}
+        
     \end{frame}
-
+    
 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
@@ -296,28 +303,88 @@ df(a) : = A
 
 
 
-\begin{frame}
-    \frametitle{Angewandte Mathematik}
-    \framesubtitle{Ableitungen}
 
-    \begin{block}{Definition in Lean (Mathlib)}
-        In Lean4 (Mathlib) wird eine lineare Abbildung \( T \) zwischen zwei normierten Vektorräumen \( V \) und \( W \) über \( \mathbb{R} \) als eine stetige lineare Abbildung (\texttt{continuous\_linear\_map}) definiert:
+
+\begin{frame}
+    \begin{block}{Kettenregel für differenzierbare Funktionen}
+        Gegeben seien differenzierbare Funktionen \( f : E \rightarrow F \) und \( g : F \rightarrow G \) mit
         \[
-        T : V \to L[\mathbb{R}] W
+        f'(x) : E \to F \quad \text{und} \quad g'(f(x)) : F \to G,
         \]
-        Die lineare Struktur wird durch zwei Eigenschaften beschrieben:
+        wobei \( f'(x) \) und \( g'(f(x)) \) die Ableitungen von \( f \) bzw. \( g \) an den jeweiligen Punkten darstellen.
+
+        Dann ist die Komposition \( h = g \circ f \) differenzierbar und die Ableitung \( h'(x) \) gegeben durch:
+        \[
+        h'(x) = g'(f(x)) \circ f'(x).
+        \]
+    \end{block}
+\end{frame}
+
+\begin{frame}{Schritte des Beweises in klassischer Mathematik}
+    \begin{block}{1. Definition des Fehlerterms für \( f \)}
+        Da \( f \) an \( x \) differenzierbar ist:
+        \[
+        f(y) = f(x) + f'(x)(y - x) + o(\| y - x \|),
+        \]
+        wobei der Fehlerterm \( o(\| y - x \|) \) schneller gegen Null geht als \( \| y - x \| \).
+    \end{block}
+
+    \begin{block}{2. Definition des Fehlerterms für \( g \)}
+        Da \( g \) an \( f(x) \) differenzierbar ist:
+        \[
+        g(f(y)) = g(f(x)) + g'(f(x))(f(y) - f(x)) + o(\| f(y) - f(x) \|).
+        \]
+    \end{block}
+\end{frame}
+
+\begin{frame}{Kombinieren der Fehlerterme}
+    \begin{block}{3. Einsetzen des Fehlers von \( f \) in den Fehler von \( g \)}
+        Ersetzen von \( f(y) - f(x) \) durch den Ausdruck aus Schritt 1 ergibt:
+        \begin{align*}
+        g(f(y)) = g(f(x)) + g'(f(x))\left(f'(x)(y - x)  + o(\| y - x \|)\right)  \\ 
+        + o(\| f(y) - f(x) \|).
+    \end{align*}
+\end{block}
+
+    \begin{block}{4. Vereinfachen und Abschätzen}
+        Da die Terme \( g'(f(x))(o(\| y - x \|)) \) und \( o(\| f(y) - f(x) \|) \) gegen Null gehen, ist
+        \[
+        h(y) = h(x) + h'(x)(y - x) + \text{Fehlerterm},
+        \]
+        was die Differenzierbarkeit von \( h = g \circ f \) zeigt.
+    \end{block}
+\end{frame}
+
+
+
+\begin{frame}
+    \begin{block}{Schritt-für-Schritt-Übersetzung \href{https://github.com/leanprover-community/mathlib4/blob/f4f0b47a2f859d27e965c812344deb1435fe8d48/Mathlib/Analysis/Calculus/FDeriv/Comp.lean\#L51-L57}{Mathlib}}
         \begin{itemize}
-            \item \texttt{map\_add : $T (v_1 + v_2) = T v_1 + T v_2$}
-            \item \texttt{map\_smul : $T (c \cdot v) = c \cdot T v$}
+            \item \texttt{hg : HasFDerivAtFilter g g' (f x) L'} und \texttt{hf : HasFDerivAtFilter f f' x L} entsprechen den Differenzierbarkeitsannahmen von \( g \) und \( f \).
+            \item \texttt{eq\(_1\)} und \texttt{eq\(_2\)} repräsentieren die asymptotischen Abschätzungen, die den klassischen Fehlertermen entsprechen.
+            \item \texttt{refine .of\_isLittleO <| eq\(_2\).triangle <| eq\(_1\).congr\_left} verwendet die Dreiecksungleichung und die \( o(\cdot) \)-Schranken, um die Differenzierbarkeit zu folgern.
         \end{itemize}
     \end{block}
-
-    \begin{block}{Vergleich}
-       Im endlichdimensionalen Fall entspricht die Definition in Lean der üblichen Definition einer linearen Abbildung. 
-       Im unendlichdimensionalen Fall wird zusätzlich die Stetigkeit gefordert, da diese nicht automatisch gegeben ist.
-    \end{block}
-    
 \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Automatisches Ableiten}
+\begin{figure}[H]
+      \centering
+    \includegraphics[width=0.8\textwidth]{images/ad.png}
+      \caption{Quelle: Wikipedia}
+\end{figure}
+
+\href{https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html}{Automatisches Ableiten  in Pytorch}
+
+\href{https://jax.readthedocs.io/en/latest/notebooks/quickstart.html}{Automatisches Ableiten  in JAX}
+
+ \end{frame}
+
+
 
     \begin{frame}
         \frametitle{Angewandte Mathematik}
@@ -337,7 +404,7 @@ df(a) : = A
         \begin{block}{Partielle Ableitung}
             Für eine Funktion $f: \mathbb{R}^n \to \mathbb{R}$ definert man die partielle Ableitung 
             \[
-                D_i f (x) = \lim_{h \to 0} \frac{f(x + h \cdot e_i) - f(x)}{h}
+                D_i f (x) = \lim_{t \to 0} \frac{f(x + t \cdot e_i) - f(x)}{t}
                 \]
             wobei \( e_i \) der \( i \)-te Einheitsvektor ist. 
            
@@ -345,12 +412,12 @@ df(a) : = A
             
         \end{block}
 
-        \begin{block}{Richtungsableitung}
+        \begin{block}{Richtungsableitung \href{https://github.com/leanprover-community/mathlib4/blob/f4f0b47a2f859d27e965c812344deb1435fe8d48/Mathlib/Analysis/Calculus/LineDeriv/Basic.lean\#L69-L70}{Mathlib}}
             Allgemeiner definiert man für $f: \mathbb{R}^n \to \mathbb{R}$ und  $v \in \mathbb{R}^n$
             \[
-                D_v f (x) = \lim_{h \to 0} \frac{f(x + h \cdot v) - f(x)}{h}
+                D_v f (x) = \lim_{t \to 0} \frac{f(x + t \cdot v) - f(x)}{t}
                 \]
-            die Richtungsableitung von $f$ an der Stelle $x$ in Richtung $v$.            
+            die Richtungsableitung (Linienableitung) von $f$ an der Stelle $x$ in Richtung $v$.            
         \end{block}
     \end{frame}
 
@@ -621,7 +688,7 @@ Sei $f : X \subset \mathbb{R}^n \to \mathbb{R}$ eine relle Funktion.  Ein Punkt 
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Extrema}
-    \begin{block}{Extrema}
+    \begin{block}{Extrema \href{https://github.com/leanprover-community/mathlib4/blob/f4f0b47a2f859d27e965c812344deb1435fe8d48/Mathlib/Analysis/Calculus/LocalExtr/Basic.lean\#L184-L190}{Mathlib}}
  Ist $f: U  \to \mathbb{R}$ differenzierbar und hat  $f$ in $a \in U$ ein lokales Extremum, so gilt 
 \begin{align*}
 \frac{\partial}{\partial x_{1}} f(a) = \cdots  = \frac{\partial}{\partial x_{n}} f(a) = 0 \;.
@@ -642,73 +709,5 @@ Setze $F_k(t) := f(a + t e_k)$. Da $f$ ein Extremum in $a$ hat, hat $F_k$ in ein
 Da $F_k$ eine Funktion einer Veränderlichen ist, gilt $F'(0) = 0$. Da $\frac{\partial}{\partial x_k} f(a) = F_k'(0)$ folgt die Behauptung.
 \end{block}
  \end{frame}
-
-
-
-
-
-
-
- \begin{frame}{Zielsetzung: Filterdifferenzierbarkeit der Komposition}
-    \begin{block}{Theorem (Filterdifferenzierbarkeit der Komposition)}
-        Gegeben seien differenzierbare Funktionen \( f : E \rightarrow F \) und \( g : F \rightarrow G \) mit
-        \[
-        f'(x) : E \to F \quad \text{und} \quad g'(f(x)) : F \to G,
-        \]
-        wobei \( f'(x) \) und \( g'(f(x)) \) die Ableitungen von \( f \) bzw. \( g \) an den jeweiligen Punkten darstellen.
-
-        Dann ist die Komposition \( h = g \circ f \) differenzierbar und die Ableitung \( h'(x) \) gegeben durch:
-        \[
-        h'(x) = g'(f(x)) \circ f'(x).
-        \]
-    \end{block}
-\end{frame}
-
-\begin{frame}{Schritte des Beweises in klassischer Mathematik}
-    \begin{block}{1. Definition des Fehlerterms für \( f \)}
-        Da \( f \) an \( x \) differenzierbar ist:
-        \[
-        f(y) = f(x) + f'(x)(y - x) + o(\| y - x \|),
-        \]
-        wobei der Fehlerterm \( o(\| y - x \|) \) schneller gegen Null geht als \( \| y - x \| \).
-    \end{block}
-
-    \begin{block}{2. Definition des Fehlerterms für \( g \)}
-        Da \( g \) an \( f(x) \) differenzierbar ist:
-        \[
-        g(f(y)) = g(f(x)) + g'(f(x))(f(y) - f(x)) + o(\| f(y) - f(x) \|).
-        \]
-    \end{block}
-\end{frame}
-
-\begin{frame}{Kombinieren der Fehlerterme}
-    \begin{block}{3. Einsetzen des Fehlers von \( f \) in den Fehler von \( g \)}
-        Ersetzen von \( f(y) - f(x) \) durch den Ausdruck aus Schritt 1 ergibt:
-        \begin{align*}
-        g(f(y)) = g(f(x)) + g'(f(x))\left(f'(x)(y - x)  + o(\| y - x \|)\right)  \\ 
-        + o(\| f(y) - f(x) \|).
-    \end{align*}
-\end{block}
-
-    \begin{block}{4. Vereinfachen und Abschätzen}
-        Da die Terme \( g'(f(x))(o(\| y - x \|)) \) und \( o(\| f(y) - f(x) \|) \) gegen Null gehen, ist
-        \[
-        h(y) = h(x) + h'(x)(y - x) + \text{Fehlerterm},
-        \]
-        was die Differenzierbarkeit von \( h = g \circ f \) zeigt.
-    \end{block}
-\end{frame}
-
-
-
-\begin{frame}{Verbindung zwischen klassischem Beweis und Lean-Code}
-    \begin{block}{Schritt-für-Schritt-Übersetzung}
-        \begin{itemize}
-            \item \texttt{hg : HasFDerivAtFilter g g' (f x) L'} und \texttt{hf : HasFDerivAtFilter f f' x L} entsprechen den Differenzierbarkeitsannahmen von \( g \) und \( f \).
-            \item \texttt{eq\(_1\)} und \texttt{eq\(_2\)} repräsentieren die asymptotischen Abschätzungen, die den klassischen Fehlertermen entsprechen.
-            \item \texttt{refine .of\_isLittleO <| eq\(_2\).triangle <| eq\(_1\).congr\_left} verwendet die Dreiecksungleichung und die \( o(\cdot) \)-Schranken, um die Differenzierbarkeit zu folgern.
-        \end{itemize}
-    \end{block}
-\end{frame}
 
 \end{document}

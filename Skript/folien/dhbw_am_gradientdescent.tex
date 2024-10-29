@@ -118,9 +118,9 @@ minimal wird. Zum Beispiel $$L_D(\omega) := \sum_{(x_i,y_i) \in D} (f(\omega, x_
     \begin{block}{Mini Batch}
 \begin{itemize}
 \item   Datensatz $D$ sehr groß (Big Data)
-\item \pause Berechnung des Gradienten der Lossfunktion entsprechend aufwendig. 
-\item \pause Wende Backpropagation auf Teilräume $D' \subset D$ an (Minibatch).
-\item \pause $\#D' = 1$ stochastischer Gradientenabstieg.
+\item  Berechnung des Gradienten der Lossfunktion entsprechend aufwendig. 
+\item  Wende Backpropagation auf Teilräume $D' \subset D$ an (Minibatch).
+\item  $\#D' = 1$ stochastischer Gradientenabstieg.
 \end{itemize}
 
 \end{block}
@@ -147,13 +147,13 @@ minimal wird. Zum Beispiel $$L_D(\omega) := \sum_{(x_i,y_i) \in D} (f(\omega, x_
     \begin{block}{Backpropagation}
 \begin{itemize}
 \item  Initialisiere $k:=0$ und zufällige Gewichte $w_0$.
-\item \pause Initialisiere Genauigkeit $\epsilon > 0$
-\item \pause Wähle Teilmenge $D_0' \subset D$
-\item \pause   \text{While } {$|| \nabla L_{D_k'}(\omega) || > \epsilon$}  
-\item \pause Bestimme $\alpha_k$  mit $ L_{D_k'}(\omega_k + \alpha d_k) =  L_{D_k'}(\omega_k) + \alpha_k d L_{D_k'}(\omega_k)d_k + R( \alpha_k dk)$ 
-\item \pause  Setze $\omega_{k+1} := \omega_k  + \alpha_k d_k$. 
-\item \pause Wähle neue Teilmenge $D'_{k +1} \subset D$.
-\item \pause $k \leftarrow k+1$
+\item  Initialisiere Genauigkeit $\epsilon > 0$
+\item  Wähle Teilmenge $D_0' \subset D$
+\item    \text{While } {$|| \nabla L_{D_k'}(\omega) || > \epsilon$}  
+\item  Bestimme $\alpha_k$  mit $ L_{D_k'}(\omega_k + \alpha d_k) =  L_{D_k'}(\omega_k) + \alpha_k d L_{D_k'}(\omega_k)d_k + R( \alpha_k dk)$ 
+\item   Setze $\omega_{k+1} := \omega_k  + \alpha_k d_k$. 
+\item  Wähle neue Teilmenge $D'_{k +1} \subset D$.
+\item  $k \leftarrow k+1$
 \end{itemize}
 \end{block}
  \end{frame}

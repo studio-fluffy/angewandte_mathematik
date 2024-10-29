@@ -1,8 +1,8 @@
-PWD /Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript_lean/folien
+PWD /Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien
 INPUT /usr/local/texlive/2023/texmf.cnf
 INPUT /usr/local/texlive/2023/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript_lean/folien/dhbw_am_derivative.tex
+INPUT /Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_derivative.tex
 OUTPUT dhbw_am_derivative.log
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/beamer/beamer.cls
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/beamer/beamer.cls
@@ -1442,6 +1442,12 @@ INPUT images/df.jpeg
 INPUT ./images/df.jpeg
 INPUT ./images/df.jpeg
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
+INPUT ./images/ad.png
+INPUT ./images/ad.png
+INPUT images/ad.png
+INPUT ./images/ad.png
+INPUT ./images/ad.png
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmss10.tfm
 INPUT ./images/diffable.png
 INPUT images/diffable.png
 INPUT ./images/diffable.png
@@ -1450,7 +1456,6 @@ INPUT ./images/Gradient.png
 INPUT images/Gradient.png
 INPUT ./images/Gradient.png
 INPUT ./images/Gradient.png
-INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmss10.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmtt8.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmtt8.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmss8.tfm

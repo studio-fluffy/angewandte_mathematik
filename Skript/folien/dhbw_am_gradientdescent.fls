@@ -1,8 +1,8 @@
-PWD /Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript_lean/folien
+PWD /Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien
 INPUT /usr/local/texlive/2023/texmf.cnf
 INPUT /usr/local/texlive/2023/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript_lean/folien/dhbw_am_gradientdescent.tex
+INPUT /Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_gradientdescent.tex
 OUTPUT dhbw_am_gradientdescent.log
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/beamer/beamer.cls
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/beamer/beamer.cls
