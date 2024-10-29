@@ -1,5 +1,6 @@
 import Mathlib.Analysis.InnerProductSpace.Dual
 import Mathlib.Analysis.Calculus.FDeriv.Basic
+import Mathlib.Analysis.Calculus.Deriv.Linear
 import Mathlib.Analysis.Calculus.Deriv.Basic
 import Mathlib.Analysis.Calculus.Gradient.Basic
 
@@ -7,7 +8,7 @@ import Mathlib.LinearAlgebra.FiniteDimensional
 import Mathlib.Data.Matrix.Basic
 
 import Mathlib.Analysis.Asymptotics.Asymptotics
-
+import Mathlib.Analysis.Calculus.FDeriv.Basic
 open Filter Asymptotics
 
 
@@ -40,7 +41,10 @@ noncomputable section
 --variable {𝕜 F : Type*} [RCLike 𝕜]
 
 
---variable [NormedAddCommGroup F] [InnerProductSpace  ℝ F] [CompleteSpace F]
+variables {E F : Type*} [NormedAddCommGroup E] [NormedAddCommGroup F]
+  [NormedSpace ℝ E] [NormedSpace ℝ F] {f : E → F} {f' : E →L[ℝ] F} {a : E}
+
+
 variable {n : ℕ} -- Dimension des Raums
 
 -- Definiere F als endlichdimensionalen Vektorraum der Dimension n

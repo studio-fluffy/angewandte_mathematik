@@ -7,6 +7,8 @@
 \usepackage{multimedia} 
 \usepackage{subfig}
 \usepackage{amsmath}
+\usepackage{amssymb}
+
 \usepackage{hyperref}
 % Setze die Optionen für das hyperref-Paket
 \hypersetup{
@@ -19,6 +21,8 @@
 }
 
 \usepackage[all]{xy}
+\usepackage{verbatim}
+
 \begin{document}
 
 
@@ -489,6 +493,65 @@ df(a) : = A
     \end{frame}
 
     
+
+
+    \begin{frame}{Ziel: Linienableitung innerhalb einer Menge zeigen}
+        \begin{block}{Lemma: HasFDerivWithinAt.hasLineDerivWithinAt}
+            Wenn \( f \) an \( x \) innerhalb der Menge \( s \) differenzierbar ist mit Ableitung \( L \), dann hat \( f \) eine Richtungsableitung (Linienableitung) in Richtung \( v \), die durch \( L(v) \) gegeben ist:
+            \[
+            \text{HasFDerivWithinAt } f \, L \, s \, x \Rightarrow \text{HasLineDerivWithinAt } \mathbb{K} \, f \, (L(v)) \, s \, x \, v.
+            \]
+        \end{block}
+    \end{frame}
+    
+    \begin{frame}{Beweisschritte: Definition der Hilfsfunktion \( F \)}
+        \begin{block}{1. Definition einer Hilfsfunktion \( F \)}
+            Um die Richtungsableitung in Richtung \( v \) zu bestimmen, definieren wir die Funktion
+            \[
+            F(t) := x + t \cdot v.
+            \]
+            Damit repräsentiert \( F \) eine Bewegung entlang der Richtung \( v \) vom Punkt \( x \) aus.
+        \end{block}
+    
+        \begin{block}{2. Darstellung von \( x \) durch \( F \)}
+            Wir erkennen, dass \( x = F(0) \), also der Punkt \( x \) durch die Funktion \( F \) bei \( t = 0 \) beschrieben werden kann. Dies verwenden wir, um \( x \) im Beweis durch \( F(0) \) zu ersetzen:
+            \[
+            \text{rewrite: } x = F(0) \text{ in } \texttt{hf}.
+            \]
+        \end{block}
+    \end{frame}
+    
+    \begin{frame}{Beweisschritte: Berechnung der Ableitung von \( F \)}
+        \begin{block}{3. Ableitung von \( F \) innerhalb der Menge \( s \)}
+            Da \( F(t) = x + t \cdot v \), können wir die Ableitung von \( F \) an \( t = 0 \) innerhalb der Menge \( F^{-1}(s) \) berechnen. Diese Ableitung ist:
+            \[
+            \text{HasDerivWithinAt } F \, (0 + 1 \cdot v) \, (F^{-1}(s)) \, 0.
+            \]
+            Diese Ableitung resultiert aus der Kombination der konstanten Funktion \( x \) und der Identitätsfunktion, multipliziert mit \( v \).
+        \end{block}
+    
+        \begin{block}{4. Vereinfachung der Ableitung}
+            Die Berechnung vereinfacht sich zu:
+            \[
+            \text{HasDerivWithinAt } F \, v \, (F^{-1}(s)) \, 0.
+            \]
+            durch die Gleichungen \( 1 \cdot v = v \) und \( 0 + v = v \).
+        \end{block}
+    \end{frame}
+    
+    \begin{frame}{Schlussfolgerung: Richtungsableitung von \( f \) entlang \( v \)}
+        \begin{block}{5. Kombination der Ableitungen}
+            Mit der Kettenregel schließen wir, dass die Richtungsableitung von \( f \) in Richtung \( v \) durch \( L(v) \) gegeben ist:
+            \[
+            \text{HasLineDerivWithinAt } \mathbb{K} \, f \, (L(v)) \, s \, x \, v.
+            \]
+            Dies zeigt, dass die Ableitung von \( f \) in Richtung \( v \) der Anwendung von \( L \) auf \( v \) entspricht.
+        \end{block}
+    \end{frame}
+
+
+
+    
     \begin{frame}
         \frametitle{Mehrdimensionale Differentialrechnung}
     \framesubtitle{Differenzierbarkeit}
@@ -579,6 +642,8 @@ Setze $F_k(t) := f(a + t e_k)$. Da $f$ ein Extremum in $a$ hat, hat $F_k$ in ein
 Da $F_k$ eine Funktion einer Veränderlichen ist, gilt $F'(0) = 0$. Da $\frac{\partial}{\partial x_k} f(a) = F_k'(0)$ folgt die Behauptung.
 \end{block}
  \end{frame}
+
+
 
 
 
