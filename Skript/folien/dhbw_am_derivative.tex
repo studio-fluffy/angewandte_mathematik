@@ -189,25 +189,7 @@ df(a) : = A
     \end{block}
      \end{frame}
     
-     \begin{frame}
-        \frametitle{Angewandte Mathematik}
-    \framesubtitle{Kettenregel}
-    
-        \begin{block}{Mehrdimensionale Differenzierbarkeit}
-    Eine Funktion $F: U \subset \mathbb{R}^n \to \mathbb{R}^m$ ist genau dann differenzierbar, wenn alle Koordinatenfunktionen
-    \begin{align*}
-    & F_i :U \subset \mathbb{R}^n \to \mathbb{R} \\
-    & F_i(x): = (pr_i \circ F) (x) := pr_i(F(x))
-    \end{align*}
-    differenzierbar sind.
-    \end{block}
-        
-    \begin{block}{Beweis}
-        Betrachte $dF = (dF_1, \cdots, dF_m) $ zusammen mit dem  Restglied $R(h)  = (R_1(h), \cdots, R_m(h))$ definiert jeweils durch die rechte oder linke Seite.
-        \end{block}
-     \end{frame}
-    
-    
+
     
 
     
@@ -323,6 +305,75 @@ df(a) : = A
 \end{frame}
 
 
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Kettenregel}
+
+    \begin{block}{Mehrdimensionale Differenzierbarkeit}
+Eine Funktion $F: U \subset \mathbb{R}^n \to \mathbb{R}^m$ ist genau dann differenzierbar, wenn alle Koordinatenfunktionen
+\begin{align*}
+& F_i :U \subset \mathbb{R}^n \to \mathbb{R} \\
+& F_i(x): = (pr_i \circ F) (x) := pr_i(F(x))
+\end{align*}
+differenzierbar sind.
+\end{block}
+    
+\begin{block}{Beweis}
+    Betrachte $dF = (dF_1, \cdots, dF_m) $ zusammen mit dem  Restglied $R(h)  = (R_1(h), \cdots, R_m(h))$ definiert jeweils durch die rechte oder linke Seite.
+    \end{block}
+ \end{frame}
+
+
+
+\begin{frame}
+    \begin{block}{Differenzierbarkeit von Summen Funktionen}
+
+        Eine Funktion \( f : E \to F \) zwischen zwei normierten Vektorräumen \( E \) und
+    Sei \( f, g : \mathbb{R}^n \rightarrow \mathbb{R}^m \) und sei \( h(x) = f(x) + g(x) \) die Summe der beiden Funktionen. Wenn \( f \) und \( g \) an einem Punkt \( x \) differenzierbar sind, dann ist \( h \) ebenfalls an \( x \) differenzierbar und es gilt:
+    \[
+    d h(x) = d f(x) + d g(x),
+    \]
+    wobei \( df(x) \) und \( dg(x) \) die Ableitungen von \( f \) bzw. \( g \) am Punkt \( x \) darstellen.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    Wir berechnen die Ableitung von \( h \) an der Stelle \( x \) gemäß der Definition der Differenzierbarkeit. Die Differenzierbarkeit von \( h \) an \( x \) bedeutet, dass es eine lineare Abbildung \( L \) gibt, sodass
+    \[
+    \lim_{\mathbf{h} \to 0} \frac{\| h(x + \mathbf{h}) - h(x) - L(\mathbf{h}) \|}{\|\mathbf{h}\|} = 0.
+    \]
+    Da \( h(x) = f(x) + g(x) \), ergibt sich:
+    \[
+    h(x + \mathbf{h}) - h(x) = (f(x + \mathbf{h}) - f(x)) + (g(x + \mathbf{h}) - g(x)).
+    \]
+\end{frame}
+
+\begin{frame}
+    Setzen wir dies in die Definition ein:
+    \[
+    \lim_{\mathbf{h} \to 0} \frac{\| (f(x + \mathbf{h}) - f(x)) + (g(x + \mathbf{h}) - g(x)) - L(\mathbf{h}) \|}{\|\mathbf{h}\|} = 0.
+    \]
+    Da \( f \) und \( g \) an \( x \) differenzierbar sind, existieren lineare Abbildungen \( L_f \) und \( L_g \), sodass:
+    \[
+    f(x + \mathbf{h}) - f(x) = L_f(\mathbf{h}) + o(\|\mathbf{h}\|), \quad g(x + \mathbf{h}) - g(x) = L_g(\mathbf{h}) + o(\|\mathbf{h}\|).
+    \]
+\end{frame}
+
+\begin{frame}
+    Daraus folgt:
+    \[
+    h(x + \mathbf{h}) - h(x) = L_f(\mathbf{h}) + L_g(\mathbf{h}) + o(\|\mathbf{h}\|).
+    \]
+    Wählen wir \( L = L_f + L_g \), dann erhalten wir:
+    \[
+    h(x + \mathbf{h}) - h(x) - L(\mathbf{h}) = o(\|\mathbf{h}\|).
+    \]
+    Daher ist \( h \) an \( x \) differenzierbar mit \( D h(x) = L = L_f + L_g \), und somit gilt:
+    \[
+    d h(x) = d f(x) + d g(x).
+    \]
+\end{frame}
 
 
 
@@ -499,7 +550,7 @@ df(a) : = A
 
 
     \begin{frame}
-        \begin{block}{Lemma: HasFDerivWithinAt.hasLineDerivWithinAt}
+        \begin{block}{Lemma: HasFDerivWithinAt.hasLineDerivWithinAt \href{https://github.com/leanprover-community/mathlib4/blob/ef78db7e00e989f71af21dd11bcfd6b7caf560da/Mathlib/Analysis/Calculus/LineDeriv/Basic.lean\#L256-L263}{Mathlib}}
             Wenn \( f \) an \( x \) innerhalb der Menge \( s \) differenzierbar ist mit Ableitung \( L \), dann hat \( f \) eine Richtungsableitung (Linienableitung) in Richtung \( v \), die durch \( L(v) \) gegeben ist:
             \[
             \text{HasFDerivWithinAt } f \, L \, s \, x \Rightarrow \text{HasLineDerivWithinAt } \mathbb{K} \, f \, (L(v)) \, s \, x \, v.

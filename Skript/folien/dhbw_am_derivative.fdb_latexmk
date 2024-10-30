@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1730277681 "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_derivative.tex" "dhbw_am_derivative.pdf" "dhbw_am_derivative" 1730277683 0
-  "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_derivative.tex" 1730277681 25070 ad32158fb1d3eeb7e78870bd5732f1ac ""
+["pdflatex"] 1730279580 "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_derivative.tex" "dhbw_am_derivative.pdf" "dhbw_am_derivative" 1730279582 0
+  "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_derivative.tex" 1730279580 27207 8a477cdfd2a865a0f7924ca1ad21930d ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -248,10 +248,10 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1698836375 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1698836342 7883462 8a4d061ad2ccf4b7ea70dd63c461eb78 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "dhbw_am_derivative.aux" 1730277683 5420 aed4b1bad00bc1bffd540019571ead92 "pdflatex"
-  "dhbw_am_derivative.nav" 1730277683 3434 e5558aebbdf7ca98c531725246282832 "pdflatex"
-  "dhbw_am_derivative.out" 1730277682 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "dhbw_am_derivative.tex" 1730277681 25070 ad32158fb1d3eeb7e78870bd5732f1ac ""
+  "dhbw_am_derivative.aux" 1730279582 5936 da25c8fc5f0aa1b756d4e04a3dcf22f4 "pdflatex"
+  "dhbw_am_derivative.nav" 1730279582 3806 dc6cd9bd11b5862db379b6b87555791e "pdflatex"
+  "dhbw_am_derivative.out" 1730279581 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "dhbw_am_derivative.tex" 1730279580 27207 8a477cdfd2a865a0f7924ca1ad21930d ""
   "images/Gradient.png" 1727802035 59255 e4b064db10e0de7c7761bc03e6ab4e0c ""
   "images/ad.png" 1727802035 72454 10e469a3d35f6f064023573de90f05e2 ""
   "images/cover.png" 1727802035 646146 46821660292bbcef098553c678fd004c ""

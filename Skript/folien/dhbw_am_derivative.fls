@@ -1442,6 +1442,8 @@ INPUT images/df.jpeg
 INPUT ./images/df.jpeg
 INPUT ./images/df.jpeg
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
 INPUT ./images/ad.png
 INPUT ./images/ad.png
 INPUT images/ad.png
