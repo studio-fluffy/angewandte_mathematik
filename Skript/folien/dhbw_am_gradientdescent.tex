@@ -26,8 +26,6 @@
 \subject{Angewandte Mathematik}
 
 
-
-
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Gradientenverfahren}
@@ -35,6 +33,105 @@
 Wie kann man Minima einer  differenzierbaren Abbildung $f: \mathbb{R}^n \to \mathbb{R}$ finden? 
  
 \end{block}
+
+ \end{frame}
+  
+    
+\begin{frame}
+    \frametitle{Mehrdimensionale Differentialrechnung}
+\framesubtitle{Differenzierbarkeit}
+    \begin{block}{Gradient}
+
+Sei   $f: U \to \mathbb{R}$ differenzierbare Funktion,  $a \in U$ und $v := \text{argmax}_{ ||h|| = 1 } \{ \partial_h f(a) \}$.
+Dann gilt 
+\begin{align*}
+|| \nabla f(a) || v =  \nabla f(a) \; .
+\end{align*} 
+\end{block}
+\begin{block}{Gradient}
+Der Gradient zeigt in die Richtung des steilsten Anstiegs.
+\end{block}
+
+ \end{frame}
+
+\begin{frame}
+    \frametitle{Mehrdimensionale Differentialrechnung}
+\framesubtitle{Differenzierbarkeit}
+    \begin{block}{Beweis}
+Für beliebiges $h$ gilt 
+\begin{align*}
+\partial_h f(a) = df(a) h = \langle \nabla f(a) , h \rangle = || \nabla f(a)||  \cdot ||h|| \cdot \cos(\varphi) 
+\end{align*} 
+wobei $\varphi$ den Innenwinkel zwischen $\nabla f(a)$ und $h$ bezeichnet. Für $||h|| = 1$ wird somit $\partial_h f(a) $ maximal, wenn $\varphi = 0$ und somit$h =  \frac{\nabla f(a)}{||\nabla f(a)||}$ ist.
+\end{block}
+
+ \end{frame}
+
+
+
+
+\begin{frame}
+\frametitle{Angewandte Mathematik}
+\framesubtitle{Extrema}
+\begin{block}{Extrema}
+Sei $f : X \subset \mathbb{R}^n \to \mathbb{R}$ eine relle Funktion.  Ein Punkt $a \in  X$ heißt lokales Maximum bzw. Minimum, falls eine Umgebung $U$ von $a$ existiert, so dass $f(x) \leq f(a)$ bzw.  $f(x) \geq f(a)$ für alle $x \in U$ gilt. Liegt einer der beiden Fälle vor, so spricht man von einem lokalen Extremum. Gilt strikt $f(x) <  f(a)$ bzw.  $f(x) > f(a)$ , so nennt man das Extremum isoliert. Ist $U = X$ so nennt man es auch globales Maximum bzw. Minimum.
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Angewandte Mathematik}
+\framesubtitle{Extrema}
+
+\begin{figure}[H]
+  \centering
+\includegraphics[width=0.8\textwidth]{images/MaximumParaboloid}
+  \caption{Quelle: Wikipedia: https://en.wikipedia.org/wiki/File:MaximumParaboloid.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Angewandte Mathematik}
+\framesubtitle{Extrema}
+
+\begin{figure}[H]
+  \centering
+\includegraphics[width=0.8\textwidth]{images/MaximumCounterexample}
+  \caption{Quelle: Wikipedia: https://en.wikipedia.org/wiki/File:MaximumCounterexample.png}
+\end{figure}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Angewandte Mathematik}
+\framesubtitle{Extrema}
+\begin{block}{Extrema \href{https://github.com/leanprover-community/mathlib4/blob/f4f0b47a2f859d27e965c812344deb1435fe8d48/Mathlib/Analysis/Calculus/LocalExtr/Basic.lean\#L184-L190}{Mathlib}}
+Ist $f: U  \to \mathbb{R}$ differenzierbar und hat  $f$ in $a \in U$ ein lokales Extremum, so gilt 
+\begin{align*}
+\frac{\partial}{\partial x_{1}} f(a) = \cdots  = \frac{\partial}{\partial x_{n}} f(a) = 0 \;.
+\end{align*}
+Sind die partiellen Ableitungen stetig, ist dies  gleichbedeutend mit $df(a) = 0$.
+\end{block}
+\begin{block}{Kritischer Punkt}
+Ein Punkt $a$ mit $df(a) = 0$ wird kritischer Punkt genannt.
+\end{block}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Angewandte Mathematik}
+\framesubtitle{Extrema}
+\begin{block}{Beweis}
+Setze $F_k(t) := f(a + t e_k)$. Da $f$ ein Extremum in $a$ hat, hat $F_k$ in einer hinreichend kleinen Umgebung um $0$ ein Extremum. 
+Da $F_k$ eine Funktion einer Veränderlichen ist, gilt $F'(0) = 0$. Da $\frac{\partial}{\partial x_k} f(a) = F_k'(0)$ folgt die Behauptung.
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Gradientenverfahren}
 
     \begin{block}{Gradientenverfahren}
 \begin{itemize}

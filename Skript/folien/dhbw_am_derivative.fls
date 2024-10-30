@@ -1472,14 +1472,6 @@ INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/sansmathaccent/mathkerncmssi12.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/sansmathaccent/mathkerncmssi10.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/sansmathaccent/mathkerncmssi8.tfm
-INPUT ./images/MaximumParaboloid.png
-INPUT images/MaximumParaboloid.png
-INPUT ./images/MaximumParaboloid.png
-INPUT ./images/MaximumParaboloid.png
-INPUT ./images/MaximumCounterexample.png
-INPUT images/MaximumCounterexample.png
-INPUT ./images/MaximumCounterexample.png
-INPUT ./images/MaximumCounterexample.png
 OUTPUT dhbw_am_derivative.nav
 OUTPUT dhbw_am_derivative.toc
 OUTPUT dhbw_am_derivative.snm

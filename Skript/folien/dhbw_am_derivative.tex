@@ -474,218 +474,9 @@ df(a) : = A
           \caption{Quelle: Wikipedia: https://commons.wikimedia.org/wiki/File:Gradient2.svg}
     \end{figure}
     
-    
-     \end{frame}
-    
-
- % Folie 1: Einfache Beispiele für den Gradienten
-\begin{frame}{Gradienten-Beispiele: Einfache Funktionen}
-
-    \textbf{Beispiel 1: Quadratische Funktion in 2D}
-    \[
-    f(x, y) = x^2 + y^2
-    \]
-    Gradient:
-    \[
-    \nabla f(x, y) = 
-    \begin{pmatrix}
-    \frac{\partial f}{\partial x} \\
-    \frac{\partial f}{\partial y}
-    \end{pmatrix}
-    = 
-    \begin{pmatrix}
-    2x \\
-    2y
-    \end{pmatrix}
-    \]
-    
-    \textbf{Beispiel 2: Quadratische Funktion in 3D}
-    \[
-    f(x, y, z) = x^2 + y^2 + z^2
-    \]
-    Gradient:
-    \[
-    \nabla f(x, y, z) = 
-    \begin{pmatrix}
-    \frac{\partial f}{\partial x} \\
-    \frac{\partial f}{\partial y} \\
-    \frac{\partial f}{\partial z}
-    \end{pmatrix}
-    = 
-    \begin{pmatrix}
-    2x \\
-    2y \\
-    2z
-    \end{pmatrix}
-    \]
-    
-    \end{frame}
-    
-    % Folie 2: Komplexere Beispiele für den Gradienten
-    \begin{frame}{Gradienten-Beispiele: Komplexere Funktionen}
-    
-    \textbf{Beispiel 3: Exponentialfunktion}
-    \[
-    f(x, y) = e^{x^2 + y^2}
-    \]
-    Gradient:
-    \[
-    \nabla f(x, y) = 
-    \begin{pmatrix}
-    \frac{\partial}{\partial x} e^{x^2 + y^2} \\
-    \frac{\partial}{\partial y} e^{x^2 + y^2}
-    \end{pmatrix}
-    = 
-    \begin{pmatrix}
-    2x e^{x^2 + y^2} \\
-    2y e^{x^2 + y^2}
-    \end{pmatrix}
-    \]
-    
-    \textbf{Beispiel 4: Logarithmische Funktion}
-    \[
-    f(x, y) = \ln(x^2 + y^2)
-    \]
-    Gradient:
-    \[
-    \nabla f(x, y) = 
-    \begin{pmatrix}
-    \frac{\partial}{\partial x} \ln(x^2 + y^2) \\
-    \frac{\partial}{\partial y} \ln(x^2 + y^2)
-    \end{pmatrix}
-    = 
-    \begin{pmatrix}
-    \frac{2x}{x^2 + y^2} \\
-    \frac{2y}{x^2 + y^2}
-    \end{pmatrix}
-    \]
-    
     \end{frame}
     
 
-    \begin{frame}
-        \begin{block}{Kettenregel}
-            Gegeben seien Funktionen
-            \[
-            f : \mathbb{R}^2 \rightarrow \mathbb{R} \quad \text{und} \quad g : \mathbb{R} \rightarrow \mathbb{R}^2,
-            \]
-            die an den Punkten \( g(x) \) bzw. \( x \) differenzierbar sind. Die Komposition \( h(x) = f(g(x)) \) ist dann ebenfalls differenzierbar mit:
-            \[
-            h'(x) = \nabla f(g(x)) \cdot g'(x),
-            \]
-            wobei \( \nabla f(g(x)) \) der Gradient von \( f \) an der Stelle \( g(x) \) ist und \( g'(x) \) die Jacobimatrix von \( g \) an \( x \).
-        \end{block}
-    \end{frame}
-    
-    \begin{frame}
-        \begin{block}{Funktionen und Komposition}
-            Sei
-            \[
-            f(x, y) = x^2 + y^2 \quad \text{und} \quad g(x) = (\cos(x), \sin(x)).
-            \]
-            Dann ist die Komposition \( h(x) = f(g(x)) = \cos^2(x) + \sin^2(x) \).
-        \end{block}
-    \end{frame}
-    
-    \begin{frame}
-        \begin{block}{Schritte zur Anwendung der Kettenregel}
-            \begin{enumerate}
-                \item Berechne den Gradienten von \( f \):
-                \[
-                \nabla f(x, y) = \begin{pmatrix} 2x \\ 2y \end{pmatrix}.
-                \]
-                Setze \( (x, y) = g(x) = (\cos(x), \sin(x)) \):
-                \[
-                \nabla f(g(x)) = \begin{pmatrix} 2\cos(x) \\ 2\sin(x) \end{pmatrix}.
-                \]
-    
-                \item Berechne die Ableitung von \( g(x) = (\cos(x), \sin(x)) \), also die Jacobimatrix \( g'(x) \):
-                \[
-                g'(x) = \begin{pmatrix} -\sin(x) \\ \cos(x) \end{pmatrix}.
-                \]
-    
-                \item Wende die Kettenregel an:
-                \[
-                h'(x) = \nabla f(g(x)) \cdot g'(x) = \begin{pmatrix} 2\cos(x) & 2\sin(x) \end{pmatrix} \begin{pmatrix} -\sin(x) \\ \cos(x) \end{pmatrix}.
-                \]
-            \end{enumerate}
-        \end{block}
-    \end{frame}
-    
-    \begin{frame}
-        \begin{block}{Zusammenfassung}
-            Berechne das Skalarprodukt, um \( h'(x) \) zu erhalten:
-            \[
-            h'(x) = 2\cos(x) \cdot (-\sin(x)) + 2\sin(x) \cdot \cos(x) = 0.
-            \]
-            Da \( \cos^2(x) + \sin^2(x) = 1 \), ergibt sich, dass \( h(x) = 1 \) konstant ist und daher \( h'(x) = 0 \).
-        \end{block}
-    \end{frame}
-    
-    \begin{frame}
-        \begin{block}{Funktion und Ziel}
-            Sei \( h(x, y) = e^{x^2 + y^2} \). Wir möchten den Gradienten von \( h \) berechnen, d.h.:
-            \[
-            \nabla h(x, y) = \left( \frac{\partial h}{\partial x}, \frac{\partial h}{\partial y} \right).
-            \]
-            Statt dies direkt zu tun, können wir die Kettenregel verwenden und die Berechnung vereinfachen, indem wir \( h \) als Komposition zerlegen.
-        \end{block}
-    \end{frame}
-    
-    \begin{frame}
-        \begin{block}{Kompositionsansatz}
-            Definiere:
-            \[
-            g(x, y) = x^2 + y^2 \quad \text{und} \quad f(u) = e^u.
-            \]
-            Dann ist \( h(x, y) = f(g(x, y)) = e^{x^2 + y^2} \).
-        \end{block}
-        
-        \begin{block}{Verwendung der Kettenregel}
-            Nach der Kettenregel gilt:
-            \[
-            \nabla h(x, y) = f'(g(x, y)) \cdot \nabla g(x, y).
-            \]
-        \end{block}
-    \end{frame}
-    
-    \begin{frame}
-        \begin{block}{Schritte zur Berechnung}
-            \begin{enumerate}
-                \item Berechne \( f'(u) \):
-                \[
-                f'(u) = e^u.
-                \]
-                Damit ist
-                \[
-                f'(g(x, y)) = e^{x^2 + y^2}.
-                \]
-                
-                \item Berechne den Gradienten von \( g(x, y) = x^2 + y^2 \):
-                \[
-                \nabla g(x, y) = \begin{pmatrix} 2x \\ 2y \end{pmatrix}.
-                \]
-                
-                \item Setze die Ergebnisse ein:
-                \[
-                \nabla h(x, y) = f'(g(x, y)) \cdot \nabla g(x, y) = e^{x^2 + y^2} \begin{pmatrix} 2x \\ 2y \end{pmatrix}.
-                \]
-            \end{enumerate}
-        \end{block}
-    \end{frame}
-    
-    \begin{frame}
-        \begin{block}{Gradient von \( h(x, y) \)}
-            Der Gradient von \( h(x, y) = e^{x^2 + y^2} \) ist:
-            \[
-            \nabla h(x, y) = \begin{pmatrix} 2x e^{x^2 + y^2} \\ 2y e^{x^2 + y^2} \end{pmatrix}.
-            \]
-        \end{block}
- 
-    \end{frame}
-    
-    
-         
     \begin{frame}
         \frametitle{Vergleich: Lineare Abbildungen in Mathematik und Lean (Mathlib)}
         
@@ -702,6 +493,8 @@ df(a) : = A
         \end{block}
     \end{frame}
 
+
+ 
     
 
 
@@ -761,96 +554,141 @@ df(a) : = A
 
 
 
+
+    Folie 1: Einfache Beispiele für den Gradienten
+    \begin{frame}{Gradienten-Beispiele: Einfache Funktionen}
     
-    \begin{frame}
-        \frametitle{Mehrdimensionale Differentialrechnung}
-    \framesubtitle{Differenzierbarkeit}
-        \begin{block}{Gradient}
+        \textbf{Beispiel 1: Quadratische Funktion in 2D}
+        \[
+        f(x, y) = x^2 + y^2
+        \]
+        Gradient:
+        \[
+        \nabla f(x, y) = 
+        \begin{pmatrix}
+        \frac{\partial f}{\partial x} \\
+        \frac{\partial f}{\partial y}
+        \end{pmatrix}
+        = 
+        \begin{pmatrix}
+        2x \\
+        2y
+        \end{pmatrix}
+        \]
+        
+        \textbf{Beispiel 2: Quadratische Funktion in 3D}
+        \[
+        f(x, y, z) = x^2 + y^2 + z^2
+        \]
+        Gradient:
+        \[
+        \nabla f(x, y, z) = 
+        \begin{pmatrix}
+        \frac{\partial f}{\partial x} \\
+        \frac{\partial f}{\partial y} \\
+        \frac{\partial f}{\partial z}
+        \end{pmatrix}
+        = 
+        \begin{pmatrix}
+        2x \\
+        2y \\
+        2z
+        \end{pmatrix}
+        \]
+        
+        \end{frame}
+        
+        % Folie 2: Komplexere Beispiele für den Gradienten
+        \begin{frame}{Gradienten-Beispiele: Komplexere Funktionen}
+        
+        \textbf{Beispiel 3: Exponentialfunktion}
+        \[
+        f(x, y) = e^{x^2 + y^2}
+        \]
+        Gradient:
+        \[
+        \nabla f(x, y) = 
+        \begin{pmatrix}
+        \frac{\partial}{\partial x} e^{x^2 + y^2} \\
+        \frac{\partial}{\partial y} e^{x^2 + y^2}
+        \end{pmatrix}
+        = 
+        \begin{pmatrix}
+        2x e^{x^2 + y^2} \\
+        2y e^{x^2 + y^2}
+        \end{pmatrix}
+        \]
+        
+        \textbf{Beispiel 4: Logarithmische Funktion}
+        \[
+        f(x, y) = \ln(x^2 + y^2)
+        \]
+        Gradient:
+        \[
+        \nabla f(x, y) = 
+        \begin{pmatrix}
+        \frac{\partial}{\partial x} \ln(x^2 + y^2) \\
+        \frac{\partial}{\partial y} \ln(x^2 + y^2)
+        \end{pmatrix}
+        = 
+        \begin{pmatrix}
+        \frac{2x}{x^2 + y^2} \\
+        \frac{2y}{x^2 + y^2}
+        \end{pmatrix}
+        \]
+        
+        \end{frame}
+        
     
-    Sei   $f: U \to \mathbb{R}$ differenzierbare Funktion,  $a \in U$ und $v := \text{argmax}_{ ||h|| = 1 } \{ \partial_h f(a) \}$.
-    Dann gilt 
-    \begin{align*}
-    || \nabla f(a) || v =  \nabla f(a) \; .
-    \end{align*} 
-    \end{block}
-    \begin{block}{Gradient}
-    Der Gradient zeigt in die Richtung des steilsten Anstiegs.
-    \end{block}
     
-     \end{frame}
+        \begin{frame}{Einfacheres Beispiel durch die Kettenregel}
+            Wir betrachten die Funktion 
+            \[
+            h(x, y) = e^{x^2 + y^2}.
+            \]
+            Um die partiellen Ableitungen von \( h \) zu berechnen, verwenden wir die Kettenregel, indem wir \( h \) als eine Komposition schreiben.
+        \end{frame}
+        
+        \begin{frame}{Zerlegung der Funktion als Komposition}
+            Wir definieren:
+            \[
+            g(x, y) = x^2 + y^2 \quad \text{und} \quad f(u) = e^u.
+            \]
+            Damit lässt sich \( h(x, y) \) als Komposition schreiben:
+            \[
+            h(x, y) = f(g(x, y)) = e^{x^2 + y^2}.
+            \]
+            Nach der Kettenregel gilt:
+            \[
+            \frac{\partial h}{\partial x} = f'(g(x, y)) \cdot \frac{\partial g}{\partial x} \quad \text{und} \quad \frac{\partial h}{\partial y} = f'(g(x, y)) \cdot \frac{\partial g}{\partial y}.
+            \]
+        \end{frame}
+        
+        \begin{frame}{Berechnung der partiellen Ableitungen}
+            Zuerst berechnen wir \( f'(u) \) und \( g(x, y) \):
+            \[
+            f'(u) = e^u \Rightarrow f'(g(x, y)) = e^{x^2 + y^2},
+            \]
+            \[
+            \frac{\partial g}{\partial x} = 2x \quad \text{und} \quad \frac{\partial g}{\partial y} = 2y.
+            \]
+            Setzen wir dies in die Formeln für die partiellen Ableitungen ein, erhalten wir:
+            \[
+            \frac{\partial h}{\partial x} = e^{x^2 + y^2} \cdot 2x = 2x e^{x^2 + y^2},
+            \]
+            \[
+            \frac{\partial h}{\partial y} = e^{x^2 + y^2} \cdot 2y = 2y e^{x^2 + y^2}.
+            \]
+        \end{frame}
+        
+        \begin{frame}{Zusammenfassung des Ergebnisses}
+            Die partiellen Ableitungen der Funktion \( h(x, y) = e^{x^2 + y^2} \) sind:
+            \[
+            \frac{\partial h}{\partial x} = 2x e^{x^2 + y^2} \quad \text{und} \quad \frac{\partial h}{\partial y} = 2y e^{x^2 + y^2}.
+            \]
+            Durch die Kettenregel konnten wir die Ableitungen effizient berechnen, da wir nur die Ableitung der äußeren Funktion \( f(u) = e^u \) und die der inneren Funktion \( g(x, y) = x^2 + y^2 \) benötigten.
+        \end{frame}
     
-    \begin{frame}
-        \frametitle{Mehrdimensionale Differentialrechnung}
-    \framesubtitle{Differenzierbarkeit}
-        \begin{block}{Beweis}
-    Für beliebiges $h$ gilt 
-    \begin{align*}
-    \partial_h f(a) = df(a) h = \langle \nabla f(a) , h \rangle = || \nabla f(a)||  \cdot ||h|| \cdot \cos(\varphi) 
-    \end{align*} 
-    wobei $\varphi$ den Innenwinkel zwischen $\nabla f(a)$ und $h$ bezeichnet. Für $||h|| = 1$ wird somit $\partial_h f(a) $ maximal, wenn $\varphi = 0$ und somit$h =  \frac{\nabla f(a)}{||\nabla f(a)||}$ ist.
-    \end{block}
     
-     \end{frame}
-    
-
-
-
-\begin{frame}
-    \frametitle{Angewandte Mathematik}
-\framesubtitle{Extrema}
-    \begin{block}{Extrema}
-Sei $f : X \subset \mathbb{R}^n \to \mathbb{R}$ eine relle Funktion.  Ein Punkt $a \in  X$ heißt lokales Maximum bzw. Minimum, falls eine Umgebung $U$ von $a$ existiert, so dass $f(x) \leq f(a)$ bzw.  $f(x) \geq f(a)$ für alle $x \in U$ gilt. Liegt einer der beiden Fälle vor, so spricht man von einem lokalen Extremum. Gilt strikt $f(x) <  f(a)$ bzw.  $f(x) > f(a)$ , so nennt man das Extremum isoliert. Ist $U = X$ so nennt man es auch globales Maximum bzw. Minimum.
-\end{block}
- \end{frame}
-
-
-\begin{frame}
-    \frametitle{Angewandte Mathematik}
-\framesubtitle{Extrema}
-
-\begin{figure}[H]
-      \centering
-    \includegraphics[width=0.8\textwidth]{images/MaximumParaboloid}
-      \caption{Quelle: Wikipedia: https://en.wikipedia.org/wiki/File:MaximumParaboloid.png}
-   \end{figure}
- \end{frame}
-
-\begin{frame}
-    \frametitle{Angewandte Mathematik}
-\framesubtitle{Extrema}
-
-\begin{figure}[H]
-      \centering
-    \includegraphics[width=0.8\textwidth]{images/MaximumCounterexample}
-      \caption{Quelle: Wikipedia: https://en.wikipedia.org/wiki/File:MaximumCounterexample.png}
-\end{figure}
- \end{frame}
-
-
-
-\begin{frame}
-    \frametitle{Angewandte Mathematik}
-\framesubtitle{Extrema}
-    \begin{block}{Extrema \href{https://github.com/leanprover-community/mathlib4/blob/f4f0b47a2f859d27e965c812344deb1435fe8d48/Mathlib/Analysis/Calculus/LocalExtr/Basic.lean\#L184-L190}{Mathlib}}
- Ist $f: U  \to \mathbb{R}$ differenzierbar und hat  $f$ in $a \in U$ ein lokales Extremum, so gilt 
-\begin{align*}
-\frac{\partial}{\partial x_{1}} f(a) = \cdots  = \frac{\partial}{\partial x_{n}} f(a) = 0 \;.
-\end{align*}
-Sind die partiellen Ableitungen stetig, ist dies  gleichbedeutend mit $df(a) = 0$.
-\end{block}
-    \begin{block}{Kritischer Punkt}
- Ein Punkt $a$ mit $df(a) = 0$ wird kritischer Punkt genannt.
-\end{block}
-
- \end{frame}
-
-\begin{frame}
-    \frametitle{Angewandte Mathematik}
-\framesubtitle{Extrema}
-    \begin{block}{Beweis}
-Setze $F_k(t) := f(a + t e_k)$. Da $f$ ein Extremum in $a$ hat, hat $F_k$ in einer hinreichend kleinen Umgebung um $0$ ein Extremum. 
-Da $F_k$ eine Funktion einer Veränderlichen ist, gilt $F'(0) = 0$. Da $\frac{\partial}{\partial x_k} f(a) = F_k'(0)$ folgt die Behauptung.
-\end{block}
- \end{frame}
-
+     
 \end{document}
