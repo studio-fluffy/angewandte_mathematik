@@ -189,7 +189,28 @@ df(a) : = A
     \end{block}
      \end{frame}
     
+     \begin{frame}
+        \frametitle{Angewandte Mathematik}
+    \framesubtitle{Kettenregel}
+    
+        \begin{block}{Mehrdimensionale Differenzierbarkeit}
+    Eine Funktion $F: U \subset \mathbb{R}^n \to \mathbb{R}^m$ ist genau dann differenzierbar, wenn alle Koordinatenfunktionen
+    \begin{align*}
+    & F_i :U \subset \mathbb{R}^n \to \mathbb{R} \\
+    & F_i(x): = (pr_i \circ F) (x) := pr_i(F(x))
+    \end{align*}
+    differenzierbar sind.
+    \end{block}
+        
+    \begin{block}{Beweis}
+        Betrachte $dF = (dF_1, \cdots, dF_m) $ zusammen mit dem  Restglied $R(h)  = (R_1(h), \cdots, R_m(h))$ definiert jeweils durch die rechte oder linke Seite.
+        \end{block}
+     \end{frame}
+    
+    
+    
 
+    
 
     \begin{frame}
         \frametitle{Lineare Abbildungen}
@@ -542,6 +563,128 @@ df(a) : = A
     \end{frame}
     
 
+    \begin{frame}
+        \begin{block}{Kettenregel}
+            Gegeben seien Funktionen
+            \[
+            f : \mathbb{R}^2 \rightarrow \mathbb{R} \quad \text{und} \quad g : \mathbb{R} \rightarrow \mathbb{R}^2,
+            \]
+            die an den Punkten \( g(x) \) bzw. \( x \) differenzierbar sind. Die Komposition \( h(x) = f(g(x)) \) ist dann ebenfalls differenzierbar mit:
+            \[
+            h'(x) = \nabla f(g(x)) \cdot g'(x),
+            \]
+            wobei \( \nabla f(g(x)) \) der Gradient von \( f \) an der Stelle \( g(x) \) ist und \( g'(x) \) die Jacobimatrix von \( g \) an \( x \).
+        \end{block}
+    \end{frame}
+    
+    \begin{frame}
+        \begin{block}{Funktionen und Komposition}
+            Sei
+            \[
+            f(x, y) = x^2 + y^2 \quad \text{und} \quad g(x) = (\cos(x), \sin(x)).
+            \]
+            Dann ist die Komposition \( h(x) = f(g(x)) = \cos^2(x) + \sin^2(x) \).
+        \end{block}
+    \end{frame}
+    
+    \begin{frame}
+        \begin{block}{Schritte zur Anwendung der Kettenregel}
+            \begin{enumerate}
+                \item Berechne den Gradienten von \( f \):
+                \[
+                \nabla f(x, y) = \begin{pmatrix} 2x \\ 2y \end{pmatrix}.
+                \]
+                Setze \( (x, y) = g(x) = (\cos(x), \sin(x)) \):
+                \[
+                \nabla f(g(x)) = \begin{pmatrix} 2\cos(x) \\ 2\sin(x) \end{pmatrix}.
+                \]
+    
+                \item Berechne die Ableitung von \( g(x) = (\cos(x), \sin(x)) \), also die Jacobimatrix \( g'(x) \):
+                \[
+                g'(x) = \begin{pmatrix} -\sin(x) \\ \cos(x) \end{pmatrix}.
+                \]
+    
+                \item Wende die Kettenregel an:
+                \[
+                h'(x) = \nabla f(g(x)) \cdot g'(x) = \begin{pmatrix} 2\cos(x) & 2\sin(x) \end{pmatrix} \begin{pmatrix} -\sin(x) \\ \cos(x) \end{pmatrix}.
+                \]
+            \end{enumerate}
+        \end{block}
+    \end{frame}
+    
+    \begin{frame}
+        \begin{block}{Zusammenfassung}
+            Berechne das Skalarprodukt, um \( h'(x) \) zu erhalten:
+            \[
+            h'(x) = 2\cos(x) \cdot (-\sin(x)) + 2\sin(x) \cdot \cos(x) = 0.
+            \]
+            Da \( \cos^2(x) + \sin^2(x) = 1 \), ergibt sich, dass \( h(x) = 1 \) konstant ist und daher \( h'(x) = 0 \).
+        \end{block}
+    \end{frame}
+    
+    \begin{frame}
+        \begin{block}{Funktion und Ziel}
+            Sei \( h(x, y) = e^{x^2 + y^2} \). Wir möchten den Gradienten von \( h \) berechnen, d.h.:
+            \[
+            \nabla h(x, y) = \left( \frac{\partial h}{\partial x}, \frac{\partial h}{\partial y} \right).
+            \]
+            Statt dies direkt zu tun, können wir die Kettenregel verwenden und die Berechnung vereinfachen, indem wir \( h \) als Komposition zerlegen.
+        \end{block}
+    \end{frame}
+    
+    \begin{frame}
+        \begin{block}{Kompositionsansatz}
+            Definiere:
+            \[
+            g(x, y) = x^2 + y^2 \quad \text{und} \quad f(u) = e^u.
+            \]
+            Dann ist \( h(x, y) = f(g(x, y)) = e^{x^2 + y^2} \).
+        \end{block}
+        
+        \begin{block}{Verwendung der Kettenregel}
+            Nach der Kettenregel gilt:
+            \[
+            \nabla h(x, y) = f'(g(x, y)) \cdot \nabla g(x, y).
+            \]
+        \end{block}
+    \end{frame}
+    
+    \begin{frame}
+        \begin{block}{Schritte zur Berechnung}
+            \begin{enumerate}
+                \item Berechne \( f'(u) \):
+                \[
+                f'(u) = e^u.
+                \]
+                Damit ist
+                \[
+                f'(g(x, y)) = e^{x^2 + y^2}.
+                \]
+                
+                \item Berechne den Gradienten von \( g(x, y) = x^2 + y^2 \):
+                \[
+                \nabla g(x, y) = \begin{pmatrix} 2x \\ 2y \end{pmatrix}.
+                \]
+                
+                \item Setze die Ergebnisse ein:
+                \[
+                \nabla h(x, y) = f'(g(x, y)) \cdot \nabla g(x, y) = e^{x^2 + y^2} \begin{pmatrix} 2x \\ 2y \end{pmatrix}.
+                \]
+            \end{enumerate}
+        \end{block}
+    \end{frame}
+    
+    \begin{frame}
+        \begin{block}{Gradient von \( h(x, y) \)}
+            Der Gradient von \( h(x, y) = e^{x^2 + y^2} \) ist:
+            \[
+            \nabla h(x, y) = \begin{pmatrix} 2x e^{x^2 + y^2} \\ 2y e^{x^2 + y^2} \end{pmatrix}.
+            \]
+        \end{block}
+ 
+    \end{frame}
+    
+    
          
     \begin{frame}
         \frametitle{Vergleich: Lineare Abbildungen in Mathematik und Lean (Mathlib)}
