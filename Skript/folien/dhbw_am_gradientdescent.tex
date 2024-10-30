@@ -63,6 +63,42 @@ $f(x_{k+1}) = f (x_k + \alpha_k d_k) =  f(x_k) + \alpha_k df(x_k)d_k + R( \alpha
  \end{frame}
 
 
+
+
+
+ \begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Gradientenverfahren}
+    \begin{block}{Höhenlinien}
+Sei  $f: \mathbb{R}^n \to \mathbb{R}$  eine differenzierbare Funktion. Eine Kurve $\gamma : I \to \mathbb{R}^n$, auf der $f$ konstant ist, also 
+$f(\gamma(t)) = c$ für ein festes $c \in \mathbb{R}$ gilt, heißt Höhenlinie.
+\end{block}
+
+\begin{figure}[H]
+      \centering
+    \includegraphics[width=0.5\textwidth]{images/Contours-and-relief}
+      \caption{Quelle: https://getoutside.ordnancesurvey.co.uk/guides/understanding-map-contour-lines-for-beginners/}
+\end{figure}
+
+ \end{frame}
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Gradientenverfahren}
+    \begin{block}{Höhenlinien}
+Der Gradient steht senkrecht auf  Höhenlinien. Dies bedeutet, dass $$ \bigl \langle \nabla f(\gamma(t)), \gamma'(t) \bigr \rangle = 0$$ gilt. 
+
+\end{block}
+    \begin{block}{Beweis}
+Aus $f(\gamma(t)) = c$ folgt $\frac{d}{dt} f(\gamma(t)) = 0$. Mit der Kettenregel folgt $\frac{d}{dt} f(\gamma(t)) =  df(\gamma(t)) \cdot \gamma'(t) = 0$ und damit
+$ \bigl \langle \nabla f(\gamma(t)), \gamma'(t) \bigr \rangle = 0$.
+\end{block}
+
+ \end{frame}
+
+
+
 \begin{frame}
     \frametitle{Angewandte Mathematik}
 \framesubtitle{Backpropagation}

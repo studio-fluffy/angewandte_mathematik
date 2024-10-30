@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1730226661 "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_gradientdescent.tex" "dhbw_am_gradientdescent.pdf" "dhbw_am_gradientdescent" 1730226662 0
-  "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_gradientdescent.tex" 1730226659 4830 465e131226bc22f434423085eaeac134 ""
+["pdflatex"] 1730269712 "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_gradientdescent.tex" "dhbw_am_gradientdescent.pdf" "dhbw_am_gradientdescent" 1730269713 0
+  "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_gradientdescent.tex" 1730269710 6010 365317aa0569e0b1aedcf5385f6f25b7 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -243,12 +243,13 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1698836375 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1698836342 7883462 8a4d061ad2ccf4b7ea70dd63c461eb78 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "dhbw_am_gradientdescent.aux" 1730226662 1855 a919e2247839d4a8202d7732d4a6a88e "pdflatex"
-  "dhbw_am_gradientdescent.nav" 1730226662 923 02772eacdfe77d67b79e45a640fd18ab "pdflatex"
-  "dhbw_am_gradientdescent.out" 1730226662 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "dhbw_am_gradientdescent.tex" 1730226659 4830 465e131226bc22f434423085eaeac134 ""
+  "dhbw_am_gradientdescent.aux" 1730269713 2114 a4a09d176936fbbefbc3e2366b47c2bc "pdflatex"
+  "dhbw_am_gradientdescent.nav" 1730269713 1109 07396102f9d82bf25877ba7d82798efb "pdflatex"
+  "dhbw_am_gradientdescent.out" 1730269712 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "dhbw_am_gradientdescent.tex" 1730269710 6010 365317aa0569e0b1aedcf5385f6f25b7 ""
   "images/499px-Colored_neural_network.png" 1727802035 56551 97ff8c4c214c327da4e87dfc47a4573c ""
   "images/500px-NeuronModel_deutsch.png" 1727802035 17272 a22fdf870502b7ee28a0f3fbdc5c6e75 ""
+  "images/Contours-and-relief.jpg" 1727802035 145601 350997f1be1d16f255a38a849ec7d7a1 ""
   "images/Gradient_descent.png" 1727802035 37890 321c0684f9d84a3c717e1656b461a343 ""
   "images/batchgradient.png" 1727802035 96963 dcbdadd436b8337ced6c1d08d53a2b87 ""
   (generated)

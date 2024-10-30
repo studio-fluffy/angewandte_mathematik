@@ -1440,6 +1440,10 @@ INPUT images/Gradient_descent.png
 INPUT ./images/Gradient_descent.png
 INPUT ./images/Gradient_descent.png
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmss10.tfm
+INPUT ./images/Contours-and-relief.jpg
+INPUT images/Contours-and-relief.jpg
+INPUT ./images/Contours-and-relief.jpg
+INPUT ./images/Contours-and-relief.jpg
 INPUT ./images/499px-Colored_neural_network.png
 INPUT images/499px-Colored_neural_network.png
 INPUT ./images/499px-Colored_neural_network.png
