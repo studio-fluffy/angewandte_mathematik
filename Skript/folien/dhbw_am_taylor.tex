@@ -87,9 +87,9 @@ Eine  Funktion  $f: U \subset \mathbb{R}^n \to \mathbb{R}$ für die alle partiel
 \end{align*}
 mit $i_1 + \cdots + i_k \leq k$ existieren und stetig sind heißt $\mathcal{C}^k$-Funktion oder $k$-mal stetig differenzierbar.
 \end{block}
-    \begin{block}{$\mathcal{C}^k$-Funktionen}
- Eine  $\mathcal{C}^1$-Funktion ist also eine differenzierbare Funktion.
-\end{block}
+%    \begin{block}{$\mathcal{C}^k$-Funktionen}
+% Eine  $\mathcal{C}^1$-Funktion ist also eine differenzierbare Funktion.
+%\end{block}
  \end{frame}
 
 
@@ -209,7 +209,9 @@ Sei $f'(a) = 0$ und $f''(a) > 0$. Mit der Taylorformel gilt für hinreichend kur
 \begin{align*}
 f(a + h) = f(a) + \frac{1}{2} h^T f''(a) h + R(h)
 \end{align*}
-mit $\lim_{h \to 0} \frac{R(h)}{ ||h||^2} = 0$. Für $||h|| \leq 1$ hat $ h^T f''(a) h $ sein Maximum $m$ auf dem Einheitskreis $\{ h \in \mathbb{R}^n \; | \; ||h|| = 1 \}$ da $f''(a) > 0$.
+mit $\lim_{h \to 0} \frac{R(h)}{ ||h||^2} = 0$. 
+Die Funktion $v^T f''(a) v $ hat ein positives Minimum  $m$ auf der Einheitssphäre $\{ v \in \mathbb{R}^n \; | \; ||v|| = 1 \}$ da $f''(a) > 0$.
+Damit erhalten wir die Abschätzung
 \begin{align*}
  h^T f''(a) h  = ||h|| \frac{1}{||h||} h^t  f''(a)  ||h|| \frac{1}{||h||} h \geq m ||h||^2 \;.
 \end{align*}
