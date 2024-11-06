@@ -154,7 +154,7 @@ mit dem Restglied $R_{p+1} (x;a) =   o(||x - a||^n)$.
     \begin{block}{Beweis}
 Sei $F(t) := f(a + th)$ mit $t \in [0,1]$. Wiederholte Anwendung der Kettenregel mit $\gamma(t) := a +th$ ergibt
 \begin{align*}
-& F'(t) = \sum_{i=1}^n  \frac{\partial}{\partial x_{i}} f(a + th) h_i \\
+& F'(t) = df(\gamma(t)) \cdot d\gamma(t) = df(\gamma(t)) \cdot h =  \sum_{i=1}^n  \frac{\partial}{\partial x_{i}} f(a + th) h_i \\
 & F''(t) =\sum_{j=1}^n \sum_{i=1}^n   \frac{\partial}{\partial x_{j}} \frac{\partial}{\partial x_{i}} f(a + th) h_i h_j \\
 & \vdots \\
 & F^p(t) =  \sum_{i_1=1}^n  \cdots \sum_{i_p=1}^n   \frac{\partial}{\partial x_{i_1}} \cdots \frac{\partial}{\partial x_{i_p}} f(a + th) h_{i_1} \cdots  h_{i_p}  \; .
