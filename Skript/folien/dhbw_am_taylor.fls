@@ -1439,6 +1439,11 @@ INPUT ./images/cover.png
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
 INPUT /usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmss9.tfm
+INPUT ./images/minmaxsaddle.png
+INPUT ./images/minmaxsaddle.png
+INPUT images/minmaxsaddle.png
+INPUT ./images/minmaxsaddle.png
+INPUT ./images/minmaxsaddle.png
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmss10.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmss8.tfm

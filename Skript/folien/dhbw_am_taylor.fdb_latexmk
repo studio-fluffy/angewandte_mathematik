@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1730885984 "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_taylor.tex" "dhbw_am_taylor.pdf" "dhbw_am_taylor" 1730885986 0
-  "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_taylor.tex" 1730885984 13986 eba9b3c891f77fa74741872dd7db10d7 ""
+["pdflatex"] 1730890180 "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_taylor.tex" "dhbw_am_taylor.pdf" "dhbw_am_taylor" 1730890181 0
+  "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_taylor.tex" 1730890180 13951 aeae01974dd130928054c5324776e09b ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -247,11 +247,12 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1698836375 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1698836342 7883462 8a4d061ad2ccf4b7ea70dd63c461eb78 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "dhbw_am_taylor.aux" 1730885986 3791 c7efaa7cc35b2ac6beee520784ff17a7 "pdflatex"
-  "dhbw_am_taylor.nav" 1730885986 2318 6bf076db6e1a8e33e3ccecc7cb97fcb8 "pdflatex"
-  "dhbw_am_taylor.out" 1730885985 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "dhbw_am_taylor.tex" 1730885984 13986 eba9b3c891f77fa74741872dd7db10d7 ""
+  "dhbw_am_taylor.aux" 1730890181 3791 c7efaa7cc35b2ac6beee520784ff17a7 "pdflatex"
+  "dhbw_am_taylor.nav" 1730890181 2318 6bf076db6e1a8e33e3ccecc7cb97fcb8 "pdflatex"
+  "dhbw_am_taylor.out" 1730890180 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "dhbw_am_taylor.tex" 1730890180 13951 aeae01974dd130928054c5324776e09b ""
   "images/cover.png" 1727802035 646146 46821660292bbcef098553c678fd004c ""
+  "images/minmaxsaddle.png" 1730890073 99649 86ebdbb1d285349a78e52a0e720c261f ""
   (generated)
   "dhbw_am_taylor.aux"
   "dhbw_am_taylor.log"
