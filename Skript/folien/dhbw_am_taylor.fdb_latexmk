@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1730870782 "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_taylor.tex" "dhbw_am_taylor.pdf" "dhbw_am_taylor" 1730870784 0
-  "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_taylor.tex" 1730870780 12052 35e03646eb35babd5b14bc70c5598ad1 ""
+["pdflatex"] 1730875976 "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_taylor.tex" "dhbw_am_taylor.pdf" "dhbw_am_taylor" 1730875978 0
+  "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_taylor.tex" 1730875977 11961 c8818255798a06e414abea141a99dd75 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -247,10 +247,10 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1698836375 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1698836342 7883462 8a4d061ad2ccf4b7ea70dd63c461eb78 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "dhbw_am_taylor.aux" 1730870783 3404 814d4b9e73c3ff468ee7a4994e8f399f "pdflatex"
-  "dhbw_am_taylor.nav" 1730870783 2039 5a4196ea47006e239fc20568aaec1af6 "pdflatex"
-  "dhbw_am_taylor.out" 1730870783 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "dhbw_am_taylor.tex" 1730870780 12052 35e03646eb35babd5b14bc70c5598ad1 ""
+  "dhbw_am_taylor.aux" 1730875978 3404 814d4b9e73c3ff468ee7a4994e8f399f "pdflatex"
+  "dhbw_am_taylor.nav" 1730875978 2039 5a4196ea47006e239fc20568aaec1af6 "pdflatex"
+  "dhbw_am_taylor.out" 1730875977 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "dhbw_am_taylor.tex" 1730875977 11961 c8818255798a06e414abea141a99dd75 ""
   "images/cover.png" 1727802035 646146 46821660292bbcef098553c678fd004c ""
   (generated)
   "dhbw_am_taylor.aux"
