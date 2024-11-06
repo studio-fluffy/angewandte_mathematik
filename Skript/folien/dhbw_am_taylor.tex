@@ -336,5 +336,56 @@ und somit hat $F_v$ ein isoliertes lokales Maximum und $F_w$ ein isoliertes loka
  
  
 
+ \begin{frame}
+    \frametitle{Aufgabe 2 (Extrema)}
+    Gegeben ist die Funktion \( f(x, y) = 4x^2 + y^2 - 4x - 6y + 4 \).
+    
+    \begin{enumerate}
+        \item Bestimme die partiellen Ableitungen 1. Ordnung der Funktion \( f(x, y) \) bezüglich \( x \) und \( y \).
+        \item Finde die kritischen Punkte der Funktion, indem du die partiellen Ableitungen gleich Null setzt und das resultierende Gleichungssystem löst.
+        \item Bestimme die partiellen Ableitungen 2. Ordnung und bilde die Hesse-Matrix an den kritischen Punkten.
+        \item Untersuche die Art der Extrema (Maximum, Minimum oder Sattelpunkt) anhand der Hesse-Matrix und der Determinantenkriterien.
+        \item Interpretiere die Ergebnisse im Kontext der Funktion. Beschreibe, was die gefundenen Extrema über die Funktion aussagen.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Lösung 1: Partielle Ableitungen 1. Ordnung}
+    Die partiellen Ableitungen 1. Ordnung sind:
+    \begin{align*}
+        \frac{\partial f}{\partial x} &= 8x - 4, \\
+        \frac{\partial f}{\partial y} &= 2y - 6.
+    \end{align*}
+
+    Die kritischen Punkte ergeben sich aus:
+    \begin{align*}
+        8x - 4 &= 0, \\
+        2y - 6 &= 0.
+    \end{align*}
+    Daraus folgt \( x = \frac{1}{2} \) und \( y = 3 \).
+\end{frame}
+
+\begin{frame}
+    \frametitle{Lösung 3: Partielle Ableitungen 2. Ordnung und Hesse-Matrix}
+    Die zweiten partiellen Ableitungen und die Hesse-Matrix lauten:
+    \begin{align*}
+        \frac{\partial^2 f}{\partial x^2} &= 8, \\
+        \frac{\partial^2 f}{\partial y^2} &= 2, \\
+        \frac{\partial^2 f}{\partial x \partial y} &= 0.
+    \end{align*}
+    Die Hesse-Matrix ist somit:
+    \[
+    \begin{pmatrix}
+        8 & 0 \\
+        0 & 2
+    \end{pmatrix}
+    \]
+
+
+    \frametitle{Lösung 5: Interpretation der Ergebnisse}
+  Die Eigenwerte der Hessematrix sind $8$ und $2$ und damit positiv. Die Funktion hat also in $(\frac{1}{2}, 3)$ ein lokales Minimum. 
+\end{frame}
+
+
 \end{document}
 
