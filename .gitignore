@@ -10,3 +10,5 @@
 *.nav
 *.out
 *.snm
+*.o
+*.bin
