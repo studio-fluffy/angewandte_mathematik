@@ -105,7 +105,7 @@ $x''(t) = -x(t)$.
         x_1(t) \\ x_2(t)
     \end{pmatrix} = 
 \begin{pmatrix}
-    0 & -1  \\ 1 & 0
+    0 & 1  \\ -1 & 0
 \end{pmatrix} \cdot
 \begin{pmatrix} 
     x_1(t) \\ x_2(t)
@@ -230,7 +230,7 @@ für alles $t \in I$.
         x_1(t) \\ x_2(t)
     \end{pmatrix} = 
 \begin{pmatrix}
-    0 & -1  \\ 1 & 0
+    0 & 1  \\ -1 & 0
 \end{pmatrix} \cdot
 \begin{pmatrix} 
     x_1(t) \\ x_2(t)
@@ -241,7 +241,7 @@ für alles $t \in I$.
         \begin{pmatrix}
             x_1(t) \\ x_2(t)
         \end{pmatrix} = \begin{pmatrix}
-            \cos(t) & -\sin(t)  \\ \sin(t) & \cos(t)
+            \cos(t) & \sin(t)  \\ - \sin(t) & \cos(t)
         \end{pmatrix}   \cdot \begin{pmatrix}
             x_1\\ x_2
         \end{pmatrix}
@@ -260,7 +260,7 @@ für alles $t \in I$.
         x_1(t) \\ x_2(t)
     \end{pmatrix} = 
 \begin{pmatrix}
-    0 & -1  \\ 1 & 0
+    0 & 1  \\ -1 & 0
 \end{pmatrix} \cdot
 \begin{pmatrix} 
     x_1(t) \\ x_2(t)
@@ -276,7 +276,7 @@ für alles $t \in I$.
         \begin{pmatrix}
             x_1(t) \\ x_2(t)
         \end{pmatrix} = e^{ \begin{pmatrix}
-            0 & -1  \\ 1 & 0
+            0 & 1  \\ -1 & 0
         \end{pmatrix} t } \cdot \begin{pmatrix}
             x_1\\ x_2
         \end{pmatrix}
@@ -293,9 +293,9 @@ für alles $t \in I$.
 
 \begin{align*}
  e^{ \begin{pmatrix}
-        0 & -1  \\ 1 & 0
+        0 & 1  \\ -1 & 0
     \end{pmatrix} t } = \sum_{k= 0}^{\infty} \begin{pmatrix}
-    0 & -1  \\ 1 & 0
+    0 & 1  \\ -1 & 0
 \end{pmatrix}^{k} \frac{t^k}{k!} 
 \end{align*}
 
@@ -310,19 +310,19 @@ für alles $t \in I$.
 
 \begin{align*}
 \begin{pmatrix}
-        0 & -1  \\ 1 & 0
+        0 & 1  \\ -1 & 0
     \end{pmatrix}^{k}  = \begin{cases} 
         \begin{pmatrix}
             1 & 0  \\ 0 & 1
         \end{pmatrix}; k = 0 \mod 4 \\
         \begin{pmatrix}
-            0 & -1  \\ 1 & 0
+            0 & 1  \\ -1 & 0
         \end{pmatrix}; k = 1 \mod 4 \\
         \begin{pmatrix}
             -1 & 0  \\ 0 & -1
         \end{pmatrix}; k = 2 \mod 4 \\
         \begin{pmatrix}
-            0 & 1  \\ -1 & 0
+            0 & -1  \\ 1 & 0
         \end{pmatrix}; k = 3 \mod 4
     \end{cases}
 \end{align*}
@@ -336,14 +336,14 @@ für alles $t \in I$.
 
 \begin{align*}
 \sum_{k= 0}^{n} \begin{pmatrix}
-    0 & -1  \\ 1 & 0
+    0 & 1  \\ -1 & 0
 \end{pmatrix}^{k} \frac{t^k}{k!} & =
 \begin{pmatrix}
-    1-\frac{t^2}{2!} + \frac{t^4}{4!}-\frac{t^6}{6!} \cdots & -t +\frac{t^3}{3!} - \frac{t^5}{5!} +\frac{t^7}{7!} \cdots  \\ 1 & 0 \\
-    t -\frac{t^3}{3!} + \frac{t^5}{5!} -\frac{t^7}{7!} \cdots  & 1-\frac{t^2}{2!} + \frac{t^4}{4!}-\frac{t^6}{6!}  \cdots
+    1-\frac{t^2}{2!} + \frac{t^4}{4!}-\frac{t^6}{6!} \cdots & t -\frac{t^3}{3!} + \frac{t^5}{5!} -\frac{t^7}{7!}\cdots  \\ 1 & 0 \\
+    -t +\frac{t^3}{3!} - \frac{t^5}{5!} +\frac{t^7}{7!}   \cdots  & 1-\frac{t^2}{2!} + \frac{t^4}{4!}-\frac{t^6}{6!}  \cdots
 \end{pmatrix} \\
 &= \begin{pmatrix}
-    \cos(t) & -\sin(t)  \\ \sin(t) & \cos(t)
+    \cos(t) & \sin(t)  \\ -\sin(t) & \cos(t)
 \end{pmatrix}
 \end{align*}
 \href{https://de.wikipedia.org/wiki/Taylorreihe}{Link:Trigonometrische Taylorreihen}
@@ -363,10 +363,10 @@ für alles $t \in I$.
 \begin{block}{Harmonischer Oszillator Eigenwerte}
     \begin{align*}
     \det (\begin{pmatrix}
-        0 & -1  \\ 1 & 0
+        0 & 1  \\ -1 & 0
     \end{pmatrix} - \lambda E) = 
     \det \begin{pmatrix}
-        -\lambda & -1  \\ 1 & -\lambda  
+        -\lambda & 1  \\ -1 & -\lambda  
     \end{pmatrix} = \lambda^2 +1 \Rightarrow \lambda_{1,2} = \pm i
 \end{align*}
 Komplexer Eigenwert.
@@ -426,8 +426,12 @@ $\dot{y}=f(t,y), \quad  y(t_0)=y_0$
 t_k=t_0+kh \\
 y_{k+1}=y_k+hf(t_k,y_k)
 \end{align}
-
     \end{block}
+\begin{block}{Approximationsfehler}
+    Ist $y$ eine Lösung des Anfangswertproblems und ist $f$ differenzierbar, 
+    so gilt für den Approximationsfehler mit der Taylorreihe
+    $y - y_{k} = o(h^2)$.
+\end{block}
 \end{frame}
 
 
