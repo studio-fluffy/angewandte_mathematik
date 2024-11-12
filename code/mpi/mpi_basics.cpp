@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
     MPI_Comm_size(MPI_COMM_WORLD, &size);
 
     double a = 0.0, b = M_PI;
-    int n = 1000000;
+    int n = 10000;
     double local_a, local_b;
     int local_n = n / size;
 
