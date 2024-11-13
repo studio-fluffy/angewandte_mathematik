@@ -221,5 +221,85 @@ Der Algorithmus $\hat{f}$ heisst stabil, wenn $\sigma$ kleiner ist als die Anzah
 \end{block}
  \end{frame}
 
+ \begin{frame}
+    \frametitle{Angewandte Mathematik}
+    \framesubtitle{Numerische Software}
+    \begin{block}{Message Passing Interface (MPI)}
+          MPI ist ein Standard für die Kommunikation zwischen Prozessen in einem parallelen Rechensystem.
+          Es ermöglicht die Entwicklung von standardtisierten parallelen Anwendungen, die auf verschiedenen Rechnerarchitekturen laufen können.
+    \end{block}
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+    \framesubtitle{Numerische Software}
+    \begin{block}{Message Passing Interface (MPI)}
+            \begin{itemize}
+                \item \textbf{Punkt-zu-Punkt-Kommunikation:} Direkte Kommunikation zwischen zwei Prozessen mittels Senden und Empfangen von Nachrichten.
+                \item \textbf{Kollektive Kommunikation:} Kommunikation zwischen einer Gruppe von Prozessen, z.B. Broadcast, Scatter, Gather und Reduce.
+                \item \textbf{Synchronisation:} Mechanismen zur Synchronisation von Prozessen, z.B. Barrieren.
+                \item \textbf{Kommunikatoren:} Gruppen von Prozessen, die miteinander kommunizieren können.
+                \item \textbf{Rang:} Jeder Prozess in einem Kommunikator hat einen eindeutigen Rang, der zur Identifikation dient.
+            \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+    \framesubtitle{Numerische Software}
+    \begin{block}{Portable, Extensible Toolkit for Scientific Computation (PETSc)}
+            PETSc ist eine Bibliothek für die Lösung wissenschaftlicher Rechenprobleme, die auf parallelen und verteilten Systemen ausgeführt werden.
+            Bietet Werkzeuge für die Entwicklung von skalierbaren und effizienten numerischen Anwendungen.
+            
+            \begin{itemize}
+                \item PETSc nutzt MPI für die Kommunikation zwischen Prozessen in parallelen Umgebungen.
+                \item Unterstützt Punkt-zu-Punkt- und kollektive Kommunikation, um Daten zwischen Prozessen auszutauschen.
+                \item Ermöglicht die Verteilung von Matrizen und Vektoren über mehrere Prozesse.
+                \item Lineare und nichtlineare Gleichungslöser
+                \item Eigenwertproblemlöser
+                \item Zeitabhängige Probleme
+                \item Preconditioner für die Beschleunigung der Konvergenz
+            \end{itemize}
+    \end{block}
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+    \framesubtitle{Numerische Software}
+    \begin{block}{NumPy}
+            NumPy ist eine Bibliothek für die Programmiersprache Python, die Unterstützung für große, mehrdimensionale Arrays und Matrizen bietet.
+            Ermöglicht effiziente numerische Berechnungen und Datenmanipulationen.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+    \framesubtitle{Numerische Software}
+    \begin{block}{Grundprinzipien von NumPy}
+        \begin{itemize}
+            \item \textbf{Arrays:} NumPy bietet das `ndarray`-Objekt, das effiziente Speicher- und Rechenoperationen ermöglicht.
+            \item \textbf{Broadcasting:} Ermöglicht die Durchführung von Operationen auf Arrays unterschiedlicher Größe.
+            \item \textbf{Vektorisierung:} Vermeidet explizite Schleifen durch die Anwendung von Operationen auf ganze Arrays.
+            \item \textbf{Universelle Funktionen (ufuncs):} Funktionen, die elementweise Operationen auf Arrays durchführen.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+    \framesubtitle{Numerische Software}
+    \begin{block}{Vorteile und Anwendungsgebiete von NumPy}
+            \begin{itemize}
+                \item Hohe Leistung durch Implementierung in C
+                \item Umfangreiche Bibliothek von mathematischen Funktionen
+                \item Integration mit anderen wissenschaftlichen Python-Bibliotheken wie SciPy und Matplotlib
+        \end{itemize}
+    \end{block}
+\end{frame}
+
 \end{document}
 
