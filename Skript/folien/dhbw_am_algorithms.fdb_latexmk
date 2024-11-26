@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1732619759 "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_algorithms.tex" "dhbw_am_algorithms.pdf" "dhbw_am_algorithms" 1732619761 0
-  "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_algorithms.tex" 1732619758 11797 822d1f15e9013f50c2e38bccd29d8849 ""
+["pdflatex"] 1732622406 "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_algorithms.tex" "dhbw_am_algorithms.pdf" "dhbw_am_algorithms" 1732622408 0
+  "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_algorithms.tex" 1732622404 11526 91de6b607b2a6b3a5b683726bfc19d31 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -243,10 +243,10 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1698836375 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1698836342 7883462 8a4d061ad2ccf4b7ea70dd63c461eb78 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "dhbw_am_algorithms.aux" 1732619761 3662 d224933dce9be6740bd527d8d5bc202e "pdflatex"
-  "dhbw_am_algorithms.nav" 1732619761 2225 c1c5afbecb67aec0ba53ac1043f451e4 "pdflatex"
-  "dhbw_am_algorithms.out" 1732619760 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "dhbw_am_algorithms.tex" 1732619758 11797 822d1f15e9013f50c2e38bccd29d8849 ""
+  "dhbw_am_algorithms.aux" 1732622408 3533 93861f27799d0c8cc8134d9147db2e5e "pdflatex"
+  "dhbw_am_algorithms.nav" 1732622408 2132 9ecbcfc9f7de68c052dc9846a033acac "pdflatex"
+  "dhbw_am_algorithms.out" 1732622407 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "dhbw_am_algorithms.tex" 1732622404 11526 91de6b607b2a6b3a5b683726bfc19d31 ""
   "images/Mittelwertsatz3.png" 1727802035 16387 92c5b8fc6c41b231957169f875fef763 ""
   "images/Turingmaschine.png" 1727802035 2560 cd0dfca9429e0540cc0aabcb753d147e ""
   "images/Volladdierer.png" 1727802035 12566 3c6f54c8ad0b9d86a2675f9ffc775000 ""
@@ -256,7 +256,6 @@
   "images/fehler.jpeg" 1727802035 243343 9fecbb904e6c17f3563bb45da779ba08 ""
   "images/float.png" 1727802035 16003 4f2934820632986e32d44ec69af598a0 ""
   "images/kondition.jpeg" 1727802035 248664 698134d08950c596570e55a1620aff6f ""
-  "images/stabilitaet.jpeg" 1727802035 257712 f22c2d321474230d197252759a18f6ac ""
   (generated)
   "dhbw_am_algorithms.aux"
   "dhbw_am_algorithms.log"
