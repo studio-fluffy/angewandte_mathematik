@@ -48,7 +48,7 @@
     \frametitle{Angewandte Mathematik}
 \framesubtitle{}
     \begin{block}{Algorithmus Informell}
-Ein Algorithmus ist eine eindeutige Handlungsvorschrift zur Lösung eines Problems oder einer Klasse von Problemen. Algorithmen bestehen aus endlich vielen, wohldefinierten Einzelschritten.
+Ein Algorithmus ist eine eindeutige, endliche Handlungsvorschrift zur Lösung eines Problems oder einer Klasse von Problemen. Algorithmen bestehen aus endlich vielen, wohldefinierten Einzelschritten.
 \end{block}
     \begin{block}{Algorithmus Formal}
 \includegraphics[scale=0.8]{images/Turingmaschine}
@@ -181,13 +181,6 @@ Die relative  Konditionierung eines Problems $(f,x)$ ist die Kleinste Zahl $\kap
  \end{frame}
 
 
-\begin{frame}
-    \frametitle{Angewandte Mathematik}
-\framesubtitle{Fehleranalyse}
-    \begin{block}{Kondition eines Problems}
-Momentan können wir noch keine Konditionszahlen berechnen. Wir werden später lernen, wie wir sie in vielen Fällen abschätzen können.
-\end{block}
- \end{frame}
 
 
 
@@ -206,20 +199,89 @@ Momentan können wir noch keine Konditionszahlen berechnen. Wir werden später l
 
 
 
-\begin{frame}
+
+%\begin{frame}
+%    \frametitle{Angewandte Mathematik}
+%\framesubtitle{Fehleranalyse}
+%    \begin{block}{Stabilität}
+%Für eine Gleikommarealisierung $\hat{f}$ eines Algorithmus zur Lösung des Problems $(f,x)$ mit relativer Konditionszahl $\kappa_rel$ ist der Stabilitätsindikator definiert als die kleinste Zahl $\sigma \geq 0$ mit 
+%\begin{align*}
+%\frac{|| \hat{f}(\widetilde{x}) - f(\widetilde{x}) ||}{||f(\widetilde{x}) || } \leq \sigma  \kappa_{rel} eps , \; eps \to 0
+%\end{align*}
+%für alle $\widetilde{x} \in E$
+%\end{block}
+%    \begin{block}{Stabilität eines Algorithmus}
+%Der Algorithmus $\hat{f}$ heisst stabil, wenn $\sigma$ kleiner ist als die Anzahl der hintereinander ausgeführten Elementaroperationen. 
+%\end{block}
+% \end{frame}
+
+
+
+ \begin{frame}
     \frametitle{Angewandte Mathematik}
-\framesubtitle{Fehleranalyse}
-    \begin{block}{Stabilität}
-Für eine Gleikommarealisierung $\hat{f}$ eines Algorithmus zur Lösung des Problems $(f,x)$ mit relativer Konditionszahl $\kappa_rel$ ist der Stabilitätsindikator definiert als die kleinste Zahl $\sigma \geq 0$ mit 
+\framesubtitle{Mittelwertsatz}
+    \begin{block}{Mittelwertsatz}
+Ist $f: U \to \mathbb{R}$ eine differenziertere Funktion und $a,b \in U$ Punkte, deren Verbindungsstrecke in $U$ verläuft. Dann gibt gibt es einen Punkt $\xi$ auf dieser Verbindungsstrecke mit
 \begin{align*}
-\frac{|| \hat{f}(\widetilde{x}) - f(\widetilde{x}) ||}{||f(\widetilde{x}) || } \leq \sigma  \kappa_{rel} eps , \; eps \to 0
+f(b) - f(a) = df(\xi)(b-a) = f'(\xi) (b-a)
 \end{align*}
-für alle $\widetilde{x} \in E$
-\end{block}
-    \begin{block}{Stabilität eines Algorithmus}
-Der Algorithmus $\hat{f}$ heisst stabil, wenn $\sigma$ kleiner ist als die Anzahl der hintereinander ausgeführten Elementaroperationen. 
 \end{block}
  \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Mittelwertsatz}
+    \begin{block}{Beweis Mittelwertsatz}
+Die Verbindungsstrecke ist gegeben durch $\gamma(t) := a + t(b-a)$ mit $t \in [0,1]$. 
+Für $F:= f \circ \gamma : [0,1] \to \mathbb{R}$ gilt $f(b) - f(a)= F(1) - F(0)$.
+Nach der Kettenregel ist $F$ differenzierbar. Mit dem eindimensionalen Mittelwertsatz gibt es also ein $\tau \in (0,1)$ mit
+$F(1) - F(0) = F'(\tau)$. Mit der Kettenregel folgt $F'(\tau) = df(\gamma(\tau)) (b-a)$ und somit folgt mit $\xi= \gamma(\tau)$ die Behauptung.
+\end{block}
+
+
+
+\begin{figure}[H]
+    \centering
+  \includegraphics[width=0.5\textwidth]{images/Mittelwertsatz3.png}
+\end{figure}
+
+ \end{frame}
+
+
+
+ \begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Backpropagation}
+    \begin{block}{Konditionszahl}
+Ist $f : U \to \mathbb{R}^m$ differnzierbar, so lässt dich mit dem Mittelwertsatz die Konditionszahlen berechnen durch
+\begin{align*}
+& \kappa = || f'(x) || \\
+& \kappa_{rel} = \frac{||x||}{|| f(x)||} ||f'(x) ||
+\end{align*}
+mit der Operatornorm 
+$||h|| : = \sup_{||x|| =  1} ||h(x)||$
+
+\end{block}
+ \end{frame}
+
+\begin{frame}
+    \frametitle{Angewandte Mathematik}
+\framesubtitle{Backpropagation}
+    \begin{block}{Konditionszahl Addition/Subtraction}
+Für $f:(x,y):= x \pm y$ ist $f'(x,y) = (1,\pm 1)$ und dem Betrag als Norm auf $\mathbb{R}$  und der Norm $||(x,y)|| := |x| + |y|$ ist 
+\begin{align*}
+& \kappa = 2 \\
+& \kappa_{rel} = 2\frac{|a| + |b| }{|a \pm b|}
+\end{align*}
+Für die Addition ist  $\kappa_{rel} = 2$ und damit gut konditioniert.
+Für die Subtraktion zweier fast gleich großer Zahlen ist $|a - b| << |a| + |b|$ und damit ist in diesem Fall $\kappa_{rel} >> 1$ und damit schlecht konditioniert. 
+\end{block}
+ \end{frame}
+
+
+
 
  \begin{frame}
     \frametitle{Angewandte Mathematik}

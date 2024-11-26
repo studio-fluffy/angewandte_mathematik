@@ -1472,6 +1472,11 @@ INPUT ./images/stabilitaet.jpeg
 INPUT images/stabilitaet.jpeg
 INPUT ./images/stabilitaet.jpeg
 INPUT ./images/stabilitaet.jpeg
+INPUT ./images/Mittelwertsatz3.png
+INPUT ./images/Mittelwertsatz3.png
+INPUT images/Mittelwertsatz3.png
+INPUT ./images/Mittelwertsatz3.png
+INPUT ./images/Mittelwertsatz3.png
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
 OUTPUT dhbw_am_algorithms.nav
 OUTPUT dhbw_am_algorithms.toc
