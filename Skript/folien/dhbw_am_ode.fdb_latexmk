@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1732183290 "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_ode.tex" "dhbw_am_ode.pdf" "dhbw_am_ode" 1732183293 0
-  "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_ode.tex" 1732183290 12844 66d4c85b0baff10e13db2bce0246d26e ""
+["pdflatex"] 1733308313 "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_ode.tex" "dhbw_am_ode.pdf" "dhbw_am_ode" 1733308316 0
+  "/Users/johannesriesterer/Documents/code/angewandte_mathematik/Skript/folien/dhbw_am_ode.tex" 1733308313 18471 5d36d7150bd9bfb6d8aa56ec81e8254a ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -249,13 +249,15 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1698836375 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1698836342 7883462 8a4d061ad2ccf4b7ea70dd63c461eb78 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "dhbw_am_ode.aux" 1732183293 4436 a9a8bba22b2405d070f44fe62fd9d616 "pdflatex"
-  "dhbw_am_ode.nav" 1732183293 2783 f8b0d1eaf383f71e4268670ac899f7e1 "pdflatex"
-  "dhbw_am_ode.out" 1732183291 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "dhbw_am_ode.tex" 1732183290 12844 66d4c85b0baff10e13db2bce0246d26e ""
+  "dhbw_am_ode.aux" 1733308316 5855 950488d0a6f7203bb63d36d1f37da614 "pdflatex"
+  "dhbw_am_ode.nav" 1733308316 3806 dc6cd9bd11b5862db379b6b87555791e "pdflatex"
+  "dhbw_am_ode.out" 1733308313 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "dhbw_am_ode.tex" 1733308313 18471 5d36d7150bd9bfb6d8aa56ec81e8254a ""
   "images/480px-VectorField.png" 1727802035 67305 d2cf453674c86cb37380a86237e14058 ""
+  "images/640px-Floral_matryoshka_set_2_smallest_doll_nested.JPG" 1727802035 55310 cfc8d45e0d92347dc26a73b2ba0d69f3 ""
   "images/Runge-Kutta.png" 1727802035 26282 ed62d3144a547f6ebeb0b19ce2dc7d84 ""
   "images/Slope_Field.png" 1727802035 6930 f7a9ac68e7c409a0fb25a520a995b742 ""
+  "images/banach.png" 1727802035 651721 811361ff55c57c131f49a6b83b1a4c88 ""
   "images/euler.png" 1727802035 16423 614c458e7b8abb26cf0cc00d50885690 ""
   "images/federpendel.png" 1727802035 46243 b18bcd9ff0326ad5b691539037e4682a ""
   "images/harmonicoszillatorphasespace.png" 1727802035 68510 1f5c4829a5fb41e7604180a9ff1a244a ""

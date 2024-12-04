@@ -1535,6 +1535,15 @@ INPUT ./images/Runge-Kutta.png
 INPUT images/Runge-Kutta.png
 INPUT ./images/Runge-Kutta.png
 INPUT ./images/Runge-Kutta.png
+INPUT ./images/640px-Floral_matryoshka_set_2_smallest_doll_nested.JPG
+INPUT ./images/640px-Floral_matryoshka_set_2_smallest_doll_nested.JPG
+INPUT images/640px-Floral_matryoshka_set_2_smallest_doll_nested.JPG
+INPUT ./images/640px-Floral_matryoshka_set_2_smallest_doll_nested.JPG
+INPUT ./images/640px-Floral_matryoshka_set_2_smallest_doll_nested.JPG
+INPUT ./images/banach.png
+INPUT images/banach.png
+INPUT ./images/banach.png
+INPUT ./images/banach.png
 OUTPUT dhbw_am_ode.nav
 OUTPUT dhbw_am_ode.toc
 OUTPUT dhbw_am_ode.snm
