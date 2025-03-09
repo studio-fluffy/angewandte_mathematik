@@ -12,3 +12,4 @@
 *.snm
 *.o
 *.bin
+./code/am_lean_mathlib/.lake
