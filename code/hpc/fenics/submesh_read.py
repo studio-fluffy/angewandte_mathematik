@@ -4,76 +4,54 @@ import numpy as np
 import glob
 import os
 
-# ------------------------------------------------------------
-# MPI-Setup
-# ------------------------------------------------------------
 comm = MPI.COMM_WORLD
 rank = comm.rank
-size = comm.size
 
-if not os.access(".", os.R_OK):
-    os.chdir("/tmp")
+output_dir = "output_submesh"
+if not os.path.isdir(output_dir):
+    raise FileNotFoundError(f"Ordner {output_dir} nicht gefunden. Bitte zuerst submesh_write_parallel.py ausführen.")
 
 # ------------------------------------------------------------
-# 1. Alle Mapping-Dateien global laden (nur Rank 0)
+# 1. Mapping-Dateien lesen (nur Rank 0)
 # ------------------------------------------------------------
 if rank == 0:
-    # Alle zuvor erzeugten Mapping-Dateien (unabhängig von alter Rankzahl)
-    files = sorted(glob.glob("entity_map_global_rank*.npz"))
+    files = sorted(glob.glob(os.path.join(output_dir, "entity_map_global_rank*.npz")))
     if not files:
-        raise FileNotFoundError("Keine Mapping-Dateien gefunden (aus submesh_write.py).")
-
-    # Alle Parent-IDs kombinieren → vollständiges globales Mapping
+        raise FileNotFoundError("Keine Mapping-Dateien gefunden.")
     all_parent_ids = [np.load(f)["parent_ids"] for f in files]
     parent_ids_global = np.concatenate(all_parent_ids)
-
-    print(f"[READ] {len(files)} Mapping-Dateien zusammengeführt.")
-    print(f"[READ] Gesamtanzahl Submesh-Zellen: {len(parent_ids_global)}")
+    print(f"[READ] {len(files)} Mapping-Dateien kombiniert → {len(parent_ids_global)} Einträge.")
 else:
     parent_ids_global = None
 
 # ------------------------------------------------------------
-# 2. Submesh parallel laden (neue Rankzahl)
+# 2. Submesh parallel lesen
 # ------------------------------------------------------------
-# Hier wird eines der Submesh-Files gelesen.
-# Dolfinx verteilt automatisch die Zellen auf die neuen Ranks.
-with io.XDMFFile(comm, "submesh_rank0.xdmf", "r") as f:
+xdmf_path = os.path.join(output_dir, "submesh_parallel.xdmf")
+with io.XDMFFile(comm, xdmf_path, "r") as f:
     submesh = f.read_mesh()
-tdim = submesh.topology.dim
 
-# ------------------------------------------------------------
-# 3. Lokale Zell-IDs im neuen Submesh bestimmen
-# ------------------------------------------------------------
-# Jeder Rank kennt seine eigenen Zellen → IndexMap liefert globale ID-Spanne
+tdim = submesh.topology.dim
 local_start, local_end = submesh.topology.index_map(tdim).local_range
 num_local = local_end - local_start
-
-print(f"[Rank {rank}] Lokaler Zellbereich: {local_start}:{local_end} ({num_local} Zellen)")
+print(f"[Rank {rank}] Zellbereich: {local_start}:{local_end} ({num_local} Zellen)")
 
 # ------------------------------------------------------------
-# 4. Globale Mappingdaten an alle Ranks verteilen
+# 3. Mapping broadcasten
 # ------------------------------------------------------------
-# Alle Ranks sollen die globale Map erhalten.
-# Broadcast der Gesamtlänge
 length = comm.bcast(len(parent_ids_global) if rank == 0 else None, root=0)
-
-# Puffer für globales Mapping anlegen
 if rank != 0:
     parent_ids_global = np.empty(length, dtype=np.int64)
-
-# Rank 0 sendet globales Mapping an alle
 comm.Bcast(parent_ids_global, root=0)
 
 # ------------------------------------------------------------
-# 5. Lokales Mapping rekonstruieren (nach neuer Partition)
+# 4. Lokales Mapping rekonstruieren
 # ------------------------------------------------------------
-# Jeder Rank wählt seinen Teil anhand seines neuen globalen Zellbereichs
 entity_map_local = parent_ids_global[local_start:local_end]
-
-print(f"[Rank {rank}] Lokales Mapping enthält {len(entity_map_local)} Einträge.")
+print(f"[Rank {rank}] Lokales Mapping: {len(entity_map_local)} Einträge")
 
 # ------------------------------------------------------------
-# 6. (Optional) Konsistenz prüfen
+# 5. Konsistenzprüfung
 # ------------------------------------------------------------
 local_min = np.min(entity_map_local) if num_local > 0 else np.inf
 local_max = np.max(entity_map_local) if num_local > 0 else -np.inf
@@ -82,4 +60,4 @@ global_max = comm.allreduce(local_max, op=MPI.MAX)
 
 if rank == 0:
     print(f"[CHECK] Globale Parent-ID-Spanne: {global_min} – {global_max}")
-    print("[CHECK] Repartitionierung erfolgreich abgeschlossen.")
+    print(f"[CHECK] Submesh '{xdmf_path}' erfolgreich parallel gelesen und neu verteilt.")
