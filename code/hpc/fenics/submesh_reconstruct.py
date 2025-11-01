@@ -95,29 +95,62 @@ if len(owner_files) != size:
 comm.Barrier()
 
 # ------------------------------------------------------------
-# 5. Lokale Zellen des Submesh bestimmen
+# 5. Lokale Zellen des Submesh bestimmen (mit Owner-Map Konsistenz)
 # ------------------------------------------------------------
-# Finde Parent-Zellen, die zum Submesh gehören
-mask_local = np.isin(parent_global_ids, entity_map_global)
+# Finde Parent-Zellen, die zum Submesh gehören UND zu diesem Rank gehören sollten
+mask_submesh = np.isin(parent_global_ids, entity_map_global)  # Zellen im Submesh
+mask_owned = np.isin(parent_global_ids, owners_local)         # Zellen die zu diesem Rank gehören
+
+# Nur Zellen nehmen, die sowohl im Submesh sind als auch zu diesem Rank gehören
+mask_local = mask_submesh & mask_owned
 marked_local = np.nonzero(mask_local)[0]
 
-# Submesh wieder erzeugen
+if rank == 0:
+    print(f"[INFO] Partitionierungs-Konsistenz mit Owner-Maps:")
+    
+# Debug-Info: Wie viele Zellen hat jeder Rank
+submesh_cells_count = len(marked_local)
+all_counts = comm.gather(submesh_cells_count, root=0)
+
+if rank == 0:
+    for r, count in enumerate(all_counts):
+        print(f"  Rank {r}: {count} Submesh-Zellen (nach Owner-Filterung)")
+    print(f"  Gesamt: {sum(all_counts)} Submesh-Zellen über alle Ranks")
+
+# Validierung: Prüfen ob wir Zellen haben
+if len(marked_local) == 0:
+    print(f"[WARN Rank {rank}] Keine Submesh-Zellen nach Owner-Filterung.")
+    print(f"       Das kann normal sein, wenn Submesh nicht über alle Ranks verteilt ist.")
+
+# Submesh wieder erzeugen mit owner-konsistenter Partitionierung
 result = mesh.create_submesh(domain, tdim, marked_local)
 if isinstance(result, tuple):
     n = len(result)
     if n == 2:
-        submesh_reconstructed, _ = result
+        submesh_reconstructed, cell_map_new = result
     elif n == 3:
-        submesh_reconstructed, _, _ = result
+        submesh_reconstructed, cell_map_new, vertex_map_new = result
     elif n == 4:
-        submesh_reconstructed, _, _, _ = result
+        submesh_reconstructed, cell_map_new, vertex_map_new, geom_map_new = result
     else:
         raise RuntimeError(f"Unerwartete Rückgabeanzahl: {n}")
 else:
     submesh_reconstructed = result
+    cell_map_new = None
 
 print(f"[Rank {rank}] Submesh rekonstruiert mit "
-      f"{submesh_reconstructed.topology.index_map(tdim).size_local} Zellen.")
+      f"{submesh_reconstructed.topology.index_map(tdim).size_local} Zellen "
+      f"(owner-konsistent).")
+
+# Zusätzliche Validierung: Prüfen ob die Zellen wirklich zu diesem Rank gehören
+if cell_map_new is not None and len(cell_map_new) > 0:
+    reconstructed_parent_cells = parent_global_ids[cell_map_new]
+    not_owned = ~np.isin(reconstructed_parent_cells, owners_local)
+    if np.any(not_owned):
+        print(f"[ERROR Rank {rank}] {np.sum(not_owned)} Zellen gehören nicht zu diesem Rank!")
+        print(f"  Fehlerhafte Zellen: {reconstructed_parent_cells[not_owned][:5]}...")
+    else:
+        print(f"[OK Rank {rank}] Alle rekonstruierten Zellen gehören korrekt zu diesem Rank.")
 
 # ------------------------------------------------------------
 # 6. Optional: Meshtags auf Submesh übertragen
