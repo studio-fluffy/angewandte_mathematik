@@ -1,6 +1,10 @@
 /-
   Angewandte Mathematik -- Begleitcode zur Vorlesung 5
   (Folien: folien/vorlesung05.tex)
+
+  Fuer etwa eine Stunde, in der Reihenfolge der Folien. Fast alles wird von Hand
+  aus den Definitionen bewiesen; Mathlibs fertige Saetze kommen erst danach, zum
+  Vergleich. Mehr Beispiele und laengere Fassungen stehen in code/Kapitel4.lean.
 -/
 import Mathlib
 
@@ -8,143 +12,366 @@ namespace Skript.Analysis
 
 open Filter Topology
 
-/-! ## 4.2 Wiederholung: "schliesslich" laengs eines Filters -/
+/-! ## 4.2 Wiederholung: "schliesslich" und Konvergenz in metrischen Raeumen -/
 
--- Wiederholung aus Vorlesung 4 (code/Vorlesung04.lean, Abschnitt 4.2).
 -- Folie: "Rueckblick: Vorlesung 4" (Punkt "Schliesslich")
-/- "P gilt schliesslich laengs F" heisst: Die Menge der Punkte, an denen P
-   gilt, ist gross -- sie liegt im Filter F. Mathlib hat dafuer einen eigenen
-   Quantor, `∀ᶠ x in F, P x`, gelesen "fuer schliesslich alle x laengs F gilt
-   P x". Er ist gebaut wie `∀ x, P x`, nur steht hinter `in` der Filter.
-   Ausgeschrieben heisst er `Filter.Eventually`, in Lemmanamen steht deshalb
-   `eventually`. Per Definition ist er genau die Mengenaussage: -/
+/- "P gilt schliesslich laengs F" heisst: Die Menge {x | P x} ist gross, sie liegt
+   im Filter F. Mathlib schreibt dafuer `∀ᶠ x in F, P x` ("fuer schliesslich alle x
+   laengs F"). Per Definition ist das genau die Mengenaussage: -/
 example {α : Type*} (F : Filter α) (P : α → Prop) :
     (∀ᶠ x in F, P x) ↔ {x | P x} ∈ F := Iff.rfl
 
-/- Man kann die Menge zeichnen. Bei `atTop` und P x = "10 < x":
+/- Vorweg `apply` im Kleinen. `apply` schliesst rueckwaerts: Passt die
+   Folgerung eines Satzes zum Ziel, bleiben seine Annahmen zu zeigen. Ein
+   bekannter Satz (in Mathlib fuer jede Ordnung, hier fuer ℝ):
+     le_trans {a b c : ℝ} : a ≤ b → b ≤ c → a ≤ c
+   Die Zahlen a, b, c in geschweiften Klammern sind implizit: Man schreibt sie
+   beim Benutzen nicht hin, Lean liest sie ab. `apply le_trans hxy` gleicht
+   die erste Annahme a ≤ b mit hxy : x ≤ y ab (also a = x, b = y) und die
+   Folgerung a ≤ c mit dem Ziel x ≤ z (also c = z). Neues Ziel ist die zweite
+   Annahme b ≤ c, also y ≤ z. -/
+example (x y z : ℝ) (hxy : x ≤ y) (hyz : y ≤ z) : x ≤ z := by
+  apply le_trans hxy                    -- Ziel vorher: x ≤ z, danach: y ≤ z
+  exact hyz                             -- das ist die Annahme hyz
+
+/- `∀ x, P x` verlangt mehr: Die Menge {x | P x} ist das Ganze. Was fuer alle x
+   gilt, gilt also schliesslich, laengs jedes Filters: Das Ganze ist gross
+   (Axiom (i)), und {x | P x} enthaelt es, ist also auch gross (Axiom (ii):
+   Obermengen grosser Mengen sind gross). -/
+example {α : Type*} (F : Filter α) (P : α → Prop) (h : ∀ x, P x) :
+    ∀ᶠ x in F, P x := by
+  change {x | P x} ∈ F                  -- die Definition von ∀ᶠ
+  -- Wie eben bei `le_trans`, nur ist der Satz jetzt Axiom (ii), in Mathlib
+  -- (mit F, U, V statt Mathlibs Namen f, x, y; alle drei implizit):
+  --   mem_of_superset {F : Filter α} {U V : Set α} : U ∈ F → U ⊆ V → V ∈ F
+  -- Die erste Annahme geben wir gleich mit, das Axiom (i):
+  --   univ_mem : univ ∈ F            (univ ist das Ganze, in Lean `Set.univ`)
+  -- Abgelesen: U = univ (aus U ∈ F und univ ∈ F), dann V = {x | P x} und der
+  -- Filter F (aus V ∈ F und dem Ziel {x | P x} ∈ F). Es bleibt die zweite
+  -- Annahme:
+  --   Ziel vorher:   {x | P x} ∈ F
+  --   Ziel danach:   univ ⊆ {x | P x}
+  -- Mit allen Argumenten ausgeschrieben hiesse die Zeile
+  --   apply mem_of_superset (f := F) (x := Set.univ) (y := {x | P x}) univ_mem
+  apply mem_of_superset univ_mem
+  -- univ ⊆ {x | P x} heisst: Aus x ∈ univ folgt x ∈ {x | P x}, fuer jedes x.
+  intro x _                             -- x beliebig (x ∈ univ gilt ohnehin)
+  exact h x                             -- x ∈ {x | P x} heisst P x; das ist h x
+
+/- In Mathlib heisst das `Eventually.of_forall`. Die Umkehrung gilt nicht:
+   Laengs atTop gilt 10 < x schliesslich, aber nicht fuer x = 0. -/
+example {α : Type*} (F : Filter α) (P : α → Prop) (h : ∀ x, P x) :
+    ∀ᶠ x in F, P x :=
+  Eventually.of_forall h
+
+-- Folie: "Konvergenz in metrischen Raeumen: ε-δ und ε-N" (vorweg: Tendsto an Beispielen)
+/- Was `Tendsto f F G` heisst: Fuer jede Menge V, die gross bezueglich G ist, ist das
+   Urbild f⁻¹(V) = {x | f x ∈ V} gross bezueglich F. Die beiden Filter haben
+   verschiedene Aufgaben:
+     G (am Ziel)   sagt, was "nah am Grenzwert" heisst. Bei 𝓝 b ist gross, was eine
+                   Kugel um b enthaelt -- Zielscheiben um b, beliebig klein.
+     F (am Start)  sagt, wohin x laeuft. Bei 𝓝 a: x nah genug an a (gross ist, was
+                   eine Kugel um a enthaelt). Bei atTop: n gross genug (gross ist,
+                   was ein Endstueck {n | n ≥ N} enthaelt).
+   Tendsto heisst also: Zu jeder Zielscheibe V landet f x schliesslich (laengs F) in
+   V. Denn "f⁻¹(V) ist gross" heisst per Definition "schliesslich f x ∈ V": -/
+example {α β : Type*} (f : α → β) (F : Filter α) (G : Filter β) :
+    Tendsto f F G ↔ ∀ V ∈ G, ∀ᶠ x in F, f x ∈ V :=
+  tendsto_def
+
+/- Beispiel 1: f(x) = 2x konvergiert bei 1 gegen 2. Eine grosse Menge V um 2 enthaelt
+   eine Kugel B(2, ε), und deren Urbild ist
+     f⁻¹(B(2, ε)) = {x | |2x - 2| < ε} = {x | |x - 1| < ε/2} = B(1, ε/2).
+   Also enthaelt f⁻¹(V) die Kugel B(1, ε/2) und ist gross um 1. Mit Zahlen:
+     Zielscheibe (1.9, 2.1),     ε = 0.1    Urbild (0.95, 1.05),     δ = 0.05
+     Zielscheibe (1.99, 2.01),   ε = 0.01   Urbild (0.995, 1.005),   δ = 0.005
+   Der Radius der Kugel im Urbild ist das δ der ε-δ-Definition: δ = ε/2. -/
+example : Tendsto (fun x : ℝ => 2 * x) (𝓝 1) (𝓝 2) := by
+  -- Schritt 1: die Definition (`tendsto_def`). Sei V gross um 2.
+  rw [tendsto_def]
+  intro V hV
+  -- Schritt 2: V enthaelt eine Kugel B(2, ε) (`Metric.mem_nhds_iff`, Richtung →).
+  obtain ⟨ε, hε, hV⟩ := Metric.mem_nhds_iff.1 hV
+  -- Schritt 3: Das Urbild ist gross um 1, sobald es eine Kugel um 1 enthaelt
+  -- (Richtung ←); wir nehmen B(1, ε/2). Fuer x darin bleibt zu zeigen: 2x ∈ B(2, ε),
+  -- denn dann liegt 2x in V (hV), also x im Urbild. `?_` markiert diese Luecke.
+  refine Metric.mem_nhds_iff.2 ⟨ε / 2, by positivity, fun x hx => hV ?_⟩
+  -- Schritt 4: Kugeln als Abstaende lesen. hx : |x - 1| < ε/2, Ziel: |2x - 2| < ε.
+  rw [Metric.mem_ball, Real.dist_eq] at hx ⊢
+  -- Schritt 5: |2x - 2| = 2·|x - 1| < 2·(ε/2) = ε.
+  calc |2 * x - 2| = 2 * |x - 1| := by
+        rw [show 2 * x - 2 = 2 * (x - 1) by ring, abs_mul, abs_two]
+    _ < ε := by linarith
+
+/-- Die Sprungfunktion: 0 links von 0, 1 ab 0. -/
+noncomputable def sprung (x : ℝ) : ℝ := if x < 0 then 0 else 1
+
+/- Beispiel 2: Die Sprungfunktion konvergiert bei 0 nicht gegen 1. Zum Widerlegen
+   genuegt eine einzige grosse Menge, deren Urbild nicht gross ist: V = B(1, 1/2) =
+   (1/2, 3/2) ist gross um 1, aber das Urbild [0, ∞) enthaelt keine Kugel um 0 --
+   jede Kugel B(0, δ) enthaelt den Punkt -δ/2, und dort ist die Funktion 0. -/
+example : ¬ Tendsto sprung (𝓝 0) (𝓝 1) := by
+  -- Schritt 1: Angenommen, sie konvergiert doch (`tendsto_def`).
+  intro h
+  rw [tendsto_def] at h
+  -- Schritt 2: V = B(1, 1/2) ist gross um 1 (`Metric.ball_mem_nhds`).
+  have hV : Metric.ball (1 : ℝ) (1 / 2) ∈ 𝓝 1 := Metric.ball_mem_nhds 1 (by norm_num)
+  -- Schritt 3: Dann waere das Urbild gross um 0, enthielte also eine Kugel B(0, δ).
+  obtain ⟨δ, hδ, hsub⟩ := Metric.mem_nhds_iff.1 (h _ hV)
+  -- Schritt 4: Der Punkt -δ/2 liegt in B(0, δ), denn |-δ/2 - 0| = δ/2 < δ.
+  have hx : -(δ / 2) ∈ Metric.ball (0 : ℝ) δ := by
+    rw [Metric.mem_ball, Real.dist_eq, sub_zero, abs_neg, abs_of_pos (by positivity)]
+    linarith
+  -- Schritt 5: Also laege sprung(-δ/2) in B(1, 1/2). Aber -δ/2 < 0, also ist
+  -- sprung(-δ/2) = 0, und |0 - 1| = 1 ist nicht < 1/2. Widerspruch.
+  have h2 := hsub hx
+  rw [Set.mem_preimage, Metric.mem_ball, Real.dist_eq, sprung, if_pos (by linarith)] at h2
+  norm_num at h2
+
+/- Beispiel 3: dieselbe Definition fuer eine Folge, nur mit atTop am Start. 1/(n + 1)
+   konvergiert gegen 0: Eine grosse Menge V um 0 enthaelt ein Intervall (-ε, ε). Fuer
+   N > 1/ε und n ≥ N ist 1/(n + 1) < 1/N < ε, also liegt 1/(n + 1) in V. Das Urbild
+   enthaelt das Endstueck {n | n ≥ N}, ist also gross laengs atTop. -/
+example : Tendsto (fun n : ℕ => 1 / ((n : ℝ) + 1)) atTop (𝓝 0) := by
+  -- Schritt 1: die Definition. Sei V gross um 0; V enthaelt eine Kugel B(0, ε).
+  rw [tendsto_def]
+  intro V hV
+  obtain ⟨ε, hε, hV⟩ := Metric.mem_nhds_iff.1 hV
+  -- Schritt 2: ein N > 1/ε (Archimedes, `exists_nat_gt`).
+  obtain ⟨N, hN⟩ := exists_nat_gt (1 / ε)
+  -- Schritt 3: Das Urbild enthaelt das Endstueck ab N (`mem_atTop_sets`): Fuer n ≥ N
+  -- bleibt 1/(n + 1) ∈ B(0, ε) zu zeigen, dann liegt es in V (hV).
+  refine mem_atTop_sets.2 ⟨N, fun n hn => hV ?_⟩
+  -- Schritt 4: 1/(n + 1) ∈ B(0, ε) heisst |1/(n + 1) - 0| < ε, also 1/(n + 1) < ε,
+  -- also 1 < ε·(n + 1). Das folgt aus 1 < N·ε (hN) und N ≤ n.
+  rw [Metric.mem_ball, Real.dist_eq, sub_zero, abs_of_pos (by positivity)]
+  have hn' : (N : ℝ) ≤ n := by exact_mod_cast hn
+  rw [div_lt_iff₀ (by positivity)]
+  rw [div_lt_iff₀ hε] at hN
+  nlinarith
+
+/- Ein Begriff fuer alle Grenzwerte, nur die Filter wechseln:
+     Tendsto u atTop (𝓝 a)        die Folge u n konvergiert gegen a
+     Tendsto f (𝓝 a) (𝓝 (f a))    f ist stetig in a (`ContinuousAt f a`)
+     Tendsto f (𝓝[≠] a) (𝓝 b)     klassischer Grenzwert: f x → b fuer x → a, x ≠ a
+     Tendsto f atTop atTop         f x → ∞ fuer x → ∞
+   Vorsicht bei Tendsto f (𝓝 a) (𝓝 b): 𝓝 a enthaelt den Punkt a selbst. Mit x = a in
+   der ε-δ-Bedingung unten folgt d(f a, b) < ε fuer jedes ε, also b = f a. -/
+
+-- Folie: "Konvergenz in metrischen Raeumen: ε-δ und ε-N" (der Satz und sein Beweis)
+/- Konvergenz heisst `Tendsto f F G`: Urbilder grosser Mengen sind gross. In einem
+   metrischen Raum ist das genau die klassische Definition:
+
+     Funktionen   Tendsto f (𝓝 a) (𝓝 b)  ↔  zu jedem ε > 0 ein δ > 0 mit
+                                             d(f x, b) < ε, sobald d(x, a) < δ
+     Folgen       Tendsto u atTop (𝓝 a)  ↔  zu jedem ε > 0 ein N mit
+                                             d(u n, a) < ε fuer alle n ≥ N
+
+   Die Beweise uebersetzen nur Definitionen:
+     `tendsto_def`          Tendsto heisst: Urbilder grosser Mengen sind gross
+     `Metric.mem_nhds_iff`  V ist gross um a, wenn V eine Kugel
+                            B(a, ε) = {y | d(y, a) < ε} enthaelt
+     `mem_atTop_sets`       V ist gross laengs atTop, wenn V ein Endstueck
+                            {n | n ≥ N} enthaelt                                -/
+/-- Konvergenz von Funktionen zwischen metrischen Raeumen ist die
+ε-δ-Definition. Mit b = f a ist das die ε-δ-Stetigkeit: `ContinuousAt f a`
+ist per Definition `Tendsto f (𝓝 a) (𝓝 (f a))`. -/
+theorem konvergenz_eps_delta {X Y : Type*} [MetricSpace X] [MetricSpace Y]
+    (f : X → Y) (a : X) (b : Y) :
+    Tendsto f (𝓝 a) (𝓝 b) ↔
+      ∀ ε > 0, ∃ δ > 0, ∀ x, dist x a < δ → dist (f x) b < ε := by
+  -- Schreibweise: `V ∈ 𝓝 b` heisst "V ist gross um b". B(b, ε) ist die
+  -- Kugel `Metric.ball b ε` = {y | d(y, b) < ε}, mit dem Abstand
+  -- d(y, b) = `dist y b`. f⁻¹(V) ist das Urbild `f ⁻¹' V` = {x | f x ∈ V}.
+  --
+  -- Schritt 1: Tendsto aufklappen. Tendsto heisst: Jede grosse Menge um b
+  -- hat ein grosses Urbild um a. Beispiel f(x) = 2x, a = 1, b = 2: Eine
+  -- grosse Menge V um 2 enthaelt eine Kugel B(2, ε), etwa (1.9, 2.1) fuer
+  -- ε = 0.1. Deren Urbild ist B(1, ε/2), hier (0.95, 1.05). Damit enthaelt
+  -- f⁻¹(V) eine Kugel um 1 und ist gross um 1. In Mathlib ist das der Satz
+  --   tendsto_def : Tendsto f l₁ l₂ ↔ ∀ s ∈ l₂, f ⁻¹' s ∈ l₁
+  -- `rw` ersetzt im Ziel die linke Seite durch die rechte, mit l₁ = 𝓝 a und
+  -- l₂ = 𝓝 b. Ziel danach:
+  --   (∀ s ∈ 𝓝 b, f ⁻¹' s ∈ 𝓝 a) ↔
+  --     ∀ ε > 0, ∃ δ > 0, ∀ x, dist x a < δ → dist (f x) b < ε
+  rw [tendsto_def]
+  -- Schritt 2: Ein ↔ zeigt man in zwei Richtungen. `constructor` macht
+  -- daraus zwei Ziele, (→) und (←); die beiden mit `·` beginnenden Bloecke
+  -- beweisen je eines.
+  constructor
+  · -- (→) Gegeben: Urbilder grosser Mengen sind gross.
+    -- Gesucht: zu jedem ε ein δ.
+    -- Schritt 3: Das Ziel lautet (∀ s ∈ 𝓝 b, ...) → (∀ ε > 0, ...).
+    -- `intro` nimmt die linke Seite als Annahme h und dazu ein beliebiges
+    -- ε. Dabei ist `∀ ε > 0, ...` kurz fuer `∀ ε, ε > 0 → ...`, darum
+    -- zwei Namen: ε und hε.
+    --   h  : ∀ s ∈ 𝓝 b, f ⁻¹' s ∈ 𝓝 a
+    --   hε : ε > 0
+    --   Ziel: ∃ δ > 0, ∀ x, dist x a < δ → dist (f x) b < ε
+    intro h ε hε
+    -- Schritt 4: B(b, ε) ist gross um b, denn sie enthaelt eine Kugel um
+    -- b, naemlich sich selbst. "Gross um x" heisst in Mathlib (Radius r
+    -- statt Mathlibs ε, damit er nicht mit unserem ε verwechselt wird):
+    --   Metric.mem_nhds_iff : s ∈ 𝓝 x ↔ ∃ r > 0, Metric.ball x r ⊆ s
+    -- Ein Beweis von A ↔ B ist ein Paar zweier Implikationen, so wie ein
+    -- Beweis von A ∧ B ein Paar ist: `.1` ist A → B, `.2` ist B → A. Mit
+    -- `.2` genuegt ein Beweis der rechten Seite, fuer s = B(b, ε) und x = b
+    -- also einer von ∃ r > 0, B(b, r) ⊆ B(b, ε). Das ist das Tripel
+    -- ⟨ε, hε, subset_rfl⟩, kurz fuer ⟨ε, ⟨hε, subset_rfl⟩⟩:
+    --   Zeuge      r = ε
+    --   Nachweis   hε : ε > 0
+    --   Nachweis   subset_rfl : B(b, ε) ⊆ B(b, ε)
+    -- (`subset_rfl`: Jede Menge ist Teilmenge von sich selbst.)
+    have hB : Metric.ball b ε ∈ 𝓝 b := Metric.mem_nhds_iff.2 ⟨ε, hε, subset_rfl⟩
+    -- Schritt 5: Also ist das Urbild f⁻¹(B(b, ε)) gross um a. Dazu h
+    -- anwenden: `∀ s ∈ 𝓝 b, ...` ist kurz fuer `∀ s, s ∈ 𝓝 b → ...`; h
+    -- nimmt also erst eine Menge s, dann den Nachweis s ∈ 𝓝 b. Fuer s
+    -- steht `_`: Lean liest s = B(b, ε) an hB ab.
+    --   h _ hB : f ⁻¹' Metric.ball b ε ∈ 𝓝 a
+    -- Gross um a heisst: enthaelt eine Kugel um a. `.1` von
+    -- `Metric.mem_nhds_iff` macht daraus
+    --   ∃ r > 0, Metric.ball a r ⊆ f ⁻¹' Metric.ball b ε,
+    -- und `obtain` packt das aus und nennt den Radius δ:
+    --   δ    : ℝ
+    --   hδ   : δ > 0
+    --   hsub : Metric.ball a δ ⊆ f ⁻¹' Metric.ball b ε
+    --          (also B(a, δ) ⊆ f⁻¹(B(b, ε)))
+    obtain ⟨δ, hδ, hsub⟩ := Metric.mem_nhds_iff.1 (h _ hB)
+    -- Schritt 6: Dieses δ leistet es. Das Ziel ∃ δ > 0, ... bekommt wieder
+    -- ein Tripel: Zeuge δ, Nachweis hδ und einen Beweis von
+    --   ∀ x, dist x a < δ → dist (f x) b < ε
+    -- Ein Beweis von "fuer alle x: aus P x folgt Q x" ist eine Funktion:
+    -- Sie nimmt x und hx : P x und liefert einen Beweis von Q x. Hier ist
+    -- das hsub hx:
+    --   hx      : dist x a < δ        per Definition: x ∈ B(a, δ)
+    --   hsub hx : x ∈ f⁻¹(B(b, ε))    per Definition: f x ∈ B(b, ε),
+    --                                 also dist (f x) b < ε
+    -- Kugel und Urbild sind so definiert (`Metric.mem_ball`,
+    -- `Set.mem_preimage`); Lean setzt die Definitionen selbst ein, ein `rw`
+    -- ist nicht noetig.
+    exact ⟨δ, hδ, fun x hx => hsub hx⟩
+  · -- (←) Gegeben: zu jedem ε ein δ.
+    -- Gesucht: Urbilder grosser Mengen sind gross.
+    -- Schritt 7: Das Ziel lautet
+    --   (∀ ε > 0, ...) → (∀ s ∈ 𝓝 b, f ⁻¹' s ∈ 𝓝 a).
+    -- `intro` nimmt die linke Seite als Annahme h, dann eine Menge s, die
+    -- wir V nennen, und den Nachweis hV, dass V gross um b ist:
+    --   h  : ∀ ε > 0, ∃ δ > 0, ∀ x, dist x a < δ → dist (f x) b < ε
+    --   hV : V ∈ 𝓝 b
+    --   Ziel: f ⁻¹' V ∈ 𝓝 a
+    intro h V hV
+    -- Schritt 8: V ist gross um b, enthaelt also eine Kugel um b (`.1` von
+    -- `Metric.mem_nhds_iff`). `obtain` packt aus und nennt den Radius ε:
+    --   ε  : ℝ
+    --   hε : ε > 0
+    --   hV : Metric.ball b ε ⊆ V            (also B(b, ε) ⊆ V)
+    -- Der Name hV ist damit neu vergeben: Das alte hV : V ∈ 𝓝 b wird nicht
+    -- mehr gebraucht und ist ab hier verdeckt.
+    obtain ⟨ε, hε, hV⟩ := Metric.mem_nhds_iff.1 hV
+    -- Schritt 9: Zu diesem ε gibt es ein δ: h in ε und hε einsetzen,
+    -- auspacken.
+    --   δ  : ℝ
+    --   hδ : δ > 0
+    --   hd : ∀ x, dist x a < δ → dist (f x) b < ε
+    obtain ⟨δ, hδ, hd⟩ := h ε hε
+    -- Schritt 10: Die Kugel B(a, δ) liegt im Urbild f⁻¹(V), also ist f⁻¹(V)
+    -- gross um a. Mit `.2` von `Metric.mem_nhds_iff` genuegt ein Tripel:
+    -- Zeuge δ, Nachweis hδ und ein Beweis von B(a, δ) ⊆ f⁻¹(V). Eine
+    -- Inklusion s ⊆ t heisst ∀ x, x ∈ s → x ∈ t; ihr Beweis ist also wieder
+    -- eine Funktion von x und hx:
+    --   hx           : x ∈ B(a, δ)        per Definition: dist x a < δ
+    --   hd x hx      : dist (f x) b < ε   per Definition: f x ∈ B(b, ε)
+    --   hV (hd x hx) : f x ∈ V            per Definition: x ∈ f⁻¹(V)
+    exact Metric.mem_nhds_iff.2 ⟨δ, hδ, fun x hx => hV (hd x hx)⟩
+
+/-- Konvergenz von Folgen in einem metrischen Raum ist die ε-N-Definition. -/
+theorem konvergenz_eps_N {X : Type*} [MetricSpace X] (u : ℕ → X) (a : X) :
+    Tendsto u atTop (𝓝 a) ↔ ∀ ε > 0, ∃ N, ∀ n ≥ N, dist (u n) a < ε := by
+  -- Tendsto: Jede grosse Menge V um a hat ein grosses Urbild u⁻¹(V).
+  rw [tendsto_def]
+  constructor
+  · -- (→) Sei ε > 0. Die Kugel B(a, ε) ist gross um a, also ist ihr Urbild gross
+    -- laengs atTop: Es enthaelt ein Endstueck. Ab N liegen alle u n in B(a, ε).
+    intro h ε hε
+    have hB : Metric.ball a ε ∈ 𝓝 a := Metric.mem_nhds_iff.2 ⟨ε, hε, subset_rfl⟩
+    exact mem_atTop_sets.1 (h _ hB)
+  · -- (←) Sei V gross um a. Dann enthaelt V eine Kugel B(a, ε). Ab dem N zu ε
+    -- liegen alle u n in B(a, ε) ⊆ V: Das Urbild u⁻¹(V) enthaelt das Endstueck.
+    intro h V hV
+    obtain ⟨ε, hε, hV⟩ := Metric.mem_nhds_iff.1 hV
+    obtain ⟨N, hN⟩ := h ε hε
+    exact mem_atTop_sets.2 ⟨N, fun n hn => hV (hN n hn)⟩
+
+/- Mathlib hat beide Saetze: `Metric.tendsto_nhds_nhds` (ε-δ) und
+   `Metric.tendsto_atTop` (ε-N). -/
+example {X Y : Type*} [MetricSpace X] [MetricSpace Y] (f : X → Y) (a : X) (b : Y) :
+    Tendsto f (𝓝 a) (𝓝 b) ↔
+      ∀ ε > 0, ∃ δ > 0, ∀ x, dist x a < δ → dist (f x) b < ε :=
+  Metric.tendsto_nhds_nhds
+
+-- Folie: "Konvergenz in metrischen Raeumen: ε-δ und ε-N" (das Beispiel: die geometrische Reihe)
+/- Eine bekannte Reihe: 1/2 + 1/4 + 1/8 + ... = 1. Die Partialsummen sind
+   s_n = 1/2 + ... + 1/2^n = 1 - 1/2^n: Es fehlt immer genau das letzte Stueck
+   1/2^n (wer einen Kuchen immer wieder halbiert, behaelt 1/2^n uebrig). Erst die
+   Formel, durch Induktion: -/
+/-- Die Partialsummen der geometrischen Reihe 1/2 + 1/4 + 1/8 + ... -/
+theorem geometrische_partialsumme (n : ℕ) :
+    ∑ k ∈ Finset.range n, (1 / 2 : ℝ) ^ (k + 1) = 1 - (1 / 2) ^ n := by
+  induction n with
+  | zero => simp                 -- leere Summe: 0 = 1 - 1
+  | succ n ih =>
+    -- s_(n+1) = s_n + 1/2^(n+1) (`Finset.sum_range_succ`), dann ih fuer s_n
+    rw [Finset.sum_range_succ, ih]
+    ring                         -- 1 - 1/2^n + 1/2^(n+1) = 1 - 1/2^(n+1)
+
+/- Dann der Grenzwert, mit der ε-N-Definition. Der Abstand zum Grenzwert ist
+   |s_n - 1| = 1/2^n. Zu ε > 0 waehlt man N > 1/ε (Archimedes, `exists_nat_gt`).
+   Fuer n ≥ N ist dann 2^n > n ≥ N > 1/ε, also 1/2^n < ε. -/
+/-- Die geometrische Reihe 1/2 + 1/4 + 1/8 + ... hat den Wert 1. -/
+theorem geometrische_reihe :
+    Tendsto (fun n => ∑ k ∈ Finset.range n, (1 / 2 : ℝ) ^ (k + 1)) atTop
+      (𝓝 1) := by
+  rw [konvergenz_eps_N]                    -- die ε-N-Definition
+  intro ε hε                               -- ε > 0 beliebig
+  obtain ⟨N, hN⟩ := exists_nat_gt (1 / ε)  -- Schritt 1: ein N > 1/ε
+  use N
+  intro n hn                               -- hn : n ≥ N
+  -- Schritt 2: der Abstand. d(s_n, 1) = |(1 - 1/2^n) - 1| = |-(1/2^n)| = 1/2^n.
+  rw [geometrische_partialsumme, Real.dist_eq, sub_sub_cancel_left, abs_neg,
+    abs_of_pos (by positivity)]
+  -- Schritt 3: 2^n > n ≥ N > 1/ε, mit `Nat.lt_two_pow_self` (n < 2^n);
+  -- `exact_mod_cast` holt die Ungleichungen fuer natuerliche Zahlen nach ℝ.
+  have h1 : (n : ℝ) < 2 ^ n := by exact_mod_cast Nat.lt_two_pow_self
+  have h2 : (N : ℝ) ≤ n := by exact_mod_cast hn
+  have h3 : 1 / ε < 2 ^ n := by linarith
+  -- Schritt 4: Aus 1/ε < 2^n wird 1 < 2^n·ε, und das heisst 1/2^n < ε.
+  rw [div_lt_iff₀ hε] at h3                -- h3 : 1 < 2^n * ε
+  rw [one_div_pow, div_lt_iff₀ (by positivity)]  -- Ziel: 1 < ε * 2^n
+  linarith
+
+/- Mathlib hat die Reihe als `hasSum_geometric_two'` (Σ a/2/2^k = a); "die Reihe hat
+   die Summe s" heisst dort `HasSum`. -/
+
+/-! ## 4.4 Landau-Symbole: Vergleichen laengs eines Filters -/
+
+-- Folie: "Schliesslich: die Menge, auf der P gilt"
+/- Laengs `atTop` ist gross, was ein Endstueck [N, ∞) enthaelt. Zum Beispiel
+   {x | 10 < x}: Die Menge enthaelt das Endstueck [11, ∞).
 
      --|----|----|----|----|----|------> x
        8    9   10   11   12   13
                  o=====================>    {x | 10 < x}
-                      [================>    das Endstueck [11, ∞)
-
-   Das Endstueck [11, ∞) liegt ganz in der Menge {x | 10 < x}, also ist sie gross
-   (Axiom (ii)): `10 < x` gilt schliesslich. Was links von 10 geschieht, zaehlt nicht. -/
+                      [================>    das Endstueck [11, ∞)          -/
 example : {x : ℝ | 10 < x} ∈ atTop := by
-  apply mem_of_superset (Ici_mem_atTop (11 : ℝ))   -- das Endstueck [11, ∞) ist gross
-  intro x hx                                       -- hx : 11 ≤ x
-  have h : (11 : ℝ) ≤ x := hx
-  show 10 < x                                      -- x liegt in {x | 10 < x}
+  -- Axiom (ii), in Mathlib `mem_of_superset`: Aus U ∈ F und U ⊆ V folgt V ∈ F. Als U
+  -- nehmen wir [11, ∞), in Mathlib `Set.Ici 11` (Intervall, links abgeschlossen, nach
+  -- rechts unendlich); gross ist es nach `Ici_mem_atTop 11`.
+  apply mem_of_superset (Ici_mem_atTop (11 : ℝ))
+  -- Bleibt U ⊆ V: Jedes x mit 11 ≤ x erfuellt 10 < x.
+  intro x hx                                       -- hx : x ∈ [11, ∞)
+  have h : (11 : ℝ) ≤ x := hx                      -- also 11 ≤ x
+  change 10 < x                                    -- x ∈ {x | 10 < x} heisst 10 < x
   linarith
-
-/- `∀ x, P x` verlangt mehr: P gilt ueberall, die Menge {x | P x} ist das
-   Ganze. Was fuer alle x gilt, gilt also schliesslich -- das Ganze ist gross
-   (Axiom (i)), und {x | P x} enthaelt es (Axiom (ii)). In Mathlib heisst das
-   `Eventually.of_forall`.
-
-   Die Zeile `apply mem_of_superset univ_mem` im Einzelnen. Axiom (ii) heisst in
-   Mathlib `mem_of_superset`: Aus `U ∈ F` und `U ⊆ V` folgt `V ∈ F` -- eine
-   Obermenge V einer grossen Menge U ist gross. Hier ist V = {x | P x}, und fuer U
-   nehmen wir das Ganze `univ`; das ist gross nach Axiom (i), `univ_mem`. Also:
-
-     Ziel vorher:   {x | P x} ∈ F
-     Beweisstueck:  univ_mem : univ ∈ F        (U = univ ist gross)
-     Ziel danach:   univ ⊆ {x | P x}           (der zweite Teil, U ⊆ V)
-
-   `apply` setzt das Beweisstueck fuer `U ∈ F` ein und laesst den Rest als neues
-   Ziel stehen. Das Ziel `univ ⊆ {x | P x}` heisst: Jedes x liegt in {x | P x},
-   also gilt P x -- und das ist die Annahme `h`. -/
-example {α : Type*} (F : Filter α) (P : α → Prop) (h : ∀ x, P x) :
-    ∀ᶠ x in F, P x := by
-  change {x | P x} ∈ F                  -- die Definition von ∀ᶠ
-  apply mem_of_superset univ_mem        -- (i), (ii): Obermenge des Ganzen
-  intro x _                             -- Ziel: x ∈ {x | P x}, also P x
-  exact h x                             -- das ist die Annahme h
-
-/- Was gross ist, sagt der Filter. Laengs `atTop` heisst schliesslich "ab
-   einem N" (`eventually_atTop`). Schliesslich ist 10 < n, ab N = 11: -/
-example : ∀ᶠ n : ℕ in atTop, 10 < n := by
-  rw [eventually_atTop]                 -- ∃ N, ∀ n ≥ N, 10 < n
-  use 11                                -- Zeuge N = 11
-  intro n hn                            -- hn : n ≥ 11
-  omega                                 -- 10 < n
-
-/- Fuer alle n gilt es aber nicht: Aus `∀ᶠ` folgt nicht `∀`. -/
-example : ¬ ∀ n : ℕ, 10 < n := by
-  intro h                               -- Annahme: 10 < n fuer alle n
-  have h0 := h 0                        -- also 10 < 0
-  omega                                 -- Widerspruch
-
-/- Laengs `𝓝 a` heisst schliesslich "auf einer Kugel um a"
-   (`Metric.eventually_nhds_iff`). Nahe 1 ist x positiv, die Kugel vom
-   Radius 1 reicht: -/
-example : ∀ᶠ x : ℝ in 𝓝 1, 0 < x := by
-  rw [Metric.eventually_nhds_iff]       -- ∃ δ > 0, ∀ x, dist x 1 < δ → 0 < x
-  use 1, one_pos                        -- Radius δ = 1
-  intro x hx                            -- hx : dist x 1 < 1
-  rw [Real.dist_eq, abs_lt] at hx       -- -1 < x - 1 < 1
-  linarith [hx.1]                       -- also 0 < x
-
-/- In den Beweisen unten nennt `filter_upwards [...] with x hx` eine grosse
-   Menge -- oder eine Aussage, die schliesslich gilt; per Definition dasselbe.
-   Zu zeigen bleibt P x fuer die x darin, dann ist {x | P x} gross nach
-   Axiom (ii). Hier mit der Kugel B(1, 1): -/
-example : ∀ᶠ x : ℝ in 𝓝 1, 0 < x := by
-  filter_upwards [Metric.ball_mem_nhds (1 : ℝ) one_pos] with x hx  -- B(1, 1) ist gross
-  rw [Metric.mem_ball, Real.dist_eq, abs_lt] at hx                -- -1 < x - 1 < 1
-  linarith [hx.1]                                                  -- also 0 < x
-
-/- Und die klassische Konvergenz? Am einfachsten Beispiel, u n = 1/n gegen 0, ist
-   es dieselbe Aussage in drei Sprachen:
-
-     klassisch    zu jedem ε > 0 ein N, so dass fuer alle n ≥ N gilt |1/n - 0| < ε
-     mit ∀ᶠ       zu jedem ε > 0 gilt schliesslich laengs atTop |1/n - 0| < ε
-     mit Filtern  das Urbild jeder Kugel B(0, ε) ist laengs atTop gross (`Tendsto`)
-
-   "Es gibt ein N, so dass fuer alle n ≥ N" ist genau `∀ᶠ n in atTop`, und
-   "schliesslich" heisst "die Menge ist gross". Zu ε = 1/10 heisst |1/n - 0| < 1/10
-   dasselbe wie 10 < n, also ab N = 11 -- das Beispiel von oben: -/
-example : ∀ᶠ n : ℕ in atTop, |1 / (n : ℝ) - 0| < 1 / 10 := by
-  rw [eventually_atTop]                 -- ∃ N, ∀ n ≥ N, |1/n - 0| < 1/10
-  use 11                                -- Zeuge N = 11
-  intro n hn                            -- hn : n ≥ 11
-  -- Schritt 1: n ist eine natuerliche Zahl; fuer die Rechnung braucht man 11 ≤ n in ℝ
-  -- (`exact_mod_cast`: aus der Aussage in ℕ wird die in ℝ).
-  have h : (11 : ℝ) ≤ n := by exact_mod_cast hn
-  -- Schritt 2: 1/n - 0 = 1/n (`sub_zero`), und 1/n > 0 ist positiv (n ≥ 11 > 0), also ist
-  -- der Betrag |1/n| = 1/n (`abs_of_pos`). Ziel: 1 / n < 1 / 10.
-  rw [sub_zero, abs_of_pos (by positivity)]
-  -- Schritt 3: Brueche mit positiven Nennern vergleichen: 1/n < 1/10 ↔ 1·10 < 1·n
-  -- (`div_lt_div_iff₀`; die Nenner n und 10 sind positiv). Ziel: 1 * 10 < 1 * n.
-  rw [div_lt_div_iff₀ (by linarith) (by norm_num)]
-  linarith                              -- 10 < n, denn n ≥ 11
-
-/-! ## 4.4 Ableitung -/
-
-/-! ### Landau-Symbole: Vergleichen laengs eines Filters
-
-Erst selbst gebaut, dann mit Mathlib abgeglichen -- wie in Vorlesung 4:
-`KleinO` ist die Definition der Folie, hier fuer reelle Funktionen (mit |·|
-statt ‖·‖). Mathlibs `=o[l]` ist derselbe Begriff fuer normierte Raeume; der
-Abgleich steht am Ende des Abschnitts. -/
-
--- Folie: "Vernachlaessigbar klein" (Filter, "schliesslich", o und O)
-/- Die Bausteine, in einer Zeile gelesen:
-
-     Filter l            ein System "grosser" Mengen: Er sagt, wohin x laeuft
-       atTop             x → +∞,  gross = enthaelt ein Endstueck [N, ∞)
-       𝓝 a               x → a,   gross = enthaelt eine Kugel um a
-       𝓝[≠] a            x → a, x ≠ a,  gross = eine Kugel ohne a
-     ∀ᶠ x in l, P x      "P x gilt schliesslich laengs l": {x | P x} ist gross
-     f = o(g) laengs l   zu JEDEM c > 0 gilt schliesslich |f x| ≤ c·|g x|
-                         (f ist neben g vernachlaessigbar)
-     f = O(g) laengs l   fuer EIN c gilt schliesslich |f x| ≤ c·|g x|
-                         (f ist hoechstens so gross wie g)
-     HasDerivAt g a t₀   der Fehler g t - g t₀ - a·(t - t₀) ist o(t - t₀)
-                         laengs 𝓝 t₀ (die Tangente ist die beste Gerade)
-
-   Zum Beispiel gilt `10 < x` schliesslich laengs atTop: ab N = 11. Wie es bei
-   x = 3 aussieht, ist egal. -/
 
 -- Folie: "Klein-o laengs eines Filters" (die Definition, selbst gebaut)
 /-- Klein-o laengs eines Filters: Zu jedem c > 0 gilt schliesslich
@@ -152,10 +379,6 @@ Abgleich steht am Ende des Abschnitts. -/
 eigene. `∀ᶠ x in l, P x` heisst: Die Menge, auf der P gilt, ist gross. -/
 def KleinO {α : Type*} (f g : α → ℝ) (l : Filter α) : Prop :=
   ∀ c > 0, ∀ᶠ x in l, |f x| ≤ c * |g x|
-
-/- Gross-O, f = O(g), heisst: Es gibt *ein* c, mit dem schliesslich
-   |f x| ≤ c·|g x| gilt, nicht jedes. Hier brauchen wir nur o; in Mathlib ist
-   O das Symbol `f =O[l] g`. -/
 
 -- Folie: "Was schliesslich heisst, sagt der Filter" (die Tabelle)
 /-- Laengs 𝓝 a heisst "schliesslich" "auf einer Kugel um a": die ε-δ-Form,
@@ -171,6 +394,7 @@ theorem klein_o_nhds_iff (f g : ℝ → ℝ) (a : ℝ) :
   -- Auf ℝ ist dist x a = |x - a| (`Real.dist_eq`). Danach sind beide Seiten gleich.
   simp only [Metric.eventually_nhds_iff, Real.dist_eq]
 
+-- Folie: "Warum ohne Teilen?" (das Beispiel (y - x)² = o(y - x), ganz ohne Teilen)
 -- Folie: "Vorgerechnet: f(y) = y^2" ((y - x)² = o(y - x), zu jedem c eine eigene Kugel)
 -- und "Landau-Symbole in Lean" (x² = o(x) bei 0)
 /-- Bei x ist (y - x)² klein gegen y - x: Zu jedem c reicht die Kugel vom
@@ -198,52 +422,6 @@ example : KleinO (fun x : ℝ => x ^ 2) (fun x => x) (𝓝 0) := by
   -- `quadrat_klein_o 0` sagt: (y - 0)² ist klein gegen y - 0. `sub_zero` macht aus
   -- y - 0 ein y, im Satz und im Ziel; dann stimmen beide ueberein.
   simpa only [sub_zero] using quadrat_klein_o 0
-
-/-- Bei +∞ ist es umgekehrt: x ist klein gegen x². Zu c > 0 reicht das
-Endstueck ab 1/c, denn dort ist 1 ≤ c·x, also x ≤ c·x². -/
-theorem linear_klein_o_unendlich :
-    KleinO (fun x : ℝ => x) (fun x => x ^ 2) atTop := by
-  -- Schritt 1: c > 0 beliebig. Ziel: ∀ᶠ x in atTop, |x| ≤ c * |x ^ 2|
-  intro c hc
-  -- Schritt 2: Das Endstueck [1/c, ∞) ist gross (`eventually_ge_atTop`). `filter_upwards`
-  -- verlangt die Ungleichung nur fuer ein x darin: hx : 1 / c ≤ x.
-  filter_upwards [eventually_ge_atTop (1 / c)] with x hx
-  -- Schritt 3: Aus 1/c ≤ x folgt 1 ≤ c·x. `div_le_iff₀ hc` macht aus 1 / c ≤ x die
-  -- Aussage 1 ≤ x * c, `mul_comm` vertauscht die Faktoren.
-  have h1 : 1 ≤ c * x := by
-    rwa [div_le_iff₀ hc, mul_comm] at hx
-  -- Schritt 4: x ist nicht negativ, denn 0 < 1/c ≤ x.
-  have hx0 : 0 ≤ x := by
-    have : 0 < 1 / c := by positivity
-    linarith
-  -- Schritt 5: Die Betraege weglassen (x ≥ 0 und x² ≥ 0). Zu zeigen: x ≤ c * x ^ 2.
-  rw [abs_of_nonneg hx0, abs_of_nonneg (sq_nonneg x)]
-  -- Schritt 6: x = 1·x ≤ (c·x)·x = c·x². `nlinarith` multipliziert h1 mit x ≥ 0.
-  nlinarith
-
-/-- Und x² ist bei +∞ nicht klein gegen x: Mit c = 1 muesste schliesslich
-x² ≤ x gelten. Schliesslich gilt aber auch x ≥ 2, also gibt es ein x mit
-beidem (Axiom (iii), und die leere Menge ist nicht gross) -- und dort ist
-x² ≥ 2x > x. -/
-theorem quadrat_nicht_klein_o_unendlich :
-    ¬ KleinO (fun x : ℝ => x ^ 2) (fun x => x) atTop := by
-  -- Schritt 1: Annahme x² = o(x), also h : ∀ c > 0, ∀ᶠ x in atTop, |x ^ 2| ≤ c * |x|.
-  intro h
-  -- Schritt 2: Zwei grosse Mengen zugleich. `h 1 one_pos` mit c = 1: schliesslich
-  -- |x²| ≤ 1·|x|. `eventually_ge_atTop 2`: schliesslich 2 ≤ x. `.and` bildet den Schnitt
-  -- (Axiom (iii)), `.exists` holt einen Punkt x daraus -- moeglich, denn eine grosse
-  -- Menge ist nicht leer. Dann ist hx : |x ^ 2| ≤ 1 * |x| und h2 : 2 ≤ x.
-  obtain ⟨x, hx, h2⟩ := ((h 1 one_pos).and (eventually_ge_atTop (2 : ℝ))).exists
-  -- Schritt 3: x ist nicht negativ (x ≥ 2), also darf man die Betraege weglassen.
-  have hx0 : (0 : ℝ) ≤ x := by linarith
-  rw [abs_of_nonneg (sq_nonneg x), abs_of_nonneg hx0, one_mul] at hx   -- hx : x² ≤ x
-  -- Schritt 4: Widerspruch: x² ≥ 2x > x fuer x ≥ 2. `nlinarith` multipliziert h2 mit x ≥ 0.
-  nlinarith
-
--- Folie: "Warum ohne Teilen?"
-/- Ist g schliesslich ungleich 0, heisst f = o(g) einfach f/g → 0; in Mathlib ist
-   das der Satz `Asymptotics.isLittleO_iff_tendsto'`. Die Definition mit c
-   braucht diese Voraussetzung nicht -- sie teilt nie. -/
 
 -- Folie: "Rechnen mit o: Die Filteraxiome arbeiten" und "Die Summenregel im Bild: zwei
 -- grosse Mengen schneiden" (Schritt 2 unten ist der Schnitt U_1 ∩ U_2 im Bild)
@@ -282,20 +460,11 @@ theorem klein_o_iff_isLittleO {α : Type*} (f g : α → ℝ) (l : Filter α) :
   -- "c > 0" ist "0 < c" (`gt_iff_lt`). Danach sind beide Seiten gleich.
   simp only [KleinO, Real.norm_eq_abs, gt_iff_lt]
 
-/-! ### Mehrere Veraenderliche: partielle Ableitungen, Jacobi-Matrix, Kettenregel -/
-
--- Zuerst die Ableitung in einer Variablen, die Grundlage fuer alles Folgende. Die Regeln und
--- die Junk-Werte stehen im Anhang am Ende der Datei.
+/-! ## 4.4 Ableitung in einer Variablen -/
 
 -- Folie: "Die Definition" (der Ableitung)
-/- `HasDerivAt g a t₀` heisst: Der Fehler der Tangente, g t - g t₀ - a·(t - t₀), ist
-   o(t - t₀) laengs 𝓝 t₀. Ausgeschrieben: Zu jedem c > 0 gilt schliesslich
-   |Fehler| ≤ c·|t - t₀|, und laengs 𝓝 t₀ heisst schliesslich "auf einer Kugel um
-   t₀" -- das ε-δ (`ableitung_eps_delta`, gleich darunter). Das δ ist das
-   "schliesslich", das c das "zu jedem c" des o. In Mathlib steckt der
-   Inhalt hinter zwei Umbenennungen (`HasDerivAtFilter`, die Frechet-Ableitung);
-   benutzbar ist er als Satz `hasDerivAt_iff_isLittleO`, hier in unserer
-   Schreibweise `KleinO`: -/
+/- `HasDerivAt f f' x` ist Mathlibs Ableitung. Sie heisst: Der Fehler der Tangente,
+   f y - f x - (y - x)·f', ist o(y - x) laengs 𝓝 x. In unserer Schreibweise `KleinO`: -/
 /-- Die Ableitung, wie auf der Folie: Der Fehler der Tangente ist klein gegen
 y - x laengs 𝓝 x. Mathlib sagt das mit `=o` (`hasDerivAt_iff_isLittleO`);
 `klein_o_iff_isLittleO` uebersetzt es in unsere Fassung. -/
@@ -312,7 +481,7 @@ theorem ableitung_klein_o (f : ℝ → ℝ) (f' x : ℝ) :
   -- (`smul_eq_mul`). Danach sind beide Seiten gleich.
   simp only [smul_eq_mul]
 
--- Folie: "Die Definition" (ausgeschrieben, die ε-δ-Form)
+-- Folie: "Schliesslich bei der Ableitung: zu jedem c eine Kugel" (die ε-δ-Form)
 /-- Die Ableitung, ganz ausgeschrieben: Laengs 𝓝 x heisst "schliesslich"
 "auf einer Kugel um x". Heraus kommt die vertraute ε-δ-Form, mit c statt ε. -/
 theorem ableitung_eps_delta (f : ℝ → ℝ) (f' x : ℝ) :
@@ -340,89 +509,59 @@ example (x : ℝ) : HasDerivAt (fun y : ℝ => y ^ 2) (2 * x) x := by
   -- Schritt 2 (Papier 2.): Das ist `quadrat_klein_o` -- ohne zu teilen, mit der Kugel B(x, c).
   exact quadrat_klein_o x
 
+/- Mathlib hat die Rechenregeln fertig. Mit der Potenzregel `hasDerivAt_pow` ist
+   dasselbe eine Zeile -- erst die Definition verstehen, dann die Regel benutzen. -/
+example (x : ℝ) : HasDerivAt (fun y : ℝ => y ^ 2) (2 * x) x := by
+  simpa using hasDerivAt_pow 2 x
+
 -- Folie: "Fermat: Am lokalen Minimum ist f' = 0"
-/-- Fermat: An einem lokalen Minimum ist f' = 0. Nahe a ist f a ≤ f x, also
-die Sekantensteigung `slope f a x` = (f x - f a)/(x - a) links von a ≤ 0,
-rechts ≥ 0. Grenzwerte erhalten ≤, also f' ≤ 0 ≤ f'. -/
-theorem fermat {f : ℝ → ℝ} {a f' : ℝ} (h : IsLocalMin f a)
+/-- Fermat, zu Fuss aus der ε-δ-Form der Ableitung: Waere f' ≠ 0, so ginge man
+einen kleinen Schritt s gegen die Steigung -- nach links, falls f' > 0, nach
+rechts, falls f' < 0. Mit c = |f'|/2 ist dort f(y) - f(a) ≤ -s·|f'|/2 < 0, also
+f(y) < f(a): kein Minimum. -/
+theorem fermat_zu_fuss {f : ℝ → ℝ} {a f' : ℝ} (h : IsLocalMin f a)
     (hf : HasDerivAt f f' a) : f' = 0 := by
-  -- Schritt 1 (= 1. auf der Folie, Steigungen): Die Sekantensteigung
-  -- slope f a x = (f x - f a)/(x - a) strebt gegen f', wenn x → a mit x ≠ a. Das ist die
-  -- Ableitung als Grenzwert (`hasDerivAt_iff_tendsto_slope`, ein Satz aus Mathlib).
-  -- 𝓝[≠] a ist 𝓝 a ohne den Punkt a selbst: Bei x = a waere der Quotient 0/0.
-  have hs : Tendsto (slope f a) (𝓝[≠] a) (𝓝 f') :=
-    hasDerivAt_iff_tendsto_slope.1 hf
-  -- Schritt 2 (= 2., Vorzeichen): h : IsLocalMin f a heisst "schliesslich laengs 𝓝 a ist
-  -- f a ≤ f x". Daraus das Vorzeichen der Steigung, links und rechts von a getrennt.
-  --
-  -- Links von a (Filter 𝓝[<] a, nur x < a): `filter_upwards` nimmt zwei grosse Mengen,
-  -- {x | f a ≤ f x} -- das h, auf die linke Seite eingeschraenkt (`nhdsWithin_le_nhds`) --
-  -- und {x | x < a} -- die Seite selbst ist gross in ihrem eigenen Filter
-  -- (`self_mem_nhdsWithin`). Fuer ein x darin gilt hfx : f a ≤ f x und hxa : x < a.
-  have links : ∀ᶠ x in 𝓝[<] a, slope f a x ≤ 0 := by
-    filter_upwards [nhdsWithin_le_nhds h, self_mem_nhdsWithin] with x hfx hxa
-    -- Die Steigung von a nach x ist die von x nach a (`slope_comm`) ...
-    rw [slope_comm]
-    -- ... und die ist ≤ 0 genau dann, wenn f a ≤ f x: Der Zaehler f a - f x ist ≤ 0,
-    -- der Nenner a - x ist > 0 (`slope_nonpos_iff_of_le`, mit x ≤ a).
-    exact (slope_nonpos_iff_of_le hxa.le).2 hfx
-  -- Rechts von a (Filter 𝓝[>] a, nur x > a): genauso, nur ohne `slope_comm`. Jetzt ist
-  -- der Zaehler f x - f a ≥ 0 und der Nenner x - a > 0 (`slope_nonneg_iff_of_le`).
-  have rechts : ∀ᶠ x in 𝓝[>] a, 0 ≤ slope f a x := by
-    filter_upwards [nhdsWithin_le_nhds h, self_mem_nhdsWithin] with x hfx hax
-    exact (slope_nonneg_iff_of_le hax.le).2 hfx
-  -- Schritt 3 (= 3., Grenzuebergang): Grenzwerte erhalten ≤ (`le_of_tendsto`, `ge_of_tendsto`).
-  -- Dazu schraenkt man den Filter in Schritt 1 auf eine Seite ein (`mono_left`: eine
-  -- kleinere Filtermenge, der Grenzwert bleibt): von links ist f' ≤ 0, von rechts 0 ≤ f'.
-  have h1 : f' ≤ 0 := le_of_tendsto (hs.mono_left (nhdsLT_le_nhdsNE a)) links
-  have h2 : 0 ≤ f' := ge_of_tendsto (hs.mono_left (nhdsGT_le_nhdsNE a)) rechts
-  exact le_antisymm h1 h2                              -- f' ≤ 0 und 0 ≤ f', also f' = 0
+  -- Schritt 1: Annahme f' ≠ 0. Dann ist c = |f'|/2 > 0.
+  by_contra hne
+  have hc : 0 < |f'| / 2 := by positivity
+  -- Schritt 2: die Ableitung in der ε-δ-Form, mit diesem c. Es gibt ein δ > 0 mit
+  --   |f y - f a - (y - a)·f'| ≤ |f'|/2 · |y - a|   fuer |y - a| < δ.
+  obtain ⟨δ, hδ, hab⟩ := (ableitung_eps_delta f f' a).1 hf (|f'| / 2) hc
+  -- Schritt 3: das Minimum auf einer Kugel. `IsLocalMin f a` heisst "schliesslich laengs
+  -- 𝓝 a ist f a ≤ f y", also gibt es ein ρ > 0 mit f a ≤ f y fuer d(y, a) < ρ.
+  obtain ⟨ρ, hρ, hmin⟩ := Metric.eventually_nhds_iff.1 h
+  -- Schritt 4: eine Schrittweite s > 0, kleiner als δ und als ρ.
+  have hs : 0 < min δ ρ / 2 := by positivity
+  have hsδ : min δ ρ / 2 < δ := by linarith [min_le_left δ ρ]
+  have hsρ : min δ ρ / 2 < ρ := by linarith [min_le_right δ ρ]
+  set s := min δ ρ / 2
+  -- Schritt 5: ein Schritt s gegen die Steigung.
+  rcases lt_or_gt_of_ne hne with hneg | hpos
+  · -- f' < 0: nach rechts, y = a + s, also y - a = s.
+    have h1 := hab (a + s) (by rw [add_sub_cancel_left, abs_of_pos hs]; exact hsδ)
+    have h2 := hmin (show dist (a + s) a < ρ by
+      rw [Real.dist_eq, add_sub_cancel_left, abs_of_pos hs]; exact hsρ)
+    rw [add_sub_cancel_left, abs_of_pos hs, abs_of_neg hneg] at h1
+    -- h1 : |f(a + s) - f a - s·f'| ≤ -f'/2 · s. Also f(a + s) - f a ≤ s·f'/2 < 0,
+    -- aber h2 : f a ≤ f(a + s).
+    have h3 := (abs_le.1 h1).2
+    nlinarith [mul_neg_of_pos_of_neg hs hneg]
+  · -- f' > 0: nach links, y = a - s, also y - a = -s.
+    have h1 := hab (a - s) (by rw [sub_sub_cancel_left, abs_neg, abs_of_pos hs]; exact hsδ)
+    have h2 := hmin (show dist (a - s) a < ρ by
+      rw [Real.dist_eq, sub_sub_cancel_left, abs_neg, abs_of_pos hs]; exact hsρ)
+    rw [sub_sub_cancel_left, abs_neg, abs_of_pos hs, abs_of_pos hpos] at h1
+    -- h1 : |f(a - s) - f a - (-s)·f'| ≤ f'/2 · s. Also f(a - s) - f a ≤ -s·f'/2 < 0,
+    -- aber h2 : f a ≤ f(a - s).
+    have h3 := (abs_le.1 h1).2
+    nlinarith [mul_pos hs hpos]
 
--- Folie: "Vernachlaessigbar klein" (Filter: ein System grosser Mengen)
-/- Was ist `𝓝 t₀` genau? Ein System "grosser" Mengen: gross ist, was eine Kugel um t₀
-   enthaelt. Es ist ein Filter, weil das Ganze gross ist, Obermengen grosser Mengen
-   gross sind und der Schnitt zweier grosser Mengen gross ist (die kleinere Kugel).
-   Zum Beispiel ist das Intervall (-1, 1) gross fuer `𝓝 0`, denn es ist selbst eine
-   Kugel:
+/- Mathlib hat Fermat als `IsLocalMin.hasDerivAt_eq_zero`. -/
+example {f : ℝ → ℝ} {a f' : ℝ} (h : IsLocalMin f a) (hf : HasDerivAt f f' a) :
+    f' = 0 :=
+  h.hasDerivAt_eq_zero hf
 
-       -2     -1      0      1      2
-     ---|------o======|======o------|---  x      {x | |x| < 1}
-
-   -/
-example : Set.Ioo (-1 : ℝ) 1 ∈ 𝓝 0 := by
-  -- Schritt 1: gross heisst "enthaelt eine Kugel um 0" (`Metric.mem_nhds_iff`). Ziel:
-  --   ∃ ε > 0, B(0, ε) ⊆ (-1, 1)
-  rw [Metric.mem_nhds_iff]
-  -- Schritt 2: Wir waehlen die Kugel vom Radius 1. Ziel: B(0, 1) ⊆ (-1, 1)
-  use 1, one_pos
-  -- Schritt 3: Sei x in der Kugel, hx : x ∈ B(0, 1). Zu zeigen: -1 < x und x < 1.
-  intro x hx
-  -- Schritt 4: x ∈ B(0, 1) heisst dist x 0 < 1, also |x - 0| < 1, also |x| < 1
-  -- (`sub_zero`), und das heisst -1 < x < 1 (`abs_lt`). Das ist das Ziel.
-  rw [Metric.mem_ball, Real.dist_eq, sub_zero, abs_lt] at hx
-  exact hx
-
--- Folie: "Mehrere Veraenderliche: Die Ableitung ist eine Matrix" (ℝⁿ in Lean)
-/- Was ist `Fin n → ℝ`? Der Vektorraum ℝⁿ. `Fin n` sind die n Nummern
-   0, 1, …, n-1 (gezaehlt wird ab 0), und `Fin n → ℝ` ist eine Funktion, die
-   jeder Nummer eine reelle Zahl zuordnet: ihre Koordinate. Ein Vektor ist hier
-   also keine Liste, sondern eine Funktion; `w i` ist sein i-ter Eintrag.
-
-     w = ![4, 5, 6] : Fin 3 → ℝ       w 0 = 4, w 1 = 5, w 2 = 6
-
-   Gerechnet wird eintragsweise: (v + w) i = v i + w i und (t • v) i = t * v i.
-   `Pi.single j 1` ist der Einheitsvektor e_j: Eintrag 1 an der Stelle j, sonst
-   0. Also bewegt `x + t • e_j` nur die Koordinate j, alle anderen bleiben:
-
-     x            = (4,   5,    6)
-     t • e_1      = (0,   t,    0)
-     x + t • e_1  = (4, 5 + t,  6)
-
-   Genau diese Gerade durch x in Richtung e_j ist die Schnittkurve unten. -/
-example (t : ℝ) :
-    (![4, 5, 6] : Fin 3 → ℝ) + t • (Pi.single 1 1 : Fin 3 → ℝ) = ![4, 5 + t, 6] := by
-  ext i                                 -- eintragsweise: i = 0, 1, 2
-  fin_cases i <;> simp                  -- nur Eintrag 1 aendert sich
+/-! ## 4.4 Mehrere Veraenderliche: partielle Ableitungen, Jacobi-Matrix, Kettenregel -/
 
 -- Folie: "Mehrere Veraenderliche: Die Ableitung ist eine Matrix" (die Matrix als lineare
 -- Abbildung)
@@ -479,41 +618,6 @@ theorem ableitung_affin {m n : ℕ} (M : Matrix (Fin m) (Fin n) ℝ) (b : Fin m 
   rw [rest h, norm_zero]
   exact mul_nonneg hc.le (norm_nonneg h)
 
-/- Mit b = 0: Eine lineare Abbildung ist ihre eigene Ableitung. -/
-example {m n : ℕ} (M : Matrix (Fin m) (Fin n) ℝ) (v : Fin n → ℝ) :
-    HasFDerivAt (fun w : Fin n → ℝ => M.mulVec w) (matrixAbb M) v := by
-  -- `ableitung_affin` mit b = 0 sagt es fuer M w + 0; `simpa` streicht das + 0.
-  simpa using ableitung_affin M 0 v
-
-/-- Die Drehung der Ebene um den Winkel α, als Matrix. -/
-noncomputable def drehmatrix (α : ℝ) : Matrix (Fin 2) (Fin 2) ℝ :=
-  !![Real.cos α, -Real.sin α; Real.sin α, Real.cos α]
-
-/-- Sie ist orthogonal, Qᵀ Q = 1: Ihre Spalten haben die Laenge 1 und stehen senkrecht
-aufeinander. Darum erhaelt sie Laengen und Winkel, die euklidischen. (Lean misst auf
-`Fin 2 → ℝ` mit der Maximumsnorm; fuer die Ableitung ist das gleich, denn auf ℝⁿ liefern
-alle Normen dasselbe o(h).) -/
-theorem drehmatrix_orthogonal (α : ℝ) : (drehmatrix α).transpose * drehmatrix α = 1 := by
-  -- Schritt 1: Zwei Matrizen sind gleich, wenn jeder Eintrag es ist (`ext i j`), hier vier
-  -- (`fin_cases`). `simp` schreibt jeden Eintrag des Produkts als Summe aus
-  -- (`Matrix.mul_apply`, `Fin.sum_univ_two`): Eintrag (i, j) ist Spalte i mal Spalte j.
-  ext i j
-  fin_cases i <;> fin_cases j <;> simp [drehmatrix, Matrix.mul_apply, Fin.sum_univ_two]
-  -- Schritt 2: Auf der Diagonalen steht cos α · cos α + sin α · sin α = 1
-  -- (`Real.cos_sq_add_sin_sq`, `linear_combination` rechnet die Quadrate um) ...
-  · linear_combination Real.cos_sq_add_sin_sq α
-  -- ... daneben -(cos α · sin α) + sin α · cos α = 0: Die Spalten stehen senkrecht.
-  · ring
-  · ring
-  · linear_combination Real.sin_sq_add_cos_sq α
-
-/-- Eine Bewegung der Ebene: erst um α drehen, dann um b verschieben. Ihre Ableitung ist in
-jedem Punkt v dieselbe Drehung -- `ableitung_affin` mit M = drehmatrix α. -/
-theorem ableitung_bewegung (α : ℝ) (b v : Fin 2 → ℝ) :
-    HasFDerivAt (fun w : Fin 2 → ℝ => (drehmatrix α).mulVec w + b)
-      (matrixAbb (drehmatrix α)) v :=
-  ableitung_affin (drehmatrix α) b v
-
 /- Abgleich mit Mathlib: Eine stetige lineare Abbildung ist ihre eigene Ableitung
    (`ContinuousLinearMap.hasFDerivAt`), und eine Konstante dazu aendert daran nichts
    (`HasFDerivAt.add_const`). -/
@@ -521,39 +625,10 @@ example {m n : ℕ} (M : Matrix (Fin m) (Fin n) ℝ) (b : Fin m → ℝ) (v : Fi
     HasFDerivAt (fun w : Fin n → ℝ => M.mulVec w + b) (matrixAbb M) v :=
   (matrixAbb M).hasFDerivAt.add_const b
 
-/- "Die" Ableitung: `fderiv ℝ f v` ist in Mathlib die Ableitung als Wert. Es gibt nur eine
-   (`HasFDerivAt.unique`), hier also matrixAbb M (`HasFDerivAt.fderiv`). Ihre Matrix
-   (`LinearMap.toMatrix'`: Abbildung -> Matrix) ist M, die Jacobi-Matrix. -/
-example {m n : ℕ} (M : Matrix (Fin m) (Fin n) ℝ) (b : Fin m → ℝ) (v : Fin n → ℝ) :
-    LinearMap.toMatrix' (fderiv ℝ (fun w : Fin n → ℝ => M.mulVec w + b) v).toLinearMap = M := by
-  -- Schritt 1: fderiv ist die Ableitung aus `ableitung_affin` (`HasFDerivAt.fderiv`). Ziel:
-  --   LinearMap.toMatrix' (matrixAbb M) = M
-  rw [(ableitung_affin M b v).fderiv]
-  -- Schritt 2: matrixAbb M ist die Abbildung `Matrix.toLin' M`, und deren Matrix ist M
-  -- (`LinearMap.toMatrix'_toLin'`).
-  exact LinearMap.toMatrix'_toLin' M
-
--- Folie: "Partielle Ableitung: die Steigung einer Schnittkurve"
-/- Eine partielle Ableitung ist eine Ableitung in einer Variablen: Man haelt alle
-   Koordinaten bis auf eine fest und leitet die Schnittkurve ab. Fuer f(x, y) = x²y
-   im Punkt (1, 2) ist sie t ↦ f(1 + t, 2) = (1 + t)²·2, mit der Steigung 4 bei
-   t = 0: ∂f/∂x (1, 2) = 2xy = 4. Die Definition unten, Zeile fuer Zeile gelesen:
-
-     {n : ℕ}                    n Variablen (oben n = 2)
-     {F : Type*} [...] [...]    die Werte liegen in F: ℝ oder ℝᵐ; die eckigen
-                                Klammern sagen nur, dass F eine Laenge und
-                                Skalare hat, damit "Ableitung" Sinn ergibt
-     (f : (Fin n → ℝ) → F)      die Funktion, ein Punkt von ℝⁿ hinein (oben x²y)
-     (x : Fin n → ℝ)            der Punkt (oben (1, 2))
-     (j : Fin n)                die Koordinate, die sich bewegt (oben 0)
-     (a : F) : Prop             die behauptete Ableitung (oben 4)
-     HasDerivAt (...) a 0       die Schnittkurve t ↦ f(x + t·e_j) hat bei t = 0
-                                die Ableitung a
-
-   Das Beispiel x²y gleich darunter gilt fuer jeden Punkt v. -/
--- Folie: "Partielle Ableitungen" (die Definition), "Partielle Ableitung: eine Ableitung
--- in einer Variablen" (das Beispiel x²y nach x) und
--- "Ableitung und partielle Ableitungen" (Teil (a), mit o bewiesen; Mathlibs Fassung)
+-- Folie: "Partielle Ableitungen" (die Definition)
+/- Punkte des ℝⁿ sind in Lean Funktionen `Fin n → ℝ`: Der Punkt v hat die Koordinaten
+   v 0, v 1, ..., gezaehlt ab 0. `Pi.single j 1` ist der Einheitsvektor e_j (1 an der
+   Stelle j, sonst 0); x + t • e_j bewegt also nur die Koordinate j. -/
 /-- Partielle Ableitung, selbst definiert: f hat in x nach der j-ten Koordinate
 die partielle Ableitung a, wenn die Schnittkurve t ↦ f(x + t·e_j) in 0 die
 Ableitung a hat. Alle anderen Koordinaten bleiben dabei fest. -/
@@ -561,182 +636,106 @@ def HatPartielleAbleitung {n : ℕ} {F : Type*} [NormedAddCommGroup F] [NormedSp
     (f : (Fin n → ℝ) → F) (x : Fin n → ℝ) (j : Fin n) (a : F) : Prop :=
   HasDerivAt (fun t : ℝ => f (x + t • (Pi.single j 1 : Fin n → ℝ))) a 0
 
-/- f(x, y) = x²y nach x: y bleibt fest, die Schnittkurve ist t ↦ (x + t)²·y,
-   ihre Ableitung in 0 ist 2xy -- eine Ableitung in einer Variablen. -/
+/- Mathlib hat denselben Begriff: `HasLineDerivAt` ist die Richtungsableitung, mit v = e_j
+   steht dort wortgleich unsere Definition. -/
+example {n : ℕ} {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
+    (f : (Fin n → ℝ) → F) (x : Fin n → ℝ) (j : Fin n) (a : F) :
+    HatPartielleAbleitung f x j a ↔ HasLineDerivAt ℝ f a x (Pi.single j 1) := Iff.rfl
+
+-- Folie: "Partielle Ableitung: eine Ableitung in einer Variablen" (das Beispiel x²y nach x)
+/- Das Beispiel der Folie, f(x, y) = x²y nach x, von Hand: Die Schnittkurve ist
+   t ↦ (x + t)²·y, ihr Fehler der Tangente bei 0 ist t²·y, und der ist o(t): Zu c > 0
+   reicht die Kugel |t| < c/(|y| + 1), denn dort ist |t²·y| = |t|·|t|·|y| ≤ c·|t|. -/
 example (v : Fin 2 → ℝ) :
     HatPartielleAbleitung (fun w : Fin 2 → ℝ => w 0 ^ 2 * w 1) v 0 (2 * v 0 * v 1) := by
-  -- Schritt 1: Die Definition einsetzen: Die Schnittkurve t ↦ f(v + t·e₀) soll in 0 die
+  -- Schritt 1: die Definition. Die Schnittkurve t ↦ f(v + t·e₀) soll in 0 die
   -- Ableitung 2·v₀·v₁ haben.
   unfold HatPartielleAbleitung
-  -- Schritt 2: Die Schnittkurve ausrechnen. Der Vektor v + t·e₀ hat die Koordinaten
-  -- (v₀ + t, v₁); `funext t` nimmt ein t, `simp` liest die Koordinaten ab. Also ist
-  -- die Kurve t ↦ (v₀ + t)²·v₁.
+  -- Schritt 2: die Schnittkurve ausrechnen. v + t·e₀ = (v₀ + t, v₁), nur die
+  -- Koordinate 0 bewegt sich (`simp` liest die Koordinaten ab): t ↦ (v₀ + t)²·v₁.
   have e : (fun t : ℝ => (v + t • (Pi.single 0 1 : Fin 2 → ℝ)) 0 ^ 2 *
       (v + t • (Pi.single 0 1 : Fin 2 → ℝ)) 1) = fun t => (v 0 + t) ^ 2 * v 1 := by
     funext t
     simp
   rw [e]
-  -- Schritt 3: Ableitung in einer Variablen mit den Regeln, von innen nach aussen:
-  -- t hat die Ableitung 1 (`hasDerivAt_id`), v₀ + t auch (`const_add`), das Quadrat
-  -- (v₀ + t)² hat 2(v₀ + t) (`pow 2`), der Faktor v₁ bleibt stehen (`mul_const`).
-  have h := (((hasDerivAt_id (0 : ℝ)).const_add (v 0)).pow 2).mul_const (v 1)
-  -- Schritt 4: Die Regeln liefern die Ableitung in der Form 2·(v₀ + 0)·1·v₁; `convert` laesst
-  -- die Gleichung mit der Behauptung 2·v₀·v₁ uebrig, `simp` rechnet sie nach.
-  convert h using 1
-  simp
+  -- Schritt 3: die Definition der Ableitung (`ableitung_klein_o`): Der Fehler der
+  -- Tangente soll o(t - 0) sein. Zu c > 0 nehmen wir die Kugel |t| < c/(|v₁| + 1).
+  rw [ableitung_klein_o]
+  intro c hc
+  filter_upwards [Metric.ball_mem_nhds (0 : ℝ) (by positivity : 0 < c / (|v 1| + 1))]
+    with t ht
+  rw [Metric.mem_ball, Real.dist_eq, sub_zero, lt_div_iff₀ (by positivity)] at ht
+  -- Schritt 4: Der Fehler ist (v₀ + t)²v₁ - v₀²v₁ - t·2v₀v₁ = t·t·v₁, sein Betrag
+  -- |t|·|t|·|v₁|. Das ist ≤ c·|t|, denn |t|·|v₁| ≤ |t|·(|v₁| + 1) < c (ht).
+  calc |(v 0 + t) ^ 2 * v 1 - (v 0 + 0) ^ 2 * v 1 - (t - 0) * (2 * v 0 * v 1)|
+      = |t| * |t| * |v 1| := by
+        rw [← abs_mul, ← abs_mul]
+        congr 1
+        ring
+    _ ≤ c * |t - 0| := by
+        rw [sub_zero]
+        nlinarith [abs_nonneg t, abs_nonneg (v 1)]
 
--- Folie: "Partielle Ableitung: eine Ableitung in einer Variablen" (der Satz, mit
--- g(s) = f(x_1, ..., s, ..., x_n), und das Beispiel x²y nach y)
-/-- Fuer v = e_j ist die partielle Ableitung eine gewoehnliche Ableitung in einer
-Variablen. `Function.update x j s` ist der Vektor x, in dem nur an der Stelle j
-s statt x_j steht: (x_1, ..., x_{j-1}, s, x_{j+1}, ..., x_n). Die uebrigen
-Koordinaten x_i (i ≠ j) sind darin feste Zahlen; sie haengen nicht von s ab.
-Mit g(s) = f(x_1, ..., s, ..., x_n) sagt der Satz: f hat in x nach x_j die
-partielle Ableitung a genau dann, wenn g in x_j die Ableitung a hat. -/
-theorem partiell_eine_variable {n : ℕ} {F : Type*} [NormedAddCommGroup F]
-    [NormedSpace ℝ F] (f : (Fin n → ℝ) → F) (x : Fin n → ℝ) (j : Fin n) (a : F) :
-    HatPartielleAbleitung f x j a ↔
-      HasDerivAt (fun s : ℝ => f (Function.update x j s)) a (x j) := by
-  -- Schritt 1: x + t·e_j = (x_1, ..., x_j + t, ..., x_n) -- nur die j-te Koordinate
-  -- bewegt sich mit t. Koordinatenweise (`funext i`): Fuer i = j steht links x_j + t·1,
-  -- fuer i ≠ j steht x_i + t·0 = x_i; rechts steht jeweils dasselbe.
-  have e : ∀ t : ℝ,
-      x + t • (Pi.single j 1 : Fin n → ℝ) = Function.update x j (x j + t) := by
-    intro t
-    funext i
-    by_cases h : i = j
-    · subst h
-      simp
-    · simp [h]
-  -- Schritt 2: Die Definition einsetzen und mit Schritt 1 umschreiben. Die Schnittkurve
-  -- ist t ↦ g(x_j + t). Ziel:
-  --   HasDerivAt (fun t => g (x j + t)) a 0  ↔  HasDerivAt g a (x j)
-  unfold HatPartielleAbleitung
-  simp only [e]
-  -- Schritt 3: Beide Seiten als o-Aussage (`hasDerivAt_iff_isLittleO_nhds_zero`). Links ist
-  -- der Fehler g(x_j + (0 + t)) - g(x_j + 0) - t·a, rechts g(x_j + t) - g(x_j) - t·a:
-  -- derselbe Fehler, also dieselbe Aussage -- auf Papier sind es dieselben
-  -- Differenzenquotienten. `simp` raeumt 0 + t und x_j + 0 weg.
-  rw [hasDerivAt_iff_isLittleO_nhds_zero, hasDerivAt_iff_isLittleO_nhds_zero]
-  simp
-
-/- Das Beispiel x²y nach y, jetzt ueber eine Variable: g(s) = f(v₀, s) = v₀²·s. Darin ist
-   v₀ eine Konstante -- es haengt nicht von s ab --, und g'(s) = v₀² ist die gewoehnliche
-   Ableitung mit dem konstanten Faktor v₀². -/
-example (v : Fin 2 → ℝ) :
-    HatPartielleAbleitung (fun w : Fin 2 → ℝ => w 0 ^ 2 * w 1) v 1 (v 0 ^ 2) := by
-  -- Schritt 1: Der Satz fuehrt auf eine Variable zurueck. Ziel: g hat in v₁ die
-  -- Ableitung v₀², mit g(s) = (update v 1 s)₀² · (update v 1 s)₁.
-  rw [partiell_eine_variable]
-  -- Schritt 2: g ausrechnen. An der Stelle 1 steht s, an der Stelle 0 bleibt v₀
-  -- (`simp` kennt `Function.update_self` und `Function.update_of_ne`): g(s) = v₀²·s.
-  have e : (fun s : ℝ => Function.update v 1 s 0 ^ 2 * Function.update v 1 s 1) =
-      fun s => v 0 ^ 2 * s := by
-    funext s
-    simp
-  rw [e]
-  -- Schritt 3: Ableitung in einer Variablen: s hat die Ableitung 1 (`hasDerivAt_id`), der
-  -- konstante Faktor v₀² bleibt stehen (`const_mul`); v₀²·1 = v₀² rechnet `simpa` nach.
-  simpa using (hasDerivAt_id (v 1)).const_mul (v 0 ^ 2)
-
-/- Mathlib hat Schritt 3 des Satzes als Verschiebungsregel (`HasDerivAt.comp_const_add`):
-   Hat g in b die Ableitung a, so hat t ↦ g(b + t) in 0 die Ableitung a -- Verschieben
-   aendert die Ableitung nicht. -/
-example (g : ℝ → ℝ) (a b : ℝ) (h : HasDerivAt g a b) :
-    HasDerivAt (fun t => g (b + t)) a 0 :=
-  HasDerivAt.comp_const_add b 0 (by simpa using h)
-
--- Folie: "Richtungsableitung: die Schnittkurve in Richtung v" (das Bild zur Kurve
--- t ↦ f(x + t·v)), "Beweis von (a): die Idee" (h = t·v einsetzen, f' linear: Schritt 1),
--- "Beweis von (a): die Details (1) -- h = tv einsetzen" (Gegeben, Gesucht, Schritt 2) und
--- "Beweis von (a): die Details (2) -- den Faktor waehlen" (Schritt 3)
-/-- Satz, Teil (a): Ist f in x differenzierbar mit der Ableitung f', so hat die
-Schnittkurve g(t) = f(x + t·v) in 0 die Ableitung f' v. Der Beweis mit o, wie auf
-Papier; die Kommentare im Beweis nennen den Papierschritt, dem sie entsprechen:
-Gegeben:   f(x + h) - f(x) - f' h = o(h)  laengs 𝓝 0  (der Rest r(h) ist o(h)).
-Gesucht:   f(x + t·v) - f(x) - t·f' v = o(t)  laengs 𝓝 0  (die Ableitung von g in 0).
-Schritt 1: Der Fehler von g ist der Rest bei h = t·v, denn f'(t·v) = t·f' v
-           (f' ist linear).
-Schritt 2: h = t·v einsetzen. Fuer t → 0 geht t·v → 0, also ist r(t·v) = o(t·v).
-Schritt 3: Wegen ‖t·v‖ = |t|·‖v‖ ist t·v = O(t), also ist o(t·v) ein o(t). Den
-           Faktor c/‖v‖ des Papierbeweises waehlt Mathlibs o-Rechnung dabei selbst.
-Das Teilen durch t entfaellt: Die Ableitung ist in Mathlib selbst durch
-"Fehler = o" definiert. -/
-theorem richtungsableitung {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
-    [NormedAddCommGroup F] [NormedSpace ℝ F] {f : E → F} {f' : E →L[ℝ] F} {x : E}
-    (hf : HasFDerivAt f f' x) (v : E) :
+-- Folie: "Richtungsableitung: die Schnittkurve in Richtung v", "Beweis von (a): die Idee",
+-- "Beweis von (a): die Details (1) -- h = tv einsetzen" und
+-- "Beweis von (a): die Details (2) -- den Faktor waehlen"
+/-- Satz, Teil (a), zu Fuss: Ist f in x differenzierbar mit der Ableitung f', so hat
+die Schnittkurve t ↦ f(x + t·v) in 0 die Ableitung f' v. Der Beweis der Folie, mit
+den Faktoren c/(‖v‖ + 1) und δ/(‖v‖ + 1) statt c/‖v‖ und δ/‖v‖ -- das + 1, damit
+auch v = 0 erlaubt ist. -/
+theorem richtungsableitung_zu_fuss {E F : Type*} [NormedAddCommGroup E]
+    [NormedSpace ℝ E] [NormedAddCommGroup F] [NormedSpace ℝ F] {f : E → F}
+    {f' : E →L[ℝ] F} {x : E} (hf : HasFDerivAt f f' x) (v : E) :
     HasDerivAt (fun t : ℝ => f (x + t • v)) (f' v) 0 := by
-  -- Schritt 1 (Papier: Gegeben): Die Voraussetzung auspacken. Mathlib sagt "f hat in x
-  -- die Ableitung f'" als o-Aussage laengs 𝓝 0, mit h als Schritt von x nach x + h
-  -- (`hasFDerivAt_iff_isLittleO_nhds_zero`). Danach ist
-  --   hf : (fun h => f (x + h) - f x - f' h) =o[𝓝 0] fun h => h      (Fehler = o(h))
-  rw [hasFDerivAt_iff_isLittleO_nhds_zero] at hf
-  -- Schritt 2 (Papier: Gesucht): Das Ziel genauso auspacken, nun fuer die Schnittkurve
-  -- in einer Variablen (`hasDerivAt_iff_isLittleO_nhds_zero`). Das Ziel wird
-  --   (fun h => f (x + (0 + h) • v) - f (x + 0 • v) - h • f' v) =o[𝓝 0] fun h => h
-  -- also f(x + t·v) - f(x) - t·f' v = o(t), mit t = h; die 0 + h ist nur h.
-  rw [hasDerivAt_iff_isLittleO_nhds_zero]
-  -- Schritt 3 (Papier: Schritt 2): t·v → 0, wenn t → 0 -- die Punkte t·v landen in jeder
-  -- Kugel um 0. Die Identitaet strebt gegen 0 (`tendsto_id`); mal den festen Vektor v
-  -- (`smul_const`) strebt t·v gegen 0 • v, und das ist 0.
-  have hv : Tendsto (fun t : ℝ => t • v) (𝓝 0) (𝓝 0) := by
-    simpa using (tendsto_id (x := 𝓝 (0 : ℝ))).smul_const v
-  -- Schritt 4 (Papier: Schritt 3): t·v = O(t), mit dem Faktor ‖v‖. `isBigO_iff` verlangt
-  -- ein c mit ‖t·v‖ ≤ c·‖t‖ fuer alle t; wir nehmen c = ‖v‖. Fuer jedes t bleibt
-  --   ‖t • v‖ ≤ ‖v‖ * ‖t‖
-  -- zu zeigen.
-  -- `norm_smul` macht links ‖t‖ * ‖v‖ daraus, `mul_comm` vertauscht die Faktoren:
-  -- beide Seiten sind gleich.
-  have hO : (fun t : ℝ => t • v) =O[𝓝 0] (fun t : ℝ => t) :=
-    Asymptotics.isBigO_iff.2 ⟨‖v‖, Eventually.of_forall fun t => by
-      rw [norm_smul, mul_comm]⟩
-  -- Schritt 5 (Papier: Schritte 2 und 3): h = t·v einsetzen. `comp_tendsto hv` setzt die
-  -- Funktion t ↦ t·v in "Fehler = o(h)" ein: Der Fehler an der Stelle t·v ist o(t·v).
-  -- Weil t·v = O(t) ist (hO), wird daraus o(t) (`trans_isBigO`):
-  --   h : ((fun h => f (x + h) - f x - f' h) ∘ fun t => t • v) =o[𝓝 0] fun t => t
-  have h := (hf.comp_tendsto hv).trans_isBigO hO
-  -- Schritt 6 (Papier: Schritt 1): Angleichen. `Function.comp_def` schreibt das ∘ aus,
-  -- `map_smul` liefert f' (t • v) = t • f' v, denn f' ist linear. Dann steht in h genau
-  -- das Ziel aus Schritt 2.
-  simpa [Function.comp_def, map_smul] using h
+  -- Gegeben: Der Rest r(h) = f(x + h) - f(x) - f' h ist o(h) laengs 𝓝 0, also zu jedem
+  -- c' > 0 schliesslich ‖r(h)‖ ≤ c'·‖h‖ (`hasFDerivAt_iff_isLittleO_nhds_zero`,
+  -- `Asymptotics.isLittleO_iff`).
+  rw [hasFDerivAt_iff_isLittleO_nhds_zero, Asymptotics.isLittleO_iff] at hf
+  -- Gesucht: zu jedem c > 0 schliesslich ‖f(x + t·v) - f(x) - t·f' v‖ ≤ c·|t|.
+  rw [hasDerivAt_iff_isLittleO_nhds_zero, Asymptotics.isLittleO_iff]
+  -- 1. Das Ziel gibt c > 0 vor.
+  intro c hc
+  -- 2. Man waehlt c' = c/(‖v‖ + 1) > 0.
+  have hc' : 0 < c / (‖v‖ + 1) := by positivity
+  -- 3. Die Voraussetzung liefert eine Kugel: ein δ > 0 mit ‖r(h)‖ ≤ c'·‖h‖ fuer ‖h‖ < δ.
+  obtain ⟨δ, hδ, hr⟩ := Metric.eventually_nhds_iff.1 (hf hc')
+  -- 4. Man setzt fuer t den Radius δ/(‖v‖ + 1).
+  rw [Metric.eventually_nhds_iff]
+  refine ⟨δ / (‖v‖ + 1), by positivity, fun t ht => ?_⟩
+  rw [Real.dist_eq, sub_zero, lt_div_iff₀ (by positivity)] at ht   -- |t|·(‖v‖ + 1) < δ
+  -- 5. h = t·v liegt in der Kugel: ‖t·v‖ = |t|·‖v‖ ≤ |t|·(‖v‖ + 1) < δ.
+  have htv : dist (t • v) 0 < δ := by
+    rw [dist_zero_right, norm_smul, Real.norm_eq_abs]
+    nlinarith [abs_nonneg t, norm_nonneg v]
+  -- Also gilt die Voraussetzung mit h = t·v. f' ist linear: f'(t·v) = t·f' v (`map_smul`).
+  have h := hr htv
+  rw [map_smul] at h
+  simp only [zero_add, zero_smul, add_zero]       -- im Ziel: x + 0·v = x und 0 + t = t
+  -- Zum Schluss: c'·‖t·v‖ = c·|t|·‖v‖/(‖v‖ + 1) ≤ c·|t|.
+  calc ‖f (x + t • v) - f x - t • f' v‖
+      ≤ c / (‖v‖ + 1) * ‖t • v‖ := h
+    _ = c * ‖t‖ * (‖v‖ / (‖v‖ + 1)) := by rw [norm_smul]; ring
+    _ ≤ c * ‖t‖ * 1 := by
+        gcongr
+        rw [div_le_one (by positivity)]
+        linarith
+    _ = c * ‖t‖ := mul_one _
 
 -- Folie: "Ableitung und partielle Ableitungen" (Teil (a): die Spalte j der Jacobi-Matrix)
-/-- Satz, Teil (a), die partielle Ableitung: Ist f in x differenzierbar, so existiert
-die partielle Ableitung nach x_j, und sie ist die j-te Spalte der Ableitung, also
-der Jacobi-Matrix: f' e_j.
-Beweis: Eine partielle Ableitung ist die Richtungsableitung in Richtung des
-Einheitsvektors e_j (`Pi.single j 1`). `HatPartielleAbleitung f x j a` heisst nach
-Definition: Die Schnittkurve t ↦ f(x + t·e_j) hat in 0 die Ableitung a. Das ist
-`richtungsableitung` fuer v = e_j, mit a = f' e_j -- derselbe Beweis, ein v
-eingesetzt. -/
-theorem partiell_aus_ableitung {n : ℕ} {F : Type*} [NormedAddCommGroup F]
+/-- Teil (a) fuer v = e_j: Die partielle Ableitung nach x_j existiert und ist f' e_j,
+die Spalte j der Jacobi-Matrix. -/
+theorem partielle_ableitung_spalte {n : ℕ} {F : Type*} [NormedAddCommGroup F]
     [NormedSpace ℝ F] {f : (Fin n → ℝ) → F} {f' : (Fin n → ℝ) →L[ℝ] F}
     {x : Fin n → ℝ} (hf : HasFDerivAt f f' x) (j : Fin n) :
     HatPartielleAbleitung f x j (f' (Pi.single j 1)) :=
-  richtungsableitung hf _                           -- mit v = e_j, von Lean erschlossen
+  richtungsableitung_zu_fuss hf _                   -- mit v = e_j
 
-/- Mathlib hat denselben Satz, mit dem Begriff `HasLineDerivAt` -- dort ist
-   die Schnittkurve wie oben gebildet: -/
+/- Mathlib hat Teil (a) als `HasFDerivAt.hasLineDerivAt`; die Richtungsableitung heisst
+   dort `HasLineDerivAt`. -/
 example {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F] {f : E → F} {f' : E →L[ℝ] F} {x : E}
     (hf : HasFDerivAt f f' x) (v : E) : HasLineDerivAt ℝ f (f' v) x v :=
   hf.hasLineDerivAt v
-
--- Folie: "Ableitung und partielle Ableitungen" (Teil (a) am Beispiel Ax + b: die Spalten
--- von A sind die partiellen Ableitungen)
-/- Die Probe mit Teil (a): Die partielle Ableitung nach x_j ist die Spalte j von M, in
-   Zeile i der Eintrag M i j -- auf der Folie ∂f_i/∂x_j = a_ij. -/
-example {m n : ℕ} (M : Matrix (Fin m) (Fin n) ℝ) (b : Fin m → ℝ) (v : Fin n → ℝ)
-    (j : Fin n) :
-    HatPartielleAbleitung (fun w : Fin n → ℝ => M.mulVec w + b) v j (fun i => M i j) := by
-  -- Schritt 1: Teil (a) (`partiell_aus_ableitung`) auf `ableitung_affin` angewandt. Die
-  -- partielle Ableitung nach x_j ist M e_j:
-  --   h : HatPartielleAbleitung (fun w => M.mulVec w + b) v j ((matrixAbb M) (Pi.single j 1))
-  have h := partiell_aus_ableitung (ableitung_affin M b v) j
-  -- Schritt 2: M e_j ist die Spalte j von M (`Matrix.mulVec_single_one`), in Zeile i also
-  -- M i j. Danach ist h die Behauptung.
-  rw [matrixAbb_apply, Matrix.mulVec_single_one] at h
-  exact h
 
 -- Folie: "Partielle Ableitungen allein reichen nicht"
 /-- f(x, y) = xy/(x² + y²). In Lean ist a/0 = 0, also f(0, 0) = 0 von selbst. -/
@@ -771,48 +770,34 @@ lemma gegenbeispiel_diagonale {t : ℝ} (ht : t ≠ 0) :
   field_simp
   ring
 
-/-- Also ist f in 0 nicht stetig -- und damit nicht differenzierbar, obwohl
-beide partiellen Ableitungen existieren. -/
-theorem gegenbeispiel_nicht_differenzierbar :
-    ¬ DifferentiableAt ℝ gegenbeispiel 0 := by
-  -- Plan: Waere f in 0 differenzierbar, so waere f dort stetig. Laeuft man auf der Diagonalen
-  -- (t, t) gegen 0, muesste f(t, t) gegen f(0) gehen. Aber f(t, t) = 1/2 fuer t ≠ 0, und
-  -- f(0) = 0. Grenzwerte sind eindeutig -- Widerspruch.
-  -- Schritt 0: Annahme h : DifferentiableAt ℝ gegenbeispiel 0. Ziel: False.
+/-- f ist in 0 nicht einmal stetig, mit der ε-δ-Definition (`konvergenz_eps_delta`
+mit b = f 0): Zu ε = 1/2 gibt es kein δ. Der Punkt (δ/2, δ/2) liegt naeher als δ
+bei 0, aber dort ist f = 1/2, waehrend f(0) = 0 ist. -/
+theorem gegenbeispiel_unstetig : ¬ ContinuousAt gegenbeispiel 0 := by
   intro h
-  -- Schritt 1: Die Kurve t ↦ (t, t) strebt gegen 0, wenn t → 0 mit t ≠ 0.
-  have hγ : Tendsto (fun t : ℝ => (![t, t] : Fin 2 → ℝ)) (𝓝[≠] 0) (𝓝 0) := by
-    -- Sie ist stetig: Ein Vektor ist stetig, wenn jede Koordinate es ist
-    -- (`continuous_pi`); beide Koordinaten sind t ↦ t (`continuous_id`).
-    have hc : Continuous (fun t : ℝ => (![t, t] : Fin 2 → ℝ)) :=
-      continuous_pi fun i => by fin_cases i <;> simpa using continuous_id
-    -- Bei t = 0 ist der Wert (0, 0) -- der Nullvektor.
-    have h0 : (![0, 0] : Fin 2 → ℝ) = 0 := by
-      ext i
-      fin_cases i <;> rfl
-    -- Stetig heisst: Fuer t → 0 strebt die Kurve gegen ihren Wert bei 0; und 𝓝[≠] 0 ist
-    -- kleiner als 𝓝 0 (`nhdsWithin_le_nhds`).
-    simpa [h0] using (hc.tendsto 0).mono_left nhdsWithin_le_nhds
-  -- Schritt 2: Differenzierbar heisst stetig (`h.continuousAt`), also strebt
-  -- f(t, t) gegen f(0). Mit hγ eingesetzt (`comp`):
-  --   h1 : Tendsto (f ∘ fun t => (t, t)) (𝓝[≠] 0) (𝓝 (f 0))
-  have h1 := h.continuousAt.tendsto.comp hγ
-  -- Schritt 3: Auf der Diagonalen ist f = 1/2 (`gegenbeispiel_diagonale`), fuer t ≠ 0. Die
-  -- konstante Funktion 1/2 strebt gegen 1/2 (`tendsto_const_nhds`); `congr'` erlaubt es, sie
-  -- nur "schliesslich" mit f(t, t) zu vergleichen. {t | t ≠ 0} ist gross fuer 𝓝[≠] 0
-  -- (`self_mem_nhdsWithin`), und dort ist die Gleichung die Diagonalen-Formel.
-  have h2 : Tendsto (fun t : ℝ => gegenbeispiel ![t, t]) (𝓝[≠] 0) (𝓝 (1 / 2)) := by
-    apply tendsto_const_nhds.congr'
-    filter_upwards [self_mem_nhdsWithin] with t ht
-    exact (gegenbeispiel_diagonale ht).symm
-  -- Schritt 4: Ein Grenzwert ist eindeutig (`tendsto_nhds_unique`): h1 und h2 haben denselben
-  -- Filter, also f(0) = 1/2.   h3 : gegenbeispiel 0 = 1 / 2
-  have h3 := tendsto_nhds_unique h1 h2
-  -- Schritt 5: Aber f(0) = 0 * 0 / (0 ^ 2 + 0 ^ 2) = 0 (in Lean ist a/0 = 0). Also 0 = 1/2.
-  simp [gegenbeispiel] at h3
+  -- Schritt 1: stetig in 0 heisst: Zu ε = 1/2 gibt es ein δ > 0 mit
+  -- d(f w, f 0) < 1/2 fuer d(w, 0) < δ.
+  obtain ⟨δ, hδ, hd⟩ :=
+    (konvergenz_eps_delta gegenbeispiel 0 (gegenbeispiel 0)).1 h (1 / 2) (by norm_num)
+  -- Schritt 2: Der Punkt w = (δ/2, δ/2) liegt naeher als δ bei 0. In Lean ist der Abstand
+  -- in ℝ² der groesste Koordinatenabstand (`dist_pi_lt_iff`): zweimal |δ/2| < δ.
+  have hw : dist (![δ / 2, δ / 2] : Fin 2 → ℝ) 0 < δ := by
+    rw [dist_pi_lt_iff hδ]
+    intro i
+    fin_cases i <;> simp [abs_of_pos hδ] <;> linarith
+  -- Schritt 3: Dort ist f = 1/2 (`gegenbeispiel_diagonale`), und f(0) = 0. Also waere
+  -- |1/2 - 0| < 1/2 -- Widerspruch.
+  have h1 := hd _ hw
+  rw [gegenbeispiel_diagonale (by positivity)] at h1
+  norm_num [gegenbeispiel, Real.dist_eq] at h1
 
--- Folie: "Vorgerechnet: f(x, y) = (xy, x + y)" (zu Fuss nach der Definition,
--- dann mit den Regeln, dann die erste Spalte als partielle Ableitung)
+/- Differenzierbar heisst erst recht stetig (in Mathlib `DifferentiableAt.continuousAt`).
+   Also ist f in 0 nicht differenzierbar -- obwohl beide partiellen Ableitungen existieren. -/
+example : ¬ DifferentiableAt ℝ gegenbeispiel 0 :=
+  fun h => gegenbeispiel_unstetig h.continuousAt
+
+-- Folie: "Vorgerechnet: f(x, y) = (xy, x + y)" (zu Fuss nach der Definition: Differenz,
+-- linearer Teil und Rest, den Rest abschaetzen)
 /-- (xy, x + y) zu Fuss, nach der Definition: Der Rest ist (h₀h₁, 0), und
 |h₀h₁| ≤ ‖h‖·‖h‖, denn jede Koordinate ist hoechstens ‖h‖ (in Lean traegt ℝ²
 die Maximumsnorm). Auf der Kugel vom Radius c ist das hoechstens c·‖h‖. -/
@@ -857,306 +842,49 @@ theorem jacobi_xy_zu_fuss (v : Fin 2 → ℝ) :
   calc ‖(![h 0 * h 1, 0] : Fin 2 → ℝ)‖ ≤ ‖h‖ * ‖h‖ := hr
     _ ≤ c * ‖h‖ := mul_le_mul_of_nonneg_right hh.le (norm_nonneg h)
 
-/-- Dasselbe mit den Regeln: f(x, y) = (x·y, x + y) hat in v = (x, y) die
-Jacobi-Matrix [[y, x], [1, 1]]. `hasFDerivAt_pi'` zerlegt die Aussage in eine
-je Komponente, also je Zeile; jede Zeile setzen die Regeln zusammen
-(`hasFDerivAt_apply i`: die i-te Koordinate, hier x = w 0 und y = w 1). -/
-theorem jacobi_xy (v : Fin 2 → ℝ) :
-    HasFDerivAt (fun w : Fin 2 → ℝ => ![w 0 * w 1, w 0 + w 1])
-      (matrixAbb !![v 1, v 0; 1, 1]) v := by
-  -- Schritt 1: Eine Abbildung nach ℝ² ist differenzierbar, wenn jede Koordinate es ist
-  -- (`hasFDerivAt_pi'`): Zu zeigen ist eine Aussage je Zeile i, mit der i-ten Zeile der
-  -- Matrix (`ContinuousLinearMap.proj i` waehlt die Zeile).
-  rw [hasFDerivAt_pi']
-  intro i
-  -- Schritt 2: Die zwei Zeilen einzeln, `fin_cases i` macht die Faelle i = 0 und i = 1.
-  fin_cases i
-  · -- Zeile 0, x·y. Die Koordinatenfunktionen x = w 0 und y = w 1 haben die Ableitungen
-    -- `proj 0` und `proj 1` (`hasFDerivAt_apply`); die Produktregel (`.mul`) setzt
-    -- sie zusammen:  h : (x·y)' = x • proj 1 + y • proj 0, also  v 0 • proj 1 + v 1 • proj 0.
-    have h := (hasFDerivAt_apply (𝕜 := ℝ) 0 v).mul (hasFDerivAt_apply (𝕜 := ℝ) 1 v)
-    -- Die Regel liefert eine lineare Abbildung. Ist sie die Zeile (y, x) der Matrix?
-    -- `convert h using 1` laesst nur die Gleichung der beiden Abbildungen uebrig
-    -- (die Funktionen sind schon gleich). Ziel:
-    --   (proj 0) ∘ (matrixAbb J) = v 0 • proj 1 + v 1 • proj 0
-    convert h using 1
-    -- Zwei lineare Abbildungen sind gleich, wenn sie an jedem Vektor k gleich sind
-    -- (`ext k`). Links steht die erste Zeile von J mal k, also v 1 * k 0 + v 0 * k 1.
-    ext k
-    -- `simp` schreibt "Matrix mal Vektor" als Summe aus; `ring` ordnet die Summanden um.
-    simp [dotProduct, Fin.sum_univ_two]
-    ring
-  · -- Zeile 1, x + y: die Summenregel (`.add`) gibt  proj 0 + proj 1, und das ist die Zeile
-    -- (1, 1) der Matrix.
-    have h := (hasFDerivAt_apply (𝕜 := ℝ) 0 v).add (hasFDerivAt_apply (𝕜 := ℝ) 1 v)
-    convert h using 1
-    ext k
-    simp [dotProduct, Fin.sum_univ_two]
+-- Folie: "Die Kettenregel: Matrizen multiplizieren"
+/-- Kettenregel als Matrixprodukt: Hat f in x die Jacobi-Matrix A und g in f(x) die
+Jacobi-Matrix B, so hat g ∘ f in x die Jacobi-Matrix B·A. Die Kettenregel selbst
+beweisen die Folien von Hand; Lean zitiert sie als `HasFDerivAt.comp`. Von Hand
+bewiesen ist hier der zweite Teil: Hintereinanderausfuehren ist Matrizen
+multiplizieren (`matrixAbb_comp`). -/
+theorem kettenregel_matrix {k n m : ℕ} {f : (Fin k → ℝ) → (Fin n → ℝ)}
+    {g : (Fin n → ℝ) → (Fin m → ℝ)} {x : Fin k → ℝ}
+    {A : Matrix (Fin n) (Fin k) ℝ} {B : Matrix (Fin m) (Fin n) ℝ}
+    (hf : HasFDerivAt f (matrixAbb A) x) (hg : HasFDerivAt g (matrixAbb B) (f x)) :
+    HasFDerivAt (g ∘ f) (matrixAbb (B * A)) x := by
+  rw [← matrixAbb_comp]              -- B·A ist "erst A, dann B"
+  exact hg.comp x hf                 -- die Kettenregel: D(g ∘ f)(x) = Dg(f x) ∘ Df(x)
 
-/- Fuer f(x, y) = (xy, x + y) ist die partielle Ableitung nach x die erste
-   Spalte (y, 1) der Jacobi-Matrix: -/
+-- Folie: "Die Kettenregel: Matrizen multiplizieren" (ein Beispiel, ganz aus Stuecken von Hand)
+/- f(x, y) = (xy, x + y) wie auf der Folie, J_f von Hand (`jacobi_xy_zu_fuss`), danach
+   g(u, v) = u + v, affin mit J_g = (1, 1) (`ableitung_affin`). Die Kettenregel
+   multipliziert: J_(g ∘ f)(x, y) = (1, 1) · [[y, x], [1, 1]] = (y + 1, x + 1). -/
 example (v : Fin 2 → ℝ) :
-    HatPartielleAbleitung (fun w : Fin 2 → ℝ => ![w 0 * w 1, w 0 + w 1]) v 0 ![v 1, 1] := by
-  -- Schritt 1: Teil (a) (`partiell_aus_ableitung`) auf die Matrix aus `jacobi_xy` angewendet,
-  -- mit j = 0: Die partielle Ableitung nach x ist J e₀, die erste Spalte von J.
-  have h := partiell_aus_ableitung (jacobi_xy v) 0
-  -- Schritt 2: Das ist unsere Behauptung, wenn J e₀ = (y, 1) ist. `convert ... using 1` laesst
-  -- diese Gleichung als Ziel uebrig; sie wird je Koordinate nachgerechnet (`ext i`, die
-  -- Faelle 0 und 1) -- `simp` liest die erste Spalte der Matrix ab.
-  convert h using 1
-  ext i
-  fin_cases i <;> simp
+    HasFDerivAt ((fun u : Fin 2 → ℝ => (!![1, 1] : Matrix (Fin 1) (Fin 2) ℝ).mulVec u + 0)
+        ∘ (fun w : Fin 2 → ℝ => ![w 0 * w 1, w 0 + w 1]))
+      (matrixAbb ((!![1, 1] : Matrix (Fin 1) (Fin 2) ℝ) * !![v 1, v 0; 1, 1])) v :=
+  kettenregel_matrix (jacobi_xy_zu_fuss v) (ableitung_affin !![1, 1] 0 _)
 
--- Folie: "Die Kettenregel: Matrizen multiplizieren", "Die Kettenregel im Bild: drei Pfeile,
--- zwei Fehler" und "Beweis der Kettenregel (2) im Bild: k bleibt in der Kugel"
--- (der Beweis von Hand steht auf den Folien; Lean setzt die Ableitungen mit
--- `HasFDerivAt.comp` zusammen)
-/-- g(u, v) = u² + v², als Abbildung nach ℝ¹ geschrieben: Die Jacobi-Matrix ist
-die Zeile (2u, 2v). -/
-theorem jacobi_quadratsumme (u : Fin 2 → ℝ) :
-    HasFDerivAt (fun w : Fin 2 → ℝ => ![w 0 ^ 2 + w 1 ^ 2])
-      (matrixAbb !![2 * u 0, 2 * u 1]) u := by
-  -- Es gibt nur eine Zeile (die Abbildung geht nach ℝ¹); `fin_cases i` laesst genau einen
-  -- Fall uebrig.
-  rw [hasFDerivAt_pi']
-  intro i
-  fin_cases i
-  -- u² + v²: Koordinatenfunktionen (`hasFDerivAt_apply`), Potenzregel (`.pow 2`: (u²)' = 2u du)
-  -- und Summenregel (`.add`) -- die Zeile (2u, 2v).
-  have h := ((hasFDerivAt_apply (𝕜 := ℝ) 0 u).pow 2).add
-    ((hasFDerivAt_apply (𝕜 := ℝ) 1 u).pow 2)
-  convert h using 1
-  ext k
-  simp [dotProduct, Fin.sum_univ_two]
-
-/-- Kettenregel: g(u, v) = u² + v² nach f(x, y) = (xy, x + y). Die Jacobi-Matrix von g ∘ f
-ist J_g(f(v)) · J_f(v). `HasFDerivAt.comp` setzt die Ableitungen zusammen, `matrixAbb_comp`
-macht daraus das Matrixprodukt. -/
-theorem kettenregel_xy (v : Fin 2 → ℝ) :
-    HasFDerivAt (fun w : Fin 2 → ℝ => ![(w 0 * w 1) ^ 2 + (w 0 + w 1) ^ 2])
-      (matrixAbb (!![2 * (v 0 * v 1), 2 * (v 0 + v 1)] * !![v 1, v 0; 1, 1])) v := by
-  -- Schritt 1: Die Kettenregel (`HasFDerivAt.comp`): g ∘ f hat in v die Ableitung
-  -- (Dg an der Stelle f(v)) ∘ (Df an der Stelle v). g ist `jacobi_quadratsumme`, an der Stelle
-  -- f(v) = (xy, x + y); f ist `jacobi_xy`.
-  have h := (jacobi_quadratsumme ![v 0 * v 1, v 0 + v 1]).comp v (jacobi_xy v)
-  -- Schritt 2: Hintereinanderausfuehren ist Matrizen multiplizieren (`matrixAbb_comp`):
-  -- aus (matrixAbb A) ∘ (matrixAbb B) wird matrixAbb (A * B).
-  rw [matrixAbb_comp] at h
-  -- Schritt 3: Angleichen. In h steht noch `![a, b] 0` fuer die Koordinaten und das Zeichen
-  -- ∘ fuer g ∘ f; `simpa` liest die Koordinaten ab und schreibt ∘ aus. Dann ist h das Ziel.
-  simpa using h
-
-/- Das Produkt ausgerechnet ist (2xy² + 2(x + y), 2x²y + 2(x + y)) -- genau die partiellen
-   Ableitungen von (xy)² + (x + y)² nach x und nach y. -/
-example (x y : ℝ) :
-    !![2 * (x * y), 2 * (x + y)] * !![y, x; 1, 1] =
-      !![2 * x * y ^ 2 + 2 * (x + y), 2 * x ^ 2 * y + 2 * (x + y)] := by
-  -- Zwei Matrizen sind gleich, wenn jeder Eintrag es ist (`ext i j`): eine Zeile
-  -- (`fin_cases i`) und zwei Spalten (`fin_cases j`). `simp` schreibt das Produkt als Summe
-  -- aus (`Matrix.mul_apply`, `Fin.sum_univ_two`), `ring` rechnet nach.
-  ext i j
-  fin_cases i
-  fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two] <;> ring
-
--- Folie: "Gradient und Hesse-Matrix"
-/-- f(x, y) = x² + xy + y² - x - y hat die Jacobi-Matrix (2x + y - 1, x + 2y - 1),
-eine Zeile: der Gradient, als Zeile geschrieben. -/
-theorem gradient_beispiel (v : Fin 2 → ℝ) :
-    HasFDerivAt (fun w : Fin 2 → ℝ => ![w 0 ^ 2 + w 0 * w 1 + w 1 ^ 2 - w 0 - w 1])
-      (matrixAbb !![2 * v 0 + v 1 - 1, v 0 + 2 * v 1 - 1]) v := by
-  -- Wie oben: eine Zeile (`hasFDerivAt_pi'`, `fin_cases`), die Regeln zusammensetzen,
-  -- `convert` auf die Gleichung der linearen Abbildungen, an jedem Vektor k nachrechnen.
-  rw [hasFDerivAt_pi']
-  intro i
-  fin_cases i
-  -- h0 und h1 sind die Koordinatenfunktionen x und y mit ihren Ableitungen.
-  have h0 := hasFDerivAt_apply (𝕜 := ℝ) 0 v
-  have h1 := hasFDerivAt_apply (𝕜 := ℝ) 1 v
-  -- x² + x·y + y² - x - y, Term fuer Term: `.pow 2`, `.mul`, `.add`, `.sub`.
-  have h := ((((h0.pow 2).add (h0.mul h1)).add (h1.pow 2)).sub h0).sub h1
-  convert h using 1
-  ext k
-  simp [dotProduct, Fin.sum_univ_two]
-  ring
-
-/-- Der Gradient selbst hat die Jacobi-Matrix [[2, 1], [1, 2]]: die
-Hesse-Matrix von f, hier konstant. -/
-theorem hesse_beispiel (v : Fin 2 → ℝ) :
-    HasFDerivAt (fun w : Fin 2 → ℝ => ![2 * w 0 + w 1 - 1, w 0 + 2 * w 1 - 1])
-      (matrixAbb !![2, 1; 1, 2]) v := by
-  -- Zwei Zeilen: die beiden Komponenten des Gradienten, jede wieder aus den Regeln.
-  rw [hasFDerivAt_pi']
-  intro i
-  fin_cases i
-  · -- Zeile 0, 2x + y - 1: `.const_mul 2` (Faktor 2), `.add`, `.sub_const 1` (Konstante weg).
-    -- Die Zeile ist (2, 1).
-    have h := (((hasFDerivAt_apply (𝕜 := ℝ) 0 v).const_mul 2).add
-      (hasFDerivAt_apply (𝕜 := ℝ) 1 v)).sub_const 1
-    convert h using 1
-    ext k
-    simp [dotProduct, Fin.sum_univ_two]
-  · -- Zeile 1, x + 2y - 1: dieselben Regeln. Die Zeile ist (1, 2).
-    have h := ((hasFDerivAt_apply (𝕜 := ℝ) 0 v).add
-      ((hasFDerivAt_apply (𝕜 := ℝ) 1 v).const_mul 2)).sub_const 1
-    convert h using 1
-    ext k
-    simp [dotProduct, Fin.sum_univ_two]
-
-/- Der Gradient verschwindet nur bei (1/3, 1/3) -- dem einzigen Kandidaten
-   fuer ein Minimum: -/
-example (x y : ℝ) :
-    (2 * x + y - 1 = 0 ∧ x + 2 * y - 1 = 0) ↔ (x = 1 / 3 ∧ y = 1 / 3) := by
-  constructor
-  · -- (→) h1 : 2x + y - 1 = 0 und h2 : x + 2y - 1 = 0. Zwei lineare Gleichungen fuer x und y:
-    -- 2·h1 - h2 gibt 3x = 1, 2·h2 - h1 gibt 3y = 1. `linarith` findet diese Kombination.
-    rintro ⟨h1, h2⟩
-    constructor <;> linarith
-  · -- (←) x = 1/3 und y = 1/3 einsetzen (`rfl`): 2/3 + 1/3 - 1 = 0, beide Male.
-    rintro ⟨rfl, rfl⟩
-    constructor <;> norm_num
-
-/-! ## Anhang: die Ableitung in einer Variablen
-
-Nicht im Fokus der Vorlesung, zum Nachschlagen: die Regeln und die
-Junk-Werte. Die Definition von `HasDerivAt` samt Filter steht am Anfang des
-Kapitels ueber mehrere Veraenderliche; dieser Abschnitt wird dafuer nicht
-gebraucht. -/
-
-/-! ### Ableitung in einer Variablen -/
-
--- Regeln und Junk-Werte (ohne Folie)
-/- Mit den fertigen Ableitungsregeln ist y² eine Zeile: -/
-example (x : ℝ) : HasDerivAt (fun y : ℝ => y ^ 2) (2 * x) x := by
-  simpa using hasDerivAt_pow 2 x
-
-/- Produktregel: eine Rechenregel, aus Mathlib (`HasDerivAt.mul`). -/
-example (f g : ℝ → ℝ) (x f' g' : ℝ)
-    (hf : HasDerivAt f f' x) (hg : HasDerivAt g g' x) :
-    HasDerivAt (fun y => f y * g y) (f' * g x + f x * g') x := hf.mul hg
-
-/- Die Zahl `deriv f x` ist die Frechet-Ableitung `fderiv`, an der Stelle 1
-   ausgewertet. Wo es keine Ableitung gibt, waehlt `fderiv` die 0: der Junk-Wert. -/
-example (f : ℝ → ℝ) (x : ℝ) : deriv f x = fderiv ℝ f x 1 := rfl
-
-/- `deriv` ist total: Wo f nicht differenzierbar ist, liefert es den
-   Junk-Wert 0 -- so legt Mathlib `deriv` fest, daher zitiert. -/
+-- Folie: "Zusammenfassung" (die Zahl f'(x) ist in Mathlib total)
+/- Die Zahl `deriv f x` ist total: Wo f nicht differenzierbar ist, liefert Mathlib den
+   Junk-Wert 0. Die inhaltliche Aussage ist `HasDerivAt f f' x`. -/
 example (f : ℝ → ℝ) (x : ℝ) (h : ¬ DifferentiableAt ℝ f x) : deriv f x = 0 :=
   deriv_zero_of_not_differentiableAt h
 
-/- Deshalb braucht Fermat fuer `deriv` keine Differenzierbarkeit: -/
-example (f : ℝ → ℝ) (a : ℝ) (h : IsLocalMin f a) : deriv f a = 0 := by
-  rcases Classical.em (DifferentiableAt ℝ f a) with hd | hd
-  · exact fermat h hd.hasDerivAt                  -- differenzierbar
-  · exact deriv_zero_of_not_differentiableAt hd   -- sonst Junk-Wert 0
-
-/-! ### Polarkoordinaten (ohne Folie)
-
-Auf den Folien nicht mehr, im Skript in Abschnitt 4.4: die Jacobi-Matrix der
-Polarkoordinaten, ihre Determinante r und die Kettenregel fuer u² + v² nach den
-Polarkoordinaten. -/
-
-/-- Polarkoordinaten P(r, φ) = (r cos φ, r sin φ), mit v = (r, φ): Die Spalten
-der Jacobi-Matrix sind die Ableitungen nach r und nach φ. -/
-theorem jacobi_polar (v : Fin 2 → ℝ) :
-    HasFDerivAt (fun w : Fin 2 → ℝ => ![w 0 * Real.cos (w 1), w 0 * Real.sin (w 1)])
-      (matrixAbb !![Real.cos (v 1), -(v 0 * Real.sin (v 1));
-                    Real.sin (v 1), v 0 * Real.cos (v 1)]) v := by
-  -- Wie bei `jacobi_xy`: erst zeilenweise (`hasFDerivAt_pi'`, `fin_cases`), dann je Zeile die
-  -- Regeln zusammensetzen, `convert` auf die Gleichung der linearen Abbildungen, und die
-  -- Gleichung an jedem Vektor k nachrechnen (`ext k`, `simp`, `ring`).
-  rw [hasFDerivAt_pi']
-  intro i
-  fin_cases i
-  · -- Zeile 0, r·cos φ. r = w 0 und φ = w 1 sind Koordinatenfunktionen (`hasFDerivAt_apply`);
-    -- `.cos` ist die Kettenregel fuer cos(φ), die Produktregel `.mul` setzt r·cos φ zusammen:
-    -- (r cos φ)' = cos φ dr - r sin φ dφ.
-    have h := (hasFDerivAt_apply (𝕜 := ℝ) 0 v).mul (hasFDerivAt_apply (𝕜 := ℝ) 1 v).cos
-    convert h using 1
-    ext k
-    simp [dotProduct, Fin.sum_univ_two]
-    ring
-  · -- Zeile 1, r·sin φ: genauso mit `.sin`. (r sin φ)' = sin φ dr + r cos φ dφ.
-    have h := (hasFDerivAt_apply (𝕜 := ℝ) 0 v).mul (hasFDerivAt_apply (𝕜 := ℝ) 1 v).sin
-    convert h using 1
-    ext k
-    simp [dotProduct, Fin.sum_univ_two]
-    ring
-
-/- Ihre Determinante ist r -- der Faktor, um den P kleine Flaechen streckt: -/
-example (r φ : ℝ) :
-    (!![Real.cos φ, -(r * Real.sin φ); Real.sin φ, r * Real.cos φ]).det = r := by
-  -- Schritt 1: Die Determinante einer 2×2-Matrix ist a·d - b·c (`det_fin_two_of`). Ziel:
-  --   cos φ * (r * cos φ) - (-(r * sin φ)) * sin φ = r
-  rw [Matrix.det_fin_two_of]
-  -- Schritt 2: Links steht r·(cos² φ + sin² φ); mit sin² + cos² = 1 ist das r.
-  -- `linear_combination` rechnet nach, dass linke minus rechte Seite gleich r mal
-  -- (sin² φ + cos² φ - 1) ist.
-  linear_combination r * Real.sin_sq_add_cos_sq φ
-
-/-- Kettenregel: Die Jacobi-Matrix von g ∘ P ist J_g(P(v)) · J_P(v).
-`HasFDerivAt.comp` setzt die Ableitungen zusammen, `matrixAbb_comp` macht
-daraus das Matrixprodukt. -/
-theorem kettenregel_polar (v : Fin 2 → ℝ) :
-    HasFDerivAt
-      (fun w : Fin 2 → ℝ => ![(w 0 * Real.cos (w 1)) ^ 2 + (w 0 * Real.sin (w 1)) ^ 2])
-      (matrixAbb (!![2 * (v 0 * Real.cos (v 1)), 2 * (v 0 * Real.sin (v 1))] *
-        !![Real.cos (v 1), -(v 0 * Real.sin (v 1)); Real.sin (v 1), v 0 * Real.cos (v 1)]))
-      v := by
-  -- Schritt 1: Die Kettenregel (`HasFDerivAt.comp`): g ∘ P hat in v die Ableitung
-  -- (Dg an der Stelle P(v)) ∘ (DP an der Stelle v). g ist `jacobi_quadratsumme`, an der Stelle
-  -- P(v) = (r cos φ, r sin φ); P ist `jacobi_polar`.
-  have h := (jacobi_quadratsumme ![v 0 * Real.cos (v 1), v 0 * Real.sin (v 1)]).comp v
-    (jacobi_polar v)
-  -- Schritt 2: Hintereinanderausfuehren ist Matrizen multiplizieren (`matrixAbb_comp`):
-  -- aus (matrixAbb A) ∘ (matrixAbb B) wird matrixAbb (A * B).
-  rw [matrixAbb_comp] at h
-  -- Schritt 3: Angleichen. In h steht noch `![a, b] 0` fuer die Koordinaten und das Zeichen
-  -- ∘ fuer g ∘ P; `simp` liest die Koordinaten ab und schreibt ∘ aus. Dann ist h das Ziel.
-  simpa using h
-
-/- Das Produkt ausgerechnet ist (2r, 0) -- die Ableitung von r² nach (r, φ),
-   denn g(P(r, φ)) = r². -/
-example (r φ : ℝ) :
-    !![2 * (r * Real.cos φ), 2 * (r * Real.sin φ)] *
-      !![Real.cos φ, -(r * Real.sin φ); Real.sin φ, r * Real.cos φ] = !![2 * r, 0] := by
-  -- Zwei Matrizen sind gleich, wenn jeder Eintrag es ist (`ext i j`). Es gibt eine Zeile
-  -- (`fin_cases i`) und zwei Spalten (`fin_cases j`).
-  ext i j
-  fin_cases i
-  fin_cases j
-  · -- Eintrag (0,0): 2r cos φ · cos φ + 2r sin φ · sin φ = 2r. `simp` schreibt das Produkt
-    -- als Summe aus; sin² + cos² = 1 liefert den Rest (wie bei der Determinante oben).
-    simp [Matrix.mul_apply, Fin.sum_univ_two]
-    linear_combination 2 * r * Real.sin_sq_add_cos_sq φ
-  · -- Eintrag (0,1): -2r cos φ · r sin φ + 2r sin φ · r cos φ = 0, die Terme heben sich auf.
-    simp [Matrix.mul_apply, Fin.sum_univ_two]
-    ring
-
 /-! ### Mathlib-Wegweiser zu Vorlesung 5
 
-Nur hier in der Datei, nicht im Skript und nicht auf den Folien. -/
-#check @Asymptotics.isLittleO_iff                      -- o(g) ausgeschrieben
-#check @Asymptotics.isBigO_iff                         -- O(g) ausgeschrieben
-#check @Asymptotics.IsLittleO.add                      -- Summenregel
-#check @Asymptotics.IsLittleO.const_mul_left           -- mal Konstante
-#check @Asymptotics.IsLittleO.trans_isBigO             -- o(g), g = O(h): o(h)
-#check @Asymptotics.isLittleO_iff_tendsto'             -- mit Teilen, g schliesslich ≠ 0
-#check @Asymptotics.isLittleO_pow_pow_atTop_of_lt      -- x = o(x²) bei +∞
-#check @Asymptotics.isLittleO_one_iff                  -- o(1) heisst → 0
-#check @hasDerivAt_iff_isLittleO                       -- Ableitung: Fehler = o(y - x)
-#check @HasDerivAt.unique                              -- nur eine Steigung
-#check @hasFDerivAt_iff_isLittleO_nhds_zero           -- Frechet: o(h)
-#check @hasFDerivAt_pi'                                -- je Komponente
-#check @HasFDerivAt.hasLineDerivAt                     -- Richtungsableitung
-#check @lineDeriv                                      -- ... als Zahl, total
-#check @ContinuousLinearMap.hasFDerivAt                -- lineare Abbildung: eigene Ableitung
-#check @HasFDerivAt.unique                             -- nur eine Ableitung
-#check @HasFDerivAt.comp                               -- Kettenregel
-#check @Matrix.toLin'_mul                              -- ... als Matrixprodukt
-#check @LinearMap.toMatrix'                            -- Abbildung -> Matrix
-#check @hasDerivAt_iff_hasFDerivAt                     -- Spezialfall Frechet
-#check @IsLocalMin.hasDerivAt_eq_zero                  -- Fermat, HasDerivAt
-#check @IsLocalMin.deriv_eq_zero                       -- Fermat, deriv
-#check @exists_hasDerivAt_eq_slope                     -- Mittelwertsatz
+Nur zum Nachschlagen, ohne Folie. -/
+#check @Metric.tendsto_nhds_nhds                -- ε-δ
+#check @Metric.tendsto_atTop                    -- ε-N
+#check @hasSum_geometric_two'                   -- 1/2 + 1/4 + ... = 1 (mit a = 1)
+#check @Asymptotics.isLittleO_iff               -- o(g) ausgeschrieben
+#check @Asymptotics.isLittleO_iff_tendsto'      -- mit Teilen, g schliesslich ≠ 0
+#check @Asymptotics.IsLittleO.add               -- Summenregel
+#check @hasDerivAt_iff_isLittleO                -- Ableitung: Fehler = o(y - x)
+#check @IsLocalMin.hasDerivAt_eq_zero           -- Fermat
+#check @hasFDerivAt_iff_isLittleO_nhds_zero     -- Frechet: Rest = o(h)
+#check @HasFDerivAt.comp                        -- Kettenregel
+#check @HasFDerivAt.hasLineDerivAt              -- Richtungsableitung
 
 end Skript.Analysis
